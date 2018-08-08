@@ -3819,7 +3819,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '939961241@qq.com', '15209831990', '1', '1', '2016-11-11 11:11:11', '1');
+INSERT INTO `sys_user` VALUES ('1', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '516195940@qq.com', '15209831990', '1', '1', '2016-11-11 11:11:11', '1');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`

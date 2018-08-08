@@ -3,8 +3,8 @@ package com.platform.utils;
 /**
  * 常量
  *
- * @author lipengjun
- * @email 939961241@qq.com
+ * @author taylor
+ * @email 516195940@qq.com
  * @date 2016年11月15日 下午1:23:52
  */
 public class Constant {
@@ -53,8 +53,8 @@ public class Constant {
     /**
      * 菜单类型
      *
-     * @author lipengjun
-     * @email 939961241@qq.com
+     * @author taylor
+     * @email 516195940@qq.com
      * @date 2016年11月15日 下午1:24:29
      */
     public enum MenuType {
@@ -85,8 +85,8 @@ public class Constant {
     /**
      * 定时任务状态
      *
-     * @author lipengjun
-     * @email 939961241@qq.com
+     * @author taylor
+     * @email 516195940@qq.com
      * @date 2016年12月3日 上午12:07:22
      */
     public enum ScheduleStatus {

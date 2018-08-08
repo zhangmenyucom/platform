@@ -14,8 +14,8 @@ import java.util.Map;
 /**
  * 会员测试
  *
- * @author lipengjun
- * @email 939961241@qq.com
+ * @author taylor
+ * @email 516195940@qq.com
  * @date 2018-07-09 10:13:43
  */
 public class TestSysUserController extends BaseSpringTestCase {

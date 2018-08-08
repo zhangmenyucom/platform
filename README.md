@@ -1,17 +1,17 @@
 # 微信小程序商城（Java版）
 
-[![Fork me on Gitee](https://gitee.com/fuyang_lipengjun/platform/widgets/widget_3.svg?color=C71D24)](https://gitee.com/fuyang_lipengjun/platform)
+[![Fork me on Gitee](https://gitee.com/fuyang_taylor/platform/widgets/widget_3.svg?color=C71D24)](https://gitee.com/fuyang_taylor/platform)
 
 ## 官方首页
 * [演示地址](http://fly2you.cn)
 * [最新开发文档](http://fly2you.cn/guide/index)
 
 * 官方QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=75689ba2797dd88a208446088b029fbdeba87a29315ff2a021a6731f22ef5052"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="大平台系统开发" title="大平台系统开发"></a>
-* git：[https://gitee.com/fuyang_lipengjun/platform](https://gitee.com/fuyang_lipengjun/platform)
+* git：[https://gitee.com/fuyang_taylor/platform](https://gitee.com/fuyang_taylor/platform)
 * 基础架构版
-    * git：[https://gitee.com/fuyang_lipengjun/platform-framework](https://gitee.com/fuyang_lipengjun/platform-framework)
+    * git：[https://gitee.com/fuyang_taylor/platform-framework](https://gitee.com/fuyang_taylor/platform-framework)
 * 代码生成工具IDEA插件
-    * git：[https://gitee.com/fuyang_lipengjun/platform-gen](https://gitee.com/fuyang_lipengjun/platform-gen)
+    * git：[https://gitee.com/fuyang_taylor/platform-gen](https://gitee.com/fuyang_taylor/platform-gen)
      
 ## 技术选型
 * 1 后端使用技术

@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * 分布式session管理
  *
- * @author lipengjun
+ * @author taylor
  * @date 2018年07月31日 上午14:50
  */
 public class CluterShiroSessionDao extends EnterpriseCacheSessionDAO {
