@@ -33,11 +33,16 @@ public class SysLoginController {
     @Autowired
     private Producer producer;
 
+    /**
+     * 获取验证码
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @RequestMapping("captcha.jpg")
     public void captcha(HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/jpeg");
-
         //生成文字验证码
         String text = producer.createText();
         //生成图片验证码

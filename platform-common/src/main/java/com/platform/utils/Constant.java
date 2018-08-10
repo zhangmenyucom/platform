@@ -152,7 +152,7 @@ public class Constant {
         NO("1");
         private String value;
 
-        private YESNO(String value){
+        YESNO(String value){
             this.value=value;
         }
         public String getValue(){

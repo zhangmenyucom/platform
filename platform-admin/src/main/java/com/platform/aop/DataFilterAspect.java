@@ -91,7 +91,6 @@ public class DataFilterAspect {
                 if (StringUtils.isNotBlank(userAlias)) {
                     if (dataFilter.self()) {
                         filterSql.append(" or ");
-
                     } else {
                         filterSql.append(" and ");
                     }

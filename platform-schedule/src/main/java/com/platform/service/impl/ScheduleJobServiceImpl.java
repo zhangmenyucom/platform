@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Taylor
+ */
 @Service("scheduleJobService")
 public class ScheduleJobServiceImpl implements ScheduleJobService {
 	@Autowired

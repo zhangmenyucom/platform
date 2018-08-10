@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Taylor
+ */
 @Service("scheduleJobLogService")
 public class ScheduleJobLogServiceImpl implements ScheduleJobLogService {
 	@Autowired

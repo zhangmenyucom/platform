@@ -29,7 +29,7 @@ public class AdController {
      * 查看列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("ad:list")
+    @RequiresPermissions("ad:list")
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);

@@ -26,56 +26,27 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 
     private static final Log log = LogFactory.getLog(LogInterceptor.class);
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#
-     * preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse,
-     * java.lang.Object)
-     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         request.setAttribute("REQUEST_START_TIME", new Date());
-
         return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#
-     * postHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse,
-     * java.lang.Object, org.springframework.web.servlet.ModelAndView)
-     */
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                           ModelAndView modelAndView) throws Exception {
-
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#
-     * afterCompletion(javax.servlet.http.HttpServletRequest,
-     * javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
-     */
-    @Override
-    public void afterCompletion(HttpServletRequest request,
-                                HttpServletResponse response, Object handler,
-                                Exception ex)
-            throws Exception {
-
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         Date start = (Date) request.getAttribute("REQUEST_START_TIME");
         Date end = new Date();
-
         log.info("本次请求耗时：" + (end.getTime() - start.getTime()) + "毫秒；" + getRequestInfo(request).toString());
 
     }
 
     @Override
-    public void afterConcurrentHandlingStarted(HttpServletRequest request,
-                                               HttpServletResponse response,
-                                               Object handler)
-            throws Exception {
+    public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         super.afterConcurrentHandlingStarted(request, response, handler);
     }
 
@@ -92,7 +63,6 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         String urlPath = urlPathHelper.getLookupPathForRequest(request);
         reqInfo.append(" 请求路径=" + urlPath);
         reqInfo.append(" 来源IP=" + RequestUtil.getIpAddrByRequest(request));
-
 
         String userName = "";
         try {

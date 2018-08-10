@@ -20,7 +20,7 @@ public class CacheUtil implements InitializingBean {
     public  void init() {
         SysMacroDao macroDao = SpringContextUtils.getBean(SysMacroDao.class);
         if (null != macroDao) {
-            J2CacheUtils.put("macroList", macroDao.queryList(new HashMap<String, Object>()));
+            J2CacheUtils.put("macroList", macroDao.queryList(new HashMap<>(0)));
         }
     }
 
