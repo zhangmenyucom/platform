@@ -54,7 +54,7 @@ public class SysLogAspect {
         SysLogEntity sysLog = new SysLogEntity();
         SysLog syslog = method.getAnnotation(SysLog.class);
         if (syslog != null) {
-            //注解上的描述
+            //注解上的描述12
             sysLog.setOperation(syslog.value());
         }
 
