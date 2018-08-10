@@ -6,6 +6,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>platform-schedule</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>定时任务模块</description>
 
@@ -17,7 +18,7 @@
         <dependency>
             <groupId>com.platform</groupId>
             <artifactId>platform-common</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>

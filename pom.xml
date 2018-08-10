@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.platform</groupId>
     <artifactId>platform</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>platform</description>
 
@@ -71,7 +71,19 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+    <!-- 发布jar包地址nexus-releases nexus-snapshots与settings.xml中server下的id对应 -->
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Releases Repository</name>
+            <url>http://111.231.140.42:8801/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://111.231.140.42:8801/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -298,6 +310,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>utf8</encoding>
                 </configuration>
             </plugin>
             <plugin>

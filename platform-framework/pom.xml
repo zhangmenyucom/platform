@@ -5,10 +5,11 @@
     <parent>
         <artifactId>platform</artifactId>
         <groupId>com.platform</groupId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>platform-framework</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>platform-framework</name>
     <description>
