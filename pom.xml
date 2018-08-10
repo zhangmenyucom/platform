@@ -44,6 +44,7 @@
         <j2cache.version>2.3.22-release</j2cache.version>
         <ehcache.version>2.10.4</ehcache.version>
         <jgroups.version>3.6.13.Final</jgroups.version>
+        <lombok.version>1.16.10</lombok.version>
     </properties>
 
     <!-- 阿里云maven仓库 -->
@@ -281,6 +282,11 @@
             <groupId>org.jgroups</groupId>
             <artifactId>jgroups</artifactId>
             <version>${jgroups.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
     <build>

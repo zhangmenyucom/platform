@@ -1,5 +1,5 @@
 package ${package}.entity;
-
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,11 +14,12 @@ import java.math.BigDecimal;
  * @email ${email}
  * @date ${datetime}
  */
+@Data
 public class ${className}Entity implements Serializable {
     private static final long serialVersionUID = 1L;
 
 #foreach ($column in $columns)
-    //$column.comments
+    /** $column.comments **/
     private $column.attrType $column.attrname;
 #end
 

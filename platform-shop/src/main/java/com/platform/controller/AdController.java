@@ -33,12 +33,9 @@ public class AdController {
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-
         List<AdEntity> adList = adService.queryList(query);
         int total = adService.queryTotal(query);
-
         PageUtils pageUtil = new PageUtils(adList, total, query.getLimit(), query.getPage());
-
         return R.ok().put("page", pageUtil);
     }
 
