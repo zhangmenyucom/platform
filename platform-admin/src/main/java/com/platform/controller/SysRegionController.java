@@ -8,6 +8,8 @@ import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.platform.utils.TreeUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-11-04 11:19:31
  */
+@Api(tags = "地址管理")
 @RestController
 @RequestMapping("sys/region")
 public class SysRegionController {
@@ -35,6 +38,7 @@ public class SysRegionController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:region:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -55,6 +59,7 @@ public class SysRegionController {
      * @param id 主键
      * @return R
      */
+    @ApiOperation(value = "根据主键获取信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:region:info")
     public R info(@PathVariable("id") Integer id) {
@@ -69,6 +74,7 @@ public class SysRegionController {
      * @param region 地址
      * @return R
      */
+    @ApiOperation(value = "新增地址")
     @SysLog("新增地址")
     @RequestMapping("/save")
     @RequiresPermissions("sys:region:save")
@@ -84,6 +90,7 @@ public class SysRegionController {
      * @param region 地址
      * @return R
      */
+    @ApiOperation(value = "修改地址")
     @SysLog("修改地址")
     @RequestMapping("/update")
     @RequiresPermissions("sys:region:update")
@@ -99,6 +106,7 @@ public class SysRegionController {
      * @param ids 主键集
      * @return R
      */
+    @ApiOperation(value = "删除地址")
     @SysLog("删除地址")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:region:delete")
@@ -113,6 +121,7 @@ public class SysRegionController {
      *
      * @return R
      */
+    @ApiOperation(value = "查询所有国家")
     @RequestMapping("/getAllCountry")
     public R getAllCountry() {
         List<SysRegionEntity> list = RegionCacheUtil.getAllCountry();
@@ -124,6 +133,7 @@ public class SysRegionController {
      *
      * @return R
      */
+    @ApiOperation(value = "查询所有省份")
     @RequestMapping("/getAllProvice")
     public R getAllProvice(@RequestParam(required = false) Integer areaId) {
         List<SysRegionEntity> list = RegionCacheUtil.getAllProviceByParentId(areaId);
@@ -135,6 +145,7 @@ public class SysRegionController {
      *
      * @return R
      */
+    @ApiOperation(value = "查询所有城市")
     @RequestMapping("/getAllCity")
     public R getAllCity(@RequestParam(required = false) Integer areaId) {
         List<SysRegionEntity> list = RegionCacheUtil.getChildrenCity(areaId);
@@ -147,6 +158,7 @@ public class SysRegionController {
      *
      * @return R
      */
+    @ApiOperation(value = "查询所有区县")
     @RequestMapping("/getChildrenDistrict")
     public R getChildrenDistrict(@RequestParam(required = false) Integer areaId) {
         List<SysRegionEntity> list = RegionCacheUtil.getChildrenDistrict(areaId);
@@ -158,6 +170,7 @@ public class SysRegionController {
      *
      * @return R
      */
+    @ApiOperation(value = "查看信息(全部加载页面渲染太慢！)")
     @RequestMapping("/getAreaTree")
     public R getAreaTree() {
         List<SysRegionEntity> list = RegionCacheUtil.sysRegionEntityList;
@@ -176,6 +189,7 @@ public class SysRegionController {
      * @param type 类型
      * @return R
      */
+    @ApiOperation(value = "根据类型获取区域)")
     @RequestMapping("/getAreaByType")
     public R getAreaByType(@RequestParam(required = false) Integer type) {
 

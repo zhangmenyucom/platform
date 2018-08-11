@@ -10,6 +10,8 @@ import com.platform.utils.Constant;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ import java.util.Map;
  * @author taylor
  * @date 2017-12-16 23:38:05
  */
+@Api(tags = "发送短信日志")
 @RestController
 @RequestMapping("/sys/smslog")
 public class SysSmsLogController {
@@ -41,6 +44,7 @@ public class SysSmsLogController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "所有日志列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:smslog:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -61,6 +65,7 @@ public class SysSmsLogController {
      * @param id 主键
      * @return R
      */
+    @ApiOperation(value = "根据主键获取日志信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:smslog:info")
     public R info(@PathVariable("id") String id) {
@@ -75,6 +80,7 @@ public class SysSmsLogController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 
@@ -88,6 +94,7 @@ public class SysSmsLogController {
      *
      * @return R
      */
+    @ApiOperation(value = "获取短信配置信息")
     @RequestMapping("/config")
     public R config() {
         SmsConfig config = sysConfigService.getConfigObject(KEY, SmsConfig.class);
@@ -101,6 +108,7 @@ public class SysSmsLogController {
      * @param config 短信配置信息
      * @return R
      */
+    @ApiOperation(value = "保存短信配置信息")
     @SysLog("保存短信配置信息")
     @RequestMapping("/saveConfig")
     public R saveConfig(@RequestBody SmsConfig config) {
@@ -114,6 +122,7 @@ public class SysSmsLogController {
      * @param smsLog 短信
      * @return R
      */
+    @ApiOperation(value = "发送短信")
     @RequestMapping("/sendSms")
     public R sendSms(@RequestBody SysSmsLogEntity smsLog) {
         SysSmsLogEntity sysSmsLogEntity = smsLogService.sendSms(smsLog);

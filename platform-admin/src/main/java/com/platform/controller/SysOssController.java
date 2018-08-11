@@ -12,6 +12,8 @@ import com.platform.validator.ValidatorUtils;
 import com.platform.validator.group.AliyunGroup;
 import com.platform.validator.group.QcloudGroup;
 import com.platform.validator.group.QiniuGroup;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +34,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-03-25 12:13:26
  */
+@Api(tags = "文件上传")
 @RestController
 @RequestMapping("sys/oss")
 public class SysOssController {
@@ -48,6 +51,7 @@ public class SysOssController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:oss:all")
     public R list(@RequestParam Map<String, Object> params) {
@@ -67,6 +71,7 @@ public class SysOssController {
      *
      * @return R
      */
+    @ApiOperation(value = "获取云存储配置信息")
     @RequestMapping("/config")
     @RequiresPermissions("sys:oss:all")
     public R config() {
@@ -82,6 +87,7 @@ public class SysOssController {
      * @param config 配置信息
      * @return R
      */
+    @ApiOperation(value = "保存云存储配置信息")
     @SysLog("保存云存储配置信息")
     @RequestMapping("/saveConfig")
     @RequiresPermissions("sys:oss:all")
@@ -112,6 +118,7 @@ public class SysOssController {
      * @return R
      * @throws Exception 异常
      */
+    @ApiOperation(value = "上传文件")
     @RequestMapping("/upload")
     public R upload(@RequestParam("file") MultipartFile file) throws Exception {
         if (file.isEmpty()) {
@@ -139,6 +146,7 @@ public class SysOssController {
      * @param ids 主键集
      * @return R
      */
+    @ApiOperation(value = "删除图片")
     @SysLog("删除图片")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:oss:all")
@@ -154,6 +162,7 @@ public class SysOssController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "查询所有列表")
     @RequestMapping("/queryAll")
     public List<String> queryAll(@RequestParam Map<String, Object> params) {
         //查询列表数据

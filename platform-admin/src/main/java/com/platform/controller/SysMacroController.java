@@ -6,6 +6,8 @@ import com.platform.service.SysMacroService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-22 11:48:16
  */
+@Api(tags = "通用字典表")
 @RestController
 @RequestMapping("sys/macro")
 public class SysMacroController {
@@ -32,6 +35,7 @@ public class SysMacroController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "所有字典列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:macro:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -52,6 +56,7 @@ public class SysMacroController {
      * @param macroId 主键
      * @return R
      */
+    @ApiOperation(value = "根据主键获取字典信息")
     @RequestMapping("/info/{macroId}")
     @RequiresPermissions("sys:macro:info")
     public R info(@PathVariable("macroId") Long macroId) {
@@ -66,6 +71,7 @@ public class SysMacroController {
      * @param sysMacro 字典
      * @return R
      */
+    @ApiOperation(value = "新增字典")
     @SysLog("新增字典")
     @RequestMapping("/save")
     @RequiresPermissions("sys:macro:save")
@@ -81,6 +87,7 @@ public class SysMacroController {
      * @param sysMacro 字典
      * @return R
      */
+    @ApiOperation(value = "修改字典")
     @SysLog("修改字典")
     @RequestMapping("/update")
     @RequiresPermissions("sys:macro:update")
@@ -96,6 +103,7 @@ public class SysMacroController {
      * @param macroIds 主键集
      * @return R
      */
+    @ApiOperation(value = "删除字典")
     @SysLog("删除字典")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:macro:delete")
@@ -111,6 +119,7 @@ public class SysMacroController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "查看字典列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 
@@ -125,6 +134,7 @@ public class SysMacroController {
      * @param value value
      * @return R
      */
+    @ApiOperation(value = "根据value查询数据字典")
     @RequestMapping("/queryMacrosByValue")
     public R queryMacrosByValue(@RequestParam String value) {
 

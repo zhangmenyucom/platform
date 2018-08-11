@@ -4,6 +4,9 @@ import com.platform.annotation.IgnoreAuth;
 import com.platform.entity.SysSmsLogEntity;
 import com.platform.service.SysSmsLogService;
 import com.platform.utils.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +22,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2018-06-05 13:58:47
  */
+@Api(tags="发送短信接口",description = "发送短信接口")
 @RestController
 @RequestMapping("api")
 public class ApiSmsController {
@@ -34,6 +38,7 @@ public class ApiSmsController {
      */
     @IgnoreAuth
     @RequestMapping("/sendSms")
+    @ApiOperation(value = "发送短信")
     public R sendSms(HttpServletRequest request, @RequestParam Map<String, String> params) {
         SysSmsLogEntity smsLog = new SysSmsLogEntity();
         String validIP = RequestUtil.getIpAddrByRequest(request);

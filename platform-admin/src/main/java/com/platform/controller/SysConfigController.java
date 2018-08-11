@@ -7,6 +7,8 @@ import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.platform.validator.ValidatorUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2016年12月4日 下午6:55:53
  */
+@Api(tags = "系统配置信息")
 @RestController
 @RequestMapping("/sys/config")
 public class SysConfigController extends AbstractController {
@@ -33,6 +36,7 @@ public class SysConfigController extends AbstractController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "所有配置列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:config:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -53,6 +57,7 @@ public class SysConfigController extends AbstractController {
      * @param id 主键
      * @return R
      */
+    @ApiOperation(value = "根据主键获取配置信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:config:info")
     public R info(@PathVariable("id") Long id) {
@@ -67,6 +72,7 @@ public class SysConfigController extends AbstractController {
      * @param config 配置
      * @return R
      */
+    @ApiOperation(value = "新增配置")
     @SysLog("新增配置")
     @RequestMapping("/save")
     @RequiresPermissions("sys:config:save")
@@ -84,6 +90,7 @@ public class SysConfigController extends AbstractController {
      * @param config 配置
      * @return R
      */
+    @ApiOperation(value = "修改配置")
     @SysLog("修改配置")
     @RequestMapping("/update")
     @RequiresPermissions("sys:config:update")
@@ -101,6 +108,7 @@ public class SysConfigController extends AbstractController {
      * @param ids 主键集
      * @return R
      */
+    @ApiOperation(value = "删除配置")
     @SysLog("删除配置")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:config:delete")

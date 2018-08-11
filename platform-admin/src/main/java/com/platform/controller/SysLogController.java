@@ -5,6 +5,8 @@ import com.platform.service.SysLogService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-03-08 10:40:56
  */
+@Api(tags = "系统日志")
 @Controller
 @RequestMapping("/sys/log")
 public class SysLogController {
@@ -34,6 +37,7 @@ public class SysLogController {
      * @param params 请求参数
      * @return R
      */
+    @ApiOperation(value = "系统日志列表")
     @ResponseBody
     @RequestMapping("/list")
     @RequiresPermissions("sys:log:list")
