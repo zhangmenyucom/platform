@@ -109,16 +109,23 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
                 <executions>
                     <execution>
+                        <id>deploy</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>repackage</goal>
+                            <goal>run</goal>
                         </goals>
                         <configuration>
-                            <finalName>${project.artifactId}</finalName>
-                            <outputDirectory>/data/apps/deploy</outputDirectory>
+                            <target>
+                                <property name="servicemix_path" value="/data/apps/deploy" />
+                                <property name="target_file" value="${project.artifactId}.war" />
+                                <delete file="${servicemix_path}/${target_file}"></delete>
+                                <copy file="target/${target_file}" todir="${servicemix_path}/" />
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
