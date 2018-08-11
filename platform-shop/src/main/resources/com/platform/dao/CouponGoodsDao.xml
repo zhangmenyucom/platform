@@ -14,7 +14,7 @@
 			`id`,
 			`coupon_id`,
 			`goods_id`
-		from nideshop_coupon_goods
+		from coupon_goods
 		where id = #{id}
 	</select>
 
@@ -23,7 +23,7 @@
     		`id`,
     		`coupon_id`,
     		`goods_id`
-		from nideshop_coupon_goods
+		from coupon_goods
 		WHERE 1=1
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
@@ -42,7 +42,7 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from nideshop_coupon_goods
+		select count(*) from coupon_goods
 		WHERE 1=1
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
@@ -50,7 +50,7 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.CouponGoodsEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_coupon_goods(
+		insert into coupon_goods(
 			`coupon_id`,
 			`goods_id`)
 		values(
@@ -59,7 +59,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.platform.entity.CouponGoodsEntity">
-		update nideshop_coupon_goods 
+		update coupon_goods
 		<set>
 			<if test="couponId != null">`coupon_id` = #{couponId}, </if>
 			<if test="goodsId != null">`goods_id` = #{goodsId}</if>
@@ -68,11 +68,11 @@
 	</update>
 	
 	<delete id="delete">
-		delete from nideshop_coupon_goods where id = #{value}
+		delete from coupon_goods where id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from nideshop_coupon_goods where id in 
+		delete from coupon_goods where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

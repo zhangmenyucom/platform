@@ -17,16 +17,16 @@
     </resultMap>
 
     <select id="queryObject" resultMap="userCouponMap">
-		select * from nideshop_user_coupon where id = #{value}
+		select * from user_coupon where id = #{value}
 	</select>
 
     <select id="queryByCouponNumber" resultMap="userCouponMap">
-        select * from nideshop_user_coupon where coupon_number = #{coupon_number}
+        select * from user_coupon where coupon_number = #{coupon_number}
     </select>
 
     <select id="queryList" resultMap="userCouponMap">
-        select a.* from nideshop_user_coupon a
-        left join nideshop_coupon b on b.id = a.coupon_id
+        select a.* from user_coupon a
+        left join coupon b on b.id = a.coupon_id
         where 1 = 1
         <if test="coupon_number != null">
             and a.coupon_number = #{coupon_number}
@@ -57,11 +57,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_user_coupon 
+		select count(*) from user_coupon
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.UserCouponVo" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_user_coupon
+		insert into user_coupon
 		(
 			`coupon_id`, 
 			`coupon_number`, 
@@ -86,7 +86,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.UserCouponVo">
-        update nideshop_user_coupon
+        update user_coupon
         <set>
             <if test="coupon_id != null">`coupon_id` = #{coupon_id},</if>
             <if test="coupon_number != null">`coupon_number` = #{coupon_number},</if>
@@ -101,11 +101,11 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_user_coupon where id = #{value}
+		delete from user_coupon where id = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_user_coupon where id in
+        delete from user_coupon where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

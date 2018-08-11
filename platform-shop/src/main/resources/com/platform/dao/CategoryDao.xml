@@ -39,7 +39,7 @@
 			`type`,
 			`front_name`,
 			`is_show` as `show`
-		from nideshop_category
+		from category
 		where id = #{id}
 	</select>
 
@@ -61,7 +61,7 @@
     		`type`,
     		`front_name`,
 			`is_show` as `show`
-		from nideshop_category
+		from category
 		WHERE 1=1
 		<if test="name != null and name.trim() != ''">
 			AND `name` LIKE concat('%',#{name},'%')
@@ -83,7 +83,7 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from nideshop_category
+		select count(*) from category
 		WHERE 1=1
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
@@ -91,7 +91,7 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.CategoryEntity">
-		insert into nideshop_category(
+		insert into category(
 			`id`,
 			`name`,
 			`keywords`,
@@ -126,7 +126,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.platform.entity.CategoryEntity">
-		update nideshop_category 
+		update category
 		<set>
 			<if test="name != null">`name` = #{name}, </if>
 			<if test="keywords != null">`keywords` = #{keywords}, </if>
@@ -147,18 +147,18 @@
 	</update>
 	
 	<delete id="delete">
-		delete from nideshop_category where id = #{value}
+		delete from category where id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from nideshop_category where id in 
+		delete from category where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>
 	</delete>
 
 	<delete id="deleteByParentBatch">
-		delete from nideshop_category where parent_id in
+		delete from category where parent_id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

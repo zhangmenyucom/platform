@@ -16,11 +16,11 @@
     </resultMap>
 
 	<select id="queryObject" resultMap="feedbackMap">
-		select * from nideshop_feedback where msg_id = #{value}
+		select * from feedback where msg_id = #{value}
 	</select>
 
 	<select id="queryList" resultMap="feedbackMap">
-		select * from nideshop_feedback
+		select * from feedback
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -35,11 +35,11 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from nideshop_feedback 
+		select count(*) from feedback
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.FeedbackVo" useGeneratedKeys="true" keyProperty="msgId">
-		insert into nideshop_feedback(
+		insert into feedback(
 			`user_id`,
 			`user_name`,
 			`mobile`,
@@ -59,7 +59,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.platform.entity.FeedbackVo">
-		update nideshop_feedback
+		update feedback
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
 			<if test="userName != null">`user_name` = #{userName}, </if>
@@ -73,11 +73,11 @@
 	</update>
 	
 	<delete id="delete">
-		delete from nideshop_feedback where msg_id = #{value}
+		delete from feedback where msg_id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from nideshop_feedback where msg_id in 
+		delete from feedback where msg_id in
 		<foreach item="msgId" collection="array" open="(" separator="," close=")">
 			#{msgId}
 		</foreach>

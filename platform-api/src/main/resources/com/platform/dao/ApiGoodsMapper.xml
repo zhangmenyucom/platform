@@ -40,7 +40,7 @@
     </resultMap>
 
     <select id="queryObject" resultMap="goodsMap">
-		select * from nideshop_goods where id = #{value}
+		select * from goods where id = #{value}
 	</select>
 
     <select id="queryList" resultMap="goodsMap">
@@ -51,7 +51,7 @@
         <if test="fields == null or fields == ''">
             *
         </if>
-        from nideshop_goods
+        from goods
         where 1 = 1
         <if test="is_new != null and is_new != ''">
             and is_new = #{is_new}
@@ -101,9 +101,9 @@
 
     <select id="queryHotGoodsList" resultMap="goodsMap">
         select a.*,b.id as product_id
-        from nideshop_goods a
-        left join nideshop_product b on a.id = b.goods_id
-        left join nideshop_product c on a.id = c.goods_id and c.retail_price > b.retail_price and b.id != c.id
+        from goods a
+        left join product b on a.id = b.goods_id
+        left join product c on a.id = c.goods_id and c.retail_price > b.retail_price and b.id != c.id
         where 1 = 1 and b.id is not null and c.id is null and a.is_delete != 1
         <if test="is_new != null and is_new != ''">
             and a.is_new = #{is_new}
@@ -151,12 +151,12 @@
     <select id="queryCatalogProductList" resultMap="goodsMap">
         select a.id, a.name, a.list_pic_url, a.market_price, a.retail_price, a.goods_brief, b.id AS
         product_id,count(og.id) as orderNum
-        from nideshop_goods a
-        left join nideshop_product b on a.id = b.goods_id
-        left join nideshop_product c on a.id = c.goods_id and c.retail_price > b.retail_price and b.id != c.id
-        left join nideshop_order_goods og on og.product_id = b.id
+        from goods a
+        left join product b on a.id = b.goods_id
+        left join product c on a.id = c.goods_id and c.retail_price > b.retail_price and b.id != c.id
+        left join order_goods og on og.product_id = b.id
         <if test="is_group != null and is_group == true">
-            left join nideshop_goods_group gg on gg.goods_id = a.id
+            left join goods_group gg on gg.goods_id = a.id
         </if>
         where 1 = 1 and b.id is not null and c.id is null and a.is_delete != 1
         <if test="is_new != null and is_new != ''">
@@ -207,7 +207,7 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_goods
+		select count(*) from goods
 		where 1 = 1
         <if test="is_delete != null">
             and is_delete = #{is_delete}

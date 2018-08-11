@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 实体
- * 表名 nideshop_user_coupon
+ * 表名 user_coupon
  *
  * @author taylor
  * @email 516195940@qq.com

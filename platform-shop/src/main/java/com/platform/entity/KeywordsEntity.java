@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 热闹关键词表实体
- * 表名 nideshop_keywords
+ * 表名 keywords
  *
  * @author taylor
  * @email 516195940@qq.com

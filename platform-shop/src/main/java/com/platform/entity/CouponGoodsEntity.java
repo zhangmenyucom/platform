@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 优惠券关联商品实体
- * 表名 nideshop_coupon_goods
+ * 表名 coupon_goods
  *
  * @author taylor
  * @email 516195940@qq.com

@@ -21,11 +21,11 @@
     </resultMap>
 
     <select id="queryObject" resultMap="orderGoodsMap">
-		select * from nideshop_order_goods where id = #{value}
+		select * from order_goods where id = #{value}
 	</select>
 
     <select id="queryList" resultMap="orderGoodsMap">
-        select * from nideshop_order_goods
+        select * from order_goods
         <where>
             <if test="order_id != null and order_id != ''">
                 and order_id = #{order_id}
@@ -45,11 +45,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_order_goods 
+		select count(*) from order_goods
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.OrderGoodsVo" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_order_goods
+		insert into order_goods
 		(
 			`order_id`, 
 			`goods_id`, 
@@ -82,7 +82,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.OrderGoodsVo">
-        update nideshop_order_goods
+        update order_goods
         <set>
             <if test="order_id != null">`order_id` = #{order_id},</if>
             <if test="goods_id != null">`goods_id` = #{goods_id},</if>
@@ -103,11 +103,11 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_order_goods where id = #{value}
+		delete from order_goods where id = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_order_goods where id in
+        delete from order_goods where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

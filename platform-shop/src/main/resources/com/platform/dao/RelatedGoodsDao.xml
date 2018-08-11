@@ -11,11 +11,11 @@
     </resultMap>
 
 	<select id="queryObject" resultType="com.platform.entity.RelatedGoodsEntity">
-		select * from nideshop_related_goods where id = #{value}
+		select * from related_goods where id = #{value}
 	</select>
 
 	<select id="queryList" resultType="com.platform.entity.RelatedGoodsEntity">
-		select * from nideshop_related_goods
+		select * from related_goods
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -30,11 +30,11 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from nideshop_related_goods 
+		select count(*) from related_goods
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.RelatedGoodsEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_related_goods
+		insert into related_goods
 		(
 			`goods_id`, 
 			`related_goods_id`
@@ -47,7 +47,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.platform.entity.RelatedGoodsEntity">
-		update nideshop_related_goods 
+		update related_goods
 		<set>
 			<if test="goodsId != null">`goods_id` = #{goodsId}, </if>
 			<if test="relatedGoodsId != null">`related_goods_id` = #{relatedGoodsId}</if>
@@ -56,11 +56,11 @@
 	</update>
 	
 	<delete id="delete">
-		delete from nideshop_related_goods where id = #{value}
+		delete from related_goods where id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from nideshop_related_goods where id in 
+		delete from related_goods where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

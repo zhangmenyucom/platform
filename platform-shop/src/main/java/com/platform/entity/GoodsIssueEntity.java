@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * 实体
- * 表名 nideshop_goods_issue
+ * 表名 goods_issue
  *
  * @author taylor
  * @email 516195940@qq.com

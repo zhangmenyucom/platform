@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 实体
- * 表名 nideshop_channel
+ * 表名 channel
  *
  * @author taylor
  * @email 516195940@qq.com

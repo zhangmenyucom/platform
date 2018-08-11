@@ -2,7 +2,7 @@ package com.platform.entity;
 
 /**
  * 实体
- * 表名 nideshop_category
+ * 表名 category
  *
  * @author taylor
  * @email 516195940@qq.com

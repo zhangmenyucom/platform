@@ -23,13 +23,13 @@
     </resultMap>
 
     <select id="queryObject" resultType="com.platform.entity.CartEntity">
-		select * from nideshop_cart where id = #{value}
+		select * from cart where id = #{value}
 	</select>
 
     <select id="queryList" resultMap="cartMap">
         select a.* ,b.username as user_name
-        from nideshop_cart a
-        left join nideshop_user b on a.user_id = b.id
+        from cart a
+        left join user b on a.user_id = b.id
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -44,11 +44,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_cart 
+		select count(*) from cart
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.CartEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_cart
+		insert into cart
 		(
 			`user_id`, 
 			`session_id`, 
@@ -83,7 +83,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.CartEntity">
-        update nideshop_cart
+        update cart
         <set>
             <if test="userId != null">`user_id` = #{userId},</if>
             <if test="sessionId != null">`session_id` = #{sessionId},</if>
@@ -105,11 +105,11 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_cart where id = #{value}
+		delete from cart where id = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_cart where id in
+        delete from cart where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

@@ -12,11 +12,11 @@
     </resultMap>
 
     <select id="queryObject" resultMap="commentPictureMap">
-		select * from nideshop_comment_picture where id = #{value}
+		select * from comment_picture where id = #{value}
 	</select>
 
     <select id="queryList" resultMap="commentPictureMap">
-        select * from nideshop_comment_picture
+        select * from comment_picture
         where 1 = 1
         <if test="comment_id != null">
             and comment_id = #{comment_id}
@@ -35,11 +35,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_comment_picture 
+		select count(*) from comment_picture
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.CommentPictureVo" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_comment_picture
+		insert into comment_picture
 		(
 			`comment_id`, 
 			`pic_url`, 
@@ -54,7 +54,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.CommentPictureVo">
-        update nideshop_comment_picture
+        update comment_picture
         <set>
             <if test="comment_id != null">`comment_id` = #{comment_id},</if>
             <if test="pic_url != null">`pic_url` = #{pic_url},</if>
@@ -64,11 +64,11 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_comment_picture where id = #{value}
+		delete from comment_picture where id = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_comment_picture where id in
+        delete from comment_picture where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

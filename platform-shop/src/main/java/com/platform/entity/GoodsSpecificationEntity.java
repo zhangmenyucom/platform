@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 商品对应规格表值表实体
- * 表名 nideshop_goods_specification
+ * 表名 goods_specification
  *
  * @author taylor
  * @email 516195940@qq.com

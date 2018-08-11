@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 实体
- * 表名 nideshop_brand
+ * 表名 brand
  *
  * @author taylor
  * @email 516195940@qq.com

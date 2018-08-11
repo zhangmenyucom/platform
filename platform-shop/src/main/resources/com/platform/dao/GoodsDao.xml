@@ -42,67 +42,67 @@
     </resultMap>
 
     <select id="queryObject" resultType="com.platform.entity.GoodsEntity">
-		select * from nideshop_goods where id = #{value}
+		select * from goods where id = #{value}
 	</select>
 
     <select id="queryList" resultType="com.platform.entity.GoodsEntity">
         select
-        nideshop_goods.id,
-        nideshop_goods.category_id,
-        nideshop_goods.goods_sn,
-        nideshop_goods.name,
-        nideshop_goods.brand_id,
-        nideshop_goods.goods_number,
-        nideshop_goods.keywords,
-        nideshop_goods.goods_brief,
-        nideshop_goods.goods_desc,
-        nideshop_goods.is_on_sale,
-        nideshop_goods.add_time,
-        nideshop_goods.update_time,
-        nideshop_goods.sort_order,
-        nideshop_goods.is_delete,
-        nideshop_goods.attribute_category,
-        nideshop_goods.counter_price,
-        nideshop_goods.extra_price,
-        nideshop_goods.is_new,
-        nideshop_goods.goods_unit,
-        nideshop_goods.primary_pic_url,
-        nideshop_goods.list_pic_url,
-        nideshop_goods.retail_price,
-        nideshop_goods.sell_volume,
-        nideshop_goods.primary_product_id,
-        nideshop_goods.unit_price,
-        nideshop_goods.promotion_desc,
-        nideshop_goods.promotion_tag,
-        nideshop_goods.app_exclusive_price,
-        nideshop_goods.is_app_exclusive,
-        nideshop_goods.is_limited,
-        nideshop_goods.is_hot,
-        nideshop_goods.market_price,
-        nideshop_goods.create_user_id,
-        nideshop_goods.create_user_dept_id,
-        nideshop_goods.update_user_id,
-        nideshop_category.name category_name,
-        nideshop_attribute_category.name attribute_category_name,
-        nideshop_brand.name brand_name
-        from nideshop_goods
-        LEFT JOIN nideshop_category
-        ON nideshop_goods.category_id = nideshop_category.id
-        LEFT JOIN nideshop_attribute_category ON nideshop_goods.attribute_category = nideshop_attribute_category.id
-        LEFT JOIN nideshop_brand ON nideshop_brand.id = nideshop_goods.brand_id
+        goods.id,
+        goods.category_id,
+        goods.goods_sn,
+        goods.name,
+        goods.brand_id,
+        goods.goods_number,
+        goods.keywords,
+        goods.goods_brief,
+        goods.goods_desc,
+        goods.is_on_sale,
+        goods.add_time,
+        goods.update_time,
+        goods.sort_order,
+        goods.is_delete,
+        goods.attribute_category,
+        goods.counter_price,
+        goods.extra_price,
+        goods.is_new,
+        goods.goods_unit,
+        goods.primary_pic_url,
+        goods.list_pic_url,
+        goods.retail_price,
+        goods.sell_volume,
+        goods.primary_product_id,
+        goods.unit_price,
+        goods.promotion_desc,
+        goods.promotion_tag,
+        goods.app_exclusive_price,
+        goods.is_app_exclusive,
+        goods.is_limited,
+        goods.is_hot,
+        goods.market_price,
+        goods.create_user_id,
+        goods.create_user_dept_id,
+        goods.update_user_id,
+        category.name category_name,
+        attribute_category.name attribute_category_name,
+        brand.name brand_name
+        from goods
+        LEFT JOIN category
+        ON goods.category_id = category.id
+        LEFT JOIN attribute_category ON goods.attribute_category = attribute_category.id
+        LEFT JOIN brand ON brand.id = goods.brand_id
         WHERE 1=1
         <!--  数据过滤  -->
         ${filterSql}
         <if test="name != null and name != ''">
-            AND nideshop_goods.name LIKE concat('%',#{name},'%')
+            AND goods.name LIKE concat('%',#{name},'%')
         </if>
-        AND nideshop_goods.is_Delete = #{isDelete}
+        AND goods.is_Delete = #{isDelete}
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
             </when>
             <otherwise>
-                order by nideshop_goods.id desc
+                order by goods.id desc
             </otherwise>
         </choose>
         <if test="offset != null and limit != null">
@@ -111,17 +111,17 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-        select count(*) from nideshop_goods WHERE 1=1
+        select count(*) from goods WHERE 1=1
         <!--  数据过滤  -->
         ${filterSql}
         <if test="name != null and name != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
-        AND nideshop_goods.is_Delete = #{isDelete}
+        AND goods.is_Delete = #{isDelete}
     </select>
 
     <insert id="save" parameterType="com.platform.entity.GoodsEntity">
-        insert into nideshop_goods
+        insert into goods
         (
         `id`,
         `category_id`,
@@ -200,7 +200,7 @@
     </insert>
 
     <update id="update" parameterType="com.platform.entity.GoodsEntity">
-        update nideshop_goods
+        update goods
         <set>
             <if test="categoryId != null">`category_id` = #{categoryId},</if>
             <if test="goodsSn != null">`goods_sn` = #{goodsSn},</if>
@@ -241,17 +241,17 @@
     </update>
 
     <delete id="delete">
-        delete from nideshop_goods where id = #{value}
+        delete from goods where id = #{value}
     </delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_goods where id in
+        delete from goods where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
 
     <select id="queryMaxId" resultType="java.lang.Integer" parameterType="map">
-        SELECT MAX(id) FROM nideshop_goods
+        SELECT MAX(id) FROM goods
     </select>
 </mapper>

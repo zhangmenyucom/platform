@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 /**
- * 实体表名 nideshop_sms_log
+ * 实体表名 sms_log
  *
  * @author taylor
  * @email 516195940@qq.com

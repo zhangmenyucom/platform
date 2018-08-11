@@ -44,13 +44,13 @@
 
     <select id="queryObject" resultMap="orderMap">
 		select a.*,b.code as  shipping_code
-		from nideshop_order a
-		left join nideshop_shipping b on a.shipping_id = b.id
+		from order a
+		left join shipping b on a.shipping_id = b.id
 		where a.id = #{value}
 	</select>
 
     <select id="queryList" resultMap="orderMap">
-        select * from nideshop_order
+        select * from order
         <where>
             <if test="user_id != null">
                 and user_id = #{user_id}
@@ -70,11 +70,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_order
+		select count(*) from order
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.OrderVo" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_order
+		insert into order
 		(
 			`order_sn`,
 			`user_id`,
@@ -149,7 +149,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.OrderVo">
-        update nideshop_order
+        update order
         <set>
             <if test="order_sn != null">`order_sn` = #{order_sn},</if>
             <if test="user_id != null">`user_id` = #{user_id},</if>
@@ -188,11 +188,11 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_order where id = #{value}
+		delete from order where id = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_order where id in
+        delete from order where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

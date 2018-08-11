@@ -36,28 +36,28 @@
 			register_ip,
 			avatar,
 			weixin_openid
-		from nideshop_user
+		from user
 		where id = #{id}
 	</select>
 
     <select id="queryList" resultType="com.platform.entity.UserEntity">
         select
-        nideshop_user.id,
-        nideshop_user.username,
-        nideshop_user.password,
-        nideshop_user.gender,
-        nideshop_user.birthday,
-        nideshop_user.register_time,
-        nideshop_user.last_login_time,
-        nideshop_user.last_login_ip,
-        nideshop_user.user_level_id,
-        nideshop_user.nickname,
-        nideshop_user.mobile,
-        nideshop_user.register_ip,
-        nideshop_user.avatar,
-        nideshop_user.weixin_openid,
-        nideshop_user_level.name levelName
-        from nideshop_user LEFT JOIN nideshop_user_level ON nideshop_user.user_level_id=nideshop_user_level.id
+        user.id,
+        user.username,
+        user.password,
+        user.gender,
+        user.birthday,
+        user.register_time,
+        user.last_login_time,
+        user.last_login_ip,
+        user.user_level_id,
+        user.nickname,
+        user.mobile,
+        user.register_ip,
+        user.avatar,
+        user.weixin_openid,
+        user_level.name levelName
+        from user LEFT JOIN user_level ON user.user_level_id=user_level.id
         WHERE 1=1
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')
@@ -76,7 +76,7 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-        select count(*) from nideshop_user
+        select count(*) from user
         WHERE 1=1
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')
@@ -84,7 +84,7 @@
     </select>
 
     <insert id="save" parameterType="com.platform.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into nideshop_user(
+		insert into user(
 			`username`,
 			`password`,
 			`gender`,
@@ -115,7 +115,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.UserEntity">
-        update nideshop_user
+        update user
         <set>
             <if test="username != null">`username` = #{username},</if>
             <if test="password != null">`password` = #{password},</if>
@@ -135,11 +135,11 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_user where id = #{value}
+		delete from user where id = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_user where id in
+        delete from user where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

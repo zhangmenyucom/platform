@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 评价图片实体
- * 表名 nideshop_comment_picture
+ * 表名 comment_picture
  *
  * @author taylor
  * @email 516195940@qq.com

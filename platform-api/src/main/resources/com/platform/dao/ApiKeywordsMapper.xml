@@ -16,7 +16,7 @@
     </resultMap>
 
     <select id="queryObject" resultMap="keywordsMap">
-		select * from nideshop_keywords where keyword = #{value}
+		select * from keywords where keyword = #{value}
 	</select>
 
     <select id="queryList" resultMap="keywordsMap">
@@ -27,7 +27,7 @@
         <if test="fields == null or fields == ''">
             *
         </if>
-        from nideshop_keywords
+        from keywords
         <where>
             <if test="keyword != null">
                 and keyword like concat('%',#{keyword},'%')
@@ -47,11 +47,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from nideshop_keywords 
+		select count(*) from keywords
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.KeywordsVo">
-		insert into nideshop_keywords
+		insert into keywords
 		(
 			`keyword`, 
 			`is_hot`, 
@@ -76,7 +76,7 @@
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.KeywordsVo">
-        update nideshop_keywords
+        update keywords
         <set>
             <if test="is_hot != null">`is_hot` = #{is_hot},</if>
             <if test="is_default != null">`is_default` = #{is_default},</if>
@@ -90,16 +90,16 @@
     </update>
 
     <delete id="delete">
-		delete from nideshop_keywords where keyword = #{value}
+		delete from keywords where keyword = #{value}
 	</delete>
 
     <delete id="deleteBatch">
-        delete from nideshop_keywords where keyword in
+        delete from keywords where keyword in
         <foreach item="keyword" collection="array" open="(" separator="," close=")">
             #{keyword}
         </foreach>
     </delete>
     <select id="hotKeywordList" resultType="map">
-		select distinct keyword,is_hot from nideshop_keywords where 1 = 1 limit 0,10
+		select distinct keyword,is_hot from keywords where 1 = 1 limit 0,10
 	</select>
 </mapper>
