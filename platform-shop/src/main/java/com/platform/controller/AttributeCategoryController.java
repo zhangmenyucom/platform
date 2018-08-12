@@ -5,6 +5,8 @@ import com.platform.service.AttributeCategoryService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-17 16:13:27
  */
+@Api(tags = "商品属性")
 @RestController
 @RequestMapping("attributecategory")
 public class AttributeCategoryController {
@@ -28,6 +31,7 @@ public class AttributeCategoryController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("attributecategory:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -46,6 +50,7 @@ public class AttributeCategoryController {
     /**
      * 查看信息
      */
+    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("attributecategory:info")
     public R info(@PathVariable("id") Integer id) {
@@ -57,6 +62,7 @@ public class AttributeCategoryController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("attributecategory:save")
     public R save(@RequestBody AttributeCategoryEntity attributeCategory) {
@@ -68,6 +74,7 @@ public class AttributeCategoryController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("attributecategory:update")
     public R update(@RequestBody AttributeCategoryEntity attributeCategory) {
@@ -79,6 +86,7 @@ public class AttributeCategoryController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("attributecategory:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -90,6 +98,7 @@ public class AttributeCategoryController {
     /**
      * 查看所有列表
      */
+    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

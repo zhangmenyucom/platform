@@ -7,10 +7,7 @@ import com.platform.entity.AddressVo;
 import com.platform.entity.UserVo;
 import com.platform.service.ApiAddressService;
 import com.platform.util.ApiBaseAction;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,8 +35,8 @@ public class ApiAddressController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取用户的收货地址接口", response = Map.class)
     @GetMapping("list")
-    public Object list(@LoginUser UserVo loginUser) {
-        Map<String, Object> param = new HashMap<String, Object>();
+    public Object list(@LoginUser @ApiParam("请求体") UserVo loginUser) {
+        Map<String, Object> param = new HashMap<>(0);
         param.put("user_id", loginUser.getUserId());
         List<AddressVo> addressEntities = addressService.queryList(param);
         return toResponsSuccess(addressEntities);

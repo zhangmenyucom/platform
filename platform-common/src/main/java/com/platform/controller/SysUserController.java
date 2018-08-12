@@ -9,6 +9,8 @@ import com.platform.validator.Assert;
 import com.platform.validator.ValidatorUtils;
 import com.platform.validator.group.AddGroup;
 import com.platform.validator.group.UpdateGroup;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -25,6 +27,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2016年10月31日 上午10:40:10
  */
+@Api(tags="系统用户")
 @RestController
 @RequestMapping("/sys/user")
 public class SysUserController extends AbstractController {
@@ -36,6 +39,7 @@ public class SysUserController extends AbstractController {
     /**
      * 所有用户列表
      */
+    @ApiOperation("所有用户列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:user:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -57,6 +61,7 @@ public class SysUserController extends AbstractController {
     /**
      * 获取登录的用户信息
      */
+    @ApiOperation("获取登录的用户信息")
     @RequestMapping("/info")
     public R info() {
         return R.ok().put("user", getUser());
@@ -65,6 +70,7 @@ public class SysUserController extends AbstractController {
     /**
      * 修改登录用户密码
      */
+    @ApiOperation("修改登录用户密码")
     @SysLog("修改密码")
     @RequestMapping("/password")
     public R password(String password, String newPassword) {
@@ -93,6 +99,7 @@ public class SysUserController extends AbstractController {
     /**
      * 用户信息
      */
+    @ApiOperation("用户信息")
     @RequestMapping("/info/{userId}")
     @RequiresPermissions("sys:user:info")
     public R info(@PathVariable("userId") Long userId) {
@@ -108,6 +115,7 @@ public class SysUserController extends AbstractController {
     /**
      * 保存用户
      */
+    @ApiOperation("保存用户")
     @SysLog("保存用户")
     @RequestMapping("/save")
     @RequiresPermissions("sys:user:save")
@@ -123,6 +131,7 @@ public class SysUserController extends AbstractController {
     /**
      * 修改用户
      */
+    @ApiOperation("修改用户")
     @SysLog("修改用户")
     @RequestMapping("/update")
     @RequiresPermissions("sys:user:update")
@@ -138,6 +147,7 @@ public class SysUserController extends AbstractController {
     /**
      * 删除用户
      */
+    @ApiOperation("删除用户")
     @SysLog("删除用户")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:user:delete")

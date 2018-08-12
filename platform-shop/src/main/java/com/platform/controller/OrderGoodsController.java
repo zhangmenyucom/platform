@@ -3,6 +3,8 @@ package com.platform.controller;
 import java.util.List;
 import java.util.Map;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import com.platform.utils.R;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:09
  */
+@Api(tags="订单商品")
 @RestController
 @RequestMapping("ordergoods")
 public class OrderGoodsController {
@@ -34,6 +37,7 @@ public class OrderGoodsController {
 	/**
 	 * 列表
 	 */
+	@ApiOperation("查看列表")
 	@RequestMapping("/list")
 	@RequiresPermissions("ordergoods:list")
 	public R list(@RequestParam Map<String, Object> params){

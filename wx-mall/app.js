@@ -3,6 +3,9 @@ var api = require('./config/api.js');
 var user = require('./services/user.js');
 
 App({
+  config: {
+    host: 'http://localhost:8080' // 这个地方填写你的域名
+   },
   onLaunch: function () {
     //获取用户的登录信息
     user.checkLogin().then(res => {

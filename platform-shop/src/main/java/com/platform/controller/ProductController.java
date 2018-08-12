@@ -5,6 +5,8 @@ import com.platform.service.ProductService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-30 14:31:21
  */
+@Api(tags="商品")
 @RestController
 @RequestMapping("product")
 public class ProductController {
@@ -29,6 +32,7 @@ public class ProductController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("product:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -46,6 +50,7 @@ public class ProductController {
     /**
      * 查看信息
      */
+    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("product:info")
     public R info(@PathVariable("id") Integer id) {
@@ -57,6 +62,7 @@ public class ProductController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("product:save")
     public R save(@RequestBody ProductEntity product) {
@@ -68,6 +74,7 @@ public class ProductController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("product:update")
     public R update(@RequestBody ProductEntity product) {
@@ -79,6 +86,7 @@ public class ProductController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("product:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -93,6 +101,7 @@ public class ProductController {
      * @param params
      * @return
      */
+    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 
@@ -107,6 +116,7 @@ public class ProductController {
      * @param goodsId
      * @return
      */
+    @ApiOperation("根据goodsId查询商品")
     @RequestMapping("/queryByGoodsId/{goodsId}")
     public R queryByGoodsId(@PathVariable("goodsId") String goodsId) {
         Map<String, Object> params = new HashMap<>();

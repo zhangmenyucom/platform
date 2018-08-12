@@ -5,6 +5,8 @@ import com.platform.service.AdService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-19 09:37:35
  */
+@Api(tags="广告")
 @RestController
 @RequestMapping("ad")
 public class AdController {
@@ -28,6 +31,7 @@ public class AdController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看广告列表")
     @RequestMapping("/list")
     @RequiresPermissions("ad:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -43,6 +47,7 @@ public class AdController {
     /**
      * 查看信息
      */
+    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("ad:info")
     public R info(@PathVariable("id") Integer id) {
@@ -54,6 +59,7 @@ public class AdController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("ad:save")
     public R save(@RequestBody AdEntity ad) {
@@ -65,6 +71,7 @@ public class AdController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("ad:update")
     public R update(@RequestBody AdEntity ad) {
@@ -76,6 +83,7 @@ public class AdController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("ad:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -87,6 +95,7 @@ public class AdController {
     /**
      * 查看所有列表
      */
+    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

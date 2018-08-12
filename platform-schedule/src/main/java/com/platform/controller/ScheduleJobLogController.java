@@ -5,6 +5,8 @@ import com.platform.service.ScheduleJobLogService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2016年12月1日 下午10:39:52
  */
+@Api(tags = "定时任务日志")
 @RestController
 @RequestMapping("/sys/scheduleLog")
 public class ScheduleJobLogController {
@@ -31,6 +34,7 @@ public class ScheduleJobLogController {
     /**
      * 定时任务日志列表
      */
+    @ApiOperation("定时任务日志列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:schedule:log")
     public R list(@RequestParam Map<String, Object> params) {
@@ -47,6 +51,7 @@ public class ScheduleJobLogController {
     /**
      * 定时任务日志信息
      */
+    @ApiOperation("定时任务日志信息")
     @RequestMapping("/info/{logId}")
     public R info(@PathVariable("logId") Long logId) {
         ScheduleJobLogEntity log = scheduleJobLogService.queryObject(logId);

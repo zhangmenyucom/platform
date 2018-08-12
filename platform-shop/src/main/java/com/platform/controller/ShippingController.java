@@ -5,6 +5,8 @@ import com.platform.service.ShippingService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-09-04 21:42:24
  */
+@Api(tags="快递")
 @RestController
 @RequestMapping("shipping")
 public class ShippingController {
@@ -28,6 +31,7 @@ public class ShippingController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("shipping:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -45,6 +49,7 @@ public class ShippingController {
     /**
      * 查看信息
      */
+    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("shipping:info")
     public R info(@PathVariable("id") Integer id) {
@@ -56,6 +61,7 @@ public class ShippingController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("shipping:save")
     public R save(@RequestBody ShippingEntity shipping) {
@@ -67,6 +73,7 @@ public class ShippingController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("shipping:update")
     public R update(@RequestBody ShippingEntity shipping) {
@@ -78,6 +85,7 @@ public class ShippingController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("shipping:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -89,6 +97,7 @@ public class ShippingController {
     /**
      * 查看所有列表
      */
+    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

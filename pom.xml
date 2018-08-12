@@ -45,6 +45,7 @@
         <ehcache.version>2.10.4</ehcache.version>
         <jgroups.version>3.6.13.Final</jgroups.version>
         <lombok.version>1.16.10</lombok.version>
+        <swagger.version>2.4.0</swagger.version>
     </properties>
 
     <!-- 阿里云maven仓库 -->
@@ -84,6 +85,21 @@
             <url>http://111.231.140.42:8801/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+    <dependencyManagement>
+        <dependencies>
+            <!--swagger 依赖-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

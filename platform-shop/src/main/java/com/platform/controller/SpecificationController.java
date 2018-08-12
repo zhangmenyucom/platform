@@ -5,6 +5,7 @@ import com.platform.service.SpecificationService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class SpecificationController {
     /**
      * 列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("specification:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -47,6 +49,7 @@ public class SpecificationController {
     /**
      * 信息
      */
+    @ApiOperation("信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("specification:info")
     public R info(@PathVariable("id") Integer id) {
@@ -58,6 +61,7 @@ public class SpecificationController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("specification:save")
     public R save(@RequestBody SpecificationEntity specification) {
@@ -69,6 +73,7 @@ public class SpecificationController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("specification:update")
     public R update(@RequestBody SpecificationEntity specification) {
@@ -80,6 +85,7 @@ public class SpecificationController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("specification:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -91,6 +97,7 @@ public class SpecificationController {
     /**
      * 查看所有列表
      */
+    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

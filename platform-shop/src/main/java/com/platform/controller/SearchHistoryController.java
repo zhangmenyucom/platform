@@ -3,6 +3,8 @@ package com.platform.controller;
 import java.util.List;
 import java.util.Map;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,7 @@ import com.platform.utils.R;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:10
  */
+@Api(tags="搜索历史")
 @RestController
 @RequestMapping("searchhistory")
 public class SearchHistoryController {
@@ -32,6 +35,7 @@ public class SearchHistoryController {
     /**
      * 列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("searchhistory:list")
     public R list(@RequestParam Map<String, Object> params) {

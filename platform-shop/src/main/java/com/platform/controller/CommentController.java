@@ -5,6 +5,8 @@ import com.platform.service.CommentService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-28 17:03:40
  */
+@Api(tags="评论列表")
 @RestController
 @RequestMapping("comment")
 public class CommentController {
@@ -28,6 +31,7 @@ public class CommentController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("comment:list")
     public R list(@RequestParam Map<String, Object> params) {

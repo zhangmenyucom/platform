@@ -5,6 +5,8 @@ import com.platform.service.AddressService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-16 17:22:46
  */
+@Api(tags="收货地址")
 @RestController
 @RequestMapping("address")
 public class AddressController {
@@ -28,6 +31,7 @@ public class AddressController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("address:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -46,6 +50,7 @@ public class AddressController {
     /**
      * 查看信息
      */
+    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("address:info")
     public R info(@PathVariable("id") Integer id) {
@@ -57,6 +62,7 @@ public class AddressController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("address:save")
     public R save(@RequestBody AddressEntity address) {
@@ -68,6 +74,7 @@ public class AddressController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("address:update")
     public R update(@RequestBody AddressEntity address) {
@@ -79,6 +86,7 @@ public class AddressController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("address:delete")
     public R delete(@RequestBody Integer[] ids) {

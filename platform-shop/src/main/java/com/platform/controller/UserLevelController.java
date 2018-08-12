@@ -5,6 +5,7 @@ import com.platform.service.UserLevelService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class UserLevelController {
     /**
      * 查看列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("userlevel:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -46,6 +48,7 @@ public class UserLevelController {
     /**
      * 查看信息
      */
+    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("userlevel:info")
     public R info(@PathVariable("id") Integer id) {
@@ -57,6 +60,7 @@ public class UserLevelController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("userlevel:save")
     public R save(@RequestBody UserLevelEntity userLevel) {
@@ -68,6 +72,7 @@ public class UserLevelController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("userlevel:update")
     public R update(@RequestBody UserLevelEntity userLevel) {
@@ -79,6 +84,7 @@ public class UserLevelController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("userlevel:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -92,6 +98,7 @@ public class UserLevelController {
      *
      * @return
      */
+    @ApiOperation("查询所有数据")
     @RequestMapping("queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
         List<UserLevelEntity> userLevelList = userLevelService.queryList(params);

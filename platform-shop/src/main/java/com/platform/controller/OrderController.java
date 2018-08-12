@@ -5,6 +5,8 @@ import com.platform.service.OrderService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:09
  */
+@Api(tags="订单相关")
 @RestController
 @RequestMapping("order")
 public class OrderController {
@@ -27,6 +30,7 @@ public class OrderController {
     /**
      * 列表
      */
+    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("order:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -45,6 +49,7 @@ public class OrderController {
     /**
      * 信息
      */
+    @ApiOperation("信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("order:info")
     public R info(@PathVariable("id") Integer id) {
@@ -56,6 +61,7 @@ public class OrderController {
     /**
      * 保存
      */
+    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("order:save")
     public R save(@RequestBody OrderEntity order) {
@@ -67,6 +73,7 @@ public class OrderController {
     /**
      * 修改
      */
+    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("order:update")
     public R update(@RequestBody OrderEntity order) {
@@ -78,6 +85,7 @@ public class OrderController {
     /**
      * 删除
      */
+    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("order:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -89,6 +97,7 @@ public class OrderController {
     /**
      * 查看所有列表
      */
+    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 
@@ -100,6 +109,7 @@ public class OrderController {
     /**
      * 总计
      */
+    @ApiOperation("总计")
     @RequestMapping("/queryTotal")
     public R queryTotal(@RequestParam Map<String, Object> params) {
         int sum = orderService.queryTotal(params);
@@ -113,6 +123,7 @@ public class OrderController {
      * @param id
      * @return
      */
+    @ApiOperation("确定收货")
     @RequestMapping("/confirm")
     @RequiresPermissions("order:confirm")
     public R confirm(@RequestBody Integer id) {
@@ -127,6 +138,7 @@ public class OrderController {
      * @param order
      * @return
      */
+    @ApiOperation("发货")
     @RequestMapping("/sendGoods")
     @RequiresPermissions("order:sendGoods")
     public R sendGoods(@RequestBody OrderEntity order) {

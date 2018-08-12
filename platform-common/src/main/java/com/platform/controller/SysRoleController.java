@@ -10,6 +10,8 @@ import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.platform.validator.ValidatorUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2016年11月8日 下午2:18:33
  */
+@Api(tags="角色管理")
 @RestController
 @RequestMapping("/sys/role")
 public class SysRoleController extends AbstractController {
@@ -38,6 +41,7 @@ public class SysRoleController extends AbstractController {
     /**
      * 角色列表
      */
+    @ApiOperation("角色列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:role:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -59,6 +63,7 @@ public class SysRoleController extends AbstractController {
     /**
      * 角色列表
      */
+    @ApiOperation("角色列表")
     @RequestMapping("/select")
     @RequiresPermissions("sys:role:select")
     public R select() {
@@ -76,6 +81,7 @@ public class SysRoleController extends AbstractController {
     /**
      * 角色信息
      */
+    @ApiOperation("角色信息")
     @RequestMapping("/info/{roleId}")
     @RequiresPermissions("sys:role:info")
     public R info(@PathVariable("roleId") Long roleId) {
@@ -95,7 +101,8 @@ public class SysRoleController extends AbstractController {
     /**
      * 保存角色
      */
-    @SysLog("保存角色")
+    @ApiOperation("角色信息")
+    @SysLog("角色信息")
     @RequestMapping("/save")
     @RequiresPermissions("sys:role:save")
     public R save(@RequestBody SysRoleEntity role) {
@@ -110,6 +117,7 @@ public class SysRoleController extends AbstractController {
     /**
      * 修改角色
      */
+    @ApiOperation("修改角色")
     @SysLog("修改角色")
     @RequestMapping("/update")
     @RequiresPermissions("sys:role:update")
@@ -125,6 +133,7 @@ public class SysRoleController extends AbstractController {
     /**
      * 删除角色
      */
+    @ApiOperation("删除角色")
     @SysLog("删除角色")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:role:delete")

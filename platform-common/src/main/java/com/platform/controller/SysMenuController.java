@@ -5,6 +5,8 @@ import com.platform.entity.SysMenuEntity;
 import com.platform.service.SysMenuService;
 import com.platform.utils.*;
 import com.platform.utils.Constant.MenuType;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2016年10月27日 下午9:58:15
  */
+@Api(tags = "系统菜单")
 @RestController
 @RequestMapping("/sys/menu")
 public class SysMenuController extends AbstractController {
@@ -30,6 +33,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 所有菜单列表
      */
+    @ApiOperation("所有菜单列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:menu:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -46,6 +50,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 所有菜单列表
      */
+    @ApiOperation("所有菜单列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
         //查询列表数据
@@ -57,6 +62,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 选择菜单(添加、修改菜单)
      */
+    @ApiOperation("选择菜单(添加、修改菜单)")
     @RequestMapping("/select")
     @RequiresPermissions("sys:menu:select")
     public R select() {
@@ -77,6 +83,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 角色授权菜单
      */
+    @ApiOperation("角色授权菜单")
     @RequestMapping("/perms")
     @RequiresPermissions("sys:menu:perms")
     public R perms() {
@@ -96,6 +103,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 菜单信息
      */
+    @ApiOperation("菜单信息")
     @RequestMapping("/info/{menuId}")
     @RequiresPermissions("sys:menu:info")
     public R info(@PathVariable("menuId") Long menuId) {
@@ -106,6 +114,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 保存
      */
+    @ApiOperation("保存菜单")
     @SysLog("保存菜单")
     @RequestMapping("/save")
     @RequiresPermissions("sys:menu:save")
@@ -121,6 +130,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 修改
      */
+    @ApiOperation("修改菜单")
     @SysLog("修改菜单")
     @RequestMapping("/update")
     @RequiresPermissions("sys:menu:update")
@@ -136,6 +146,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 删除
      */
+    @ApiOperation("删除菜单")
     @SysLog("删除菜单")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:menu:delete")
@@ -153,6 +164,7 @@ public class SysMenuController extends AbstractController {
     /**
      * 用户菜单列表
      */
+    @ApiOperation("用户菜单列表")
     @RequestMapping("/user")
     public R user() {
         List<SysMenuEntity> menuList = sysMenuService.getUserMenuList(getUserId());
