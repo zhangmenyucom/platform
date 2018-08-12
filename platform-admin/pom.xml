@@ -91,7 +91,7 @@
                 <configuration>
                     <warSourceDirectory>src/main/webapp</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <warName>${project.artifactId}</warName>
+                    <warName>ROOT</warName>
                     <webResources>
                         <resource>
                             <directory>src/main/resources/${env}</directory>
@@ -123,8 +123,8 @@
                         <configuration>
                             <target>
                                 <property name="servicemix_path" value="/data/apps/deploy" />
-                                <property name="target_file" value="${project.artifactId}.war" />
-                                <delete file="${servicemix_path}/${target_file}"></delete>
+                                <property name="target_file" value="ROOT.war" />
+                                <delete file="${servicemix_path}/ROOT.war"></delete>
                                 <copy file="target/${target_file}" todir="${servicemix_path}/" />
                             </target>
                         </configuration>
