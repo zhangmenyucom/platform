@@ -29,7 +29,7 @@ public class TreeUtils {
         try {
             if (tree != null) {
                 List t_list = new ArrayList();
-                Map map = new HashMap();
+                Map map = new HashMap(0);
                 for (Object o : tree) {
                     Class clazz = o.getClass();
                     Field id = clazz.getDeclaredField("id");

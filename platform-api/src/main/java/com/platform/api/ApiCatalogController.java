@@ -42,8 +42,8 @@ public class ApiCatalogController extends ApiBaseAction {
     public Object index(Integer id,
                         @RequestParam(value = "page", defaultValue = "1") Integer page,
                         @RequestParam(value = "size", defaultValue = "10") Integer size) {
-        Map<String, Object> resultObj = new HashMap();
-        Map params = new HashMap();
+        Map<String, Object> resultObj = new HashMap(0);
+        Map params = new HashMap(0);
         params.put("page", page);
         params.put("limit", size);
         params.put("sidx", "sort_order");
@@ -80,8 +80,8 @@ public class ApiCatalogController extends ApiBaseAction {
     @IgnoreAuth
     @GetMapping(value = "current")
     public Object current(Integer id) {
-        Map<String, Object> resultObj = new HashMap();
-        Map params = new HashMap();
+        Map<String, Object> resultObj = new HashMap(0);
+        Map params = new HashMap(0);
         params.put("parent_id", 0);
         CategoryVo currentCategory = null;
         if (null != id) {

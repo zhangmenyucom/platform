@@ -53,7 +53,7 @@ public class RRExceptionHandler {
 
     @ExceptionHandler(ApiRRException.class)
     public Object handleApiRRException(ApiRRException e) {
-        HashMap result = new HashMap();
+        HashMap result = new HashMap(0);
         result.put("errno", e.getErrno());
         result.put("errmsg", e.getErrmsg());
         return result;

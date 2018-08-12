@@ -35,7 +35,7 @@ public class ApiTopicController extends ApiBaseAction {
     @GetMapping("list")
     public Object list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
-        Map param = new HashMap();
+        Map param = new HashMap(0);
         param.put("page", page);
         param.put("limit", size);
         param.put("sidx", "id");
@@ -53,7 +53,7 @@ public class ApiTopicController extends ApiBaseAction {
      */
     @IgnoreAuth
     @GetMapping("detail")
-    public Object detail(@LoginUser UserVo loginUser, Integer id) {
+    public Object detail(Integer id) {
         TopicVo topicEntity = topicService.queryObject(id);
         return toResponsSuccess(topicEntity);
     }
@@ -62,8 +62,8 @@ public class ApiTopicController extends ApiBaseAction {
      */
     @IgnoreAuth
     @GetMapping("related")
-    public Object related(@LoginUser UserVo loginUser, Integer id) {
-        Map param = new HashMap();
+    public Object related() {
+        Map param = new HashMap(0);
         param.put("limit", 4);
         List<TopicVo> topicEntities = topicService.queryList(param);
         return toResponsSuccess(topicEntities);

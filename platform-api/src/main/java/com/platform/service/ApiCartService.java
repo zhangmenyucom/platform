@@ -35,10 +35,10 @@ public class ApiCartService {
         cartDao.save(cart);
         // 更新购物车搭配减价
         // 判断购物车中是否存在此规格商品
-        Map cartParam = new HashMap();
+        Map cartParam = new HashMap(0);
         cartParam.put("user_id", cart.getUser_id());
         List<CartVo> cartInfoList = cartDao.queryList(cartParam);
-        Map crashParam = new HashMap();
+        Map crashParam = new HashMap(0);
         List<Integer> goods_ids = new ArrayList();
         List<CartVo> cartUpdateList = new ArrayList();
         for (CartVo cartItem : cartInfoList) {
@@ -86,10 +86,10 @@ public class ApiCartService {
         cartDao.updateCheck(productIds, isChecked, userId);
 
         // 判断购物车中是否存在此规格商品
-        Map cartParam = new HashMap();
+        Map cartParam = new HashMap(0);
         cartParam.put("user_id", userId);
         List<CartVo> cartInfoList = cartDao.queryList(cartParam);
-        Map crashParam = new HashMap();
+        Map crashParam = new HashMap(0);
         List<Integer> goods_ids = new ArrayList();
         List<CartVo> cartUpdateList = new ArrayList();
         for (CartVo cartItem : cartInfoList) {

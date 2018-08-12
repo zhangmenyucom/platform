@@ -21,6 +21,4 @@
             <ref bean="authorizationInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
-    <bean id="authorizationInterceptor" class="com.platform.interceptor.AuthorizationInterceptor"/>
 </beans>

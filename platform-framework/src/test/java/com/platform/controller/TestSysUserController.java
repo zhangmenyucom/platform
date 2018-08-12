@@ -25,7 +25,7 @@ public class TestSysUserController extends BaseSpringTestCase {
 
     @Test
     public void querySysUserList() {
-        Map params = new HashMap();
+        Map params = new HashMap(0);
         List<SysUserEntity> list = testSysUserService.queryList(params);
         if (list != null && list.size() != 0) {
             for (SysUserEntity userEntity : list) {

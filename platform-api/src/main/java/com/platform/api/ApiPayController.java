@@ -80,7 +80,7 @@ public class ApiPayController extends ApiBaseAction {
             parame.put("nonce_str", randomStr);
             // 商户订单编号
             parame.put("out_trade_no", orderId);
-            Map orderGoodsParam = new HashMap();
+            Map orderGoodsParam = new HashMap(0);
             orderGoodsParam.put("order_id", orderId);
             // 商品描述
             parame.put("body", "超市-支付");

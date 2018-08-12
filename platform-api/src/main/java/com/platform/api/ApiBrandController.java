@@ -39,7 +39,7 @@ public class ApiBrandController extends ApiBaseAction {
     public Object list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
         //查询列表数据
-        Map params = new HashMap();
+        Map params = new HashMap(0);
         params.put("fields", "id, name, floor_price, app_list_pic_url");
         params.put("page", page);
         params.put("limit", size);
@@ -61,7 +61,7 @@ public class ApiBrandController extends ApiBaseAction {
     @IgnoreAuth
     @GetMapping("detail")
     public Object detail(@RequestParam Integer id) {
-        Map<String, Object> resultObj = new HashMap();
+        Map<String, Object> resultObj = new HashMap(0);
         //查询列表数据
         BrandVo entity = brandService.queryObject(id);
         //

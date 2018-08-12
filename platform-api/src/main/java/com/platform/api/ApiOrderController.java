@@ -15,6 +15,7 @@ import com.platform.util.wechat.WechatUtil;
 import com.platform.utils.Query;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +57,8 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取订单列表")
     @GetMapping("list")
-    public Object list(@LoginUser UserVo loginUser,
-                       @RequestParam(value = "page", defaultValue = "1") Integer page,
-                       @RequestParam(value = "size", defaultValue = "10") Integer size) {
-        //
-        Map params = new HashMap();
+    public Object list(@LoginUser UserVo loginUser, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        Map params = new HashMap(0);
         params.put("user_id", loginUser.getUserId());
         params.put("page", page);
         params.put("limit", size);
@@ -73,7 +71,7 @@ public class ApiOrderController extends ApiBaseAction {
         ApiPageUtils pageUtil = new ApiPageUtils(orderEntityList, total, query.getLimit(), query.getPage());
         //
         for (OrderVo item : orderEntityList) {
-            Map orderGoodsParam = new HashMap();
+            Map orderGoodsParam = new HashMap(0);
             orderGoodsParam.put("order_id", item.getId());
             //订单的商品
             List<OrderGoodsVo> goodsList = orderGoodsService.queryList(orderGoodsParam);
@@ -92,13 +90,13 @@ public class ApiOrderController extends ApiBaseAction {
     @ApiOperation(value = "获取订单详情")
     @GetMapping("detail")
     public Object detail(Integer orderId) {
-        Map resultObj = new HashMap();
+        Map resultObj = new HashMap(0);
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
         if (null == orderInfo) {
             return toResponsObject(400, "订单不存在", "");
         }
-        Map orderGoodsParam = new HashMap();
+        Map orderGoodsParam = new HashMap(0);
         orderGoodsParam.put("order_id", orderId);
         //订单的商品
         List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);

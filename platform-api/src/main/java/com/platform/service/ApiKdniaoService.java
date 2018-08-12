@@ -64,7 +64,7 @@ public class ApiKdniaoService {
                 JSONArray objects = jsonObject.getJSONArray("Traces");
                 for (Object obj : objects) {
                     JSONObject jsonObj = (JSONObject) obj;
-                    Map<String, Object> temp = new HashMap();
+                    Map<String, Object> temp = new HashMap(0);
                     temp.put("AcceptTime", jsonObj.getString("AcceptTime"));
                     temp.put("AcceptStation", jsonObj.getString("AcceptStation"));
                     resultObj.add(temp);

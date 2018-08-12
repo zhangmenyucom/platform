@@ -441,7 +441,7 @@ public class OrderVo implements Serializable {
 
     //
     public Map getHandleOption() {
-        handleOption = new HashMap();
+        handleOption = new HashMap(0);
         handleOption.put("cancel", false);//取消操作
         handleOption.put("delete", false);//删除操作
         handleOption.put("pay", false);//支付操作

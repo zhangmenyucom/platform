@@ -44,7 +44,7 @@ public class ApiCouponController extends ApiBaseAction {
     @ApiOperation(value = "获取优惠券列表")
     @GetMapping("/list")
     public Object list(@LoginUser UserVo loginUser) {
-        Map param = new HashMap();
+        Map param = new HashMap(0);
         param.put("user_id", loginUser.getUserId());
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(param);
         return toResponsSuccess(couponVos);
@@ -58,7 +58,7 @@ public class ApiCouponController extends ApiBaseAction {
     public Object listByGoods(@RequestParam(defaultValue = "cart") String type, @LoginUser UserVo loginUser) {
         BigDecimal goodsTotalPrice = new BigDecimal(0.00);
         if (type.equals("cart")) {
-            Map param = new HashMap();
+            Map param = new HashMap(0);
             param.put("user_id", loginUser.getUserId());
             List<CartVo> cartList = apiCartService.queryList(param);
             //获取购物车统计信息
@@ -75,7 +75,7 @@ public class ApiCouponController extends ApiBaseAction {
         }
 
         // 获取可用优惠券
-        Map param = new HashMap();
+        Map param = new HashMap(0);
         param.put("user_id", loginUser.getUserId());
         param.put("coupon_status", 1);
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(param);
@@ -106,7 +106,7 @@ public class ApiCouponController extends ApiBaseAction {
             return toResponsFail("当前优惠码无效");
         }
         //
-        Map param = new HashMap();
+        Map param = new HashMap(0);
         param.put("coupon_number", coupon_number);
         List<UserCouponVo> couponVos = apiUserCouponService.queryList(param);
         UserCouponVo userCouponVo = null;
@@ -154,7 +154,7 @@ public class ApiCouponController extends ApiBaseAction {
             return toResponsFail("当前优惠券只能新用户领取");
         }
         // 是否领取过了
-        Map params = new HashMap();
+        Map params = new HashMap(0);
         params.put("user_id", loginUser.getUserId());
         params.put("send_type", 4);
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(params);
@@ -162,7 +162,7 @@ public class ApiCouponController extends ApiBaseAction {
             return toResponsFail("已经领取过，不能重复领取");
         }
         // 领取
-        Map couponParam = new HashMap();
+        Map couponParam = new HashMap(0);
         couponParam.put("send_type", 4);
         CouponVo newCouponConfig = apiCouponService.queryMaxUserEnableCoupon(couponParam);
         if (null != newCouponConfig) {
@@ -186,7 +186,7 @@ public class ApiCouponController extends ApiBaseAction {
     public Object transActivit(@LoginUser UserVo loginUser, String sourceKey, Long referrer) {
         JSONObject jsonParam = getJsonRequest();
         // 是否领取过了
-        Map params = new HashMap();
+        Map params = new HashMap(0);
         params.put("user_id", loginUser.getUserId());
         params.put("send_type", 2);
         params.put("source_key", sourceKey);
@@ -195,7 +195,7 @@ public class ApiCouponController extends ApiBaseAction {
             return toResponsObject(2, "已经领取过", couponVos);
         }
         // 领取
-        Map couponParam = new HashMap();
+        Map couponParam = new HashMap(0);
         couponParam.put("send_type", 2);
         CouponVo newCouponConfig = apiCouponService.queryMaxUserEnableCoupon(couponParam);
         if (null != newCouponConfig) {
@@ -211,7 +211,7 @@ public class ApiCouponController extends ApiBaseAction {
             List<UserCouponVo> userCouponVos = new ArrayList();
             userCouponVos.add(userCouponVo);
             //
-            params = new HashMap();
+            params = new HashMap(0);
             params.put("user_id", loginUser.getUserId());
             params.put("send_type", 2);
             params.put("source_key", sourceKey);
