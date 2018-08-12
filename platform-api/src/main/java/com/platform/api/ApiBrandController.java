@@ -36,8 +36,7 @@ public class ApiBrandController extends ApiBaseAction {
     @ApiOperation(value = "分页获取品牌")
     @IgnoreAuth
     @GetMapping("list")
-    public Object list(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                       @RequestParam(value = "size", defaultValue = "10") Integer size) {
+    public Object list(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
         //查询列表数据
         Map params = new HashMap(0);
         params.put("fields", "id, name, floor_price, app_list_pic_url");

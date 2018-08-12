@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author Administrator
+ */
 @Api(tags = "商品购买")
 @RestController
 @RequestMapping("/api/buy")
 public class ApiBuyController extends ApiBaseAction {
-
     @ApiOperation(value = "商品添加")
     @PostMapping("/add")
     public Object addBuy(@LoginUser UserVo loginUser) {

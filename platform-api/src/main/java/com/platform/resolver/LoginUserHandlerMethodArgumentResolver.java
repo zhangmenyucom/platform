@@ -31,8 +31,7 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
     }
 
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
-                                  NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
         //获取用户ID
         Object object = request.getAttribute(AuthorizationInterceptor.LOGIN_USER_KEY, RequestAttributes.SCOPE_REQUEST);
         if (object == null) {
