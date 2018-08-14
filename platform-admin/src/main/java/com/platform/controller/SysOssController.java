@@ -12,8 +12,6 @@ import com.platform.validator.ValidatorUtils;
 import com.platform.validator.group.AliyunGroup;
 import com.platform.validator.group.QcloudGroup;
 import com.platform.validator.group.QiniuGroup;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -88,17 +86,17 @@ public class SysOssController {
     @RequestMapping("/saveConfig")
     @RequiresPermissions("sys:oss:all")
     public R saveConfig(@RequestBody CloudStorageConfig config) {
-        //校验类型
+        /**校验类型**/
         ValidatorUtils.validateEntity(config);
 
-        if (config.getType() == Constant.CloudService.QINIU.getValue()) {
-            //校验七牛数据
+        if (config.getType() == Constant.CloudServiceEnum.QINIU.getValue()) {
+            /**校验七牛数据**/
             ValidatorUtils.validateEntity(config, QiniuGroup.class);
-        } else if (config.getType() == Constant.CloudService.ALIYUN.getValue()) {
-            //校验阿里云数据
+        } else if (config.getType() == Constant.CloudServiceEnum.ALIYUN.getValue()) {
+            /**校验阿里云数据**/
             ValidatorUtils.validateEntity(config, AliyunGroup.class);
-        } else if (config.getType() == Constant.CloudService.QCLOUD.getValue()) {
-            //校验腾讯云数据
+        } else if (config.getType() == Constant.CloudServiceEnum.QCLOUD.getValue()) {
+            /**校验腾讯云数据**/
             ValidatorUtils.validateEntity(config, QcloudGroup.class);
         }
 
@@ -119,10 +117,10 @@ public class SysOssController {
         if (file.isEmpty()) {
             throw new RRException("上传文件不能为空");
         }
-        //上传文件
+        /**上传文件**/
         String url = OSSFactory.build().upload(file);
 
-        //保存文件信息
+        /**保存文件信息**/
         SysOssEntity ossEntity = new SysOssEntity();
         ossEntity.setUrl(url);
         ossEntity.setCreateDate(new Date());
@@ -158,7 +156,7 @@ public class SysOssController {
      */
     @RequestMapping("/queryAll")
     public List<String> queryAll(@RequestParam Map<String, Object> params) {
-        //查询列表数据
+        /**查询列表数据**/
         List<SysOssEntity> sysOssList = sysOssService.queryList(params);
 
         List<String> list = new ArrayList<>();

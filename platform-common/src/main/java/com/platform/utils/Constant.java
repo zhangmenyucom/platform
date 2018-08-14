@@ -73,7 +73,7 @@ public class Constant {
 
         private int value;
 
-        private MenuType(int value) {
+        MenuType(int value) {
             this.value = value;
         }
 
@@ -101,7 +101,7 @@ public class Constant {
 
         private int value;
 
-        private ScheduleStatus(int value) {
+        ScheduleStatus(int value) {
             this.value = value;
         }
 
@@ -113,7 +113,7 @@ public class Constant {
     /**
      * 云服务商
      */
-    public enum CloudService {
+    public enum CloudServiceEnum {
         /**
          * 七牛云
          */
@@ -129,7 +129,7 @@ public class Constant {
 
         private int value;
 
-        private CloudService(int value) {
+        CloudServiceEnum(int value) {
             this.value = value;
         }
 

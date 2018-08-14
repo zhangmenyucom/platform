@@ -1,15 +1,5 @@
 package com.platform.oss;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.channels.FileChannel;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.apache.http.entity.ContentType;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.platform.utils.RRException;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
@@ -23,6 +13,13 @@ import com.qcloud.cos.model.UploadResult;
 import com.qcloud.cos.region.Region;
 import com.qcloud.cos.transfer.TransferManager;
 import com.qcloud.cos.transfer.Upload;
+import org.apache.http.entity.ContentType;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * 腾讯云存储
@@ -84,14 +81,13 @@ public class QcloudCloudStorageService extends CloudStorageService {
 		
 		}
 
-		PutObjectRequest putObjectRequest = new PutObjectRequest(config.getQcloudBucketName(),
-				 path, inputStream, meta);
+		PutObjectRequest putObjectRequest = new PutObjectRequest(config.getQcloudBucketName(), path, inputStream, meta);
 		// 本地文件上传
 		Upload upload = transferManager.upload(putObjectRequest);
 		// 等待传输结束（如果想同步的等待上传结束，则调用 waitForCompletion）
 
 		try {
-			UploadResult uploadResult = upload.waitForUploadResult();
+			 upload.waitForUploadResult();
 
 		} catch (CosServiceException e) {
 

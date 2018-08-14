@@ -32,8 +32,7 @@ public class QiniuCloudStorageService extends CloudStorageService {
 
     private void init() {
         uploadManager = new UploadManager(new Configuration(Zone.autoZone()));
-        token = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey()).
-                uploadToken(config.getQiniuBucketName());
+        token = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey()).uploadToken(config.getQiniuBucketName());
     }
 
     @Override

@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
- * 名称：LogInterceptor <br>
- * 描述：日志拦截器<br>
+ * 名称：LogInterceptor <
+ * 描述：日志拦截器
  *
  * @author 李鹏军
  * @version 1.0

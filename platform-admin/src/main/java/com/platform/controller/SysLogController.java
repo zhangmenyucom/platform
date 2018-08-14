@@ -24,7 +24,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-03-08 10:40:56
  */
-@Api(tags = "系统日志")
 @Controller
 @RequestMapping("/sys/log")
 public class SysLogController {

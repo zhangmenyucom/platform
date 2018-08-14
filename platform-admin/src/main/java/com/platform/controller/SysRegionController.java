@@ -40,7 +40,7 @@ public class SysRegionController {
     @RequestMapping("/list")
     @RequiresPermissions("sys:region:list")
     public R list(@RequestParam Map<String, Object> params) {
-        //查询列表数据
+        /**查询列表数据**/
         Query query = new Query(params);
 
         List<SysRegionEntity> regionList = sysRegionService.queryList(query);

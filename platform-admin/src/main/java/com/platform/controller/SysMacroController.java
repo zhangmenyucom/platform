@@ -22,7 +22,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-22 11:48:16
  */
-@Api(tags = "通用字典表")
 @RestController
 @RequestMapping("sys/macro")
 public class SysMacroController {
@@ -35,7 +34,6 @@ public class SysMacroController {
      * @param params 请求参数
      * @return R
      */
-    @ApiOperation(value = "所有字典列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:macro:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -56,7 +54,6 @@ public class SysMacroController {
      * @param macroId 主键
      * @return R
      */
-    @ApiOperation(value = "根据主键获取字典信息")
     @RequestMapping("/info/{macroId}")
     @RequiresPermissions("sys:macro:info")
     public R info(@PathVariable("macroId") Long macroId) {
@@ -71,7 +68,6 @@ public class SysMacroController {
      * @param sysMacro 字典
      * @return R
      */
-    @ApiOperation(value = "新增字典")
     @SysLog("新增字典")
     @RequestMapping("/save")
     @RequiresPermissions("sys:macro:save")
@@ -87,7 +83,6 @@ public class SysMacroController {
      * @param sysMacro 字典
      * @return R
      */
-    @SysLog("修改字典")
     @RequestMapping("/update")
     @RequiresPermissions("sys:macro:update")
     public R update(@RequestBody SysMacroEntity sysMacro) {
@@ -102,7 +97,6 @@ public class SysMacroController {
      * @param macroIds 主键集
      * @return R
      */
-    @SysLog("删除字典")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:macro:delete")
     public R delete(@RequestBody Long[] macroIds) {

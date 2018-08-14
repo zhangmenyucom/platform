@@ -36,7 +36,6 @@ public abstract class CloudStorageService {
         if (StringUtils.isNotBlank(prefix)) {
             path = prefix + "/" + path;
         }
-
         return path;
     }
 
