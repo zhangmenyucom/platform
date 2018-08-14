@@ -20,22 +20,27 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
                 <property name="supportedMediaTypes">
                     <list>
                         <value>text/html;charset=UTF-8</value>
                         <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
-                <property name="features">
-                    <list>
-                        <value>WriteMapNullValue</value>
-                        <value>QuoteFieldNames</value>
-                        <value>WriteDateUseDateFormat</value>
-                        <!-- 禁用fastjson循环引用检测 -->
-                        <value>DisableCircularReferenceDetect</value>
-                    </list>
+                <property name="fastJsonConfig">
+                    <bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
+                        <property name="features">
+                            <list>
+                                <value>AllowArbitraryCommas</value>
+                                <value>AllowUnQuotedFieldNames</value>
+                                <!-- 禁用fastjson循环引用检测 -->
+                                <value>DisableCircularReferenceDetect</value>
+                            </list>
+                        </property>
+                        <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+                    </bean>
                 </property>
+
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
@@ -98,8 +103,7 @@
         <property name="templateLoaderPath" value="/WEB-INF/page/"/>
     </bean>
 
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="1000000000"/>
     </bean>
 

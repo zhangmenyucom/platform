@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author taylor
+ */
 @Service("smsLogService")
 public class SysSmsLogServiceImpl implements SysSmsLogService {
     @Autowired

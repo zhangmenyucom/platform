@@ -18,16 +18,17 @@ import javax.net.ssl.TrustManager;
 import com.alibaba.fastjson.JSONObject;
 import com.platform.utils.CharUtil;
 import com.platform.utils.DateUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author taylor
+ * @desc 工具类
+ */
+@Slf4j
 public class CommonUtil {
-    private static Logger log = LoggerFactory.getLogger(CommonUtil.class);
-
-    
-    
-    
     /**
      * 发送https请求
      *
@@ -73,7 +74,6 @@ public class CommonUtil {
             while ((str = bufferedReader.readLine()) != null) {
                 buffer.append(str);
             }
-
             // 释放资源
             bufferedReader.close();
             inputStreamReader.close();
@@ -103,8 +103,7 @@ public class CommonUtil {
         if (str == null || str.length() == 0) {
             return null;
         }
-        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'a', 'b', 'c', 'd', 'e', 'f'};
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
             MessageDigest mdTemp = MessageDigest.getInstance("SHA1");
             mdTemp.update(str.getBytes("UTF-8"));

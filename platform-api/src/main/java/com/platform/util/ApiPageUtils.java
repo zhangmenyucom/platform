@@ -1,6 +1,7 @@
 package com.platform.util;
 
 import com.github.pagehelper.PageInfo;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,21 +13,36 @@ import java.util.List;
  * @email 516195940@qq.com
  * @date 2016年11月4日 下午12:59:00
  */
+@Data
 public class ApiPageUtils implements Serializable {
     private static final long serialVersionUID = 1L;
-    //总记录数
+    /**
+     * 总记录数
+     **/
     private int count;
-    //每页记录数
+    /**
+     * 每页记录数
+     **/
     private int numsPerPage;
-    //总页数
+    /**
+     * 总页数
+     **/
     private int totalPages;
-    //当前页数
+    /**
+     * 当前页数
+     **/
     private int currentPage;
-    //列表数据
+    /**
+     * 列表数据
+     **/
     private List<?> data;
-    //扩展
+    /**
+     * 扩展
+     **/
     private Object filterCategory;
-    //扩展
+    /**
+     * 扩展
+     **/
     private Object goodsList;
 
     /**
@@ -50,61 +66,5 @@ public class ApiPageUtils implements Serializable {
         this.numsPerPage = pageInfo.getPageSize();
         this.currentPage = pageInfo.getPageNum();
         this.totalPages = pageInfo.getPages();
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getNumsPerPage() {
-        return numsPerPage;
-    }
-
-    public void setNumsPerPage(int numsPerPage) {
-        this.numsPerPage = numsPerPage;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
-
-    public int getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public List<?> getData() {
-        return data;
-    }
-
-    public void setData(List<?> data) {
-        this.data = data;
-    }
-
-    public Object getFilterCategory() {
-        return filterCategory;
-    }
-
-    public void setFilterCategory(Object filterCategory) {
-        this.filterCategory = filterCategory;
-    }
-
-    public Object getGoodsList() {
-        return goodsList;
-    }
-
-    public void setGoodsList(Object goodsList) {
-        this.goodsList = goodsList;
     }
 }

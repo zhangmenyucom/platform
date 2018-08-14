@@ -8,6 +8,9 @@ import javax.net.ssl.SSLContext;
 import java.io.InputStream;
 import java.security.KeyStore;
 
+/**
+ * @author taylor
+ */
 @SuppressWarnings("deprecation")
 public class WechatConfig {
 

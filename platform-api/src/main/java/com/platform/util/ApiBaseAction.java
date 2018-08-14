@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.platform.entity.TokenEntity;
 import com.platform.interceptor.AuthorizationInterceptor;
 import com.platform.service.TokenService;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.beans.TypeMismatchException;
@@ -31,8 +33,8 @@ import java.util.Map;
  * @Description: 基础控制类
  * @date 2016年9月2日
  */
+@Slf4j
 public class ApiBaseAction {
-    protected Logger logger = Logger.getLogger(getClass());
     /**
      * 得到request对象
      */
@@ -75,14 +77,15 @@ public class ApiBaseAction {
         Map<String, Object> obj = new HashMap<String, Object>();
         obj.put("errno", requestCode);
         obj.put("errmsg", msg);
-        if (data != null)
+        if (data != null) {
             obj.put("data", data);
+        }
         return obj;
     }
 
     public Map<String, Object> toResponsSuccess(Object data) {
         Map<String, Object> rp = toResponsObject(0, "执行成功", data);
-        logger.info("response:" + rp);
+        log.info("response:" + rp);
         return rp;
     }
 

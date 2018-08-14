@@ -84,11 +84,10 @@ public class ApiAuthController extends ApiBaseAction {
             fullUserInfo = jsonParam.getObject("userInfo", FullUserInfo.class);
         }
 
-        Map<String, Object> resultObj = new HashMap<String, Object>();
-        //
+        Map<String, Object> resultObj = new HashMap<>(0);
         UserInfo userInfo = fullUserInfo.getUserInfo();
 
-        //获取openid
+        /**获取openid**/
         String requestUrl = ApiUserUtils.getWebAccess(code);//通过自定义工具类组合出小程序需要的登录凭证 code
         logger.info("》》》组合token为：" + requestUrl);
         String res = restTemplate.getForObject(requestUrl, String.class);
@@ -97,7 +96,7 @@ public class ApiAuthController extends ApiBaseAction {
         if (null == sessionData || StringUtils.isNullOrEmpty(sessionData.getString("openid"))) {
             return toResponsFail("登录失败");
         }
-        //验证用户信息完整性
+        /**验证用户信息完整性**/
         String sha1 = CommonUtil.getSha1(fullUserInfo.getRawData() + sessionData.getString("session_key"));
         if (!fullUserInfo.getSignature().equals(sha1)) {
             return toResponsFail("登录失败");
@@ -114,7 +113,8 @@ public class ApiAuthController extends ApiBaseAction {
             userVo.setLast_login_time(userVo.getRegister_time());
             userVo.setWeixin_openid(sessionData.getString("openid"));
             userVo.setAvatar(userInfo.getAvatarUrl());
-            userVo.setGender(userInfo.getGender()); // //性别 0：未知、1：男、2：女
+            /**性别 0：未知、1：男、2：女**/
+            userVo.setGender(userInfo.getGender());
             userVo.setNickname(userInfo.getNickName());
             userService.save(userVo);
         } else {
