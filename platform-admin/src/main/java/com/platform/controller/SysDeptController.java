@@ -151,9 +151,7 @@ public class SysDeptController extends AbstractController {
         if (deptList.size() > 0) {
             return R.error("请先删除子部门");
         }
-
         sysDeptService.delete(deptId);
-
         return R.ok();
     }
 
