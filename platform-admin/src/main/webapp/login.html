@@ -37,7 +37,7 @@
                     <h1>武汉创梦互联科技有限公司</h1>
                 </div>
                 <div class="m-b"></div>
-               <!-- <h4>欢迎使用 <strong>V美系统管理平台</strong></h4>-->
+                <!-- <h4>欢迎使用 <strong>V美系统管理平台</strong></h4>-->
                 <ul class="m-b">
                     <!-- <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 一个微信商城开发平台，能快速开发一个商城</li>
                      <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 使用当下最流行的Spring+SpringMVC+Mybatis+Shiro技术</li>
@@ -61,17 +61,14 @@
                     <i-input v-model="username" @on-enter="login" placeholder="账号" style="width: 200px;" autofocus/>
                 </div>
                 <div class="form-group has-feedback">
-                    <i-input type="password" v-model="password" @on-enter="login" style="width: 200px;"
-                             placeholder="密码"/>
+                    <i-input type="password" v-model="password" @on-enter="login" style="width: 200px;" placeholder="密码"/>
                 </div>
                 <div class="form-group has-feedback">
                     <div style="display: inline-block;width: 100px;">
-                        <i-input v-model="captcha" @on-enter="login"
-                                 placeholder="验证码"/>
+                        <i-input v-model="captcha" @on-enter="login" placeholder="验证码"/>
                     </div>
                     <div style="display: inline-block;width: 100px;">
-                        <img style="height: 32px;width: 96px;border-radius: 4px;" alt="如果看不清楚，请单击图片刷新！" title="点击刷新"
-                             class="pointer" :src="src" @click="refreshCode">
+                        <img style="height: 32px;width: 96px;border-radius: 4px;" alt="如果看不清楚，请单击图片刷新！" title="点击刷新" class="pointer" :src="src" @click="refreshCode">
                     </div>
                 </div>
                 <div>
