@@ -46,7 +46,7 @@
         <ehcache.version>2.10.4</ehcache.version>
         <jgroups.version>3.6.13.Final</jgroups.version>
         <lombok.version>1.16.10</lombok.version>
-        <swagger.version>2.4.0</swagger.version>
+        <swagger.version>2.8.0</swagger.version>
     </properties>
 
     <!-- 阿里云maven仓库 -->

@@ -250,7 +250,7 @@ var vm = new Vue({
                     params: JSON.stringify(id),
                     successCallback: function (r) {
                         alert('操作成功', function (index) {
-                            vm.reload();;
+                            vm.reload();
                         });
                     }
                 });
@@ -271,7 +271,7 @@ var vm = new Vue({
                     params: JSON.stringify(ids),
                     successCallback: function (r) {
                         alert('操作成功', function (index) {
-                            vm.reload();;
+                            vm.reload();
                         });
                     }
                 });

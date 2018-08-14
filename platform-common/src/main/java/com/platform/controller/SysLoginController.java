@@ -5,7 +5,6 @@ import com.google.code.kaptcha.Producer;
 import com.platform.annotation.SysLog;
 import com.platform.utils.R;
 import com.platform.utils.ShiroUtils;
-import io.swagger.annotations.Api;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;

@@ -25,7 +25,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-09-17 23:58:47
  */
-@Api(tags = "部门管理")
 @RestController
 @RequestMapping("/sys/dept")
 public class SysDeptController extends AbstractController {
@@ -37,7 +36,6 @@ public class SysDeptController extends AbstractController {
      *
      * @return R
      */
-    @ApiOperation(value = "部门列表")
     @RequestMapping("/list")
     @RequiresPermissions("sys:dept:list")
     public R list() {
@@ -55,7 +53,6 @@ public class SysDeptController extends AbstractController {
      *
      * @return R
      */
-    @ApiOperation(value = "选择部门(添加、修改菜单)")
     @RequestMapping("/select")
     @RequiresPermissions("sys:dept:select")
     public R select() {
@@ -84,7 +81,6 @@ public class SysDeptController extends AbstractController {
      *
      * @return
      */
-    @ApiOperation(value = "获取用户部门Id(管理员则为0))")
     @RequestMapping("/info")
     @RequiresPermissions("sys:dept:list")
     public R info() {
@@ -103,7 +99,6 @@ public class SysDeptController extends AbstractController {
      * @param deptId 主键
      * @return R
      */
-    @ApiOperation(value = "根据主键获取部门信息")
     @RequestMapping("/info/{deptId}")
     @RequiresPermissions("sys:dept:info")
     public R info(@PathVariable("deptId") Long deptId) {
@@ -117,7 +112,6 @@ public class SysDeptController extends AbstractController {
      * @param dept 部门
      * @return R
      */
-    @ApiOperation(value = "新增部门")
     @SysLog("新增部门")
     @RequestMapping("/save")
     @RequiresPermissions("sys:dept:save")
@@ -133,7 +127,6 @@ public class SysDeptController extends AbstractController {
      * @param dept 部门
      * @return R
      */
-    @ApiOperation(value = "修改部门")
     @SysLog("修改部门")
     @RequestMapping("/update")
     @RequiresPermissions("sys:dept:update")
@@ -149,7 +142,6 @@ public class SysDeptController extends AbstractController {
      * @param deptId 主键
      * @return R
      */
-    @ApiOperation(value = "删除部门")
     @SysLog("删除部门")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:dept:delete")

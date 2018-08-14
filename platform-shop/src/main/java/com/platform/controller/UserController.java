@@ -6,7 +6,6 @@ import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.platform.utils.excel.ExcelExport;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,6 @@ public class UserController {
     /**
      * 查看列表
      */
-    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("user:list")
     public R list(@RequestParam Map<String, Object> params) {

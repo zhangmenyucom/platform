@@ -5,7 +5,6 @@ import com.platform.service.UserCouponService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,6 @@ public class UserCouponController {
     /**
      * 查看列表
      */
-    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("usercoupon:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -91,7 +89,6 @@ public class UserCouponController {
     /**
      * 查看所有列表
      */
-    @ApiOperation("查询所有数据")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

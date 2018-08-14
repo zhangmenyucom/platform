@@ -5,8 +5,6 @@ import com.platform.service.TopicCategoryService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +19,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-20 15:41:56
  */
-@Api(tags = "话题商品")
 @RestController
 @RequestMapping("topiccategory")
 public class TopicCategoryController {
@@ -31,7 +28,6 @@ public class TopicCategoryController {
     /**
      * 查看列表
      */
-    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("topiccategory:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -49,7 +45,6 @@ public class TopicCategoryController {
     /**
      * 查看信息
      */
-    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("topiccategory:info")
     public R info(@PathVariable("id") Integer id) {
@@ -61,7 +56,6 @@ public class TopicCategoryController {
     /**
      * 保存
      */
-    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("topiccategory:save")
     public R save(@RequestBody TopicCategoryEntity topicCategory) {
@@ -73,7 +67,6 @@ public class TopicCategoryController {
     /**
      * 修改
      */
-    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("topiccategory:update")
     public R update(@RequestBody TopicCategoryEntity topicCategory) {
@@ -85,7 +78,6 @@ public class TopicCategoryController {
     /**
      * 删除
      */
-    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("topiccategory:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -97,7 +89,6 @@ public class TopicCategoryController {
     /**
      * 查看所有列表
      */
-    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

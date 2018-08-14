@@ -4,7 +4,7 @@ $(function () {
     if (status) {
         url += '?status=' + status;
     }
-    debugger
+    debugger;
     $("#jqGrid").Grid({
         url: url,
         colModel: [

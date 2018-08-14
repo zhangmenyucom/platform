@@ -1,23 +1,16 @@
 package com.platform.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.platform.entity.TopicEntity;
 import com.platform.service.TopicService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Controller
@@ -26,7 +19,6 @@ import com.platform.utils.R;
  * @email 516195940@qq.com
  * @date 2017-08-20 14:10:08
  */
-@Api(tags="话题管理")
 @RestController
 @RequestMapping("topic")
 public class TopicController {
@@ -36,7 +28,6 @@ public class TopicController {
     /**
      * 查看列表
      */
-    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("topic:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -54,7 +45,6 @@ public class TopicController {
     /**
      * 查看信息
      */
-    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("topic:info")
     public R info(@PathVariable("id") Integer id) {
@@ -66,7 +56,6 @@ public class TopicController {
     /**
      * 保存
      */
-    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("topic:save")
     public R save(@RequestBody TopicEntity topic) {
@@ -78,7 +67,6 @@ public class TopicController {
     /**
      * 修改
      */
-    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("topic:update")
     public R update(@RequestBody TopicEntity topic) {
@@ -90,7 +78,6 @@ public class TopicController {
     /**
      * 删除
      */
-    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("topic:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -102,7 +89,6 @@ public class TopicController {
     /**
      * 查看所有列表
      */
-    @ApiOperation("查询所有数据")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

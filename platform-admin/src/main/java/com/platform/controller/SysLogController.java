@@ -37,7 +37,6 @@ public class SysLogController {
      * @param params 请求参数
      * @return R
      */
-    @ApiOperation(value = "系统日志列表")
     @ResponseBody
     @RequestMapping("/list")
     @RequiresPermissions("sys:log:list")

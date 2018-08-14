@@ -1,20 +1,19 @@
 package com.platform.service.impl;
 
 import com.platform.dao.GoodsSpecificationDao;
+import com.platform.dao.ProductDao;
 import com.platform.entity.GoodsSpecificationEntity;
+import com.platform.entity.ProductEntity;
+import com.platform.service.ProductService;
 import com.platform.utils.BeanUtils;
 import com.platform.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import com.platform.dao.ProductDao;
-import com.platform.entity.ProductEntity;
-import com.platform.service.ProductService;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service实现类

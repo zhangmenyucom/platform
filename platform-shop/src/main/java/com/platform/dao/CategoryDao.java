@@ -11,5 +11,5 @@ import com.platform.entity.CategoryEntity;
  */
 public interface CategoryDao extends BaseDao<CategoryEntity> {
 
-    public int deleteByParentBatch(Object[] id);
+    int deleteByParentBatch(Object[] id);
 }

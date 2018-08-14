@@ -5,8 +5,6 @@ import com.platform.service.AdPositionService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +19,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-19 12:02:42
  */
-@Api(tags="广告位置")
 @RestController
 @RequestMapping("adposition")
 public class AdPositionController {
@@ -31,7 +28,6 @@ public class AdPositionController {
     /**
      * 查看列表
      */
-    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("adposition:list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -50,7 +46,6 @@ public class AdPositionController {
     /**
      * 查看信息
      */
-    @ApiOperation("查看信息")
     @RequestMapping("/info/{id}")
     @RequiresPermissions("adposition:info")
     public R info(@PathVariable("id") Integer id) {
@@ -62,7 +57,6 @@ public class AdPositionController {
     /**
      * 保存
      */
-    @ApiOperation("保存")
     @RequestMapping("/save")
     @RequiresPermissions("adposition:save")
     public R save(@RequestBody AdPositionEntity adPosition) {
@@ -74,7 +68,6 @@ public class AdPositionController {
     /**
      * 修改
      */
-    @ApiOperation("修改")
     @RequestMapping("/update")
     @RequiresPermissions("adposition:update")
     public R update(@RequestBody AdPositionEntity adPosition) {
@@ -86,7 +79,6 @@ public class AdPositionController {
     /**
      * 删除
      */
-    @ApiOperation("删除")
     @RequestMapping("/delete")
     @RequiresPermissions("adposition:delete")
     public R delete(@RequestBody Integer[] ids) {
@@ -98,7 +90,6 @@ public class AdPositionController {
     /**
      * 查看所有列表
      */
-    @ApiOperation("查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 

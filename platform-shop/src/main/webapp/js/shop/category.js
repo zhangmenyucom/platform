@@ -49,7 +49,7 @@ TreeGrid.initColumn = function () {
             }
         },
         // {title: '类型', field: 'type', align: 'center', valign: 'middle', width: '50px'},
-        {title: '级别', field: 'level', align: 'center', valign: 'middle', width: '50px'}]
+        {title: '级别', field: 'level', align: 'center', valign: 'middle', width: '50px'}];
     return columns;
 };
 

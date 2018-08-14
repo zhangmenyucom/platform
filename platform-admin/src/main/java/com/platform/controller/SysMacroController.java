@@ -87,7 +87,6 @@ public class SysMacroController {
      * @param sysMacro 字典
      * @return R
      */
-    @ApiOperation(value = "修改字典")
     @SysLog("修改字典")
     @RequestMapping("/update")
     @RequiresPermissions("sys:macro:update")
@@ -103,7 +102,6 @@ public class SysMacroController {
      * @param macroIds 主键集
      * @return R
      */
-    @ApiOperation(value = "删除字典")
     @SysLog("删除字典")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:macro:delete")
@@ -119,7 +117,6 @@ public class SysMacroController {
      * @param params 请求参数
      * @return R
      */
-    @ApiOperation(value = "查看字典列表")
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
 
@@ -134,7 +131,6 @@ public class SysMacroController {
      * @param value value
      * @return R
      */
-    @ApiOperation(value = "根据value查询数据字典")
     @RequestMapping("/queryMacrosByValue")
     public R queryMacrosByValue(@RequestParam String value) {
 

@@ -1,14 +1,13 @@
 package com.platform.service.impl;
 
+import com.platform.dao.CouponGoodsDao;
+import com.platform.entity.CouponGoodsEntity;
+import com.platform.service.CouponGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
-import com.platform.dao.CouponGoodsDao;
-import com.platform.entity.CouponGoodsEntity;
-import com.platform.service.CouponGoodsService;
 
 /**
  * 优惠券关联商品Service实现类

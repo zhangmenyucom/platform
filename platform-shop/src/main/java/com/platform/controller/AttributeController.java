@@ -5,8 +5,6 @@ import com.platform.service.AttributeService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +19,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-17 16:48:17
  */
-@Api(tags = "商品属性")
 @RestController
 @RequestMapping("attribute")
 public class AttributeController {
@@ -31,7 +28,6 @@ public class AttributeController {
     /**
      * 查看列表
      */
-    @ApiOperation("查看列表")
     @RequestMapping("/list")
     @RequiresPermissions("attribute:list")
     public R list(@RequestParam Map<String, Object> params) {

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @email 516195940@qq.com
  * @date 2016年11月24日 下午11:05:27
  */
-@Api(tags = "系统页面视图")
 @Controller
 public class SysPageController {
 
@@ -24,7 +23,6 @@ public class SysPageController {
      * @param url    url
      * @return 页面视图路径
      */
-    @ApiOperation(value = "视图路径")
     @RequestMapping("{module}/{url}.html")
     public String page(@PathVariable("module") String module, @PathVariable("url") String url) {
         return module + "/" + url + ".html";
