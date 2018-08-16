@@ -88,7 +88,8 @@ public class ApiAuthController extends ApiBaseAction {
         UserInfo userInfo = fullUserInfo.getUserInfo();
 
         /**获取openid**/
-        String requestUrl = ApiUserUtils.getWebAccess(code);//通过自定义工具类组合出小程序需要的登录凭证 code
+        /**通过自定义工具类组合出小程序需要的登录凭证 code**/
+        String requestUrl = ApiUserUtils.getWebAccess(code);
         logger.info("》》》组合token为：" + requestUrl);
         String res = restTemplate.getForObject(requestUrl, String.class);
         JSONObject sessionData = JSON.parseObject(res);
