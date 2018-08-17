@@ -141,9 +141,10 @@ public class ApiOrderService {
         }
 
         //订单价格计算
-        BigDecimal orderTotalPrice = goodsTotalPrice.add(new BigDecimal(freightPrice)); //订单的总价
-
-        BigDecimal actualPrice = orderTotalPrice.subtract(couponPrice);  //减去其它支付的金额后，要实际支付的金额
+        //订单的总价
+        BigDecimal orderTotalPrice = goodsTotalPrice.add(new BigDecimal(freightPrice));
+        //减去其它支付的金额后，要实际支付的金额
+        BigDecimal actualPrice = orderTotalPrice.subtract(couponPrice);
 
         Long currentTime = System.currentTimeMillis() / 1000;
 
@@ -192,7 +193,7 @@ public class ApiOrderService {
             return resultObj;
         }
         //统计商品总价
-        List<OrderGoodsVo> orderGoodsData = new ArrayList<OrderGoodsVo>();
+        List<OrderGoodsVo> orderGoodsData = new ArrayList<>();
         for (CartVo goodsItem : checkedGoodsList) {
             OrderGoodsVo orderGoodsVo = new OrderGoodsVo();
             orderGoodsVo.setOrder_id(orderInfo.getId());
