@@ -60,8 +60,7 @@
                     <i-input v-model="config.qiniuBucketName" placeholder="七牛存储空间名"/>
                 </Form-item>
             </i-form>
-            <i-form v-if="config.type == 2" ref="formValidate" :model="config" :rules="aliRuleValidate"
-                    :label-width="130">
+            <i-form v-if="config.type == 2" ref="formValidate" :model="config" :rules="aliRuleValidate" :label-width="130">
                 <Form-item label="域名" prop="aliyunDomain">
                     <i-input v-model="config.aliyunDomain" placeholder="阿里云绑定的域名"/>
                 </Form-item>
@@ -81,8 +80,7 @@
                     <i-input v-model="config.aliyunBucketName" placeholder="阿里云BucketName"/>
                 </Form-item>
             </i-form>
-            <i-form ref="formValidate" :model="config" :rules="qcloudRuleValidate" v-if="config.type == 3"
-                    :label-width="130">
+            <i-form ref="formValidate" :model="config" :rules="qcloudRuleValidate" v-if="config.type == 3" :label-width="130">
                 <Form-item label="域名" prop="qcloudDomain">
                     <i-input v-model="config.qcloudDomain" placeholder="腾讯云绑定的域名"/>
                 </Form-item>

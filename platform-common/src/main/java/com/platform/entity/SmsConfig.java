@@ -1,5 +1,6 @@
 package com.platform.entity;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
 import java.io.Serializable;
@@ -12,11 +13,12 @@ import java.io.Serializable;
  * @version 1.0
  * @since 1.0.0
  */
+@Data
 public class SmsConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 类型 1：创瑞
+     * 类型 2：创瑞 1:腾讯云
      */
     @Range(min = 1, max = 3, message = "类型错误")
     private Integer type;
@@ -39,45 +41,21 @@ public class SmsConfig implements Serializable {
     /**
      * 签名
      */
-    private String sign;
+    private String chuangRuiSign;
 
-    public Integer getType() {
-        return type;
-    }
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+    /**腾讯云配置**/
+    private Integer appid;
 
-    public String getDomain() {
-        return domain;
-    }
+    /**appkey**/
+    private String appkey;
 
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
+    /**模板id**/
+    private Integer templateId;
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * 签名
+     */
+    private String tengXunYunSign;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
 }

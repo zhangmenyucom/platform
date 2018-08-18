@@ -27,13 +27,27 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
         title: null,
         config: {},
-        ruleValidate: {
+        tenXunYunValidate: {
+            appid: [
+                {required: true, message: 'appId不能为空', trigger: 'blur'}
+            ],
+            appkey: [
+                {required: true, message: 'appkey不能为空', trigger: 'blur'}
+            ],
+            templateId: [
+                {required: true, message: '模板Id不能为空', trigger: 'blur'}
+            ],
+            sign: [
+                {required: true, message: '签名不能为空', trigger: 'blur'}
+            ]
+        },
+        chuangRuiYunValidate: {
             domain: [
                 {required: true, message: '发送域名不能为空', trigger: 'blur'}
             ],
@@ -61,7 +75,7 @@ let vm = new Vue({
             vm.getConfig();
         },
         updateConfig: function (event) {
-            let url = "../sys/smslog/saveConfig";
+            var url = "../sys/smslog/saveConfig";
             Ajax.request({
                 url: url,
                 params: JSON.stringify(vm.config),
@@ -85,7 +99,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'sendId': vm.q.sendId},
                 page: page

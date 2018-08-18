@@ -62,14 +62,15 @@ public class ApiUserController extends ApiBaseAction {
         if (StringUtils.isNullOrEmpty(config.getPwd())) {
             throw new RRException("请先配置短信平台密钥");
         }
-        if (StringUtils.isNullOrEmpty(config.getSign())) {
+        if (StringUtils.isNullOrEmpty(config.getChuangRuiSign())) {
             throw new RRException("请先配置短信平台签名");
         }
         try {
             /**
              * 状态,发送编号,无效号码数,成功提交数,黑名单数和消息，无论发送的号码是多少，一个发送请求只返回一个sendid，如果响应的状态不是“0”，则只有状态和消息
              */
-            result = SmsUtil.crSendSms(config.getName(), config.getPwd(), phone, msgContent, config.getSign(), DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"), "");
+            result = SmsUtil.crSendSms(config.getName(), config.getPwd(), phone, msgContent, config.getChuangRuiSign(), DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"), "");
+
         } catch (Exception e) {
 
         }

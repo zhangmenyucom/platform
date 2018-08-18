@@ -47,6 +47,7 @@
         <jgroups.version>3.6.13.Final</jgroups.version>
         <lombok.version>1.16.10</lombok.version>
         <swagger.version>2.8.0</swagger.version>
+        <qcloudsms.version>1.0.5</qcloudsms.version>
     </properties>
 
     <!-- 阿里云maven仓库 -->
@@ -232,6 +233,11 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
             <version>${shiro-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.qcloudsms</groupId>
+            <artifactId>qcloudsms</artifactId>
+            <version>${qcloudsms.version}</version>
         </dependency>
         <!-- Velocity视图所需jar -->
         <dependency>

@@ -1,4 +1,4 @@
-var NewApiRootUrl = 'http://localhost:8080/api/';
+var NewApiRootUrl = 'https://www.whcmhlkj.com/api/';
 module.exports = {
   IndexUrlNewGoods: NewApiRootUrl + 'index/newGoods', //
   IndexUrlHotGoods: NewApiRootUrl + 'index/hotGoods', //首页数据接口

@@ -75,34 +75,26 @@ public class SmsUtil {
             if (httpURLConnection.getResponseCode() >= 300) {
                 throw new Exception("HTTP Request is not success, Response code is " + httpURLConnection.getResponseCode());
             }
-
             inputStream = httpURLConnection.getInputStream();
             resultBuffer = convertStreamToString(inputStream);
 
         } finally {
-
             if (outputStreamWriter != null) {
                 outputStreamWriter.close();
             }
-
             if (outputStream != null) {
                 outputStream.close();
             }
-
             if (reader != null) {
                 reader.close();
             }
-
             if (inputStreamReader != null) {
                 inputStreamReader.close();
             }
-
             if (inputStream != null) {
                 inputStream.close();
             }
-
         }
-
         return resultBuffer;
     }
 
