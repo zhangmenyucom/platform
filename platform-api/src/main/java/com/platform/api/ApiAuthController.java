@@ -117,6 +117,7 @@ public class ApiAuthController extends ApiBaseAction {
             /**性别 0：未知、1：男、2：女**/
             userVo.setGender(userInfo.getGender());
             userVo.setNickname(userInfo.getNickName());
+            userVo.setMobile(userInfo.getMobile());
             userService.save(userVo);
         } else {
             userVo.setLast_login_ip(this.getClientIp());

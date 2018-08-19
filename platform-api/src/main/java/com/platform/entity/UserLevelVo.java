@@ -15,12 +15,13 @@ import java.util.Date;
  */
 @Data
 public class UserLevelVo implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	
-	//主键
+	/**主键**/
 	private Integer id;
-	//名称
+	/**名称**/
 	private String name;
-	//描述
+	/**描述**/
 	private String description;
 }

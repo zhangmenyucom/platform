@@ -15,22 +15,22 @@ import java.util.Date;
 public class UserCouponVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
+    /**主键**/
     private Integer id;
-    //优惠券Id
+    /**优惠券Id**/
     private Integer coupon_id;
-    //优惠券数量
+    /**优惠券数量**/
     private String coupon_number;
-    //会员Id
+    /**会员Id**/
     private Long user_id;
-    //使用时间
+    /**使用时间**/
     private Date used_time;
-    //领取时间
+    /**领取时间**/
     private Date add_time;
-    //订单Id
+    /**订单Id**/
     private Integer order_id;
-    //来源key
+    /**来源key**/
     private String source_key;
-    //分享人
+    /**分享人**/
     private Long referrer;
 }
