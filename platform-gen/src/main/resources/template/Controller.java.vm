@@ -30,7 +30,7 @@ import ${package}.utils.R;
 @RequestMapping("${pathName}")
 public class ${className}Controller {
     @Autowired
-    private ${className}Service ${classname}Service;
+    private ${className}Service ${classame}Service;
 
     /**
      * 查看列表

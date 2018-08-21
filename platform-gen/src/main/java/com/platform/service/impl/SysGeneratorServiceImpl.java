@@ -32,7 +32,7 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
         if ("ORACLE".equals(Constant.USE_DATA)) {
             List<Map<String, Object>> list = sysOracleGeneratorDao.queryList(map);
 
-            //oracle需转为驼峰命名
+            /**oracle需转为驼峰命名**/
             List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
             for (Map<String, Object> stringObjectMap : list) {
                 Map<String, Object> objectMap = new HashMap<String, Object>();
@@ -60,7 +60,7 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
         if ("ORACLE".equals(Constant.USE_DATA)) {
             Map<String, String> objectMap = sysOracleGeneratorDao.queryTable(tableName);
 
-            //oracle需转为驼峰命名
+            /**oracle需转为驼峰命名**/
             Map<String, String> map = new HashMap<String, String>();
             for (String key : objectMap.keySet()) {
                 String mapKey = StringUtils.lineToHump(key);
@@ -76,22 +76,22 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
         if ("ORACLE".equals(Constant.USE_DATA)) {
             List<ResultMap> list = sysOracleGeneratorDao.queryColumns(tableName);
 
-            //oracle
+            /**oracle**/
             List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
             for (ResultMap stringObjectMap : list) {
-                // 获取实体类的所有属性，返回Field数组
+                /** 获取实体类的所有属性，返回Field数组**/
                 Field[] field = stringObjectMap.getClass().getDeclaredFields();
 
                 Map<String, String> objectMap = new HashMap<String, String>();
                 for (int j = 0; j < field.length; j++) {
-                    // 获取属性的名字
+                    /** 获取属性的名字**/
                     String name = field[j].getName();
-                    // 将属性的首字符大写，方便构造get，set方法
+                    /** 将属性的首字符大写，方便构造get，set方法**/
                     String Name = name.substring(0, 1).toUpperCase() + name.substring(1);
 
                     try {
                         Method m = stringObjectMap.getClass().getMethod("get" + Name);
-                        // 调用getter方法获取属性值
+                        /** 调用getter方法获取属性值**/
                         String value = (String) m.invoke(stringObjectMap);
                         objectMap.put(name, value);
                     } catch (Exception e) {
@@ -111,11 +111,11 @@ public class SysGeneratorServiceImpl implements SysGeneratorService {
         ZipOutputStream zip = new ZipOutputStream(outputStream);
 
         for (String tableName : tableNames) {
-            //查询表信息
+            /**查询表信息**/
             Map<String, String> table = queryTable(tableName);
-            //查询列信息
+            /**查询列信息**/
             List<Map<String, String>> columns = queryColumns(tableName);
-            //生成代码
+            /**生成代码**/
             GenUtils.generatorCode(table, columns, zip);
         }
         IOUtils.closeQuietly(zip);
