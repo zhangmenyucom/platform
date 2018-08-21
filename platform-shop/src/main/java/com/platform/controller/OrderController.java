@@ -117,7 +117,6 @@ public class OrderController {
     @RequiresPermissions("order:confirm")
     public R confirm(@RequestBody Integer id) {
         orderService.confirm(id);
-
         return R.ok();
     }
 

@@ -11,7 +11,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
       orderId: options.id,
-      actualPrice: options.actual_price
+      actualPrice: options.actualPrice
     })
   },
   onReady: function () {

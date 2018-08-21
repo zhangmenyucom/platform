@@ -13,10 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * @author Taylor
+ */
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
+
     @Autowired
     private OrderDao orderDao;
+
     @Autowired
     private ShippingDao shippingDao;
 
@@ -58,8 +63,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int confirm(Integer id) {
         OrderEntity orderEntity = queryObject(id);
-        Integer shippingStatus = orderEntity.getShippingStatus();//发货状态
-        Integer payStatus = orderEntity.getPayStatus();//付款状态
+        //发货状态
+        Integer shippingStatus = orderEntity.getShippingStatus();
+        //付款状态
+        Integer payStatus = orderEntity.getPayStatus();
         if (2 != payStatus) {
             throw new RRException("此订单未付款，不能确认收货！");
         }
@@ -69,13 +76,15 @@ public class OrderServiceImpl implements OrderService {
         if (0 == shippingStatus) {
             throw new RRException("此订单未发货，不能确认收货！");
         }
+        orderEntity.setOrderStatus(301);
         orderEntity.setShippingStatus(2);
-        return 0;
+        return orderDao.update(orderEntity);
     }
 
     @Override
     public int sendGoods(OrderEntity order) {
-        Integer payStatus = order.getPayStatus();//付款状态
+        //付款状态
+        Integer payStatus = order.getPayStatus();
         if (2 != payStatus) {
             throw new RRException("此订单未付款！");
         }
@@ -84,8 +93,10 @@ public class OrderServiceImpl implements OrderService {
         if (null != shippingEntity) {
             order.setShippingName(shippingEntity.getName());
         }
-        order.setOrderStatus(300);//订单已发货
-        order.setShippingStatus(1);//已发货
+        //订单已发货
+        order.setOrderStatus(300);
+        //已发货
+        order.setShippingStatus(1);
         return orderDao.update(order);
     }
 }
