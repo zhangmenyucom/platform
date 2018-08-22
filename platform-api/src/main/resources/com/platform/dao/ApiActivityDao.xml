@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.platform.dao.ActivityDao">
+<mapper namespace="com.platform.dao.ApiActivityDao">
 
-    <resultMap type="com.platform.entity.ActivityEntity" id="activityMap">
+    <resultMap type="com.platform.entity.ActivityVo" id="activityMap">
         <result property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="author" column="author"/>
@@ -12,11 +12,9 @@
         <result property="startDate" column="start_date"/>
         <result property="endDate" column="end_date"/>
         <result property="position" column="position"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.ActivityEntity">
+    <select id="queryObject" resultType="com.platform.entity.ActivityVo">
 		select
 			`id`,
 			`title`,
@@ -25,14 +23,12 @@
 			`banner`,
 			`start_date`,
 			`end_date`,
-			`position`,
-			`create_time`,
-			`update_time`
+			`position`
 		from activity
 		where id = #{id}
 	</select>
 
-    <select id="queryList" resultType="com.platform.entity.ActivityEntity">
+    <select id="queryList" resultType="com.platform.entity.ActivityVo">
         select
         `id`,
         `title`,
@@ -41,9 +37,7 @@
         `banner`,
         `start_date`,
         `end_date`,
-        `position`,
-        `create_time`,
-        `update_time`
+        `position`
         from activity
         WHERE 1=1
         <if test="name != null and name.trim() != ''">
@@ -70,7 +64,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.ActivityEntity">
+    <insert id="save" parameterType="com.platform.entity.ActivityVo">
 		insert into activity(
 			`id`,
 			`title`,
@@ -91,15 +85,15 @@
 			#{position})
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.ActivityEntity">
+    <update id="update" parameterType="com.platform.entity.ActivityVo">
         update activity
         <set>
             <if test="title != null">`title` = #{title},</if>
             <if test="author != null">`author` = #{author},</if>
             <if test="content != null">`content` = #{content},</if>
             <if test="banner != null">`banner` = #{banner},</if>
-            <if test="startDate != null">`startDate` = #{startDate},</if>
-            <if test="endDate != null">`endDate` = #{endDate},</if>
+            <if test="startDate != null">`start_date` = #{startDate},</if>
+            <if test="endDate != null">`end_date` = #{endDate},</if>
             <if test="position != null">`position` = #{position}</if>
         </set>
         where id = #{id}

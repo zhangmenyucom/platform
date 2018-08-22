@@ -1,5 +1,7 @@
 package com.platform.entity;
+
 import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +14,7 @@ import java.util.Date;
  * @date 2018-08-22 00:14:02
  */
 @Data
-public class ActivityEntity implements Serializable {
+public class ActivityVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**  **/
@@ -31,8 +33,4 @@ public class ActivityEntity implements Serializable {
     private Date endDate;
     /** 活动地址 **/
     private String position;
-    /**创建时间**/
-    private Date createTime;
-    /**更新时间**/
-    private Date updateTime;
 }

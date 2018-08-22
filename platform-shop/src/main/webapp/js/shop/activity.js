@@ -7,8 +7,8 @@ $(function () {
 			{label: '作者', name: 'author', index: 'author', width: 80},
 			{label: '活动内容', name: 'content', index: 'content', width: 80},
 			{label: '图标地址', name: 'banner', index: 'banner', width: 80},
-			{label: '活动时间', name: 'startdate', index: 'startDate', width: 80},
-			{label: '活动截至日期', name: 'enddate', index: 'endDate', width: 80},
+			{label: '活动时间', name: 'startDate', index: 'startDate', width: 80},
+			{label: '活动截至日期', name: 'endDate', index: 'endDate', width: 80},
 			{label: '活动地址', name: 'position', index: 'position', width: 80}]
     });
 });
