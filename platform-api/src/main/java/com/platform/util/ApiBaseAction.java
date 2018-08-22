@@ -83,14 +83,14 @@ public class ApiBaseAction {
         return obj;
     }
 
+    public Map<String, Object> toResponsMsgSuccess(String msg) {
+        return toResponsObject(0, msg, "");
+    }
+
     public Map<String, Object> toResponsSuccess(Object data) {
         Map<String, Object> rp = toResponsObject(0, "执行成功", data);
         log.info("response:" + rp);
         return rp;
-    }
-
-    public Map<String, Object> toResponsMsgSuccess(String msg) {
-        return toResponsObject(0, msg, "");
     }
 
     public Map<String, Object> toResponsSuccessForSelect(Object data) {

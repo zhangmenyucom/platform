@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.platform.annotation.LoginUser;
 import com.platform.entity.SmsConfig;
 import com.platform.entity.SmsLogVo;
+import com.platform.entity.UserDetailVo;
 import com.platform.entity.UserVo;
 import com.platform.service.ApiUserService;
 import com.platform.service.SysConfigService;
@@ -123,4 +124,17 @@ public class ApiUserController extends ApiBaseAction {
         userService.update(userVo);
         return toResponsSuccess("手机绑定成功");
     }
+
+
+    /**
+     * 获取用户详细信息
+     */
+    @ApiOperation(value = "获取用户详细信息")
+    @GetMapping("detailInfo")
+    public Object getUserDetailInfo(UserVo loginUser) {
+        UserDetailVo userDetailVo = userService.queryUserDetailInfo(loginUser.getUserId());
+        return toResponsSuccess(userDetailVo);
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.platform.service;
 import com.platform.dao.ApiUserLevelMapper;
 import com.platform.dao.ApiUserMapper;
 import com.platform.entity.SmsLogVo;
+import com.platform.entity.UserDetailVo;
 import com.platform.entity.UserLevelVo;
 import com.platform.entity.UserVo;
 import com.platform.utils.RRException;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +27,23 @@ public class ApiUserService {
 
     public UserVo queryObject(Long userId) {
         return userDao.queryObject(userId);
+    }
+
+    public UserDetailVo queryUserDetailInfo(Long userId) {
+
+        UserDetailVo userDetailVo = userDao.queryUserDetailInfo(userId);
+        if (userDetailVo != null) {
+            Map<String, Long> map = new HashMap<>();
+            map.put("parentId", userDetailVo.getUserId());
+            List<UserVo> userVos = userDao.queryList(map);
+            userDetailVo.setSubUserList(userVos);
+            userVos.forEach(uv -> {
+                map.put("parentId", uv.getUserId());
+                List<UserVo> subVos = userDao.queryList(map);
+                uv.setSubUserList(subVos);
+            });
+        }
+        return userDetailVo;
     }
 
     public UserVo queryByOpenId(String openId) {

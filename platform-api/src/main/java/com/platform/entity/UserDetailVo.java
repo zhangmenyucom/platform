@@ -3,6 +3,7 @@ package com.platform.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,15 +14,13 @@ import java.util.List;
  * @date 2017-08-15 08:03:41
  */
 @Data
-public class UserVo implements Serializable {
+public class UserDetailVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
     private Long userId;
     /**会员名称**/
     private String username;
-    /**会员密码**/
-    private String password;
     /**性别**/
     private Integer gender;
     /**出生日期**/
@@ -44,6 +43,14 @@ public class UserVo implements Serializable {
     private String avatar;
     /**微信Id**/
     private String weixin_openid;
-    /**下级列表**/
+    /**总佣金**/
+    private BigDecimal totalBalance;
+    /**可用佣金**/
+    private BigDecimal avilableBalance;
+    /**冻结佣金**/
+    private BigDecimal lockBalance;
+
+    /**下级,展示下两级**/
     private List<UserVo> subUserList;
+
 }

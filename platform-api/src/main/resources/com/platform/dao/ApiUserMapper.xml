@@ -20,8 +20,30 @@
         <result property="avatar" column="avatar"/>
         <result property="weixin_openid" column="weixin_openid"/>
     </resultMap>
+    <resultMap type="com.platform.entity.UserDetailVo" id="userMapVo">
+        <result property="userId" column="id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="username" column="username"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="register_time" column="register_time"/>
+        <result property="last_login_time" column="last_login_time"/>
+        <result property="last_login_ip" column="last_login_ip"/>
+        <result property="user_level_id" column="user_level_id"/>
+        <result property="nickname" column="nickname"/>
+        <result property="mobile" column="mobile"/>
+        <result property="register_ip" column="register_ip"/>
+        <result property="avatar" column="avatar"/>
+        <result property="totalBalance" column="total_balance"/>
+        <result property="avilableBalance" column="avilable_balance"/>
+        <result property="lockBalance" column="lock_balance"/>
+    </resultMap>
 
     <select id="queryObject" resultMap="userMap">
+		select * from user where id = #{value}
+	</select>
+
+    <select id="queryUserDetailInfo" resultMap="userMapVo">
 		select * from user where id = #{value}
 	</select>
 
@@ -34,7 +56,15 @@
     </select>
 
     <select id="queryList" resultMap="userMap">
-        select * from user
+        select user.*
+        from user LEFT JOIN user_level ON user.user_level_id=user_level.id
+        WHERE 1=1
+        <if test="username != null and username.trim() != ''">
+            and username like concat('%',#{username},'%')
+        </if>
+        <if test="parentId != null">
+            and parent_id =#{parentId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -55,6 +85,7 @@
     <insert id="save" parameterType="com.platform.entity.UserVo" useGeneratedKeys="true" keyProperty="userId">
 		insert into user
 		(
+		    `parent_id`,
 			`username`, 
 			`password`, 
 			`gender`, 
@@ -71,6 +102,7 @@
 		)
 		values
 		(
+		    #{parentId},
 			#{username}, 
 			#{password}, 
 			#{gender}, 
@@ -90,6 +122,7 @@
     <update id="update" parameterType="com.platform.entity.UserVo">
         update user
         <set>
+            <if test="parentId!=null">`parent_id`=#{parentId}</if>
             <if test="username != null">`username` = #{username},</if>
             <if test="password != null">`password` = #{password},</if>
             <if test="gender != null">`gender` = #{gender},</if>
@@ -102,7 +135,10 @@
             <if test="mobile != null">`mobile` = #{mobile},</if>
             <if test="register_ip != null">`register_ip` = #{register_ip},</if>
             <if test="avatar != null">`avatar` = #{avatar},</if>
-            <if test="weixin_openid != null">`weixin_openid` = #{weixin_openid}</if>
+            <if test="weixin_openid != null">`weixin_openid` = #{weixin_openid},</if>
+            <if test="totalBalance != null">`total_balance` = #{totalBalance},</if>
+            <if test="avilableBalance != null">`avilable_balance` = #{avilableBalance},</if>
+            <if test="lockBalance!= null">`lock_balance` = #{lockBalance}</if>
         </set>
         where id = #{userId}
     </update>

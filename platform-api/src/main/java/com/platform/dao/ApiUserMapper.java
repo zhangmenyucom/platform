@@ -1,6 +1,7 @@
 package com.platform.dao;
 
 import com.platform.entity.SmsLogVo;
+import com.platform.entity.UserDetailVo;
 import com.platform.entity.UserVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,4 +33,9 @@ public interface ApiUserMapper extends BaseDao<UserVo> {
      * @return
      */
     int saveSmsCodeLog(SmsLogVo smsLogVo);
+
+    /**
+     * 查询用户详情
+     **/
+    UserDetailVo queryUserDetailInfo(Long userId);
 }
