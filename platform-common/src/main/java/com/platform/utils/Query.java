@@ -38,7 +38,7 @@ public class Query extends LinkedHashMap<String, Object> {
         this.put("limit", limit);
 
         //防止SQL注入（因为sidx、order是通过拼接SQL实现排序的，会有SQL注入风险）
-        Optional.of(params.get("sidx")).ifPresent(sidx -> this.put("sidx", SQLFilter.sqlInject(sidx.toString())));
-        Optional.of(params.get("order")).ifPresent(order -> this.put("order", SQLFilter.sqlInject(order.toString())));
+        Optional.ofNullable(params.get("sidx")).ifPresent(sidx -> this.put("sidx", SQLFilter.sqlInject(sidx.toString())));
+        Optional.ofNullable(params.get("order")).ifPresent(order -> this.put("order", SQLFilter.sqlInject(order.toString())));
     }
 }
