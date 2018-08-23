@@ -15,7 +15,7 @@ import java.util.*;
  * 名称：BeanUtils <br>
  * 描述：<br>
  *
- * @author 李鹏军
+ * @author taylor
  * @version 1.0
  * @since 1.0.0
  */

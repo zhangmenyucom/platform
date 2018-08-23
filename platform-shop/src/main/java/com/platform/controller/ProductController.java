@@ -61,7 +61,6 @@ public class ProductController {
     @RequiresPermissions("product:save")
     public R save(@RequestBody ProductEntity product) {
         productService.save(product);
-
         return R.ok();
     }
 

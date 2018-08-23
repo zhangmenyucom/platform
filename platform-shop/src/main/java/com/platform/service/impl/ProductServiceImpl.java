@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Service实现类
@@ -70,16 +71,15 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public int save(ProductEntity product) {
         int result = 0;
-        String goodsSpecificationIds = product.getGoodsSpecificationIds();
-        if (!StringUtils.isNullOrEmpty(goodsSpecificationIds)) {
-            String[] goodsSpecificationIdArr = goodsSpecificationIds.split("_");
+        if (!StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())) {
+            String[] goodsSpecificationIdArr = product.getGoodsSpecificationIds().split("_");
             for (int i = 0; i < goodsSpecificationIdArr.length - 1; i++) {
                 String[] oneId = goodsSpecificationIdArr[i].split(",");
                 String[] twoId = goodsSpecificationIdArr[i + 1].split(",");
                 for (int j = 0; j < oneId.length; j++) {
                     for (int k = 0; k < twoId.length; k++) {
-                        String strGoodsSpecificationIds = null;
-                        if (StringUtils.isNullOrEmpty(oneId[j]) || StringUtils.isNullOrEmpty(twoId[k])){
+                        String strGoodsSpecificationIds;
+                        if (StringUtils.isNullOrEmpty(oneId[j]) || StringUtils.isNullOrEmpty(twoId[k])) {
                             continue;
                         }
                         strGoodsSpecificationIds = oneId[j] + "_" + twoId[k];
@@ -96,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int update(ProductEntity product) {
-        if (StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())){
+        if (StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())) {
             product.setGoodsSpecificationIds("");
         }
         return productDao.update(product);
