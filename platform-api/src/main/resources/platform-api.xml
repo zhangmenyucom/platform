@@ -7,7 +7,6 @@
 		http://www.springframework.org/schema/mvc
      	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
-<!--
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
             <bean class="com.platform.resolver.LoginUserHandlerMethodArgumentResolver">
@@ -15,13 +14,12 @@
             </bean>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
--->
 
-<!--    <mvc:interceptors>
+   <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/api/**"/>
             <mvc:exclude-mapping path="/api/detailInfo"/>
             <ref bean="authorizationInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 </beans>
