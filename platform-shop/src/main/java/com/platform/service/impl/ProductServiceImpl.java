@@ -70,7 +70,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public int save(ProductEntity product) {
+
         int result = 0;
+
+        ProductEntity entity = new ProductEntity();
+        BeanUtils.copyProperties(product, entity);
+
         if (!StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())) {
             String[] goodsSpecificationIdArr = product.getGoodsSpecificationIds().split("_");
             for (int i = 0; i < goodsSpecificationIdArr.length - 1; i++) {
@@ -83,13 +88,13 @@ public class ProductServiceImpl implements ProductService {
                             continue;
                         }
                         strGoodsSpecificationIds = oneId[j] + "_" + twoId[k];
-                        product.setGoodsSpecificationIds(strGoodsSpecificationIds);
-                        ProductEntity entity = new ProductEntity();
-                        BeanUtils.copyProperties(product, entity);
+                        entity.setGoodsSpecificationIds(strGoodsSpecificationIds);
                         result += productDao.save(entity);
                     }
                 }
             }
+        } else {
+            productDao.save(entity);
         }
         return result;
     }
