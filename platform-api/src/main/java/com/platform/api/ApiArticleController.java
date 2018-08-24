@@ -35,7 +35,6 @@ public class ApiArticleController {
     @IgnoreAuth
     @ApiOperation(value = "获取文章列表", response = Map.class)
     @GetMapping("list")
-    @RequiresPermissions("article:list")
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
@@ -51,7 +50,6 @@ public class ApiArticleController {
     @IgnoreAuth
     @ApiOperation(value = "获取文章信息", response = Map.class)
     @GetMapping("/info/{id}")
-    @RequiresPermissions("article:info")
     public R info(@PathVariable("id") Long id) {
         ArticleVo article = apiArticleService.queryObject(id);
         return R.ok().put("article", article);
