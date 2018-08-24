@@ -1,5 +1,6 @@
 package com.platform.api;
 
+import com.platform.annotation.IgnoreAuth;
 import com.platform.entity.ArticleVo;
 import com.platform.service.ApiArticleService;
 import com.platform.utils.PageUtils;
@@ -31,6 +32,7 @@ public class ApiArticleController {
     /**
      * 查看列表
      */
+    @IgnoreAuth
     @ApiOperation(value = "获取文章列表", response = Map.class)
     @GetMapping("list")
     @RequiresPermissions("article:list")
@@ -46,6 +48,7 @@ public class ApiArticleController {
     /**
      * 查看信息
      */
+    @IgnoreAuth
     @ApiOperation(value = "获取文章信息", response = Map.class)
     @GetMapping("/info/{id}")
     @RequiresPermissions("article:info")
@@ -57,6 +60,7 @@ public class ApiArticleController {
     /**
      * 查看所有列表
      */
+    @IgnoreAuth
     @ApiOperation(value = "获取所有文章列表", response = Map.class)
     @GetMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {

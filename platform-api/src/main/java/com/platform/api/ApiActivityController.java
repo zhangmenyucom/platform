@@ -1,5 +1,6 @@
 package com.platform.api;
 
+import com.platform.annotation.IgnoreAuth;
 import com.platform.entity.ActivityVo;
 import com.platform.service.ApiActivityService;
 import com.platform.utils.PageUtils;
@@ -30,6 +31,7 @@ public class ApiActivityController {
     /**
      * 查看列表
      */
+    @IgnoreAuth
     @ApiOperation(value = "获取活动列表", response = Map.class)
     @GetMapping("list")
     public R list(@RequestParam Map<String, Object> params) {
@@ -44,6 +46,7 @@ public class ApiActivityController {
     /**
      * 查看信息
      */
+    @IgnoreAuth
     @ApiOperation(value = "活动详情", response = Map.class)
     @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
@@ -54,6 +57,7 @@ public class ApiActivityController {
     /**
      * 查看所有列表
      */
+    @IgnoreAuth
     @ApiOperation(value = "获取所有活动", response = Map.class)
     @GetMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
