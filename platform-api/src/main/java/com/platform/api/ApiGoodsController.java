@@ -111,8 +111,7 @@ public class ApiGoodsController extends ApiBaseAction {
      * 商品详情页数据
      */
     @ApiOperation(value = " 商品详情页数据")
-    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "商品id", paramType = "path", required = true),
-            @ApiImplicitParam(name = "referrer", value = "商品referrer", paramType = "path", required = false)})
+    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "商品id", paramType = "path", required = true), @ApiImplicitParam(name = "referrer", value = "商品referrer", paramType = "path", required = false)})
     @GetMapping(value = "detail")
     public Object detail(Integer id, Long referrer) {
         Map<String, Object> resultObj = new HashMap(0);
@@ -239,28 +238,28 @@ public class ApiGoodsController extends ApiBaseAction {
             params.put("send_type", 2);
             params.put("unUsed", true);
             List<CouponVo> enabledCouponVos = apiCouponService.queryUserCoupons(params);
-            if ((null == enabledCouponVos || enabledCouponVos.size() == 0)
-                    && null != referrer && null != userId) {
-                // 获取优惠信息提示
-                Map couponParam = new HashMap(0);
-                couponParam.put("enabled", true);
-                Integer[] send_types = new Integer[]{2};
-                couponParam.put("send_types", send_types);
-                List<CouponVo> couponVos = apiCouponService.queryList(couponParam);
-                if (null != couponVos && couponVos.size() > 0) {
-                    CouponVo couponVo = couponVos.get(0);
-                    Map footprintParam = new HashMap(0);
-                    footprintParam.put("goods_id", id);
-                    footprintParam.put("referrer", referrer);
-                    Integer footprintNum = footprintService.queryTotal(footprintParam);
-                    if (null != footprintNum && null != couponVo.getMin_transmit_num()
-                            && footprintNum > couponVo.getMin_transmit_num()) {
-                        UserCouponVo userCouponVo = new UserCouponVo();
-                        userCouponVo.setAdd_time(new Date());
-                        userCouponVo.setCoupon_id(couponVo.getId());
-                        userCouponVo.setCoupon_number(CharUtil.getRandomString(12));
-                        userCouponVo.setUser_id(getUserId());
-                        apiUserCouponService.save(userCouponVo);
+            if (null != userId) {
+                if ((null == enabledCouponVos || enabledCouponVos.size() == 0) && null != referrer) {
+                    // 获取优惠信息提示
+                    Map couponParam = new HashMap(0);
+                    couponParam.put("enabled", true);
+                    Integer[] send_types = new Integer[]{2};
+                    couponParam.put("send_types", send_types);
+                    List<CouponVo> couponVos = apiCouponService.queryList(couponParam);
+                    if (null != couponVos && couponVos.size() > 0) {
+                        CouponVo couponVo = couponVos.get(0);
+                        Map footprintParam = new HashMap(0);
+                        footprintParam.put("goods_id", id);
+                        footprintParam.put("referrer", referrer);
+                        Integer footprintNum = footprintService.queryTotal(footprintParam);
+                        if (null != footprintNum && null != couponVo.getMin_transmit_num() && footprintNum > couponVo.getMin_transmit_num()) {
+                            UserCouponVo userCouponVo = new UserCouponVo();
+                            userCouponVo.setAdd_time(new Date());
+                            userCouponVo.setCoupon_id(couponVo.getId());
+                            userCouponVo.setCoupon_number(CharUtil.getRandomString(12));
+                            userCouponVo.setUser_id(getUserId());
+                            apiUserCouponService.save(userCouponVo);
+                        }
                     }
                 }
             }

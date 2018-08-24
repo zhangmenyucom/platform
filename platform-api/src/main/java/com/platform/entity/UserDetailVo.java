@@ -19,6 +19,10 @@ public class UserDetailVo implements Serializable {
 
     /**主键**/
     private Long userId;
+
+    /**上级结点**/
+    private Long parentId;
+
     /**会员名称**/
     private String username;
     /**性别**/

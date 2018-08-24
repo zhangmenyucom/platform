@@ -18,6 +18,8 @@ public class UserVo implements Serializable {
 
     /**主键**/
     private Long userId;
+    /**上级结点**/
+    private Long parentId;
     /**会员名称**/
     private String username;
     /**会员密码**/
