@@ -1,6 +1,6 @@
 package com.platform.dao;
 
-import com.platform.entity.WithdrawOrderVo;
+import com.platform.entity.CmmissionOrderVo;
 
 /**
  * Dao
@@ -9,6 +9,6 @@ import com.platform.entity.WithdrawOrderVo;
  * @email 516195940@qq.com
  * @date 2018-08-25 14:20:46
  */
-public interface WithdrawOrderDao extends BaseDao<WithdrawOrderVo> {
+public interface ApiCmmissionOrderDao extends BaseDao<CmmissionOrderVo> {
 
 }

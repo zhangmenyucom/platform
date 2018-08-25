@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.platform.dao.WithdrawOrderDao">
+<mapper namespace="com.platform.dao.ApiWithdrawOrderDao">
 
-    <resultMap type="com.platform.entity.WithdrawOrderEntity" id="withdrawOrderMap">
+    <resultMap type="com.platform.entity.WithdrawOrderVo" id="withdrawOrderMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
         <result property="withdrawAmount" column="withdraw_amount"/>
@@ -15,7 +15,7 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="com.platform.entity.WithdrawOrderEntity">
+	<select id="queryObject" resultType="com.platform.entity.WithdrawOrderVo">
 		select
 			`id`,
 			`user_id`,
@@ -30,7 +30,7 @@
 		where id = #{id}
 	</select>
 
-	<select id="queryList" resultType="com.platform.entity.WithdrawOrderEntity">
+	<select id="queryList" resultType="com.platform.entity.WithdrawOrderVo">
 		select
     		`id`,
     		`user_id`,
@@ -67,7 +67,7 @@
         </if>
 	</select>
 	 
-	<insert id="save" parameterType="com.platform.entity.WithdrawOrderEntity" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.platform.entity.WithdrawOrderVo" useGeneratedKeys="true" keyProperty="id">
 		insert into withdraw_order(
 			`user_id`,
 			`withdraw_amount`,
@@ -88,7 +88,7 @@
 			#{updateTime})
 	</insert>
 	 
-	<update id="update" parameterType="com.platform.entity.WithdrawOrderEntity">
+	<update id="update" parameterType="com.platform.entity.WithdrawOrderVo">
 		update withdraw_order 
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
