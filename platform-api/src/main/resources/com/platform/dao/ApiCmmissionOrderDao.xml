@@ -5,7 +5,7 @@
 
     <resultMap type="com.platform.entity.CmmissionOrderVo" id="cmmissionOrderMap">
         <result property="id" column="id"/>
-        <result property="orderId" column="order_id"/>
+        <result property="orderSn" column="order_sn"/>
         <result property="gainBalance" column="gain_balance"/>
         <result property="sourceUserId" column="source_user_id"/>
         <result property="detail" column="detail"/>
@@ -16,7 +16,7 @@
 	<select id="queryObject" resultType="com.platform.entity.CmmissionOrderVo">
 		select
 			`id`,
-			`order_id`,
+			`order_sn`,
 			`gain_balance`,
 			`source_user_id`,
 			`detail`,
@@ -29,7 +29,7 @@
 	<select id="queryList" resultType="com.platform.entity.CmmissionOrderVo">
 		select
     		`id`,
-    		`order_id`,
+    		`order_sn`,
     		`gain_balance`,
     		`source_user_id`,
     		`detail`,
@@ -63,14 +63,14 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.CmmissionOrderVo" useGeneratedKeys="true" keyProperty="id">
 		insert into cmmission_order(
-			`order_id`,
+			`order_sn`,
 			`gain_balance`,
 			`source_user_id`,
 			`detail`,
 			`create_time`,
 			`update_time`)
 		values(
-			#{orderId},
+			#{orderSn},
 			#{gainBalance},
 			#{sourceUserId},
 			#{detail},
@@ -81,7 +81,7 @@
 	<update id="update" parameterType="com.platform.entity.CmmissionOrderVo">
 		update cmmission_order 
 		<set>
-			<if test="orderId != null">`order_id` = #{orderId}, </if>
+			<if test="orderSn != null">`order_sn` = #{orderSn, </if>
 			<if test="gainBalance != null">`gain_balance` = #{gainBalance}, </if>
 			<if test="sourceUserId != null">`source_user_id` = #{sourceUserId}, </if>
 			<if test="detail != null">`detail` = #{detail}, </if>

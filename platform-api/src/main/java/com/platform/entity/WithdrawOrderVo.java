@@ -18,6 +18,8 @@ public class WithdrawOrderVo implements Serializable {
 
     /** 主键id **/
     private Long id;
+    /**订单号**/
+    private String orderSn;
     /** 提现人id **/
     private Long userId;
     /** 提现金额 **/

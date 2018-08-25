@@ -3,6 +3,7 @@ $(function () {
         url: '../withdraworder/list',
         colModel: [
 			{label: 'id', name: 'id', index: 'id', key: true, hidden: true},
+			{label: '流水号', name: 'orderSn', index: 'order_sn', width:80},
 			{label: '提现人id', name: 'userId', index: 'user_id', width: 80},
 			{label: '提现金额', name: 'withdrawAmount', index: 'withdraw_amount', width: 80},
 			{label: '提现账户', name: 'withdrawAccount', index: 'withdraw_account', width: 80},

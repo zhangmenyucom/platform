@@ -34,6 +34,9 @@
     <Card v-show="!showList">
         <p slot="title">{{title}}</p>
 		<i-form ref="formValidate" :model="withdrawOrder" :rules="ruleValidate" :label-width="80">
+            <Form-item label="流水号" prop="orderSn">
+                <i-input v-model="withdrawOrder.orderSn" placeholder="流水号"/>
+            </Form-item>
             <Form-item label="提现人id" prop="userId">
                 <i-input v-model="withdrawOrder.userId" placeholder="提现人id"/>
             </Form-item>

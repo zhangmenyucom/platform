@@ -34,8 +34,8 @@
     <Card v-show="!showList">
         <p slot="title">{{title}}</p>
 		<i-form ref="formValidate" :model="cmmissionOrder" :rules="ruleValidate" :label-width="80">
-            <Form-item label="佣金订单号" prop="orderId">
-                <i-input v-model="cmmissionOrder.orderId" placeholder="佣金订单号"/>
+            <Form-item label="佣金订单号" prop="orderSn">
+                <i-input v-model="cmmissionOrder.orderSn" placeholder="佣金订单号"/>
             </Form-item>
             <Form-item label="佣金数额" prop="gainBalance">
                 <i-input v-model="cmmissionOrder.gainBalance" placeholder="佣金数额"/>

@@ -2,6 +2,7 @@ package com.platform.cache;
 
 import com.platform.dao.SysRegionDao;
 import com.platform.entity.SysRegionEntity;
+import com.platform.utils.JsonUtil;
 import com.platform.utils.SpringContextUtils;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -19,9 +20,15 @@ public class RegionCacheUtil implements InitializingBean {
     public static List<SysRegionEntity> sysRegionEntityList;
 
     public static void init() {
-        SysRegionDao regionDao = SpringContextUtils.getBean(SysRegionDao.class);
-        if (null != regionDao) {
-            sysRegionEntityList = regionDao.queryList(new HashMap<>(0));
+        Object regionList = J2CacheUtils.get("regionList");
+        if (regionList == null) {
+            SysRegionDao regionDao = SpringContextUtils.getBean(SysRegionDao.class);
+            if (null != regionDao) {
+                sysRegionEntityList = regionDao.queryList(new HashMap<>(0));
+                J2CacheUtils.put("regionList", JsonUtil.getJsonByObj(sysRegionEntityList));
+            }
+        } else {
+            sysRegionEntityList = JsonUtil.getList((String) regionList, SysRegionEntity.class);
         }
     }
 
@@ -31,7 +38,7 @@ public class RegionCacheUtil implements InitializingBean {
      * @return
      */
     public static List<SysRegionEntity> getAllCountry() {
-        List<SysRegionEntity> resultObj = new ArrayList<SysRegionEntity>();
+        List<SysRegionEntity> resultObj = new ArrayList<>();
         if (null != sysRegionEntityList) {
             for (SysRegionEntity areaVo : sysRegionEntityList) {
                 if (areaVo.getType().equals(0)) {

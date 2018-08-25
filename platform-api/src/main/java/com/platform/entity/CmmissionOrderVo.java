@@ -19,7 +19,7 @@ public class CmmissionOrderVo implements Serializable {
     /**  **/
     private Long id;
     /** 佣金订单号 **/
-    private Long orderId;
+    private String orderSn;
     /** 佣金数额 **/
     private BigDecimal gainBalance;
     /** 订单来源人 **/
