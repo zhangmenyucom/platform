@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").Grid({
-        url: '../cmmissionorder/list',
+        url: '../commissionorder/list',
         colModel: [
 			{label: 'id', name: 'id', index: 'id', key: true, hidden: true},
 			{label: '佣金订单号', name: 'orderSn', index: 'order_sn', width: 80},
@@ -17,7 +17,7 @@ let vm = new Vue({
 	data: {
         showList: true,
         title: null,
-		cmmissionOrder: {},
+		commissionOrder: {},
 		ruleValidate: {
 			name: [
 				{required: true, message: '名称不能为空', trigger: 'blur'}
@@ -34,7 +34,7 @@ let vm = new Vue({
 		add: function () {
 			vm.showList = false;
 			vm.title = "新增";
-			vm.cmmissionOrder = {};
+			vm.commissionOrder = {};
 		},
 		update: function (event) {
             let id = getSelectedRow("#jqGrid");
@@ -47,10 +47,10 @@ let vm = new Vue({
             vm.getInfo(id)
 		},
 		saveOrUpdate: function (event) {
-            let url = vm.cmmissionOrder.id == null ? "../cmmissionorder/save" : "../cmmissionorder/update";
+            let url = vm.commissionOrder.id == null ? "../commissionorder/save" : "../commissionorder/update";
             Ajax.request({
 			    url: url,
-                params: JSON.stringify(vm.cmmissionOrder),
+                params: JSON.stringify(vm.commissionOrder),
                 type: "POST",
 			    contentType: "application/json",
                 successCallback: function (r) {
@@ -68,7 +68,7 @@ let vm = new Vue({
 
 			confirm('确定要删除选中的记录？', function () {
                 Ajax.request({
-				    url: "../cmmissionorder/delete",
+				    url: "../commissionorder/delete",
                     params: JSON.stringify(ids),
                     type: "POST",
 				    contentType: "application/json",
@@ -82,10 +82,10 @@ let vm = new Vue({
 		},
 		getInfo: function(id){
             Ajax.request({
-                url: "../cmmissionorder/info/"+id,
+                url: "../commissionorder/info/"+id,
                 async: true,
                 successCallback: function (r) {
-                    vm.cmmissionOrder = r.cmmissionOrder;
+                    vm.commissionOrder = r.commissionOrder;
                 }
             });
 		},

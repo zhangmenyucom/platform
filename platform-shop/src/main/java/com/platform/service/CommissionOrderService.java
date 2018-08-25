@@ -1,6 +1,6 @@
 package com.platform.service;
 
-import com.platform.entity.CmmissionOrderVo;
+import com.platform.entity.CommissionOrderEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -10,9 +10,9 @@ import java.util.Map;
  *
  * @author taylor
  * @email 516195940@qq.com
- * @date 2018-08-25 14:20:46
+ * @date 2018-08-24 22:02:34
  */
-public interface CmmissionOrderService {
+public interface CommissionOrderService {
 
     /**
      * 根据主键查询实体
@@ -20,7 +20,7 @@ public interface CmmissionOrderService {
      * @param id 主键
      * @return 实体
      */
-    CmmissionOrderVo queryObject(Long id);
+    CommissionOrderEntity queryObject(Long id);
 
     /**
      * 分页查询
@@ -28,7 +28,7 @@ public interface CmmissionOrderService {
      * @param map 参数
      * @return list
      */
-    List<CmmissionOrderVo> queryList(Map<String, Object> map);
+    List<CommissionOrderEntity> queryList(Map<String, Object> map);
 
     /**
      * 分页统计总数
@@ -41,18 +41,18 @@ public interface CmmissionOrderService {
     /**
      * 保存实体
      *
-     * @param cmmissionOrder 实体
+     * @param commissionOrder 实体
      * @return 保存条数
      */
-    int save(CmmissionOrderVo cmmissionOrder);
+    int save(CommissionOrderEntity commissionOrder);
 
     /**
      * 根据主键更新实体
      *
-     * @param cmmissionOrder 实体
+     * @param commissionOrder 实体
      * @return 更新条数
      */
-    int update(CmmissionOrderVo cmmissionOrder);
+    int update(CommissionOrderEntity commissionOrder);
 
     /**
      * 根据主键删除

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.platform.entity.CmmissionOrderEntity;
-import com.platform.service.CmmissionOrderService;
+import com.platform.entity.CommissionOrderEntity;
+import com.platform.service.CommissionOrderService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
@@ -24,22 +24,22 @@ import com.platform.utils.R;
  * @date 2018-08-24 22:02:34
  */
 @RestController
-@RequestMapping("cmmissionorder")
-public class CmmissionOrderController {
+@RequestMapping("commissionorder")
+public class CommissionOrderController {
     @Autowired
-    private CmmissionOrderService cmmissionOrderService;
+    private CommissionOrderService commissionOrderService;
 
     /**
      * 查看列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("cmmissionorder:list")
+    @RequiresPermissions("commissionorder:list")
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<CmmissionOrderEntity> cmmissionOrderList = cmmissionOrderService.queryList(query);
-        int total = cmmissionOrderService.queryTotal(query);
-        PageUtils pageUtil = new PageUtils(cmmissionOrderList, total, query.getLimit(), query.getPage());
+        List<CommissionOrderEntity> commissionOrderList = commissionOrderService.queryList(query);
+        int total = commissionOrderService.queryTotal(query);
+        PageUtils pageUtil = new PageUtils(commissionOrderList, total, query.getLimit(), query.getPage());
         return R.ok().put("page", pageUtil);
     }
 
@@ -47,19 +47,19 @@ public class CmmissionOrderController {
      * 查看信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("cmmissionorder:info")
+    @RequiresPermissions("commissionorder:info")
     public R info(@PathVariable("id") Long id) {
-        CmmissionOrderEntity cmmissionOrder = cmmissionOrderService.queryObject(id);
-        return R.ok().put("cmmissionOrder", cmmissionOrder);
+        CommissionOrderEntity commissionOrder = commissionOrderService.queryObject(id);
+        return R.ok().put("commissionOrder", commissionOrder);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("cmmissionorder:save")
-    public R save(@RequestBody CmmissionOrderEntity cmmissionOrder) {
-        cmmissionOrderService.save(cmmissionOrder);
+    @RequiresPermissions("commissionorder:save")
+    public R save(@RequestBody CommissionOrderEntity commissionOrder) {
+        commissionOrderService.save(commissionOrder);
         return R.ok();
     }
 
@@ -67,9 +67,9 @@ public class CmmissionOrderController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("cmmissionorder:update")
-    public R update(@RequestBody CmmissionOrderEntity cmmissionOrder) {
-        cmmissionOrderService.update(cmmissionOrder);
+    @RequiresPermissions("commissionorder:update")
+    public R update(@RequestBody CommissionOrderEntity commissionOrder) {
+        commissionOrderService.update(commissionOrder);
         return R.ok();
     }
 
@@ -77,9 +77,9 @@ public class CmmissionOrderController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("cmmissionorder:delete")
+    @RequiresPermissions("commissionorder:delete")
     public R delete(@RequestBody Long[] ids) {
-        cmmissionOrderService.deleteBatch(ids);
+        commissionOrderService.deleteBatch(ids);
         return R.ok();
     }
 
@@ -88,7 +88,7 @@ public class CmmissionOrderController {
      */
     @RequestMapping("/queryAll")
     public R queryAll(@RequestParam Map<String, Object> params) {
-        List<CmmissionOrderEntity> list = cmmissionOrderService.queryList(params);
+        List<CommissionOrderEntity> list = commissionOrderService.queryList(params);
         return R.ok().put("list", list);
     }
 }

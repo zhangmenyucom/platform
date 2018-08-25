@@ -6,20 +6,20 @@ import java.util.Date;
 
 /**
  * 实体
- * 表名 cmmission_order
+ * 表名 commission_order
  *
  * @author taylor
  * @email 516195940@qq.com
- * @date 2018-08-25 14:20:46
+ * @date 2018-08-24 22:02:34
  */
 @Data
-public class CmmissionOrderVo implements Serializable {
+public class CommissionOrderEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**  **/
     private Long id;
     /** 佣金订单号 **/
-    private String orderSn;
+    private Long orderId;
     /** 佣金数额 **/
     private BigDecimal gainBalance;
     /** 订单来源人 **/

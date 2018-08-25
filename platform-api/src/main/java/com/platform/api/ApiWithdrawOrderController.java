@@ -2,7 +2,7 @@ package com.platform.api;
 
 import com.platform.annotation.IgnoreAuth;
 import com.platform.entity.WithdrawOrderVo;
-import com.platform.service.WithdrawOrderService;
+import com.platform.service.ApiWithdrawOrderService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
@@ -26,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/api/withdraworder")
 public class ApiWithdrawOrderController {
     @Autowired
-    private WithdrawOrderService withdrawOrderService;
+    private ApiWithdrawOrderService withdrawOrderService;
 
     /**
      * 查看列表

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.platform.dao.CmmissionOrderDao">
+<mapper namespace="com.platform.dao.ApiCommissionOrderDao">
 
-    <resultMap type="com.platform.entity.CmmissionOrderEntity" id="cmmissionOrderMap">
+    <resultMap type="com.platform.entity.CommissionOrderVo" id="commissionOrderMap">
         <result property="id" column="id"/>
-        <result property="orderId" column="order_id"/>
+        <result property="orderSn" column="order_sn"/>
         <result property="gainBalance" column="gain_balance"/>
         <result property="sourceUserId" column="source_user_id"/>
         <result property="detail" column="detail"/>
@@ -13,29 +13,29 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="com.platform.entity.CmmissionOrderEntity">
+	<select id="queryObject" resultType="com.platform.entity.CommissionOrderVo">
 		select
 			`id`,
-			`order_id`,
+			`order_sn`,
 			`gain_balance`,
 			`source_user_id`,
 			`detail`,
 			`create_time`,
 			`update_time`
-		from cmmission_order
+		from commission_order
 		where id = #{id}
 	</select>
 
-	<select id="queryList" resultType="com.platform.entity.CmmissionOrderEntity">
+	<select id="queryList" resultType="com.platform.entity.CommissionOrderVo">
 		select
     		`id`,
-    		`order_id`,
+    		`order_sn`,
     		`gain_balance`,
     		`source_user_id`,
     		`detail`,
     		`create_time`,
     		`update_time`
-		from cmmission_order
+		from commission_order
 		WHERE 1=1
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
@@ -54,23 +54,23 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from cmmission_order
+		select count(*) from commission_order
 		WHERE 1=1
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
 	</select>
 	 
-	<insert id="save" parameterType="com.platform.entity.CmmissionOrderEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into cmmission_order(
-			`order_id`,
+	<insert id="save" parameterType="com.platform.entity.CommissionOrderVo" useGeneratedKeys="true" keyProperty="id">
+		insert into commission_order(
+			`order_sn`,
 			`gain_balance`,
 			`source_user_id`,
 			`detail`,
 			`create_time`,
 			`update_time`)
 		values(
-			#{orderId},
+			#{orderSn},
 			#{gainBalance},
 			#{sourceUserId},
 			#{detail},
@@ -78,10 +78,10 @@
 			#{updateTime})
 	</insert>
 	 
-	<update id="update" parameterType="com.platform.entity.CmmissionOrderEntity">
-		update cmmission_order 
+	<update id="update" parameterType="com.platform.entity.CommissionOrderVo">
+		update commission_order 
 		<set>
-			<if test="orderId != null">`order_id` = #{orderId}, </if>
+			<if test="orderSn != null">`order_sn` = #{orderSn}, </if>
 			<if test="gainBalance != null">`gain_balance` = #{gainBalance}, </if>
 			<if test="sourceUserId != null">`source_user_id` = #{sourceUserId}, </if>
 			<if test="detail != null">`detail` = #{detail}, </if>
@@ -92,11 +92,11 @@
 	</update>
 	
 	<delete id="delete">
-		delete from cmmission_order where id = #{value}
+		delete from commission_order where id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from cmmission_order where id in 
+		delete from commission_order where id in 
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>
