@@ -10,10 +10,10 @@ import java.util.Date;
  *
  * @author taylor
  * @email 516195940@qq.com
- * @date 2018-08-24 22:02:34
+ * @date 2018-08-25 14:20:46
  */
 @Data
-public class WithdrawOrderEntity implements Serializable {
+public class WithdrawOrderVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 主键id **/
