@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.ApiCommissionOrderDao">
+
+    <resultMap type="com.platform.entity.CommissionOrderVo" id="commissionOrderMap">
+        <result property="id" column="id"/>
+        <result property="orderSn" column="order_sn"/>
+        <result property="gainBalance" column="gain_balance"/>
+        <result property="sourceUserId" column="source_user_id"/>
+        <result property="detail" column="detail"/>
+        <result property="sourceAvatar" column="source_avatar"/>
+        <result property="actualPrice" column="actual_price"/>
+        <result property="sourceUserName" column="source_user_name"/>
+        <result property="goods_name" column="goodsName"/>
+        <result property="goods_pic_url" column="goodsPicUrl"/>
+        <result property="level" column="level"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="queryObject" resultType="com.platform.entity.CommissionOrderVo">
+		select
+			`id`,
+			`user_id`,
+			`order_sn`,
+			`gain_balance`,
+			`source_user_id`,
+			`detail`,
+			`create_time`,
+			`update_time`
+		from commission_order
+		where id = #{id}
+	</select>
+
+    <select id="queryList" resultType="com.platform.entity.CommissionOrderVo">
+        select c.*,u.avatar as source_avatar,u.user_level_id,u.nickname as source_user_name,
+        uo.actual_price,og.goods_name,og.list_pic_url as goods_pic_url,ul.name as level
+        from commission_order c,user u,user_order uo,order_goods og,user_level ul
+        where c.source_user_id=u.id
+        and c.order_sn=uo.order_sn
+        and uo.id =og.order_id
+        and u.user_level_id = ul.id
+        <if test="userId!=null">
+            and c.user_id=#{userId}
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from commission_order
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.platform.entity.CommissionOrderVo" useGeneratedKeys="true" keyProperty="id">
+		insert into commission_order(
+			`user_id`,
+			`order_sn`,
+			`gain_balance`,
+			`source_user_id`,
+			`detail`,
+			`create_time`,
+			`update_time`)
+		values(
+		    #{userId},
+			#{orderSn},
+			#{gainBalance},
+			#{sourceUserId},
+			#{detail},
+			#{createTime},
+			#{updateTime})
+	</insert>
+
+    <update id="update" parameterType="com.platform.entity.CommissionOrderVo">
+        update commission_order
+        <set>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="orderSn != null">`order_sn` = #{orderSn},</if>
+            <if test="gainBalance != null">`gain_balance` = #{gainBalance},</if>
+            <if test="sourceUserId != null">`source_user_id` = #{sourceUserId},</if>
+            <if test="detail != null">`detail` = #{detail},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from commission_order where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from commission_order where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

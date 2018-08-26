@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.platform.dao.ApiCommissionOrderDao">
+<mapper namespace="com.platform.dao.TeachVideoDao">
 
-    <resultMap type="com.platform.entity.CommissionOrderVo" id="commissionOrderMap">
+    <resultMap type="com.platform.entity.TeachVideoVo" id="teachVideoMap">
         <result property="id" column="id"/>
-        <result property="orderSn" column="order_sn"/>
-        <result property="gainBalance" column="gain_balance"/>
-        <result property="sourceUserId" column="source_user_id"/>
-        <result property="detail" column="detail"/>
+        <result property="title" column="title"/>
+        <result property="brief" column="brief"/>
+        <result property="videoUrl" column="video_url"/>
+        <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="com.platform.entity.CommissionOrderVo">
+	<select id="queryObject" resultType="com.platform.entity.TeachVideoVo">
 		select
 			`id`,
-			`order_sn`,
-			`gain_balance`,
-			`source_user_id`,
-			`detail`,
+			`title`,
+			`brief`,
+			`video_url`,
+			`status`,
 			`create_time`,
 			`update_time`
-		from commission_order
+		from teach_video
 		where id = #{id}
 	</select>
 
-	<select id="queryList" resultType="com.platform.entity.CommissionOrderVo">
+	<select id="queryList" resultType="com.platform.entity.TeachVideoVo">
 		select
     		`id`,
-    		`order_sn`,
-    		`gain_balance`,
-    		`source_user_id`,
-    		`detail`,
+    		`title`,
+    		`brief`,
+    		`video_url`,
+    		`status`,
     		`create_time`,
     		`update_time`
-		from commission_order
+		from teach_video
 		WHERE 1=1
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
@@ -54,37 +54,37 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from commission_order
+		select count(*) from teach_video
 		WHERE 1=1
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
 	</select>
 	 
-	<insert id="save" parameterType="com.platform.entity.CommissionOrderVo" useGeneratedKeys="true" keyProperty="id">
-		insert into commission_order(
-			`order_sn`,
-			`gain_balance`,
-			`source_user_id`,
-			`detail`,
+	<insert id="save" parameterType="com.platform.entity.TeachVideoVo" useGeneratedKeys="true" keyProperty="id">
+		insert into teach_video(
+			`title`,
+			`brief`,
+			`video_url`,
+			`status`,
 			`create_time`,
 			`update_time`)
 		values(
-			#{orderSn},
-			#{gainBalance},
-			#{sourceUserId},
-			#{detail},
+			#{title},
+			#{brief},
+			#{videoUrl},
+			#{status},
 			#{createTime},
 			#{updateTime})
 	</insert>
 	 
-	<update id="update" parameterType="com.platform.entity.CommissionOrderVo">
-		update commission_order 
+	<update id="update" parameterType="com.platform.entity.TeachVideoVo">
+		update teach_video 
 		<set>
-			<if test="orderSn != null">`order_sn` = #{orderSn}, </if>
-			<if test="gainBalance != null">`gain_balance` = #{gainBalance}, </if>
-			<if test="sourceUserId != null">`source_user_id` = #{sourceUserId}, </if>
-			<if test="detail != null">`detail` = #{detail}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="brief != null">`brief` = #{brief}, </if>
+			<if test="videoUrl != null">`video_url` = #{videoUrl}, </if>
+			<if test="status != null">`status` = #{status}, </if>
 			<if test="createTime != null">`create_time` = #{createTime}, </if>
 			<if test="updateTime != null">`update_time` = #{updateTime}</if>
 		</set>
@@ -92,11 +92,11 @@
 	</update>
 	
 	<delete id="delete">
-		delete from commission_order where id = #{value}
+		delete from teach_video where id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from commission_order where id in 
+		delete from teach_video where id in 
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

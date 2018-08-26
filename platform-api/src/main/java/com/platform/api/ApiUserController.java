@@ -1,6 +1,7 @@
 package com.platform.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.entity.SmsConfig;
 import com.platform.entity.SmsLogVo;
@@ -13,10 +14,7 @@ import com.platform.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -124,7 +122,17 @@ public class ApiUserController extends ApiBaseAction {
         userService.update(userVo);
         return toResponsSuccess("手机绑定成功");
     }
-
+    /**
+     * 绑定手机(微信获取)
+     */
+    @ApiOperation(value = "通过微信绑定手机")
+    @PostMapping("bindMobileWx")
+    public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
+        UserVo userVo = userService.queryObject(loginUser.getUserId());
+        userVo.setMobile(mobile);
+        userService.update(userVo);
+        return toResponsSuccess("手机绑定成功");
+    }
 
     /**
      * 获取用户详细信息

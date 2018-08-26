@@ -3,6 +3,7 @@ $(function () {
         url: '../commissionorder/list',
         colModel: [
 			{label: 'id', name: 'id', index: 'id', key: true, hidden: true},
+			{label: 'id', name: '用户名', index: 'uerId',width:80},
 			{label: '佣金订单号', name: 'orderSn', index: 'order_sn', width: 80},
 			{label: '佣金数额', name: 'gainBalance', index: 'gain_balance', width: 80},
 			{label: '订单来源人', name: 'sourceUserId', index: 'source_user_id', width: 80},

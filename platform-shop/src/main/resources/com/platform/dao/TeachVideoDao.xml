@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.TeachVideoDao">
+
+    <resultMap type="com.platform.entity.TeachVideoEntity" id="teachVideoMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="brief" column="brief"/>
+        <result property="videoUrl" column="video_url"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.platform.entity.TeachVideoEntity">
+		select
+			`id`,
+			`title`,
+			`brief`,
+			`video_url`,
+			`status`,
+			`create_time`,
+			`update_time`
+		from teach_video
+		where id = #{id}
+	</select>
+
+	<select id="queryList" resultType="com.platform.entity.TeachVideoEntity">
+		select
+    		`id`,
+    		`title`,
+    		`brief`,
+    		`video_url`,
+    		`status`,
+    		`create_time`,
+    		`update_time`
+		from teach_video
+		WHERE 1=1
+		<if test="name != null and name.trim() != ''">
+			AND name LIKE concat('%',#{name},'%')
+		</if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from teach_video
+		WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+	</select>
+	 
+	<insert id="save" parameterType="com.platform.entity.TeachVideoEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into teach_video(
+			`title`,
+			`brief`,
+			`video_url`,
+			`status`,
+			`create_time`,
+			`update_time`)
+		values(
+			#{title},
+			#{brief},
+			#{videoUrl},
+			#{status},
+			#{createTime},
+			#{updateTime})
+	</insert>
+	 
+	<update id="update" parameterType="com.platform.entity.TeachVideoEntity">
+		update teach_video 
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="brief != null">`brief` = #{brief}, </if>
+			<if test="videoUrl != null">`video_url` = #{videoUrl}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from teach_video where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from teach_video where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

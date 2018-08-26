@@ -16,13 +16,13 @@
                 <i-button @click="reloadSearch">重置</i-button>
             </div>
             <div class="buttons-group">
-                #if($shiro.hasPermission("commissionorder:save"))
+                #if($shiro.hasPermission("teachvideo:save"))
                 <i-button type="info" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</i-button>
                 #end
-                #if($shiro.hasPermission("commissionorder:update"))
+                #if($shiro.hasPermission("teachvideo:update"))
                 <i-button type="warning" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</i-button>
                 #end
-                #if($shiro.hasPermission("commissionorder:delete"))
+                #if($shiro.hasPermission("teachvideo:delete"))
                 <i-button type="error" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</i-button>
                 #end
             </div>
@@ -33,27 +33,24 @@
 
     <Card v-show="!showList">
         <p slot="title">{{title}}</p>
-		<i-form ref="formValidate" :model="commissionOrder" :rules="ruleValidate" :label-width="80">
-            <Form-item label="佣金订单号" prop="orderSn">
-                <i-input v-model="commissionOrder.orderSn" placeholder="佣金订单号"/>
+		<i-form ref="formValidate" :model="teachVideo" :rules="ruleValidate" :label-width="80">
+            <Form-item label="名称" prop="title">
+                <i-input v-model="teachVideo.title" placeholder="名称"/>
             </Form-item>
-            <Form-item label="用户" prop="orderSn">
-                <i-input v-model="commissionOrder.userId" placeholder="用户"/>
+            <Form-item label="简介" prop="brief">
+                <i-input v-model="teachVideo.brief" placeholder="简介"/>
             </Form-item>
-            <Form-item label="佣金数额" prop="gainBalance">
-                <i-input v-model="commissionOrder.gainBalance" placeholder="佣金数额"/>
+            <Form-item label="视频地址" prop="videoUrl">
+                <i-input v-model="teachVideo.videoUrl" placeholder="视频地址"/>
             </Form-item>
-            <Form-item label="订单来源人" prop="sourceUserId">
-                <i-input v-model="commissionOrder.sourceUserId" placeholder="订单来源人"/>
-            </Form-item>
-            <Form-item label="佣金说明" prop="detail">
-                <i-input v-model="commissionOrder.detail" placeholder="佣金说明"/>
+            <Form-item label="0:未上架 1：上架" prop="status">
+                <i-input v-model="teachVideo.status" placeholder="0:未上架 1：上架"/>
             </Form-item>
             <Form-item label="创建时间" prop="createTime">
-                <i-input v-model="commissionOrder.createTime" placeholder="创建时间"/>
+                <i-input v-model="teachVideo.createTime" placeholder="创建时间"/>
             </Form-item>
             <Form-item label="更新时间" prop="updateTime">
-                <i-input v-model="commissionOrder.updateTime" placeholder="更新时间"/>
+                <i-input v-model="teachVideo.updateTime" placeholder="更新时间"/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>
@@ -64,6 +61,6 @@
 	</Card>
 </div>
 
-<script src="${rc.contextPath}/js/shop/commissionorder.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/js/shop/teachvideo.js?_${date.systemTime}"></script>
 </body>
 </html>

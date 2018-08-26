@@ -9,6 +9,6 @@ import com.platform.entity.WithdrawOrderVo;
  * @email 516195940@qq.com
  * @date 2018-08-25 14:20:46
  */
-public interface ApiWithdrawOrderDao extends BaseDao<WithdrawOrderVo> {
+public interface ApiWithdrawOrderMapper extends BaseDao<WithdrawOrderVo> {
 
 }

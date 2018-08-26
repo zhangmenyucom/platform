@@ -1,6 +1,6 @@
 package com.platform.service;
 
-import com.platform.dao.ApiActivityDao;
+import com.platform.dao.ApiActivityMapper;
 import com.platform.entity.ActivityVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ApiActivityService {
 
     @Autowired
-    private ApiActivityDao apiActivityDao;
+    private ApiActivityMapper apiActivityDao;
 
     /**
      * 根据主键查询实体

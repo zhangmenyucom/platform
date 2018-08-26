@@ -1,6 +1,6 @@
 package com.platform.service;
 
-import com.platform.dao.ApiArticleDao;
+import com.platform.dao.ApiArticleMapper;
 import com.platform.entity.ArticleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ApiArticleService {
 
     @Autowired
-    private ApiArticleDao apiArticleDao;
+    private ApiArticleMapper apiArticleDao;
 
     /**
      * 根据主键查询实体

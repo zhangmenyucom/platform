@@ -46,6 +46,8 @@ public class UserVo implements Serializable {
     private String avatar;
     /**微信Id**/
     private String weixin_openid;
+    /**积分**/
+    private Long point;
     /**下级列表**/
     private List<UserVo> subUserList;
 }

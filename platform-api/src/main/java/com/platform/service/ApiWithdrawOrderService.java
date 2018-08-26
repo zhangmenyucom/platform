@@ -1,6 +1,6 @@
 package com.platform.service;
 
-import com.platform.dao.ApiWithdrawOrderDao;
+import com.platform.dao.ApiWithdrawOrderMapper;
 import com.platform.entity.WithdrawOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ApiWithdrawOrderService {
 
     @Autowired
-    private ApiWithdrawOrderDao withdrawOrderDao;
+    private ApiWithdrawOrderMapper withdrawOrderDao;
 
     public WithdrawOrderVo queryObject(Long id) {
         return withdrawOrderDao.queryObject(id);

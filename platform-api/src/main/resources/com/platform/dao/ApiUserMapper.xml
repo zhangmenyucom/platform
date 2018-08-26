@@ -20,6 +20,7 @@
         <result property="register_ip" column="register_ip"/>
         <result property="avatar" column="avatar"/>
         <result property="weixin_openid" column="weixin_openid"/>
+        <result property="point" column="point"/>
     </resultMap>
     <resultMap type="com.platform.entity.UserDetailVo" id="userMapVo">
         <result property="userId" column="id"/>
@@ -41,7 +42,7 @@
     </resultMap>
     <sql id="baseColumn">
        user.id,user.parent_id,user.username,user.password,user.gender,user.birthday,user.register_time, user.last_login_time,user.last_login_ip,user.user_level_id,
-       user.nickname,user.mobile,user.register_ip,user.avatar,user.weixin_openid
+       user.nickname,user.mobile,user.register_ip,user.avatar,user.weixin_openid,user.point
     </sql>
 
     <select id="queryObject" resultMap="userMap">
@@ -145,6 +146,7 @@
             <if test="register_ip != null">`register_ip` = #{register_ip},</if>
             <if test="avatar != null">`avatar` = #{avatar},</if>
             <if test="weixin_openid != null">`weixin_openid` = #{weixin_openid},</if>
+            <if test="point != null">`point` = #{point},</if>
         </set>
         where id = #{userId}
     </update>

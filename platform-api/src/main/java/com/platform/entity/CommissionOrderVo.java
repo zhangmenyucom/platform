@@ -18,6 +18,8 @@ public class CommissionOrderVo implements Serializable {
 
     /**  **/
     private Long id;
+    /**佣金所属人**/
+    private Long userId;
     /** 佣金订单号 **/
     private String orderSn;
     /** 佣金数额 **/
@@ -30,4 +32,17 @@ public class CommissionOrderVo implements Serializable {
     private Date createTime;
     /** 更新时间 **/
     private Date updateTime;
+    /**来源人头像**/
+    private String sourceAvatar;
+    /**来源人昵称**/
+    private String sourceUserName;
+     /**订单实价**/
+    private BigDecimal actualPrice;
+    /**商品名称**/
+    private String goodsName;
+    /**来源人级别**/
+    private String level;
+    /**来源商品图片**/
+    private String goodsPicUrl;
+
 }
