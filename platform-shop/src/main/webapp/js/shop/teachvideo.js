@@ -6,9 +6,7 @@ $(function () {
 			{label: '名称', name: 'title', index: 'title', width: 80},
 			{label: '简介', name: 'brief', index: 'brief', width: 80},
 			{label: '视频地址', name: 'videoUrl', index: 'video_url', width: 80},
-			{label: '0:未上架 1：上架', name: 'status', index: 'status', width: 80},
-			{label: '创建时间', name: 'createTime', index: 'create_time', width: 80},
-			{label: '更新时间', name: 'updateTime', index: 'update_time', width: 80}]
+			{label: '0:未上架 1：上架', name: 'status', index: 'status', width: 80}]
     });
 });
 
@@ -111,6 +109,67 @@ let vm = new Vue({
         },
         handleReset: function (name) {
             handleResetForm(this, name);
+        },
+        handleView(name) {
+            this.imgName = name;
+            this.visible = true;
+        },
+        handleRemove(file) {
+            // 从 upload 实例删除数据
+            const fileList = this.uploadList;
+            this.uploadList.splice(fileList.indexOf(file), 1);
+        },
+        handleSuccess(res, file) {
+            // 因为上传过程为实例，这里模拟添加 url
+            file.imgUrl = res.url;
+            file.name = res.url;
+            vm.uploadList.add(file);
+        },
+        handleBeforeUpload() {
+            const check = this.uploadList.length < 5;
+            if (!check) {
+                this.$Notice.warning({
+                    title: '最多只能上传 5 张图片。'
+                });
+            }
+            return check;
+        },
+        handleSubmit: function (name) {
+            handleSubmitValidate(this, name, function () {
+                vm.saveOrUpdate()
+            });
+        },
+        handleFormatError: function (file) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: '文件 ' + file.name + ' 格式不正确，请上传 jpg 或 png 格式的图片。'
+            });
+        },
+        handleMaxSize: function (file) {
+            this.$Notice.warning({
+                title: '超出文件大小限制',
+                desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            });
+        },
+        handleSuccessVideoUrl: function (res, file) {
+		    alert(file.response.url);
+		    alert(12312);
+            vm.teachVideo.videoUrl = file.response.url;
+            alert(vm.teachVideo.videoUrl);
+        },
+        handleSuccessListVideoUrl: function (res, file) {
+            vm.teachVideo.listVideoUrl = file.response.url;
+        },
+        eyeVideoUrl: function () {
+            var url = vm.teachVideo.videoUrl;
+            eyeVideo(url);
+        },
+        eyeListVideoUrl: function () {
+            var url = vm.teachVideo.listVideoUrl;
+            eyeVideo(url);
+        },
+        eyeVideo: function (e) {
+            eyeVideo($(e.target).attr('src'));
         }
 	}
 });

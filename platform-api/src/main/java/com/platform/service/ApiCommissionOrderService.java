@@ -1,6 +1,6 @@
 package com.platform.service;
 
-import com.platform.dao.ApiCommissionOrderDao;
+import com.platform.dao.ApiCommissionOrderMapper;
 import com.platform.entity.CommissionOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ApiCommissionOrderService {
 
     @Autowired
-    private ApiCommissionOrderDao commissionOrderDao;
+    private ApiCommissionOrderMapper commissionOrderDao;
 
     public CommissionOrderVo queryObject(Long id) {
         return commissionOrderDao.queryObject(id);

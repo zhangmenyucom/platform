@@ -9,6 +9,6 @@ import com.platform.entity.CommissionOrderVo;
  * @email 516195940@qq.com
  * @date 2018-08-25 14:20:46
  */
-public interface ApiCommissionOrderDao extends BaseDao<CommissionOrderVo> {
+public interface ApiCommissionOrderMapper extends BaseDao<CommissionOrderVo> {
 
 }
