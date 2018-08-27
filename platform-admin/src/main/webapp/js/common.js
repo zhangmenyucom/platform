@@ -119,7 +119,20 @@ function eyeImage(url) {
         }, anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机
     });
 };
-
+function eyeVideo(url){
+    if (!url) {
+        iview.Message.error('请先上传视频');
+        return;
+    }
+    layer.open({
+        type: 2,
+        title: false,
+        area: ['420px', '240px'],
+        shade: 0.3,
+        closeBtn: 1,
+        content: url
+    });
+};
 /**
  * 预览图片
  * @param data

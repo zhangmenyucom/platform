@@ -110,22 +110,22 @@ let vm = new Vue({
         handleReset: function (name) {
             handleResetForm(this, name);
         },
-        handleView(name) {
+        handleView: function(name) {
             this.imgName = name;
             this.visible = true;
         },
-        handleRemove(file) {
+        handleRemove:function(file) {
             // 从 upload 实例删除数据
             const fileList = this.uploadList;
             this.uploadList.splice(fileList.indexOf(file), 1);
         },
-        handleSuccess(res, file) {
+        handleSuccess:function(res, file) {
             // 因为上传过程为实例，这里模拟添加 url
             file.imgUrl = res.url;
             file.name = res.url;
             vm.uploadList.add(file);
         },
-        handleBeforeUpload() {
+        handleBeforeUpload:function() {
             const check = this.uploadList.length < 5;
             if (!check) {
                 this.$Notice.warning({
@@ -152,10 +152,7 @@ let vm = new Vue({
             });
         },
         handleSuccessVideoUrl: function (res, file) {
-		    alert(file.response.url);
-		    alert(12312);
             vm.teachVideo.videoUrl = file.response.url;
-            alert(vm.teachVideo.videoUrl);
         },
         handleSuccessListVideoUrl: function (res, file) {
             vm.teachVideo.listVideoUrl = file.response.url;
