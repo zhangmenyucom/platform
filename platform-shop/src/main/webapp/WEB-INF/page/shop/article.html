@@ -52,8 +52,15 @@
             <Form-item label="顺序" prop="sortOrder">
                 <i-input v-model="article.sortOrder" placeholder="顺序"/>
             </Form-item>
-            <Form-item label="状态：0 未上架 1：上架" prop="status">
-                <i-input v-model="article.status" placeholder="状态：0 未上架 1：上架"/>
+            <Form-item label="上架" prop="status">
+                <Radio-group v-model="article.status">
+                    <Radio label="1">
+                        <span>是</span>
+                    </Radio>
+                    <Radio label="0">
+                        <span>否</span>
+                    </Radio>
+                </Radio-group>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>

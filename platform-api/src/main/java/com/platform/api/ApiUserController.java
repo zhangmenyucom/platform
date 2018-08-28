@@ -135,6 +135,18 @@ public class ApiUserController extends ApiBaseAction {
     }
 
     /**
+     * 绑定手机(微信获取)
+     */
+    @ApiOperation(value ="签到")
+    @PostMapping("sign")
+    public Object sign(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
+        UserVo userVo = userService.queryObject(loginUser.getUserId());
+        userVo.setPoint(userVo.getPoint()+10);
+        userService.update(userVo);
+        return toResponsSuccess("签到成功");
+    }
+
+    /**
      * 获取用户详细信息
      */
     @ApiOperation(value = "获取用户详细信息")

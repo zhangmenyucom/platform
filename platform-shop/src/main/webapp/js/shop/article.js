@@ -9,7 +9,9 @@ $(function () {
 			{label: '出处', name: 'sourceUrl', index: 'source_url', width: 80},
 			{label: '浏览数', name: 'viewTimes', index: 'view_times', width: 80},
 			{label: '顺序', name: 'sortOrder', index: 'sort_order', width: 80},
-			{label: '状态：0 未上架 1：上架', name: 'status', index: 'status', width: 80}]
+			{label: '是否上架', name: 'status', index: 'status', width: 80,formatter: function (value) {
+                return transIsNot(value);
+            }}]
     });
 });
 

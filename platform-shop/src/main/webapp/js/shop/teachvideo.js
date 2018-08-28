@@ -6,7 +6,9 @@ $(function () {
 			{label: '名称', name: 'title', index: 'title', width: 80},
 			{label: '简介', name: 'brief', index: 'brief', width: 80},
 			{label: '视频地址', name: 'videoUrl', index: 'video_url', width: 80},
-			{label: '0:未上架 1：上架', name: 'status', index: 'status', width: 80}]
+			{label: '是否上架', name: 'status', index: 'status', width: 80,formatter: function (value) {
+                return transIsNot(value);
+            }}]
     });
 });
 
@@ -15,7 +17,9 @@ let vm = new Vue({
 	data: {
         showList: true,
         title: null,
-		teachVideo: {},
+		teachVideo: {
+            videoUrl:""
+        },
 		ruleValidate: {
 			name: [
 				{required: true, message: '名称不能为空', trigger: 'blur'}
@@ -154,15 +158,8 @@ let vm = new Vue({
         handleSuccessVideoUrl: function (res, file) {
             vm.teachVideo.videoUrl = file.response.url;
         },
-        handleSuccessListVideoUrl: function (res, file) {
-            vm.teachVideo.listVideoUrl = file.response.url;
-        },
         eyeVideoUrl: function () {
             var url = vm.teachVideo.videoUrl;
-            eyeVideo(url);
-        },
-        eyeListVideoUrl: function () {
-            var url = vm.teachVideo.listVideoUrl;
             eyeVideo(url);
         },
         eyeVideo: function (e) {

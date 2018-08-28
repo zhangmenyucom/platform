@@ -320,27 +320,11 @@ function getJson(form) {
     })
     return o;
 }
-
-/**
- *
- Ajax.request({
-        url: '', //访问路径
-        dataType: 'json', //访问类型 'json','html'等
-        params: getJson(form),
-        resultMsg: true, false, //是否需要提示信息
-        type: 'GET',//,'get','post'
-        beforeSubmit: function (data) {},//提交前处理
-        successCallback: function (data) {} //提交后处理
-    });
- */
 Ajax = function () {
 
-    //var opt = { type:'GET',dataType:'json',resultMsg:true };
     function request(opt) {
-
         //添加遮罩层
         dialogLoading(true);
-
         if (typeof opt.cache == 'undefined') {
             opt.cache = false;
         }
@@ -423,7 +407,6 @@ Ajax = function () {
             }
         });
     }
-
     return {
         /**
          * Ajax调用request
