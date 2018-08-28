@@ -1,5 +1,7 @@
 package com.platform.entity;
 import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +15,7 @@ import java.util.Date;
  * @date 2018-08-25 14:20:46
  */
 @Data
+@Accessors(chain = true)
 public class CommissionOrderVo implements Serializable {
     private static final long serialVersionUID = 1L;
 

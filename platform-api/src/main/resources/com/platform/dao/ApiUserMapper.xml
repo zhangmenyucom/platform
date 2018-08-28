@@ -15,6 +15,7 @@
         <result property="last_login_time" column="last_login_time"/>
         <result property="last_login_ip" column="last_login_ip"/>
         <result property="user_level_id" column="user_level_id"/>
+        <result property="userLevel" column="level_name"/>
         <result property="nickname" column="nickname"/>
         <result property="mobile" column="mobile"/>
         <result property="register_ip" column="register_ip"/>
@@ -32,6 +33,7 @@
         <result property="last_login_time" column="last_login_time"/>
         <result property="last_login_ip" column="last_login_ip"/>
         <result property="user_level_id" column="user_level_id"/>
+        <result property="userLevel" column="level_name"/>
         <result property="nickname" column="nickname"/>
         <result property="mobile" column="mobile"/>
         <result property="register_ip" column="register_ip"/>
@@ -47,12 +49,12 @@
 
     <select id="queryObject" resultMap="userMap">
         select
-        <include refid="baseColumn"/>
-        from user  where id = #{value}
+        <include refid="baseColumn"/>,ul.name as level_name
+        from user user,user_level ul  where user.user_level_id=ul.id and user.id = #{value}
     </select>
 
     <select id="queryUserDetailInfo" resultMap="userMapVo">
-		select * from user where id = #{value}
+		select user.*,ul.name as level_name  from user user,user_level ul where  user.user_level_id=ul.id and user.id = #{value}
 	</select>
 
     <select id="queryByOpenId" resultMap="userMap">

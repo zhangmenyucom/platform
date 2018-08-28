@@ -36,6 +36,8 @@ public class UserVo implements Serializable {
     private String last_login_ip;
     /**会员等级**/
     private Integer user_level_id;
+    /**会员等级名称**/
+    private String userLevel;
     /**别名**/
     private String nickname;
     /**手机号码**/
