@@ -71,7 +71,7 @@ public class ApiOrderController extends ApiBaseAction {
         ApiPageUtils pageUtil = new ApiPageUtils(orderEntityList, total, query.getLimit(), query.getPage());
         //
         for (OrderVo item : orderEntityList) {
-            Map orderGoodsParam = new HashMap(0);
+            Map orderGoodsParam = new HashMap(1);
             orderGoodsParam.put("order_id", item.getId());
             //订单的商品
             List<OrderGoodsVo> goodsList = orderGoodsService.queryList(orderGoodsParam);
@@ -102,13 +102,8 @@ public class ApiOrderController extends ApiBaseAction {
         List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
         //订单最后支付时间
         if (orderInfo.getOrder_status() == 0) {
-            // if (moment().subtract(60, 'minutes') < moment(orderInfo.add_time)) {
-//            orderInfo.final_pay_time = moment("001234", "Hmmss").format("mm:ss")
-            // } else {
-            //     //超过时间不支付，更新订单状态为取消
-            // }
-        }
 
+        }
         //订单可操作的选择,删除，支付，收货，评论，退换货
         Map handleOption = orderInfo.getHandleOption();
         //

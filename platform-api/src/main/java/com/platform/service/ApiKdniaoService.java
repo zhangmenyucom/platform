@@ -28,7 +28,6 @@ public class ApiKdniaoService {
             e.printStackTrace();
         }
     }
-
     //电商ID
     private String EBusinessID = "1302764";
     //电商加密私钥，快递鸟提供，注意保管，不要泄漏
@@ -127,7 +126,7 @@ public class ApiKdniaoService {
      * @throws UnsupportedEncodingException ,Exception
      */
     @SuppressWarnings("unused")
-    private String encrypt(String content, String keyValue, String charset) throws UnsupportedEncodingException, Exception {
+    private String encrypt(String content, String keyValue, String charset) throws Exception {
         if (keyValue != null) {
             return base64(MD5(content + keyValue, charset), charset);
         }
@@ -157,8 +156,7 @@ public class ApiKdniaoService {
             // 设置通用的请求属性
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent",
-                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.connect();
             // 获取URLConnection对象对应的输出流
@@ -173,9 +171,7 @@ public class ApiKdniaoService {
                     param.append(entry.getKey());
                     param.append("=");
                     param.append(entry.getValue());
-                    //System.out.println(entry.getKey()+":"+entry.getValue());
                 }
-                //System.out.println("param:"+param.toString());
                 out.write(param.toString());
             }
             // flush输出流的缓冲
