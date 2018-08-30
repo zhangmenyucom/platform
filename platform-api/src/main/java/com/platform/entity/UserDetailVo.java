@@ -37,6 +37,8 @@ public class UserDetailVo implements Serializable {
     private String last_login_ip;
     /**会员等级**/
     private Integer user_level_id;
+    /**会员等名称**/
+    private String userLevel;
     /**别名**/
     private String nickname;
     /**手机号码**/
@@ -53,7 +55,6 @@ public class UserDetailVo implements Serializable {
     private BigDecimal avilableBalance;
     /**冻结佣金**/
     private BigDecimal lockBalance;
-
     /**下级,展示下两级**/
     private List<UserVo> subUserList;
 
