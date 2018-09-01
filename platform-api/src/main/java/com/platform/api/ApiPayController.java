@@ -8,8 +8,8 @@ import com.platform.entity.UserVo;
 import com.platform.service.ApiOrderGoodsService;
 import com.platform.service.ApiOrderService;
 import com.platform.util.ApiBaseAction;
-import com.platform.util.wechat.WechatRefundApiResult;
 import com.platform.util.wechat.WechatUtil;
+import com.platform.util.wechat.WeichatRefundApiResult;
 import com.platform.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -74,23 +74,23 @@ public class ApiPayController extends ApiBaseAction {
         Map<Object, Object> resultObj = new TreeMap();
 
         try {
-            Map<Object, Object> parame = new TreeMap<Object, Object>();
-            parame.put("appid", ResourceUtil.getConfigByName("wx.appId"));
+            Map<Object, Object> parameters = new TreeMap<>();
+            parameters.put("appid", ResourceUtil.getConfigByName("wx.appId"));
             // 商家账号。
-            parame.put("mch_id", ResourceUtil.getConfigByName("wx.mchId"));
+            parameters.put("mch_id", ResourceUtil.getConfigByName("wx.mchId"));
             String randomStr = CharUtil.getRandomNum(18).toUpperCase();
             // 随机字符串
-            parame.put("nonce_str", randomStr);
+            parameters.put("nonce_str", randomStr);
             // 商户订单编号
-            parame.put("out_trade_no", orderId);
+            parameters.put("out_trade_no", orderId);
             Map orderGoodsParam = new HashMap(0);
             orderGoodsParam.put("order_id", orderId);
             // 商品描述
-            parame.put("body", "超市-支付");
+            parameters.put("body", "商城-支付");
             //订单的商品
             List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
             if (null != orderGoods) {
-                String body = "超市-";
+                String body = "商城-";
                 for (OrderGoodsVo goodsVo : orderGoods) {
                     body = body + goodsVo.getGoods_name() + "、";
                 }
@@ -98,21 +98,21 @@ public class ApiPayController extends ApiBaseAction {
                     body = body.substring(0, body.length() - 1);
                 }
                 // 商品描述
-                parame.put("body", body);
+                parameters.put("body", body);
             }
             //支付金额
-            parame.put("total_fee", orderInfo.getActual_price().multiply(new BigDecimal(100)).intValue());
+            parameters.put("total_fee", orderInfo.getActual_price().multiply(new BigDecimal(100)).intValue());
             // 回调地址
-            parame.put("notify_url", ResourceUtil.getConfigByName("wx.notifyUrl"));
+            parameters.put("notify_url", ResourceUtil.getConfigByName("wx.notifyUrl"));
             // 交易类型APP
-            parame.put("trade_type", ResourceUtil.getConfigByName("wx.tradeType"));
-            parame.put("spbill_create_ip", getClientIp());
-            parame.put("openid", loginUser.getWeixin_openid());
-            String sign = WechatUtil.arraySign(parame, ResourceUtil.getConfigByName("wx.paySignKey"));
+            parameters.put("trade_type", ResourceUtil.getConfigByName("wx.tradeType"));
+            parameters.put("spbill_create_ip", getClientIp());
+            parameters.put("openid", loginUser.getWeixin_openid());
+            String sign = WechatUtil.arraySign(parameters, ResourceUtil.getConfigByName("wx.paySignKey"));
             // 数字签证
-            parame.put("sign", sign);
+            parameters.put("sign", sign);
 
-            String xml = MapUtils.convertMap2Xml(parame);
+            String xml = MapUtils.convertMap2Xml(parameters);
             logger.info("xml:" + xml);
             Map<String, Object> resultUn = XmlUtil.xmlStrToMap(WechatUtil.requestOnce(ResourceUtil.getConfigByName("wx.uniformorder"), xml));
             // 响应报文
@@ -251,7 +251,7 @@ public class ApiPayController extends ApiBaseAction {
             //xml数据
             String reponseXml = new String(out.toByteArray(), "utf-8");
 
-            WechatRefundApiResult result = (WechatRefundApiResult) XmlUtil.xmlStrToBean(reponseXml, WechatRefundApiResult.class);
+            WeichatRefundApiResult result = (WeichatRefundApiResult) XmlUtil.xmlStrToBean(reponseXml, WeichatRefundApiResult.class);
             String result_code = result.getResult_code();
             if (result_code.equalsIgnoreCase("FAIL")) {
                 //订单编号
@@ -300,7 +300,7 @@ public class ApiPayController extends ApiBaseAction {
 
 //        WechatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(),
 //                orderInfo.getActual_price().doubleValue(), orderInfo.getActual_price().doubleValue());
-        WechatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(),
+        WeichatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(),
                 10.01, 10.01);
         if (result.getResult_code().equals("SUCCESS")) {
             if (orderInfo.getOrder_status() == 201) {

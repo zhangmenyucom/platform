@@ -126,7 +126,8 @@ public class ApiUserController extends ApiBaseAction {
      * 绑定手机(微信获取)
      */
     @ApiOperation(value = "通过微信绑定手机")
-    @PostMapping("bindMobileWx")
+    @GetMapping("bindMobileWx")
+    @IgnoreAuth
     public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
         userVo.setMobile(mobile);
@@ -135,7 +136,7 @@ public class ApiUserController extends ApiBaseAction {
     }
 
     /**
-     * 绑定手机(微信获取)
+     * 签到
      */
     @ApiOperation(value ="签到")
     @PostMapping("sign")

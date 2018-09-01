@@ -41,13 +41,10 @@
                 <i-input v-model="article.author" placeholder="作者"/>
             </Form-item>
             <Form-item label="内容" prop="content">
-                <i-input  v-model="article.content" placeholder="内容"/>
+                <div id="article_content" placeholder="文章内容"></div>
             </Form-item>
             <Form-item label="出处" prop="sourceUrl">
                 <i-input v-model="article.sourceUrl" placeholder="出处"/>
-            </Form-item>
-            <Form-item label="浏览数" prop="viewTimes">
-                <i-input v-model="article.viewTimes" placeholder="浏览数"/>
             </Form-item>
             <Form-item label="顺序" prop="sortOrder">
                 <i-input v-model="article.sortOrder" placeholder="顺序"/>

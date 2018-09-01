@@ -61,7 +61,7 @@ public class WechatUtil {
      * @param
      * @return
      */
-    public static WechatRefundApiResult wxRefund(String out_trade_no, Double orderMoney, Double refundMoney) {
+    public static WeichatRefundApiResult wxRefund(String out_trade_no, Double orderMoney, Double refundMoney) {
         //初始化请求微信服务器的配置信息包括appid密钥等
         //转换金钱格式
         BigDecimal bdOrderMoney = new BigDecimal(orderMoney, MathContext.DECIMAL32);
@@ -71,7 +71,7 @@ public class WechatUtil {
         String mapToXml = MapUtils.convertMap2Xml(params);
         //请求微信
         String reponseXml = sendSSLPostToWx(mapToXml, WechatConfig.getSslcsf());
-        WechatRefundApiResult result = (WechatRefundApiResult) XmlUtil.xmlStrToBean(reponseXml, WechatRefundApiResult.class);
+        WeichatRefundApiResult result = (WeichatRefundApiResult) XmlUtil.xmlStrToBean(reponseXml, WeichatRefundApiResult.class);
         return result;
     }
 
@@ -261,8 +261,7 @@ public class WechatUtil {
      * @throws Exception
      */
     public static String requestOnce(final String url, String data) throws Exception {
-        BasicHttpClientConnectionManager connManager;
-        connManager = new BasicHttpClientConnectionManager(
+        BasicHttpClientConnectionManager connManager = new BasicHttpClientConnectionManager(
                 RegistryBuilder.<ConnectionSocketFactory>create()
                         .register("http", PlainConnectionSocketFactory.getSocketFactory())
                         .register("https", SSLConnectionSocketFactory.getSocketFactory())
@@ -292,9 +291,9 @@ public class WechatUtil {
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
         HttpEntity httpEntity = httpResponse.getEntity();
-        String reusltObj = EntityUtils.toString(httpEntity, "UTF-8");
-        logger.info("请求结果:" + reusltObj);
-        return reusltObj;
+        String resultObj = EntityUtils.toString(httpEntity, "UTF-8");
+        logger.info("请求结果:" + resultObj);
+        return resultObj;
 
     }
 }

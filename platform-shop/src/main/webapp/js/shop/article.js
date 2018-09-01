@@ -7,15 +7,29 @@ $(function () {
 			{label: '作者', name: 'author', index: 'author', width: 80},
 			{label: '内容', name: 'content', index: 'content', width: 80},
 			{label: '出处', name: 'sourceUrl', index: 'source_url', width: 80},
-			{label: '浏览数', name: 'viewTimes', index: 'view_times', width: 80},
 			{label: '顺序', name: 'sortOrder', index: 'sort_order', width: 80},
 			{label: '是否上架', name: 'status', index: 'status', width: 80,formatter: function (value) {
                 return transIsNot(value);
             }}]
     });
+    $('#article_content').editable({
+        inlineMode: false,
+        alwaysBlank: true,
+        height: '500px', //高度
+        minHeight: '200px',
+        language: "zh_cn",
+        spellcheck: false,
+        plainPaste: true,
+        enableScript: false,
+        imageButtons: ["floatImageLeft", "floatImageNone", "floatImageRight", "linkImage", "replaceImage", "removeImage"],
+        allowedImageTypes: ["jpeg", "jpg", "png", "gif"],
+        imageUploadURL: '../sys/oss/upload',
+        imageUploadParams: {id: "edit"},
+        imagesLoadURL: '../sys/oss/queryAll'
+    })
 });
 
-let vm = new Vue({
+var vm = new Vue({
 	el: '#rrapp',
 	data: {
         showList: true,
@@ -35,12 +49,13 @@ let vm = new Vue({
 			vm.reload();
 		},
 		add: function () {
+            $('#article_content').editable('setHTML', '');
 			vm.showList = false;
 			vm.title = "新增";
 			vm.article = {};
 		},
 		update: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
 			if (id == null) {
 				return;
 			}
@@ -50,7 +65,8 @@ let vm = new Vue({
             vm.getInfo(id)
 		},
 		saveOrUpdate: function (event) {
-            let url = vm.article.id == null ? "../article/save" : "../article/update";
+            var url = vm.article.id == null ? "../article/save" : "../article/update";
+            vm.article.content = $('#article_content').editable('getHTML');
             Ajax.request({
 			    url: url,
                 params: JSON.stringify(vm.article),
@@ -64,7 +80,7 @@ let vm = new Vue({
 			});
 		},
 		del: function (event) {
-            let ids = getSelectedRows("#jqGrid");
+            var ids = getSelectedRows("#jqGrid");
 			if (ids == null){
 				return;
 			}
@@ -89,12 +105,13 @@ let vm = new Vue({
                 async: true,
                 successCallback: function (r) {
                     vm.article = r.article;
+                    $('#article_content').editable('setHTML', vm.article.content);
                 }
             });
 		},
 		reload: function (event) {
 			vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
 			$("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page

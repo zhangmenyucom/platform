@@ -6,7 +6,7 @@ import lombok.Data;
  * @author Administrator
  */
 @Data
-public class WechatRefundApiResult {
+public class WeichatRefundApiResult {
     private String return_code;
 
     private String return_msg;
