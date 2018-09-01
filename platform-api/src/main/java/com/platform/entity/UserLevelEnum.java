@@ -12,7 +12,7 @@ import java.util.Map;
  * @date: 2018/8/28 22:23
  */
 @Getter
-public enum UserLeveEnum {
+public enum UserLevelEnum {
     /**
      * 普通会员
      **/
@@ -30,7 +30,7 @@ public enum UserLeveEnum {
      **/
     HEHUOREN(4, "城市合伙人");
 
-    UserLeveEnum(Integer levelId, String levelName) {
+    UserLevelEnum(Integer levelId, String levelName) {
         this.levelId = levelId;
         this.levelName = levelName;
     }
@@ -39,11 +39,9 @@ public enum UserLeveEnum {
 
     private String levelName;
 
-    public static Map<Integer, UserLeveEnum> LEVEL_MAP = new HashMap<>();
+    public static Map<Integer, UserLevelEnum> LEVEL_MAP = new HashMap<>();
 
     static {
-        Arrays.asList(UserLeveEnum.values()).forEach(e -> {
-            LEVEL_MAP.put(e.getLevelId(), e);
-        });
+        Arrays.asList(UserLevelEnum.values()).forEach(e -> LEVEL_MAP.put(e.getLevelId(), e));
     }
 }

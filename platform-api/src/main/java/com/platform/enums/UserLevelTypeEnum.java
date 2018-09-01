@@ -13,8 +13,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum UserLevelTypeEnum {
     NORMAL(1, "普通用户"),
-    VIP(2, "VIP"),
-    高级VIP(3, "高级VIP");
+    VIP(2, "会员"),
+    CHUANGKE(3, "创客"),
+    HEHUOREN(4, "合伙人");
 
     private Integer code;
     private String name;

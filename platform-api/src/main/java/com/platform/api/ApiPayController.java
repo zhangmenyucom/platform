@@ -2,11 +2,12 @@ package com.platform.api;
 
 import com.platform.annotation.LoginUser;
 import com.platform.cache.J2CacheUtils;
-import com.platform.entity.OrderGoodsVo;
-import com.platform.entity.OrderVo;
-import com.platform.entity.UserVo;
+import com.platform.config.CommissionRule;
+import com.platform.entity.*;
+import com.platform.service.ApiCommissionOrderService;
 import com.platform.service.ApiOrderGoodsService;
 import com.platform.service.ApiOrderService;
+import com.platform.service.ApiUserService;
 import com.platform.util.ApiBaseAction;
 import com.platform.util.wechat.WechatUtil;
 import com.platform.util.wechat.WeichatRefundApiResult;
@@ -23,6 +24,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.platform.entity.UserLevelEnum.LEVEL_MAP;
+import static com.platform.enums.SpecialGoodsEnum.SPECIAL_GOODS_ENUM_MAP;
 
 /**
  * 作者: @author Harmon <br>
@@ -38,6 +43,13 @@ public class ApiPayController extends ApiBaseAction {
     private ApiOrderService orderService;
     @Autowired
     private ApiOrderGoodsService orderGoodsService;
+    @Autowired
+    private ApiUserService userService;
+    @Autowired
+    private ApiCommissionOrderService commissionOrderService;
+    @Autowired
+    private CommissionRule commissionRule;
+
 
     /**
      */
@@ -264,6 +276,35 @@ public class ApiPayController extends ApiBaseAction {
                 logger.error("订单" + out_trade_no + "支付成功");
                 // 业务处理
                 OrderVo orderInfo = orderService.queryObject(Integer.valueOf(out_trade_no));
+                UserVo userSource = userService.queryObject(orderInfo.getUser_id());
+                UserVo userParent = null;
+                UserVo userGrandFater = null;
+                if (userSource.getParentId() != null) {
+                    userParent = userService.queryObject(userSource.getParentId());
+                    if (userParent.getParentId() != null) {
+                        userGrandFater = userService.queryObject(userParent.getUserId());
+                    }
+                }
+
+                Map<String, Object> queryMap = new HashMap<>(1);
+                queryMap.put("orderId", orderInfo.getId());
+                List<Integer> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
+                for (Integer goodsId : orderGoodsIdsList) {
+                    if (SPECIAL_GOODS_ENUM_MAP.get(goodsId) != null) {
+                        /**第一级提成**/
+                        CommissionOrderVo commissionFirst = commissionRule.getCommition(userParent, orderInfo, 1);
+                        if (commissionFirst != null) {
+                            commissionOrderService.save(commissionFirst);
+                        }
+                        /**第二级提成**/
+                        if (LEVEL_MAP.get(userSource.getUser_level_id()) != UserLevelEnum.HEHUOREN && userGrandFater != null) {
+                            CommissionOrderVo commissionSecond = commissionRule.getCommition(userGrandFater, orderInfo, 2);
+                            if (commissionSecond != null) {
+                                commissionOrderService.save(commissionSecond);
+                            }
+                        }
+                    }
+                }
                 orderInfo.setPay_status(2);
                 orderInfo.setOrder_status(201);
                 orderInfo.setShipping_status(0);
