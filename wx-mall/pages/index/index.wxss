@@ -7,20 +7,128 @@
   width: 100%;
   height: 417rpx;
 }
-
-.m-menu {
+/* 活动资讯 */
+.activity-title{
+  width: 90%;
+  margin: 20rpx auto;
+  font-weight: 600;
+  display: block;
+  font-size: 40rpx;
+}
+.activity-box{
+  width: 90%;
+  margin: 20rpx auto;
+  /* border: 1px solid red; */
   display: flex;
-  height: 181rpx;
-  width: 750rpx;
-  flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+}
+.activity{
+  width: 32%;
+  overflow: auto;
+  border: 1px solid #d9d9d9;
+  border-radius: 20rpx;
+}
+.activities{
+  width: 96%;
+  margin: 20rpx auto;
+}
+.activities image{
+  width: 100%;
+  height: 108rpx
+}
+.activities text{
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.time-box{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+.time-box image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.time-box text{
+  font-size: 16rpx
+}
+
+/* 新闻资讯 */
+.news-box{
+  width: 90%;
   background-color: #fff;
+  margin: 40rpx auto;
+  border: 1px solid #d9d9d9;
+  border-radius: 20rpx;
+  overflow: auto;
+  overflow-y: hidden;
+  padding-bottom: 40rpx;
+}
+.title{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 20rpx
+}
+.title label{
+  font-size: 40rpx;
+  font-weight: 600;
+  display: block;
+  float: left;
+  padding-left: 20rpx;
+}
+.title text{
+  font-size: 28rpx;
+  display: block;
+  float: right;
+  padding-right: 20rpx;
+}
+
+
+.news{
+  width: 80%;
+  margin: 0 auto;
+}
+.content{
+  width: 100%;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.circle{
+  width: 30rpx;
+  height: 30rpx;
+  background: #d9d9d9;
+  border-radius: 50%
+}
+.news navigator{
+  padding-left: 20rpx;
+}
+
+/* 导航 */
+.m-menu {
+  width: 90%;
+  background-color: #fff;
+  margin: 40rpx auto;
+  border: 1px solid #d9d9d9;
+  border-radius: 20rpx;
+  overflow: auto;
+  overflow-y: hidden
 }
 
 .m-menu .item {
-  flex: 1;
+  /* flex: 1;
   display: block;
+  padding: 20rpx 0; */
+  float: left;
+  justify-content: space-between;
+  width: 166rpx;
   padding: 20rpx 0;
 }
 

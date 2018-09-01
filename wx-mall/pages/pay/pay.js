@@ -10,9 +10,10 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
-      orderId: options.id,
+      orderId: options.orderId,
       actualPrice: options.actualPrice
     })
+
   },
   onReady: function () {
 
@@ -36,9 +37,15 @@ Page({
       if (res.errno === 0) {
         let payParam = res.data;
         wx.requestPayment({
+          // 'timeStamp': payParam.timeStamp,
+          // 'nonceStr': payParam.timeStamp,
+          // 'package': payParam.nonceStr,
+          // 'signType': payParam.signType,
+          // 'paySign': payParam.paySign,
+
           'timeStamp': payParam.timeStamp,
-          'nonceStr': payParam.timeStamp,
-          'package': payParam.nonceStr,
+          'nonceStr': payParam.nonceStr,
+          'package': payParam.package,
           'signType': payParam.signType,
           'paySign': payParam.paySign,
           'success': function (res) {

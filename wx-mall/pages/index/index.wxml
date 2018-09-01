@@ -1,6 +1,6 @@
 
 <!--index.wxml-->
-<view class="container">
+<view class="container" style='padding-bottom:40rpx'>
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
       <navigator url="{{item.link}}">
@@ -8,14 +8,58 @@
       </navigator>
     </swiper-item>
   </swiper>
+
+  <!-- 导航 -->
   <view class="m-menu">
     <navigator  class="item" url="{{item.url}}" wx:for="{{channel}}" wx:key="{{item.id}}">
       <image src="{{item.icon_url}}" background-size="cover"></image>
       <text>{{item.name}}</text>
     </navigator>
   </view>
+  
 
-  <view class="a-section a-brand">
+  <!-- 活动资讯 -->
+
+  <view class='title' style='width:90%;margin:0 auto;'>
+      <label>活动资讯</label>
+      <navigator url='/pages/activityList/activityList'><text>查看全部</text></navigator>
+  </view>
+
+  <view class='activity-box' >
+    <navigator url='/pages/activity/activity?activityId={{item.id}}' class='activity' wx:for="{{activity}}" wx:key="{{item}}">
+      <view class='activities'>
+        <image src='{{item.banner}}'></image>
+        <text>{{item.title}}</text>
+        <view class='time-box'>
+          <image src='/static/images/images/clock.jpg'></image>
+          <text>{{item.startTime}}</text>
+        </view>
+
+        <view class='time-box'>
+          <image src='/static/images/images/address.jpg'></image>
+          <text>{{item.position}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <!-- 新闻资讯 -->
+  <view class='news-box'>
+    <view class='title'>
+      <label>媒体文章</label>
+      <navigator url='/pages/news/news'><text>查看全部</text></navigator>
+    </view>
+
+    <view class='news' wx:for="{{news}}" wx:key="{{item}}">
+      <view class='content'>
+        <view class='circle'></view>
+        <navigator url='/pages/article/article?newsId={{item.id}}'><rich-text>{{item.title}}</rich-text></navigator>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <view class="a-section a-brand">
     <view class="h">
       <navigator url="../brand/brand">
         <text class="txt">品牌制造商直供</text>
@@ -127,6 +171,6 @@
           </navigator>
       </view>
     </view>
-  </view>
+  </view> -->
 
 </view>

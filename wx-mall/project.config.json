@@ -8,9 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.0",
-	"appid": "wx11ed3e37387289b8",
-	"projectname": "wxshop",
+	"libVersion": "2.2.3",
+	"appid": "wx7b02626d01cfb929",
+	"projectname": "wxshop.",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -53,6 +53,48 @@
 					"name": "我的订单",
 					"pathName": "pages/ucenter/order/order",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "推荐有奖",
+					"pathName": "pages/recommend/recommend",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "news",
+					"pathName": "pages/news/news",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "about",
+					"pathName": "pages/about/about",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "article",
+					"pathName": "pages/article/article",
+					"query": "newsId=4"
+				},
+				{
+					"id": 8,
+					"name": "推荐",
+					"pathName": "pages/recommend/recommend",
+					"query": "userId=28"
+				},
+				{
+					"id": -1,
+					"name": "活动list",
+					"pathName": "pages/activityList/activityList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "activity",
+					"pathName": "pages/activity/activity",
+					"query": "activityId=7"
 				}
 			]
 		}

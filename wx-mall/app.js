@@ -3,9 +3,6 @@ var api = require('./config/api.js');
 var user = require('./services/user.js');
 
 App({
-  config: {
-    host: 'http://localhost:8080' // 这个地方填写你的域名
-   },
   onLaunch: function () {
     //获取用户的登录信息
     user.checkLogin().then(res => {
@@ -22,7 +19,7 @@ App({
     userInfo: {
       nickName: 'Hi,游客',
       userName: '点击去登录',
-      avatarUrl: 'https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/20180727/150547696d798c.png'
+      avatarUrl: 'https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/20180727/150547696d798c.png',
     },
     token: '',
     userCoupon: 'NO_USE_COUPON',//默认不适用优惠券

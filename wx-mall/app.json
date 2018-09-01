@@ -33,12 +33,18 @@
     "pages/goods/goods",
     "pages/topicDetail/topicDetail",
     "pages/auth/mobile/mobile",
-    "pages/shopping/selCoupon/selCoupon"
+    "pages/shopping/selCoupon/selCoupon",
+    "pages/recommend/recommend",
+    "pages/news/news",
+    "pages/article/article",
+    "pages/about/about",
+    "pages/activityList/activityList",
+    "pages/activity/activity"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "仿网易严选",
+    "navigationBarTitleText": "V美雾肽",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
@@ -53,18 +59,6 @@
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/topic/topic",
-        "iconPath": "static/images/ic_menu_topic_nor.png",
-        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
-        "text": "专题"
-      },
-      {
-        "pagePath": "pages/catalog/catalog",
-        "iconPath": "static/images/ic_menu_sort_nor.png",
-        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-        "text": "分类"
       },
       {
         "pagePath": "pages/cart/cart",

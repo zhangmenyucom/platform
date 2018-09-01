@@ -1,0 +1,96 @@
+.banner {
+  width: 100%;
+  height: 290rpx;
+}
+.user-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: auto;
+}
+.user-box .avatar {
+  width: 90rpx;
+  height: 90rpx;
+  margin-top: 20rpx;
+  border: 2px solid #666666;
+  border-radius: 50%;
+}
+.user-box text,
+.user-box span {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #000000;
+}
+.user-box span {
+  margin: 0;
+}
+.user-box .status {
+  position: absolute;
+  right: 147rpx;
+  top: 118rpx;
+}
+.user-box .status span {
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+.user-box .withdrawCash {
+  width: 300rpx;
+  height: 60rpx;
+  background: #09BB07;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: white;
+  margin-top: 32rpx;
+}
+.recommend-box {
+  width: 100%;
+  overflow: auto;
+  margin-top: 40rpx;
+  border-top: 10rpx solid #666666;
+}
+.recommend-box .recommend {
+  width: 100%;
+  overflow: auto;
+}
+.recommend-box .recommend .info {
+  position: relative;
+  width: 49.9%;
+  overflow: auto;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 10rpx solid #666666;
+  padding-bottom: 32rpx;
+  padding-top: 32rpx;
+  border-right: 10rpx solid #666666;
+}
+.recommend-box .recommend .info image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.recommend-box .recommend .info text {
+  font-size: 28rpx;
+  color: #000000;
+  padding-top: 6rpx;
+}
+.recommend-box .recommend .info .team {
+  position: absolute;
+  right: 30rpx;
+  top: 70rpx;
+}
+.recommend-box .recommend :nth-child(2),
+.recommend-box .recommend :nth-child(4) {
+  border-right: none;
+}
+.recommend-box .recommend1 {
+  width: 100%;
+  overflow: auto;
+  border-bottom: 10rpx solid #666666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx 0 32rpx 0;
+}

@@ -1,0 +1,13 @@
+<!--pages/news/news.wxml-->
+  <!-- 新闻资讯 -->
+  <view class='news-box' style='border:none'>
+
+    <navigator url='/pages/article/article?newsId={{item.id}}' class='news' wx:for="{{news}}" wx:key="{{item}}">
+      <view class='title'><rich-text>{{item.title}}</rich-text></view>
+      <view class='content'>
+        <rich-text>{{item.content}}</rich-text>
+        <view class='time'>{{item.createTime}}</view>
+      </view>
+      
+    </navigator>
+  </view>

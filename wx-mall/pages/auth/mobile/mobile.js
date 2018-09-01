@@ -4,7 +4,7 @@ var app = getApp()
 
 Page({
     data: {
-        mobile: '',
+        mobile: '18672828246',
         userInfo: {
             avatarUrl: '',
             nickName: ''
@@ -58,14 +58,16 @@ Page({
         this.setData({
             mobile: e.detail.value,
         })
+        console.log(e.detail.value)
     },
 
     countDownPassCode: function () {
         if (!this.bindCheckMobile(this.data.mobile)) {
             return
         }
-        util.request(api.SmsCode, {phone: this.data.mobile}, 'POST')
+      util.request(api.BindMobile, {mobile: this.data.mobile}, 'POST')
             .then(function (res) {
+              console.log(res)
                 if (res.data.code == 200) {
                     wx.showToast({
                         title: '发送成功',

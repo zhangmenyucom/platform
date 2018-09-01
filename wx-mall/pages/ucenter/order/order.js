@@ -54,9 +54,13 @@ Page({
       }
     });
   },
-  payOrder(){
+  payOrder(e){
+    console.log(e);
+    var index= e.target.dataset.orderIndex;
+    var orderId = this.data.orderList[index].id;
+    var actualPrice = this.data.orderList[index].actual_price;
     wx.redirectTo({
-      url: '/pages/pay/pay',
+      url: '/pages/pay/pay?orderId=' + orderId + '&actualPrice=' + actualPrice,
     })
   },
   onReady:function(){

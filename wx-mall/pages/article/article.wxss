@@ -1,0 +1,29 @@
+/* pages/article/article.wxss */
+.title-box{
+  width: 100%;
+  border-top: 1px solid #d9d9d9;
+  text-align: left;
+}
+.articleInfo,.title,.content-box{
+  width: 80%;
+  font-size: 36rpx;
+  margin: 10rpx auto; 
+  display: block;
+}
+.articleInfo{
+  margin-top: 20rpx;
+}
+.articleInfo text{
+  color: #999999
+}
+.author{
+  display: block;
+  float: right
+}
+.content{
+  font-size: 32rpx;
+  letter-spacing: 4rpx;
+  line-height: 1.5;
+  text-align: justify;
+  text-indent: 2em
+}

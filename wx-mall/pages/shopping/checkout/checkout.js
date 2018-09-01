@@ -45,6 +45,7 @@ Page({
         that.setData({
           checkedGoodsList: res.data.checkedGoodsList,
           checkedAddress: res.data.checkedAddress,
+          addressId: res.data.checkedAddress.id,
           actualPrice: res.data.actualPrice,
           checkedCoupon: res.data.checkedCoupon,
           couponList: res.data.couponList,
@@ -83,7 +84,7 @@ Page({
       var addressId = wx.getStorageSync('addressId');
       if (addressId) {
         this.setData({
-          'addressId': addressId
+          addressId: addressId
         });
       }
     } catch (e) {

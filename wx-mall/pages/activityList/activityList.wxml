@@ -1,0 +1,17 @@
+<!--pages/activityList/activityList.wxml-->
+<view class='activityList-box'>
+    <navigator url='/pages/activity/activity?activityId={{item.id}}' class="activityList" wx:for="{{list}}" wx:key="{{item.id}}">
+        <image class="" src="{{item.banner}}"></image>
+        <view class="info">
+            <view class="title-box" >
+                <text class="title" >{{item.title}}</text>
+            </view>
+
+            <view class="author">发起者：{{item.author}}</view>
+            <view class="content">{{item.content}}</view>
+            <view class="time">时间：{{item.startTime}}-{{item.endTime}}</view>
+            <view class="address">地点：{{item.position}}</view>
+        </view>
+    </navigator>
+    
+</view>

@@ -1,4 +1,6 @@
+// var NewApiRootUrl = 'http://fly2you.cn/platform/api/';
 var NewApiRootUrl = 'https://www.whcmhlkj.com/api/';
+var ApiRootUrl = 'https://www.whcmhlkj.com/';
 module.exports = {
   IndexUrlNewGoods: NewApiRootUrl + 'index/newGoods', //
   IndexUrlHotGoods: NewApiRootUrl + 'index/hotGoods', //首页数据接口
@@ -7,6 +9,12 @@ module.exports = {
   IndexUrlCategory: NewApiRootUrl + 'index/category', //首页数据接口IndexUrlChannel
   IndexUrlBanner: NewApiRootUrl + 'index/banner', //首页数据接口IndexUrlChannel
   IndexUrlChannel: NewApiRootUrl + 'index/channel', //首页数据接口IndexUrlChannel
+  IndexUrlActivity: NewApiRootUrl + 'activity/list',//首页活动资讯
+  IndexUrlNews: NewApiRootUrl +'article/list',//首页媒体文章
+  indexUrlArticle: NewApiRootUrl + 'article/info/',//文章详情
+  indexUrlActivityDetail: NewApiRootUrl + 'activity/info/',//活动详情
+    Recommend: NewApiRootUrl +'user/detailInfo',//推荐有奖，项目推荐
+
     CatalogList: NewApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
     CatalogCurrent: NewApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口
 
@@ -69,7 +77,7 @@ module.exports = {
     
     FeedbackAdd: NewApiRootUrl + 'feedback/save', //添加反馈
     SmsCode: NewApiRootUrl + 'user/smscode', //发送短信
-    BindMobile: NewApiRootUrl + 'user/bindMobile', //绑定手机
+    BindMobile: NewApiRootUrl + 'user/bindMobileWx', //绑定手机
     Login: NewApiRootUrl + 'auth/login', //账号登录
     Register: NewApiRootUrl + 'auth/register', //注册
     CouponList: NewApiRootUrl + 'coupon/list', // 优惠券列表

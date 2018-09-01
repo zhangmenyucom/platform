@@ -1,0 +1,12 @@
+<!--pages/article/article.wxml-->
+<view class='title-box'>
+  <text class='title'>{{news.title}}</text>
+  <view class='articleInfo'>
+    <text class='time'>{{news.createTime}}</text>
+    <text class='author'>{{news.author}}</text>
+  </view>
+</view>
+
+<view class='content-box' style='margin-top:30rpx;'>
+  <rich-text class='content'>{{news.content}}</rich-text>
+</view>
