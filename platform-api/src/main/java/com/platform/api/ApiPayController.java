@@ -276,6 +276,15 @@ public class ApiPayController extends ApiBaseAction {
                 logger.error("订单" + out_trade_no + "支付成功");
                 // 业务处理
                 OrderVo orderInfo = orderService.queryObject(Integer.valueOf(out_trade_no));
+
+                /**更改订单状态**/
+                orderInfo.setPay_status(2);
+                orderInfo.setOrder_status(201);
+                orderInfo.setShipping_status(0);
+                orderInfo.setPay_time(new Date());
+                orderService.update(orderInfo);
+
+                /**推荐反佣金(3级)**/
                 UserVo userSource = userService.queryObject(orderInfo.getUser_id());
                 UserVo userParent = null;
                 UserVo userGrandFater = null;
@@ -285,31 +294,33 @@ public class ApiPayController extends ApiBaseAction {
                         userGrandFater = userService.queryObject(userParent.getUserId());
                     }
                 }
-
                 Map<String, Object> queryMap = new HashMap<>(1);
                 queryMap.put("orderId", orderInfo.getId());
                 List<Integer> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
                 for (Integer goodsId : orderGoodsIdsList) {
                     if (SPECIAL_GOODS_ENUM_MAP.get(goodsId) != null) {
-                        /**第一级提成**/
-                        CommissionOrderVo commissionFirst = commissionRule.getCommition(userParent, orderInfo, 1);
-                        if (commissionFirst != null) {
-                            commissionOrderService.save(commissionFirst);
-                        }
-                        /**第二级提成**/
-                        if (LEVEL_MAP.get(userSource.getUser_level_id()) != UserLevelEnum.HEHUOREN && userGrandFater != null) {
-                            CommissionOrderVo commissionSecond = commissionRule.getCommition(userGrandFater, orderInfo, 2);
-                            if (commissionSecond != null) {
-                                commissionOrderService.save(commissionSecond);
+                        /**购买角色，更新用户的角色**/
+                        UserVo userVo = new UserVo();
+                        userVo.setUserId(orderInfo.getUser_id());
+                        userVo.setUser_level_id(SPECIAL_GOODS_ENUM_MAP.get(goodsId).getRoleId());
+                        userService.update(userVo);
+
+                        if (userParent != null) {
+                            /**第一级提成**/
+                            CommissionOrderVo commissionFirst = commissionRule.getCommition(userParent, orderInfo, 1);
+                            if (commissionFirst != null) {
+                                commissionOrderService.save(commissionFirst);
+                            }
+                            /**第二级提成**/
+                            if (LEVEL_MAP.get(userSource.getUser_level_id()) != UserLevelEnum.HEHUOREN && LEVEL_MAP.get(userParent.getUser_level_id()) != UserLevelEnum.HEHUOREN && userGrandFater != null) {
+                                CommissionOrderVo commissionSecond = commissionRule.getCommition(userGrandFater, orderInfo, 2);
+                                if (commissionSecond != null) {
+                                    commissionOrderService.save(commissionSecond);
+                                }
                             }
                         }
                     }
                 }
-                orderInfo.setPay_status(2);
-                orderInfo.setOrder_status(201);
-                orderInfo.setShipping_status(0);
-                orderInfo.setPay_time(new Date());
-                orderService.update(orderInfo);
                 response.getWriter().write(setXml("SUCCESS", "OK"));
             }
         } catch (Exception e) {
