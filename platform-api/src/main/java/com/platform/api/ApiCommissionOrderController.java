@@ -42,7 +42,7 @@ public class ApiCommissionOrderController {
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<CommissionOrderVo> commissionOrderList = commissionOrderService.queryList(query);
+        List<CommissionOrderVo> commissionOrderList = commissionOrderService.queryDetailList(query);
         int total = commissionOrderService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(commissionOrderList, total, query.getLimit(), query.getPage());
         return R.ok().put("page", pageUtil);

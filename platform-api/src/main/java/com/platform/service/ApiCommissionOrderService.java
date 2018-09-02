@@ -28,6 +28,9 @@ public class ApiCommissionOrderService {
     public List<CommissionOrderVo> queryList(Map<String, Object> map) {
         return commissionOrderDao.queryList(map);
     }
+    public List<CommissionOrderVo> queryDetailList(Map<String, Object> map) {
+        return commissionOrderDao.queryDetailList(map);
+    }
 
     public int queryTotal(Map<String, Object> map) {
         return commissionOrderDao.queryTotal(map);

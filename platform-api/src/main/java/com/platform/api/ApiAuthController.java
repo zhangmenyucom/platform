@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.entity.FullUserInfo;
 import com.platform.entity.UserInfo;
+import com.platform.entity.UserLevelEnum;
 import com.platform.entity.UserVo;
 import com.platform.service.ApiUserService;
 import com.platform.service.TokenService;
@@ -12,11 +13,13 @@ import com.platform.util.ApiBaseAction;
 import com.platform.util.ApiUserUtils;
 import com.platform.util.CommonUtil;
 import com.platform.utils.CharUtil;
+import com.platform.utils.JsonUtil;
 import com.platform.utils.R;
 import com.platform.validator.Assert;
 import com.qiniu.util.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import net.sf.json.util.JSONUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,35 +46,11 @@ public class ApiAuthController extends ApiBaseAction {
     private Logger logger = Logger.getLogger(getClass());
     @Autowired
     private ApiUserService userService;
-    @Autowired
-    private TokenService tokenService;
-    @Autowired
-    private RestTemplate restTemplate;
-
     /**
      * 登录
      */
     @IgnoreAuth
-    @PostMapping("login")
-    @ApiOperation(value = "登录接口")
-    public R login(String mobile, String password) {
-        Assert.isBlank(mobile, "手机号不能为空");
-        Assert.isBlank(password, "密码不能为空");
-
-        //用户登录
-        long userId = userService.login(mobile, password);
-
-        //生成token
-        Map<String, Object> map = tokenService.createToken(userId);
-
-        return R.ok(map);
-    }
-
-    /**
-     * 登录
-     */
     @ApiOperation(value = "登录")
-    @IgnoreAuth
     @PostMapping("login_by_weixin")
     public Object loginByWeixin() {
         JSONObject jsonParam = this.getJsonRequest();
@@ -92,13 +71,16 @@ public class ApiAuthController extends ApiBaseAction {
         String requestUrl = ApiUserUtils.getWebAccess(code);
         logger.info("》》》组合token为：" + requestUrl);
         String res = restTemplate.getForObject(requestUrl, String.class);
+        System.out.println("res:"+res);
         JSONObject sessionData = JSON.parseObject(res);
+        System.out.println("sessionData"+ JsonUtil.getJsonByObj(sessionData));
 
         if (null == sessionData || StringUtils.isNullOrEmpty(sessionData.getString("openid"))) {
             return toResponsFail("登录失败");
         }
         /**验证用户信息完整性**/
         String sha1 = CommonUtil.getSha1(fullUserInfo.getRawData() + sessionData.getString("session_key"));
+        System.out.println("shal"+sha1);
         if (!fullUserInfo.getSignature().equals(sha1)) {
             return toResponsFail("登录失败");
         }
@@ -118,6 +100,8 @@ public class ApiAuthController extends ApiBaseAction {
             userVo.setGender(userInfo.getGender());
             userVo.setNickname(userInfo.getNickName());
             userVo.setMobile(userInfo.getMobile());
+            userVo.setUser_level_id(UserLevelEnum.NORMAL.getLevelId());
+            userVo.setPoint(0L);
             userService.save(userVo);
         } else {
             userVo.setLast_login_ip(this.getClientIp());
@@ -127,6 +111,7 @@ public class ApiAuthController extends ApiBaseAction {
 
         Map<String, Object> tokenMap = tokenService.createToken(userVo.getUserId());
         String token = MapUtils.getString(tokenMap, "token");
+        System.out.println("token"+token);
 
         if (null == userInfo || StringUtils.isNullOrEmpty(token)) {
             return toResponsFail("登录失败");
@@ -136,5 +121,29 @@ public class ApiAuthController extends ApiBaseAction {
         resultObj.put("userInfo", userInfo);
         resultObj.put("userId", userVo.getUserId());
         return toResponsSuccess(resultObj);
+    }
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    /**
+     * 登录
+     */
+    @IgnoreAuth
+    @PostMapping("login")
+    @ApiOperation(value = "登录接口")
+    public R login(String mobile, String password) {
+        Assert.isBlank(mobile, "手机号不能为空");
+        Assert.isBlank(password, "密码不能为空");
+
+        //用户登录
+        long userId = userService.login(mobile, password);
+
+        //生成token
+        Map<String, Object> map = tokenService.createToken(userId);
+
+        return R.ok(map);
     }
 }

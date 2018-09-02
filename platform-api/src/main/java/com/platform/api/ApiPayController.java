@@ -1,5 +1,6 @@
 package com.platform.api;
 
+import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.cache.J2CacheUtils;
 import com.platform.config.CommissionRule;
@@ -82,7 +83,6 @@ public class ApiPayController extends ApiBaseAction {
 
         String nonceStr = CharUtil.getRandomString(32);
 
-        //https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_7&index=3
         Map<Object, Object> resultObj = new TreeMap();
 
         try {
@@ -174,7 +174,7 @@ public class ApiPayController extends ApiBaseAction {
             return toResponsFail("订单不存在");
         }
 
-        Map<Object, Object> parame = new TreeMap<Object, Object>();
+        Map<Object, Object> parame = new TreeMap<>();
         parame.put("appid", ResourceUtil.getConfigByName("wx.appId"));
         // 商家账号。
         parame.put("mch_id", ResourceUtil.getConfigByName("wx.mchId"));
@@ -242,6 +242,7 @@ public class ApiPayController extends ApiBaseAction {
      *
      * @return
      */
+    @IgnoreAuth
     @ApiOperation(value = "微信订单回调接口")
     @RequestMapping(value = "/notify", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
@@ -304,17 +305,27 @@ public class ApiPayController extends ApiBaseAction {
                         userVo.setUserId(orderInfo.getUser_id());
                         userVo.setUser_level_id(SPECIAL_GOODS_ENUM_MAP.get(goodsId).getRoleId());
                         userService.update(userVo);
-
                         if (userParent != null) {
                             /**第一级提成**/
                             CommissionOrderVo commissionFirst = commissionRule.getCommition(userParent, orderInfo, 1);
                             if (commissionFirst != null) {
-                                commissionOrderService.save(commissionFirst);
+                                Map<String,Object> map=new HashMap<>(2);
+                                map.put("userId",commissionFirst.getUserId());
+                                map.put("orderSn",commissionFirst.getOrderSn());
+                                if(commissionOrderService.queryList(map).isEmpty()){
+                                    commissionOrderService.save(commissionFirst);
+                                }
                             }
                             /**第二级提成**/
                             if (LEVEL_MAP.get(userSource.getUser_level_id()) != UserLevelEnum.HEHUOREN && LEVEL_MAP.get(userParent.getUser_level_id()) != UserLevelEnum.HEHUOREN && userGrandFater != null) {
                                 CommissionOrderVo commissionSecond = commissionRule.getCommition(userGrandFater, orderInfo, 2);
                                 if (commissionSecond != null) {
+                                    Map<String,Object> map=new HashMap<>(2);
+                                    map.put("userId",commissionSecond.getUserId());
+                                    map.put("orderSn",commissionSecond.getOrderSn());
+                                    if(commissionOrderService.queryList(map).isEmpty()){
+                                        commissionOrderService.save(commissionFirst);
+                                    }
                                     commissionOrderService.save(commissionSecond);
                                 }
                             }

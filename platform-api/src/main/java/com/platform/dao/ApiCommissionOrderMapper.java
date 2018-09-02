@@ -2,6 +2,9 @@ package com.platform.dao;
 
 import com.platform.entity.CommissionOrderVo;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Dao
  *
@@ -10,5 +13,7 @@ import com.platform.entity.CommissionOrderVo;
  * @date 2018-08-25 14:20:46
  */
 public interface ApiCommissionOrderMapper extends BaseDao<CommissionOrderVo> {
+
+    List<CommissionOrderVo> queryDetailList(Map<String, Object> map);
 
 }

@@ -72,7 +72,6 @@ public class GoodsController {
     @RequiresPermissions("goods:update")
     public R update(@RequestBody GoodsEntity goods) {
         goodsService.update(goods);
-
         return R.ok();
     }
 

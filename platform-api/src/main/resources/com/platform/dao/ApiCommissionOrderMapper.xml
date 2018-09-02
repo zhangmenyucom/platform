@@ -33,7 +33,30 @@
 		where id = #{id}
 	</select>
 
-    <select id="queryList" resultType="com.platform.entity.CommissionOrderVo">
+    <select id="queryList" resultType="com.platform.entity.CommissionOrderEntity">
+        select
+        `id`,
+        `user_id`,
+        `order_sn`,
+        `gain_balance`,
+        `source_user_id`,
+        `detail`,
+        `create_time`,
+        `update_time`
+        from commission_order
+        WHERE 1=1
+        <if test="userId!= null">
+            AND user_id=#{userId}
+        </if>
+        <if test="orderSn!= null">
+            AND order_sn=#{orderSn}
+        </if>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryDetailList" resultType="com.platform.entity.CommissionOrderVo">
         select c.*,u.avatar as source_avatar,u.user_level_id,u.nickname as source_user_name,
         uo.actual_price,og.goods_name,og.list_pic_url as goods_pic_url,ul.name as level
         from commission_order c,user u,user_order uo,order_goods og,user_level ul
