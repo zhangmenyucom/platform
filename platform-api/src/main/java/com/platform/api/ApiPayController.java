@@ -292,7 +292,7 @@ public class ApiPayController extends ApiBaseAction {
                 if (userSource.getParentId() != null) {
                     userParent = userService.queryObject(userSource.getParentId());
                     if (userParent.getParentId() != null) {
-                        userGrandFater = userService.queryObject(userParent.getUserId());
+                        userGrandFater = userService.queryObject(userParent.getParentId());
                     }
                 }
                 Map<String, Object> queryMap = new HashMap<>(1);
