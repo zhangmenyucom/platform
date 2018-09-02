@@ -1,6 +1,8 @@
 package com.platform.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.qcloudsms.SmsSingleSender;
+import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.entity.SmsConfig;
@@ -16,6 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -65,26 +68,22 @@ public class ApiUserController extends ApiBaseAction {
             throw new RRException("请先配置短信平台签名");
         }
         try {
-            /**
-             * 状态,发送编号,无效号码数,成功提交数,黑名单数和消息，无论发送的号码是多少，一个发送请求只返回一个sendid，如果响应的状态不是“0”，则只有状态和消息
-             */
-            result = SmsUtil.crSendSms(config.getName(), config.getPwd(), phone, msgContent, config.getChuangRuiSign(), DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"), "");
+            String[] params = {sms_code, "2"};
+            SmsSingleSenderResult senderResult = MSUtil.sendMessage(phone, params);
+            if (senderResult.result == 0){
+                smsLogVo = new SmsLogVo();
+                smsLogVo.setLog_date(System.currentTimeMillis() / 1000);
+                smsLogVo.setUser_id(loginUser.getUserId());
+                smsLogVo.setPhone(phone);
+                smsLogVo.setSms_code(sms_code);
+                smsLogVo.setSms_text(msgContent);
+                userService.saveSmsCodeLog(smsLogVo);
+                return toResponsSuccess("短信发送成功");
+            } else{
+                return toResponsFail("短信发送失败");
+            }
 
         } catch (Exception e) {
-
-        }
-        String arr[] = result.split(",");
-
-        if ("0".equals(arr[0])) {
-            smsLogVo = new SmsLogVo();
-            smsLogVo.setLog_date(System.currentTimeMillis() / 1000);
-            smsLogVo.setUser_id(loginUser.getUserId());
-            smsLogVo.setPhone(phone);
-            smsLogVo.setSms_code(sms_code);
-            smsLogVo.setSms_text(msgContent);
-            userService.saveSmsCodeLog(smsLogVo);
-            return toResponsSuccess("短信发送成功");
-        } else {
             return toResponsFail("短信发送失败");
         }
     }
@@ -122,6 +121,7 @@ public class ApiUserController extends ApiBaseAction {
         userService.update(userVo);
         return toResponsSuccess("手机绑定成功");
     }
+
     /**
      * 绑定手机(微信获取)
      */
@@ -137,11 +137,11 @@ public class ApiUserController extends ApiBaseAction {
     /**
      * 签到
      */
-    @ApiOperation(value ="签到")
+    @ApiOperation(value = "签到")
     @PostMapping("sign")
     public Object sign(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
-        userVo.setPoint(userVo.getPoint()+10);
+        userVo.setPoint(userVo.getPoint() + 10);
         userService.update(userVo);
         return toResponsSuccess("签到成功");
     }

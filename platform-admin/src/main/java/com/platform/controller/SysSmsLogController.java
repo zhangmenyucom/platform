@@ -111,12 +111,12 @@ public class SysSmsLogController {
     }
 
     /**
-     * 发送短信
+     * 保存短信记录"
      *
      * @param smsLog 短信
      * @return R
      */
-    @ApiOperation(value = "发送短信")
+    @ApiOperation(value = "保存短信记录")
     @RequestMapping("/sendSms")
     public R sendSms(@RequestBody SysSmsLogEntity smsLog) {
         SysSmsLogEntity sysSmsLogEntity = smsLogService.sendSms(smsLog);

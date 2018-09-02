@@ -108,7 +108,6 @@ public class SysConfigController extends AbstractController {
     @RequiresPermissions("sys:config:delete")
     public R delete(@RequestBody Long[] ids) {
         sysConfigService.deleteBatch(ids);
-
         return R.ok();
     }
 
