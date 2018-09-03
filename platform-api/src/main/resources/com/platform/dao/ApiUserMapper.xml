@@ -46,24 +46,24 @@
         <result property="lockBalance" column="lock_balance"/>
     </resultMap>
     <sql id="baseColumn">
-       user.id,user.parent_id,user.username,user.password,user.gender,user.birthday,user.register_time, user.last_login_time,user.last_login_ip,user.user_level_id,
-       user.nickname,user.mobile,user.register_ip,user.avatar,user.weixin_openid,user.point
+       u.id,u.parent_id,u.username,u.password,u.gender,u.birthday,u.register_time, u.last_login_time,u.last_login_ip,u.user_level_id,
+       u.nickname,u.mobile,u.register_ip,u.avatar,u.weixin_openid,u.point,u.total_balance,u.avilable_balance,u.lock_balance
     </sql>
 
     <select id="queryObject" resultMap="userMap">
         select
         <include refid="baseColumn"/>,ul.name as level_name
-        from user user,user_level ul  where user.user_level_id=ul.id and user.id = #{value}
+        from user u,user_level ul  where u.user_level_id=ul.id and u.id = #{value}
     </select>
 
     <select id="queryUserDetailInfo" resultMap="userMapVo">
-		select user.*,ul.name as level_name  from user user,user_level ul where  user.user_level_id=ul.id and user.id = #{value}
+		select u.*,ul.name as level_name  from user u,user_level ul where  u.user_level_id=ul.id and u.id = #{value}
 	</select>
 
     <select id="queryByOpenId" resultMap="userMap">
         select
         <include refid="baseColumn"/>
-        from user
+        from user u
         where 1 = 1
         <if test="openId != null">
             and `weixin_openid` = #{openId}
@@ -72,7 +72,7 @@
 
     <select id="queryList" resultMap="userMap">
         select  <include refid="baseColumn"/>
-        from user LEFT JOIN user_level ON user.user_level_id=user_level.id
+        from user u LEFT JOIN user_level ul ON u.user_level_id=ul.id
         WHERE 1=1
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')

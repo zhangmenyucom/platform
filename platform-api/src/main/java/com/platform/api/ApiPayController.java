@@ -246,7 +246,7 @@ public class ApiPayController extends ApiBaseAction {
     @ApiOperation(value = "微信订单回调接口")
     @RequestMapping(value = "/notify", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public void notify(HttpServletRequest request, HttpServletResponse response) {
+    public synchronized void notify(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
@@ -296,7 +296,7 @@ public class ApiPayController extends ApiBaseAction {
                     }
                 }
                 Map<String, Object> queryMap = new HashMap<>(1);
-                queryMap.put("orderId", orderInfo.getId());
+                queryMap.put("order_id", orderInfo.getId());
                 List<Integer> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
                 for (Integer goodsId : orderGoodsIdsList) {
                     if (SPECIAL_GOODS_ENUM_MAP.get(goodsId) != null) {
