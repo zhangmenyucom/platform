@@ -152,6 +152,9 @@
             <if test="avatar != null">`avatar` = #{avatar},</if>
             <if test="weixin_openid != null">`weixin_openid` = #{weixin_openid},</if>
             <if test="point != null">`point` = #{point},</if>
+            <if test="totalBalance != null">`total_balance` = #{totalBalance},</if>
+            <if test="avilableBalance != null">`avilable_balance` = #{avilableBalance},</if>
+            <if test="lockBalance != null">`lock_balance` = #{lockBalance},</if>
         </set>
         where id = #{userId}
     </update>
