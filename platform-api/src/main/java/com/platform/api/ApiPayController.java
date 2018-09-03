@@ -308,26 +308,11 @@ public class ApiPayController extends ApiBaseAction {
                         if (userParent != null) {
                             /**第一级提成**/
                             CommissionOrderVo commissionFirst = commissionRule.getCommition(userParent, orderInfo, 1);
-                            if (commissionFirst != null) {
-                                Map<String,Object> map=new HashMap<>(2);
-                                map.put("userId",commissionFirst.getUserId());
-                                map.put("orderSn",commissionFirst.getOrderSn());
-                                if(commissionOrderService.queryList(map).isEmpty()){
-                                    commissionOrderService.save(commissionFirst);
-                                }
-                            }
+                            addToBalance(userParent, commissionFirst);
                             /**第二级提成**/
                             if (LEVEL_MAP.get(userSource.getUser_level_id()) != UserLevelEnum.HEHUOREN && LEVEL_MAP.get(userParent.getUser_level_id()) != UserLevelEnum.HEHUOREN && userGrandFater != null) {
                                 CommissionOrderVo commissionSecond = commissionRule.getCommition(userGrandFater, orderInfo, 2);
-                                if (commissionSecond != null) {
-                                    Map<String,Object> map=new HashMap<>(2);
-                                    map.put("userId",commissionSecond.getUserId());
-                                    map.put("orderSn",commissionSecond.getOrderSn());
-                                    if(commissionOrderService.queryList(map).isEmpty()){
-                                        commissionOrderService.save(commissionFirst);
-                                    }
-                                    commissionOrderService.save(commissionSecond);
-                                }
+                                addToBalance(userGrandFater, commissionSecond);
                             }
                         }
                     }
@@ -337,6 +322,25 @@ public class ApiPayController extends ApiBaseAction {
         } catch (Exception e) {
             e.printStackTrace();
             return;
+        }
+    }
+
+    /**
+     * 给主账户修改佣金并记录佣金明细
+     **/
+    private void addToBalance(UserVo user, CommissionOrderVo commission) {
+        if (commission != null) {
+            Map<String, Object> map = new HashMap<>(2);
+            map.put("userId", commission.getUserId());
+            map.put("orderSn", commission.getOrderSn());
+            if (commissionOrderService.queryList(map).isEmpty()) {
+                UserVo grandP = new UserVo();
+                grandP.setUserId(user.getUserId());
+                grandP.setTotalBalance(user.getTotalBalance().add(commission.getGainBalance()));
+                grandP.setAvilableBalance(user.getAvilableBalance().add(commission.getGainBalance()));
+                userService.update(grandP);
+                commissionOrderService.save(commission);
+            }
         }
     }
 

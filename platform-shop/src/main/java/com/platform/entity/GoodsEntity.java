@@ -39,7 +39,7 @@ public class GoodsEntity implements Serializable {
      **/
     private Integer brandId;
     /**
-     * 商品序列号
+     * 商品库存
      **/
     private Integer goodsNumber;
     /**

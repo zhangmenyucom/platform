@@ -57,7 +57,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Transactional
     public int save(GoodsEntity goods) {
         SysUserEntity user = ShiroUtils.getUserEntity();
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1);
         map.put("name", goods.getName());
         List<GoodsEntity> list = queryList(map);
         if (null != list && list.size() != 0) {
@@ -123,9 +123,19 @@ public class GoodsServiceImpl implements GoodsService {
         //商品轮播图
         //修改时全删全插
         List<GoodsGalleryEntity> galleryEntityList = goods.getGoodsImgList();
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>(1);
         map.put("goodsId", goods.getId());
         goodsGalleryDao.deleteByGoodsId(map);
+
+        /**保存产品信息**/
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.setGoodsId(goods.getId());
+        productEntity.setGoodsSn(goods.getGoodsSn());
+        productEntity.setGoodsNumber(goods.getGoodsNumber());
+        productEntity.setRetailPrice(goods.getRetailPrice());
+        productEntity.setMarketPrice(goods.getMarketPrice());
+        productEntity.setGoodsSpecificationIds("");
+        productDao.update(productEntity);
 
         if (null != galleryEntityList && galleryEntityList.size() > 0) {
             for (GoodsGalleryEntity galleryEntity : galleryEntityList) {

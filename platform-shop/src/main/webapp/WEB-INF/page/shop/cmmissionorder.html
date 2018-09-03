@@ -37,7 +37,7 @@
             <Form-item label="佣金订单号" prop="orderSn">
                 <i-input v-model="commissionOrder.orderSn" placeholder="佣金订单号"/>
             </Form-item>
-            <Form-item label="用户" prop="orderSn">
+            <Form-item label="用户" prop="userId">
                 <i-input v-model="commissionOrder.userId" placeholder="用户"/>
             </Form-item>
             <Form-item label="佣金数额" prop="gainBalance">
@@ -48,12 +48,6 @@
             </Form-item>
             <Form-item label="佣金说明" prop="detail">
                 <i-input v-model="commissionOrder.detail" placeholder="佣金说明"/>
-            </Form-item>
-            <Form-item label="创建时间" prop="createTime">
-                <i-input v-model="commissionOrder.createTime" placeholder="创建时间"/>
-            </Form-item>
-            <Form-item label="更新时间" prop="updateTime">
-                <i-input v-model="commissionOrder.updateTime" placeholder="更新时间"/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>

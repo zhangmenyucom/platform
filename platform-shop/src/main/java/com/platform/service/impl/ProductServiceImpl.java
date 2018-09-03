@@ -1,9 +1,12 @@
 package com.platform.service.impl;
 
+import com.platform.dao.GoodsDao;
 import com.platform.dao.GoodsSpecificationDao;
 import com.platform.dao.ProductDao;
+import com.platform.entity.GoodsEntity;
 import com.platform.entity.GoodsSpecificationEntity;
 import com.platform.entity.ProductEntity;
+import com.platform.service.GoodsService;
 import com.platform.service.ProductService;
 import com.platform.utils.BeanUtils;
 import com.platform.utils.StringUtils;
@@ -29,6 +32,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
     @Autowired
     private GoodsSpecificationDao goodsSpecificationDao;
+    @Autowired
+    private GoodsDao goodsDao;
 
     @Override
     public ProductEntity queryObject(Integer id) {
@@ -75,7 +80,6 @@ public class ProductServiceImpl implements ProductService {
 
         ProductEntity entity = new ProductEntity();
         BeanUtils.copyProperties(product, entity);
-
         if (!StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())) {
             String[] goodsSpecificationIdArr = product.getGoodsSpecificationIds().split("_");
             for (int i = 0; i < goodsSpecificationIdArr.length - 1; i++) {
@@ -104,6 +108,15 @@ public class ProductServiceImpl implements ProductService {
         if (StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())) {
             product.setGoodsSpecificationIds("");
         }
+        /**及联保存商品**/
+        GoodsEntity goodsEntity = new GoodsEntity();
+        goodsEntity.setId(product.getGoodsId());
+        goodsEntity.setRetailPrice(product.getRetailPrice());
+        goodsEntity.setMarketPrice(product.getMarketPrice());
+        goodsEntity.setGoodsNumber(product.getGoodsNumber());
+        goodsEntity.setGoodsSn(product.getGoodsSn());
+        goodsEntity.setName(product.getGoodsName());
+        goodsDao.update(goodsEntity);
         return productDao.update(product);
     }
 

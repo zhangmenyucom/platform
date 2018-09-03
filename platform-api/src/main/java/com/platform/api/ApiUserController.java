@@ -52,21 +52,6 @@ public class ApiUserController extends ApiBaseAction {
         String sms_code = CharUtil.getRandomNum(4);
         String msgContent = "您的验证码是：" + sms_code + "，请在页面中提交验证码完成验证。";
         /**发送短信**/
-        String result = "";
-        /**获取云存储配置信息**/
-        SmsConfig config = sysConfigService.getConfigObject(Constant.SMS_CONFIG_KEY, SmsConfig.class);
-        if (StringUtils.isNullOrEmpty(config)) {
-            throw new RRException("请先配置短信平台信息");
-        }
-        if (StringUtils.isNullOrEmpty(config.getName())) {
-            throw new RRException("请先配置短信平台用户名");
-        }
-        if (StringUtils.isNullOrEmpty(config.getPwd())) {
-            throw new RRException("请先配置短信平台密钥");
-        }
-        if (StringUtils.isNullOrEmpty(config.getChuangRuiSign())) {
-            throw new RRException("请先配置短信平台签名");
-        }
         try {
             String[] params = {sms_code, "2"};
             SmsSingleSenderResult senderResult = MSUtil.sendMessage(phone, params);

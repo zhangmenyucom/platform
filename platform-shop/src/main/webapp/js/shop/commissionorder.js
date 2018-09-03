@@ -3,13 +3,14 @@ $(function () {
         url: '../commissionorder/list',
         colModel: [
 			{label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-			{label: 'id', name: '用户名', index: 'uerId',width:80},
+			{label: '用户名', name: 'userId', index: 'user_id',width:80},
 			{label: '佣金订单号', name: 'orderSn', index: 'order_sn', width: 80},
 			{label: '佣金数额', name: 'gainBalance', index: 'gain_balance', width: 80},
 			{label: '订单来源人', name: 'sourceUserId', index: 'source_user_id', width: 80},
 			{label: '佣金说明', name: 'detail', index: 'detail', width: 80},
-			{label: '创建时间', name: 'createTime', index: 'create_time', width: 80},
-			{label: '更新时间', name: 'updateTime', index: 'update_time', width: 80}]
+			{label: '创建时间', name: 'createTime', index: 'create_time', width: 80,formatter: function (value) {
+                return transDate(value);
+            }}]
     });
 });
 

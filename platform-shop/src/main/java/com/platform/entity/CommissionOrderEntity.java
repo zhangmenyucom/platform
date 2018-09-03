@@ -21,7 +21,7 @@ public class CommissionOrderEntity implements Serializable {
     /**佣金所属人**/
     private Long userId;
     /** 佣金订单号 **/
-    private Long orderId;
+    private String orderSn;
     /** 佣金数额 **/
     private BigDecimal gainBalance;
     /** 订单来源人 **/

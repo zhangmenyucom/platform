@@ -22,6 +22,9 @@
         <result property="avatar" column="avatar"/>
         <result property="weixin_openid" column="weixin_openid"/>
         <result property="point" column="point"/>
+        <result property="totalBalance" column="total_balance"/>
+        <result property="avilableBalance" column="avilable_balance"/>
+        <result property="lockBalance" column="lock_balance"/>
     </resultMap>
     <resultMap type="com.platform.entity.UserDetailVo" id="userMapVo">
         <result property="userId" column="id"/>

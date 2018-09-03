@@ -3,6 +3,7 @@ package com.platform.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -52,4 +53,10 @@ public class UserVo implements Serializable {
     private Long point;
     /**下级列表**/
     private List<UserVo> subUserList;
+    /**总佣金**/
+    private BigDecimal totalBalance;
+    /**可用佣金**/
+    private BigDecimal avilableBalance;
+    /**冻结佣金**/
+    private BigDecimal lockBalance;
 }
