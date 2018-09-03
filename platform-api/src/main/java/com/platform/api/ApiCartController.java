@@ -80,8 +80,7 @@ public class ApiCartController extends ApiBaseAction {
             BigDecimal minAmount = new BigDecimal(100000);
             for (CouponVo couponVo : couponVos) {
                 BigDecimal difDec = couponVo.getMin_goods_amount().subtract(checkedGoodsAmount).setScale(2, BigDecimal.ROUND_HALF_UP);
-                if (couponVo.getSend_type() == 0 && difDec.doubleValue() > 0.0
-                        && minAmount.compareTo(couponVo.getMin_goods_amount()) > 0) {
+                if (couponVo.getSend_type() == 0 && difDec.doubleValue() > 0.0 && minAmount.compareTo(couponVo.getMin_goods_amount()) > 0) {
                     fullCutDec = couponVo.getType_money();
                     minAmount = couponVo.getMin_goods_amount();
                     fullCutVo.setType(1);
@@ -277,7 +276,7 @@ public class ApiCartController extends ApiBaseAction {
             //添加规格名和值
             String[] goodsSepcifitionValue = null;
             if (null != productInfo.getGoods_specification_ids()) {
-                Map specificationParam = new HashMap(0);
+                Map<String,Object> specificationParam = new HashMap<>(0);
                 specificationParam.put("ids", productInfo.getGoods_specification_ids());
                 specificationParam.put("goodsId", goodsId);
                 List<GoodsSpecificationVo> specificationEntities = goodsSpecificationService.queryList(specificationParam);
@@ -306,7 +305,7 @@ public class ApiCartController extends ApiBaseAction {
             //添加规格名和值
             String[] goodsSepcifitionValue = null;
             if (null != productInfo.getGoods_specification_ids()) {
-                Map specificationParam = new HashMap(0);
+                Map<String,Object> specificationParam = new HashMap(0);
                 specificationParam.put("ids", productInfo.getGoods_specification_ids());
                 specificationParam.put("goodsId", goodsId);
                 List<GoodsSpecificationVo> specificationEntities = goodsSpecificationService.queryList(specificationParam);
@@ -413,7 +412,7 @@ public class ApiCartController extends ApiBaseAction {
         // * 获取要购买的商品和总价
         ArrayList checkedGoodsList = new ArrayList();
         BigDecimal goodsTotalPrice;
-        if (type.equals("cart")) {
+        if ("cart".equals(type)) {
             Map<String, Object> cartData = (Map<String, Object>) this.getCart(loginUser);
 
             for (CartVo cartEntity : (List<CartVo>) cartData.get("cartList")) {

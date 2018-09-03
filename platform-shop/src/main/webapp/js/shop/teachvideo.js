@@ -36,7 +36,9 @@ let vm = new Vue({
 		add: function () {
 			vm.showList = false;
 			vm.title = "新增";
-			vm.teachVideo = {};
+			vm.teachVideo = {
+                videoUrl:""
+            };
 		},
 		update: function (event) {
             let id = getSelectedRow("#jqGrid");

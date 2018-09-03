@@ -367,8 +367,7 @@ public class ApiPayController extends ApiBaseAction {
 
 //        WechatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(),
 //                orderInfo.getActual_price().doubleValue(), orderInfo.getActual_price().doubleValue());
-        WeichatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(),
-                10.01, 10.01);
+        WeichatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(), 10.01, 10.01);
         if (result.getResult_code().equals("SUCCESS")) {
             if (orderInfo.getOrder_status() == 201) {
                 orderInfo.setOrder_status(401);

@@ -82,8 +82,7 @@ public class ApiCommentController extends ApiBaseAction {
             List<CommentVo> commentVos = commentService.queryList(param);
             boolean hasComment = false;
             for (CommentVo commentVo : commentVos) {
-                if (commentVo.getUser_id().equals(loginUser.getUserId())
-                        && !commentVo.getId().equals(insertId)) {
+                if (commentVo.getUser_id().equals(loginUser.getUserId()) && !commentVo.getId().equals(insertId)) {
                     hasComment = true;
                 }
             }
@@ -91,8 +90,7 @@ public class ApiCommentController extends ApiBaseAction {
                 Map couponParam = new HashMap(0);
                 couponParam.put("send_type", 6);
                 CouponVo newCouponConfig = apiCouponService.queryMaxUserEnableCoupon(couponParam);
-                if (null != newCouponConfig
-                        && newCouponConfig.getMin_transmit_num() >= commentVos.size()) {
+                if (null != newCouponConfig && newCouponConfig.getMin_transmit_num() >= commentVos.size()) {
                     UserCouponVo userCouponVo = new UserCouponVo();
                     userCouponVo.setAdd_time(new Date());
                     userCouponVo.setCoupon_id(newCouponConfig.getId());
@@ -140,10 +138,10 @@ public class ApiCommentController extends ApiBaseAction {
     @IgnoreAuth
     @GetMapping("list")
     public Object list(Integer typeId, Integer valueId, Integer showType,
-                       @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size,
+                       @RequestParam(value = "page", defaultValue = "1") Integer page,
+                       @RequestParam(value = "size", defaultValue = "10") Integer size,
                        String sort, String order) {
-        Map<String, Object> resultObj = new HashMap(0);
-        List<CommentVo> commentList = new ArrayList();
+        List<CommentVo> commentList;
         Map param = new HashMap(0);
         param.put("type_id", typeId);
         param.put("value_id", valueId);

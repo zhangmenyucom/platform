@@ -173,9 +173,8 @@ public class ApiOrderController extends ApiBaseAction {
             }
             // 需要退款
             if (orderVo.getPay_status() == 2) {
-                WeichatRefundApiResult result = WechatUtil.wxRefund(orderVo.getId().toString(),
-                        0.01, 0.01);
-                if (result.getResult_code().equals("SUCCESS")) {
+                WeichatRefundApiResult result = WechatUtil.wxRefund(orderVo.getId().toString(), 0.01, 0.01);
+                if ("SUCCESS".equals(result.getResult_code())) {
                     if (orderVo.getOrder_status() == 201) {
                         orderVo.setOrder_status(401);
                     } else if (orderVo.getOrder_status() == 300) {

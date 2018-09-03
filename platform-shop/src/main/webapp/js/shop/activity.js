@@ -26,7 +26,13 @@ let vm = new Vue({
     data: {
         showList: true,
         title: null,
-        activity: {},
+        activity: {
+            title:"",
+            author:"",
+            content:"",
+            banner:"",
+            position:""
+        },
         ruleValidate: {
             name: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
@@ -43,7 +49,13 @@ let vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.activity = {};
+            vm.activity = {
+                title:"",
+                author:"",
+                content:"",
+                banner:"",
+                position:""
+            };
         },
         update: function (event) {
             let id = getSelectedRow("#jqGrid");
@@ -120,6 +132,40 @@ let vm = new Vue({
         },
         handleReset: function (name) {
             handleResetForm(this, name);
+        },
+        handleView:function(name) {
+            this.imgName = name;
+            this.visible = true;
+        },
+        handleSubmit: function (name) {
+            handleSubmitValidate(this, name, function () {
+                vm.saveOrUpdate()
+            });
+        },
+        handleFormatError: function (file) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: '文件 ' + file.name + ' 格式不正确，请上传 jpg 或 png 格式的图片。'
+            });
+        },
+        handleMaxSize: function (file) {
+            this.$Notice.warning({
+                title: '超出文件大小限制',
+                desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            });
+        },
+        handleReset: function (name) {
+            handleResetForm(this, name);
+        },
+        handleSuccessPicUrl: function (res, file) {
+            vm.activity.banner = file.response.url;
+        },
+        eyeImagePicUrl: function () {
+            var url = vm.activity.banner;
+            eyeImage(url);
+        },
+        eyeImage: function (e) {
+            eyeImage($(e.target).attr('src'));
         }
     }
 });

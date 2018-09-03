@@ -109,7 +109,7 @@ public class ApiCouponController extends ApiBaseAction {
         Map param = new HashMap(0);
         param.put("coupon_number", coupon_number);
         List<UserCouponVo> couponVos = apiUserCouponService.queryList(param);
-        UserCouponVo userCouponVo = null;
+        UserCouponVo userCouponVo;
         if (null == couponVos || couponVos.size() == 0) {
             return toResponsFail("当前优惠码无效");
         }
