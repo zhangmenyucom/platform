@@ -99,10 +99,10 @@
         </set>
         where 1=1
         <if test="id!=null">
-            id = #{id}
+            and id = #{id}
         </if>
         <if test="goodsId!=null">
-            goods_id = #{goodsId}
+            and goods_id = #{goodsId}
         </if>
     </update>
 
