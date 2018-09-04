@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,15 +52,19 @@ public class ApiCouponService {
             if (couponVo.getCoupon_status()==1) {
                 // 检查是否过期
                 if(couponVo.getUse_end_date().before(new Date())) {
-                    couponVo.setCoupon_status(3);
-                    apiCouponMapper.updateUserCoupon(couponVo);
+                    Map<String,Object> updateMap=new HashMap<>(2);
+                    updateMap.put("status",3);
+                    updateMap.put("userCouponId",couponVo.getUser_coupon_id());
+                    apiCouponMapper.updateUserCoupon(updateMap);
                 }
             }
             if (couponVo.getCoupon_status()==3) {
                 // 检查是否不过期
                 if(couponVo.getUse_end_date().after(new Date())) {
-                    couponVo.setCoupon_status(1);
-                    apiCouponMapper.updateUserCoupon(couponVo);
+                    Map<String,Object> updateMap=new HashMap<>(2);
+                    updateMap.put("status",1);
+                    updateMap.put("userCouponId",couponVo.getUser_coupon_id());
+                    apiCouponMapper.updateUserCoupon(updateMap);
                 }
             }
         }

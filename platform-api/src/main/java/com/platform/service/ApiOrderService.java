@@ -1,33 +1,17 @@
 package com.platform.service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSONObject;
+import com.platform.cache.J2CacheUtils;
+import com.platform.dao.*;
+import com.platform.entity.*;
+import com.platform.util.CommonUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.fastjson.JSONObject;
-import com.platform.cache.J2CacheUtils;
-import com.platform.dao.ApiAddressMapper;
-import com.platform.dao.ApiCartMapper;
-import com.platform.dao.ApiCouponMapper;
-import com.platform.dao.ApiOrderGoodsMapper;
-import com.platform.dao.ApiOrderMapper;
-import com.platform.entity.AddressVo;
-import com.platform.entity.BuyGoodsVo;
-import com.platform.entity.CartVo;
-import com.platform.entity.CouponVo;
-import com.platform.entity.OrderGoodsVo;
-import com.platform.entity.OrderVo;
-import com.platform.entity.ProductVo;
-import com.platform.entity.UserVo;
-import com.platform.util.CommonUtil;
+import java.math.BigDecimal;
+import java.util.*;
 
 
 @Service
@@ -90,7 +74,6 @@ public class ApiOrderService {
         Integer couponId = jsonParam.getInteger("couponId");
         String type = jsonParam.getString("type");
         String postscript = jsonParam.getString("postscript");
-//        AddressVo addressVo = jsonParam.getObject("checkedAddress",AddressVo.class);
         AddressVo addressVo = apiAddressMapper.queryObject(jsonParam.getInteger("addressId"));
 
 
@@ -216,16 +199,19 @@ public class ApiOrderService {
         resultObj.put("errno", 0);
         resultObj.put("errmsg", "订单提交成功");
         //
-        Map<String, OrderVo> orderInfoMap = new HashMap<String, OrderVo>();
+        Map<String, OrderVo> orderInfoMap = new HashMap<>(0);
         orderInfoMap.put("orderInfo", orderInfo);
         //
         resultObj.put("data", orderInfoMap);
         // 优惠券标记已用
         if (couponVo != null && couponVo.getCoupon_status() == 1) {
-            couponVo.setCoupon_status(2);
-            apiCouponMapper.updateUserCoupon(couponVo);
+            Map<String,Object> map=new HashMap<>(0);
+            map.put("orderSn",orderInfo.getOrder_sn());
+            map.put("useDate",new Date());
+            map.put("userCouponId",couponVo.getUser_coupon_id());
+            map.put("status",2);
+            apiCouponMapper.updateUserCoupon(map);
         }
-
         return resultObj;
     }
 

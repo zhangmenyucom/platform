@@ -7,7 +7,7 @@
         <result property="id" column="id"/>
         <result property="couponId" column="coupon_id"/>
         <result property="couponNumber" column="coupon_number"/>
-        <result property="userId" column="user_id"/>
+        <result property="userSn" column="user_sn"/>
         <result property="usedTime" column="used_time"/>
         <result property="orderId" column="order_id"/>
         <result property="addTime" column="add_time"/>
@@ -18,7 +18,7 @@
 			`id`,
 			`coupon_id`,
 			`coupon_number`,
-			`user_id`,
+			`user_sn`,
 			`used_time`,
 			`add_time`,
 			`order_id`
@@ -34,7 +34,7 @@
         user_coupon.user_id,
         user_coupon.used_time,
         user_coupon.add_time,
-        user_coupon.order_id,
+        user_coupon.order_sn,
         user.username user_name,
         coupon.name coupon_name
         from user_coupon
@@ -80,14 +80,14 @@
 			`user_id`,
 			`used_time`,
 			`add_time`,
-			`order_id`)
+			`order_sn`)
 		values(
 			#{couponId},
 			#{couponNumber},
 			#{userId},
 			#{usedTime},
 			#{addTime},
-			#{orderId})
+			#{orderSn})
 	</insert>
 
     <update id="update" parameterType="com.platform.entity.UserCouponEntity">
@@ -98,7 +98,7 @@
             <if test="userId != null">`user_id` = #{userId},</if>
             <if test="usedTime != null">`used_time` = #{usedTime},</if>
             <if test="addTime != null">`add_time` = #{addTime},</if>
-            <if test="orderId != null">`order_id` = #{orderId}</if>
+            <if test="orderSn != null">`order_sn` = #{orderSn}</if>
         </set>
         where id = #{id}
     </update>

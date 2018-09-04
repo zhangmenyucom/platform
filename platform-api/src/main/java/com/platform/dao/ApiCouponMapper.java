@@ -43,5 +43,5 @@ public interface ApiCouponMapper extends BaseDao<CouponVo> {
      */
     List<CouponVo> queryUserCouponList(Map<String, Object> params);
 
-    int updateUserCoupon(CouponVo couponVo);
+    int updateUserCoupon(Map<String,Object> map);
 }
