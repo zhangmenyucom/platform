@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import static com.platform.config.Constants.MCH_ID;
+
 /**
  * 创建时间：2016年11月9日 下午4:16:32
  * 
@@ -46,7 +48,8 @@ public class HttpUtils {
 		Resource resource = new ClassPathResource("wx_apiclient_cert.p12");
 		try {
 			KeyStore keystore = KeyStore.getInstance("PKCS12");
-			char[] keyPassword = ConfigUtil.getProperty("wx.mchid").toCharArray(); //证书密码
+			//证书密码
+			char[] keyPassword = MCH_ID.toCharArray();
 			keystore.load(resource.getInputStream(), keyPassword);
 			wx_ssl_context = SSLContexts.custom().loadKeyMaterial(keystore, keyPassword).build();
 		} catch (Exception e) {
@@ -241,10 +244,7 @@ public class HttpUtils {
 		String body = null;
 		CloseableHttpResponse response = null;
 		try {
-			httpClient = HttpClients.custom()
-					.setDefaultRequestConfig(REQUEST_CONFIG)
-					.setSSLSocketFactory(getSSLConnectionSocket())
-					.build();
+			httpClient = HttpClients.custom().setDefaultRequestConfig(REQUEST_CONFIG).setSSLSocketFactory(getSSLConnectionSocket()).build();
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, DEFAULT_CHARSET));
 			response = httpClient.execute(httpPost);
 			body = EntityUtils.toString(response.getEntity(), DEFAULT_CHARSET);
@@ -282,10 +282,7 @@ public class HttpUtils {
 		String body = null;
 		CloseableHttpResponse response = null;
 		try {
-			httpClient = HttpClients.custom()
-					.setDefaultRequestConfig(REQUEST_CONFIG)
-					.setSSLSocketFactory(getSSLConnectionSocket())
-					.build();
+			httpClient = HttpClients.custom().setDefaultRequestConfig(REQUEST_CONFIG).setSSLSocketFactory(getSSLConnectionSocket()).build();
 			httpPost.setEntity(new StringEntity(s, DEFAULT_CHARSET));
 			response = httpClient.execute(httpPost);
 			body = EntityUtils.toString(response.getEntity(), DEFAULT_CHARSET);
@@ -313,7 +310,6 @@ public class HttpUtils {
 
 	//获取ssl connection链接
 	private static SSLConnectionSocketFactory getSSLConnectionSocket() {
-		return new SSLConnectionSocketFactory(wx_ssl_context, new String[] {"TLSv1", "TLSv1.1", "TLSv1.2"}, null,
-				SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+		return new SSLConnectionSocketFactory(wx_ssl_context, new String[] {"TLSv1", "TLSv1.1", "TLSv1.2"}, null, SSLConnectionSocketFactory.getDefaultHostnameVerifier());
 	}
 }
