@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static com.platform.config.Constants.*;
 
@@ -43,7 +44,7 @@ public class ApiTransferController extends ApiBaseAction {
 
         Map<String, String> restmap = null;
         try {
-            Map<String, String> parm = new HashMap<>(8);
+            Map<String, String> parm = new TreeMap<>();
             //公众账号appid
             parm.put("mch_appid", APP_ID);
             //商户号
