@@ -71,13 +71,14 @@ public class XmlUtil {
 		if (StringUtil.isNotEmpty(xml)) {
 			InputStream inputStream = new ByteArrayInputStream(xml.getBytes());
 			XmlPullParser pullParser = XmlPullParserFactory.newInstance().newPullParser();
-			pullParser.setInput(inputStream, "UTF-8"); // 为xml设置要解析的xml数据
+			// 为xml设置要解析的xml数据
+			pullParser.setInput(inputStream, "UTF-8");
 			int eventType = pullParser.getEventType();
 
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				switch (eventType) {
 				case XmlPullParser.START_DOCUMENT:
-					map = new HashMap<String, String>();
+					map = new HashMap<>();
 					break;
 				case XmlPullParser.START_TAG:
 					String key = pullParser.getName();

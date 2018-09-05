@@ -20,6 +20,7 @@ import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class HttpUtils {
 	private static SSLContext wx_ssl_context = null; //微信支付ssl证书
 	
 	static{
-		Resource resource = new ClassPathResource("wx_apiclient_cert.p12");
+		Resource resource = new ClassPathResource("apiclient_cert.p12");
 		try {
 			KeyStore keystore = KeyStore.getInstance("PKCS12");
 			//证书密码
@@ -277,15 +278,17 @@ public class HttpUtils {
 	 * @return 请求失败返回null
 	 */
 	public static String posts(String url, String s) {
+		System.out.println(s);
 		CloseableHttpClient httpClient = null;
 		HttpPost httpPost = new HttpPost(url);
+		httpPost.addHeader("Content-type","application/json; charset=utf-8");
 		String body = null;
 		CloseableHttpResponse response = null;
 		try {
 			httpClient = HttpClients.custom().setDefaultRequestConfig(REQUEST_CONFIG).setSSLSocketFactory(getSSLConnectionSocket()).build();
-			httpPost.setEntity(new StringEntity(s, DEFAULT_CHARSET));
+			httpPost.setEntity(new StringEntity(s, Charset.forName(DEFAULT_CHARSET)));
 			response = httpClient.execute(httpPost);
-			body = EntityUtils.toString(response.getEntity(), DEFAULT_CHARSET);
+			body = EntityUtils.toString(response.getEntity(),  Charset.forName(DEFAULT_CHARSET));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

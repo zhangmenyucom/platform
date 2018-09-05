@@ -8,9 +8,7 @@ import com.platform.util.wechat.pay.JsonResult;
 import com.platform.util.wechat.pay.ResponseData;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,8 +36,8 @@ public class ApiTransferController extends ApiBaseAction {
      * @param callback
      */
     @IgnoreAuth
-    @RequestMapping(value = "/pay", method = RequestMethod.POST)
-    public void transferPay(HttpServletRequest request, HttpServletResponse response, String openId, String callback) {
+    @RequestMapping(value = "/pay", method = RequestMethod.GET)
+    public void transferPay(HttpServletRequest request, HttpServletResponse response, @RequestParam("openId") String openId, String callback) {
         log.info("[/transfer/pay]");
         //业务判断 openid是否有收款资格
 
@@ -61,7 +59,7 @@ public class ApiTransferController extends ApiBaseAction {
             //check_name设置为FORCE_CHECK或OPTION_CHECK，则必填
             //parm.put("re_user_name", "安迪");
             //转账金额
-            parm.put("amount", "0.01");
+            parm.put("amount","2");
             //企业付款描述信息
             parm.put("desc", "测试转账到个人");
             //Ip地址
@@ -113,7 +111,7 @@ public class ApiTransferController extends ApiBaseAction {
         if (CollectionUtil.isNotEmpty(restmap) && "SUCCESS".equals(restmap.get("result_code"))) {
             // 订单查询成功 处理业务逻辑
             log.info("订单查询：订单" + restmap.get("partner_trade_no") + "支付成功");
-            Map<String, String> transferMap = new HashMap<>();
+            Map<String, String> transferMap = new HashMap<>(8);
             //商户转账订单号
             transferMap.put("partner_trade_no", restmap.get("partner_trade_no"));
             //收款微信号
