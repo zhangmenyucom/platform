@@ -101,7 +101,7 @@
     <update id="updateUserCoupon" parameterType="com.platform.entity.CouponVo">
         update user_coupon
         <set>
-            <if test="useDate != null">`use_time` = #{useDate},</if>
+            <if test="useDate != null">`used_time` = #{useDate},</if>
             <if test="status != null">`coupon_status` = #{status},</if>
             <if test="orderSn != null">`order_sn` = #{orderSn}</if>
         </set>
