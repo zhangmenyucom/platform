@@ -92,9 +92,9 @@
             <if test="coupon_number != null">`coupon_number` = #{coupon_number},</if>
             <if test="user_id != null">`user_id` = #{user_id},</if>
             <if test="used_time != null">`used_time` = #{used_time},</if>
-            <if test="order_sn != null">`order_sn` = #{orderSn}</if>
-            <if test="add_time != null">`add_time` = #{add_time}</if>
-            <if test="source_key != null">`source_key` = #{source_key}</if>
+            <if test="order_sn != null">`order_sn` = #{orderSn},</if>
+            <if test="add_time != null">`add_time` = #{add_time},</if>
+            <if test="source_key != null">`source_key` = #{source_key},</if>
             <if test="referrer != null">`referrer` = #{referrer}</if>
         </set>
         where id = #{id}
