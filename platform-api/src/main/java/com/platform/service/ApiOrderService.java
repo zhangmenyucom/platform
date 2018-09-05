@@ -69,9 +69,10 @@ public class ApiOrderService {
 
     @Transactional
     public Map<String, Object> submit(JSONObject jsonParam, UserVo loginUser) {
-        Map<String, Object> resultObj = new HashMap<String, Object>();
+        Map<String, Object> resultObj = new HashMap<>(0);
 
         Integer couponId = jsonParam.getInteger("couponId");
+        Integer parentId = jsonParam.getInteger("parentId");
         String type = jsonParam.getString("type");
         String postscript = jsonParam.getString("postscript");
         AddressVo addressVo = apiAddressMapper.queryObject(jsonParam.getInteger("addressId"));
@@ -83,7 +84,7 @@ public class ApiOrderService {
         List<CartVo> checkedGoodsList = new ArrayList<>();
         BigDecimal goodsTotalPrice;
         if (type.equals("cart")) {
-            Map<String, Object> param = new HashMap<String, Object>();
+            Map<String, Object> param = new HashMap<>(0);
             param.put("user_id", loginUser.getUserId());
             param.put("session_id", 1);
             param.put("checked", 1);
@@ -129,9 +130,6 @@ public class ApiOrderService {
         //减去其它支付的金额后，要实际支付的金额
         BigDecimal actualPrice = orderTotalPrice.subtract(couponPrice);
 
-        Long currentTime = System.currentTimeMillis() / 1000;
-
-        //
         OrderVo orderInfo = new OrderVo();
         orderInfo.setOrder_sn(CommonUtil.generateOrderNumber());
         orderInfo.setUser_id(loginUser.getUserId());
@@ -168,6 +166,8 @@ public class ApiOrderService {
             orderInfo.setOrder_type("4");
         }
 
+        /**添加引荐人id(特殊商品)**/
+        orderInfo.setParent_id(parentId);
         //开启事务，插入订单信息和订单商品
         apiOrderMapper.save(orderInfo);
         if (null == orderInfo.getId()) {
@@ -205,11 +205,11 @@ public class ApiOrderService {
         resultObj.put("data", orderInfoMap);
         // 优惠券标记已用
         if (couponVo != null && couponVo.getCoupon_status() == 1) {
-            Map<String,Object> map=new HashMap<>(0);
-            map.put("orderSn",orderInfo.getOrder_sn());
-            map.put("useDate",new Date());
-            map.put("userCouponId",couponVo.getUser_coupon_id());
-            map.put("status",2);
+            Map<String, Object> map = new HashMap<>(0);
+            map.put("orderSn", orderInfo.getOrder_sn());
+            map.put("useDate", new Date());
+            map.put("userCouponId", couponVo.getUser_coupon_id());
+            map.put("status", 2);
             apiCouponMapper.updateUserCoupon(map);
         }
         return resultObj;

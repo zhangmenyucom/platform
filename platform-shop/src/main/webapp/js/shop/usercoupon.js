@@ -21,7 +21,7 @@ $(function () {
                     return transDate(value);
                 }
             },
-            {label: '订单Id', name: 'orderId', index: 'order_id', width: 80}]
+            {label: '订单号', name: 'orderSn', index: 'order_sn', width: 80}]
     });
 });
 

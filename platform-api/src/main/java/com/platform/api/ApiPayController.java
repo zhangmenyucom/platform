@@ -303,6 +303,9 @@ public class ApiPayController extends ApiBaseAction {
                         /**购买角色，更新用户的角色**/
                         UserVo userVo = new UserVo();
                         userVo.setUserId(orderInfo.getUser_id());
+                        if (orderInfo.getParent_id() != null) {
+                            userVo.setParentId(Long.valueOf(orderInfo.getParent_id()));
+                        }
                         userVo.setUser_level_id(SPECIAL_GOODS_ENUM_MAP.get(goodsId).getRoleId());
                         userService.update(userVo);
                         if (userParent != null) {

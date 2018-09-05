@@ -9,7 +9,7 @@
         <result property="couponNumber" column="coupon_number"/>
         <result property="userSn" column="user_sn"/>
         <result property="usedTime" column="used_time"/>
-        <result property="orderId" column="order_id"/>
+        <result property="orderSn" column="order_sn"/>
         <result property="addTime" column="add_time"/>
     </resultMap>
 
@@ -21,7 +21,7 @@
 			`user_sn`,
 			`used_time`,
 			`add_time`,
-			`order_id`
+			`order_sn`
 		from user_coupon
 		where id = #{id}
 	</select>

@@ -42,8 +42,8 @@
             <Form-item label="使用时间" prop="usedTime">
                 <Date-picker v-model="userCoupon.usedTime" placeholder="使用时间"/>
             </Form-item>
-            <Form-item label="订单Id" prop="orderId">
-                <i-input v-model="userCoupon.orderId" placeholder="订单Id"/>
+            <Form-item label="订单号" prop="orderSn">
+                <i-input v-model="userCoupon.orderSn" placeholder="订单号"/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>

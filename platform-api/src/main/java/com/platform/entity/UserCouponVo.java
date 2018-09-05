@@ -27,8 +27,8 @@ public class UserCouponVo implements Serializable {
     private Date used_time;
     /**领取时间**/
     private Date add_time;
-    /**订单Id**/
-    private Integer order_id;
+    /**订单orderSn**/
+    private String orderSn;
     /**来源key**/
     private String source_key;
     /**分享人**/
