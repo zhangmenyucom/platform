@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.vo.CommissionOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,10 @@ public class CommissionOrderServiceImpl implements CommissionOrderService {
     @Override
     public int deleteBatch(Long[] ids) {
         return commissionOrderDao.deleteBatch(ids);
+    }
+
+    @Override
+    public List<CommissionOrderVo> queryDetailList(Map<String, Object> map) {
+        return commissionOrderDao.queryDetailList(map);
     }
 }

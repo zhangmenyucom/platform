@@ -3,6 +3,9 @@ package com.platform.api;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.cache.J2CacheUtils;
+import com.platform.common.OrderStatusEnum;
+import com.platform.common.PayStatusEnum;
+import com.platform.common.ShippingStatusEnum;
 import com.platform.config.CommissionRule;
 import com.platform.entity.*;
 import com.platform.service.ApiCommissionOrderService;
@@ -74,10 +77,10 @@ public class ApiPayController extends ApiBaseAction {
             return toResponsObject(400, "订单已取消", "");
         }
 
-        if (orderInfo.getPay_status() == 2) {
+        if (Objects.equals(orderInfo.getPay_status(), PayStatusEnum.PAYED.getCode())) {
             return toResponsObject(400, "订单已支付，请不要重复操作", "");
         }
-        if (orderInfo.getPay_status() == 3) {
+        if (Objects.equals(orderInfo.getPay_status(), PayStatusEnum.REFUND.getCode())) {
             return toResponsObject(400, "订单已退款", "");
         }
 
@@ -208,9 +211,9 @@ public class ApiPayController extends ApiBaseAction {
                 // 业务处理
                 OrderVo orderInfo = new OrderVo();
                 orderInfo.setId(orderId);
-                orderInfo.setPay_status(2);
-                orderInfo.setOrder_status(201);
-                orderInfo.setShipping_status(0);
+                orderInfo.setPay_status(PayStatusEnum.PAYED.getCode());
+                orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode());
+                orderInfo.setShipping_status(ShippingStatusEnum.NOT_SHIPPED.getCode());
                 orderInfo.setPay_time(new Date());
                 orderService.update(orderInfo);
                 return toResponsMsgSuccess("支付成功");
@@ -279,11 +282,10 @@ public class ApiPayController extends ApiBaseAction {
                 OrderVo orderInfo = orderService.queryObject(Integer.valueOf(out_trade_no));
 
                 /**更改订单状态**/
-                orderInfo.setPay_status(2);
-                orderInfo.setOrder_status(201);
-                orderInfo.setShipping_status(0);
+                orderInfo.setPay_status(PayStatusEnum.PAYED.getCode());
+                orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode());
+                orderInfo.setShipping_status(ShippingStatusEnum.NOT_SHIPPED.getCode());
                 orderInfo.setPay_time(new Date());
-                orderService.update(orderInfo);
 
                 /**推荐反佣金(3级)**/
                 UserVo userSource = userService.queryObject(orderInfo.getUser_id());
@@ -318,8 +320,11 @@ public class ApiPayController extends ApiBaseAction {
                                 addToBalance(userGrandFater, commissionSecond);
                             }
                         }
+                        /**特殊定单，直接完成发货**/
+                        orderInfo.setOrder_status(OrderStatusEnum.SHIPPED.getCode());
                     }
                 }
+                orderService.update(orderInfo);
                 response.getWriter().write(setXml("SUCCESS", "OK"));
             }
         } catch (Exception e) {
@@ -360,22 +365,16 @@ public class ApiPayController extends ApiBaseAction {
             return toResponsObject(400, "订单已取消", "");
         }
 
-        if (orderInfo.getOrder_status() == 401 || orderInfo.getOrder_status() == 402) {
+        if (Objects.equals(orderInfo.getOrder_status(), OrderStatusEnum.REFUND_WITHOUT_SHIP.getCode()) || Objects.equals(orderInfo.getOrder_status(), OrderStatusEnum.REFUND_WITH_GOODS_RETURNED.getCode())) {
             return toResponsObject(400, "订单已退款", "");
         }
 
-//        if (orderInfo.getPay_status() != 2) {
-//            return toResponsObject(400, "订单未付款，不能退款", "");
-//        }
-
-//        WechatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(),
-//                orderInfo.getActual_price().doubleValue(), orderInfo.getActual_price().doubleValue());
         WeichatRefundApiResult result = WechatUtil.wxRefund(orderInfo.getId().toString(), 10.01, 10.01);
         if (result.getResult_code().equals("SUCCESS")) {
-            if (orderInfo.getOrder_status() == 201) {
-                orderInfo.setOrder_status(401);
-            } else if (orderInfo.getOrder_status() == 300) {
-                orderInfo.setOrder_status(402);
+            if (Objects.equals(orderInfo.getOrder_status(), OrderStatusEnum.WAITTING_SHIP.getCode())) {
+                orderInfo.setOrder_status(OrderStatusEnum.REFUND_WITHOUT_SHIP.getCode());
+            } else if (Objects.equals(orderInfo.getOrder_status(), OrderStatusEnum.SHIPPED.getCode())) {
+                orderInfo.setOrder_status(OrderStatusEnum.REFUND_WITH_GOODS_RETURNED.getCode());
             }
             orderService.update(orderInfo);
             return toResponsObject(400, "成功退款", "");

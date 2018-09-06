@@ -2,6 +2,8 @@ package com.platform.controller;
 
 import java.util.List;
 import java.util.Map;
+
+import com.platform.vo.CommissionOrderVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +37,10 @@ public class CommissionOrderController {
     @RequestMapping("/list")
     @RequiresPermissions("commissionorder:list")
     public R list(@RequestParam Map<String, Object> params) {
+
         //查询列表数据
         Query query = new Query(params);
-        List<CommissionOrderEntity> commissionOrderList = commissionOrderService.queryList(query);
+        List<CommissionOrderVo> commissionOrderList = commissionOrderService.queryDetailList(query);
         int total = commissionOrderService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(commissionOrderList, total, query.getLimit(), query.getPage());
         return R.ok().put("page", pageUtil);

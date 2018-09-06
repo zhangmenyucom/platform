@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.platform.common.OrderStatusEnum;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
@@ -8,6 +9,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
+import static com.platform.common.OrderStatusEnum.*;
 
 
 /**
@@ -101,21 +105,21 @@ public class OrderVo implements Serializable {
     private String order_type; // 订单状态
 
     public String getFull_region() {
-    //    return full_region;
-        if (StringUtils.isNotEmpty(this.full_region)){
+        //    return full_region;
+        if (StringUtils.isNotEmpty(this.full_region)) {
             return full_region;
-        } else{
+        } else {
             StringBuffer strBuff = new StringBuffer();
-            if (StringUtils.isNotEmpty(this.country)){
+            if (StringUtils.isNotEmpty(this.country)) {
                 strBuff.append(this.country).append(" ");
             }
-            if(StringUtils.isNotEmpty(this.province)){
+            if (StringUtils.isNotEmpty(this.province)) {
                 strBuff.append(this.province).append(" ");
             }
-            if (StringUtils.isNotEmpty(this.city)){
+            if (StringUtils.isNotEmpty(this.city)) {
                 strBuff.append(this.city).append(" ");
             }
-            if (StringUtils.isNotEmpty(this.district)){
+            if (StringUtils.isNotEmpty(this.district)) {
                 strBuff.append(this.district).append(" ");
             }
             this.full_region = strBuff.toString();
@@ -405,30 +409,33 @@ public class OrderVo implements Serializable {
     public String getOrder_status_text() {
         if (null != order_status && StringUtils.isEmpty(order_status_text)) {
             order_status_text = "未付款";
-            switch (order_status) {
-                case 0:
+            switch (OrderStatusEnum.orderStatusEnumMap.get(order_status)) {
+                case CREATED:
                     order_status_text = "未付款";
                     break;
-                case 201:
+                case WAITTING_SHIP:
                     order_status_text = "等待发货";
                     break;
-                case 300:
+                case SHIPPED:
                     order_status_text = "待收货";
                     break;
-                case 301:
+                case CONFIRMED:
                     order_status_text = "已完成";
                     break;
-                case 200:
+                case PAYED:
                     order_status_text = "已付款";
                     break;
-                case 101:
+                case CANCEL:
                     order_status_text = "已取消";
                     break;
-                case 401:
+                case REFUND_WITHOUT_SHIP:
                     order_status_text = "已取消";
                     break;
-                case 402:
+                case REFUND_WITH_GOODS_RETURNED:
                     order_status_text = "已退货";
+                    break;
+                default:
+                    order_status_text = "";
                     break;
             }
         }
@@ -442,14 +449,22 @@ public class OrderVo implements Serializable {
     //
     public Map getHandleOption() {
         handleOption = new HashMap(0);
-        handleOption.put("cancel", false);//取消操作
-        handleOption.put("delete", false);//删除操作
-        handleOption.put("pay", false);//支付操作
-        handleOption.put("comment", false);//评论操作
-        handleOption.put("delivery", false);//确认收货操作
-        handleOption.put("confirm", false);//完成订单操作
-        handleOption.put("return", false); //退换货操作
-        handleOption.put("buy", false); //再次购买
+        //取消操作
+        handleOption.put("cancel", false);
+        //删除操作
+        handleOption.put("delete", false);
+        //支付操作
+        handleOption.put("pay", false);
+        //评论操作
+        handleOption.put("comment", false);
+        //确认收货操作
+        handleOption.put("delivery", false);
+        //完成订单操作
+        handleOption.put("confirm", false);
+        //退换货操作
+        handleOption.put("return", false);
+        //再次购买
+        handleOption.put("buy", false);
 
         //订单流程：　下单成功－》支付订单－》发货－》收货－》评论
         //订单相关状态字段设计，采用单个字段表示全部的订单状态
@@ -459,31 +474,31 @@ public class OrderVo implements Serializable {
         //4xx 表示订单退换货相关的状态　401 没有发货，退款　402 已收货，退款退货
 
         //如果订单已经取消或是已完成，则可删除和再次购买
-        if (order_status == 101) {
+        if (Objects.equals(order_status, CANCEL.getCode())) {
 //            handleOption.put("delete", true);
             handleOption.put("buy", true);
         }
 
         //如果订单没有被取消，且没有支付，则可支付，可取消
-        if (order_status == 0) {
+        if (Objects.equals(order_status, CREATED.getCode())) {
             handleOption.put("cancel", true);
             handleOption.put("pay", true);
         }
 
         //如果订单已付款，没有发货，则可退款操作
-        if (order_status == 201) {
+        if (Objects.equals(order_status, WAITTING_SHIP.getCode())) {
             handleOption.put("cancel", true);
         }
 
         //如果订单已经发货，没有收货，则可收货操作和退款、退货操作
-        if (order_status == 300) {
+        if (Objects.equals(order_status, SHIPPED.getCode())) {
 //            handleOption.put("cancel", true);
             handleOption.put("confirm", true);
 //            handleOption.put("return", true);
         }
 
         //如果订单已经支付，且已经收货，则可完成交易、评论和再次购买
-        if (order_status == 301) {
+        if (Objects.equals(order_status, CONFIRMED.getCode())) {
             handleOption.put("comment", true);
             handleOption.put("buy", true);
         }

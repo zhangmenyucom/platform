@@ -55,6 +55,32 @@
 			limit #{offset}, #{limit}
 		</if>
 	</select>
+
+
+	<select id="queryDetailList" resultType="com.platform.entity.CommissionOrderVo">
+		select c.*,u2.avatar,u.avatar as source_avatar,u.user_level_id,u.nickname as source_user_name,
+		uo.actual_price,og.goods_name,og.list_pic_url as goods_pic_url,ul.name as level
+		from commission_order c,user u,user u2,user_order uo,order_goods og,user_level ul
+		where c.source_user_id=u.id
+		and c.order_sn=uo.order_sn
+		and uo.id =og.order_id
+		and u.user_level_id = ul.id
+		and u2.id=c.user_id
+		<if test="userId!=null">
+			and c.user_id=#{userId}
+		</if>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
 	
  	<select id="queryTotal" resultType="int">
 		select count(*) from commission_order

@@ -1,4 +1,4 @@
-package com.platform.entity;
+package com.platform.vo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -23,8 +23,6 @@ public class CommissionOrderVo implements Serializable {
     private Long id;
     /**佣金所属人**/
     private Long userId;
-    /**头像**/
-    private String avatar;
     /** 佣金订单号 **/
     private String orderSn;
     /** 佣金数额 **/

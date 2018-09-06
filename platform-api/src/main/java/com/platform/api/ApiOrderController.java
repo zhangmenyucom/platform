@@ -2,6 +2,9 @@ package com.platform.api;
 
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
+import com.platform.common.OrderStatusEnum;
+import com.platform.common.PayStatusEnum;
+import com.platform.common.ShippingStatusEnum;
 import com.platform.entity.OrderGoodsVo;
 import com.platform.entity.OrderVo;
 import com.platform.entity.UserVo;
@@ -20,10 +23,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 作者: @author Harmon <br>
@@ -128,9 +128,9 @@ public class ApiOrderController extends ApiBaseAction {
         }
 
         orderInfo.setId(orderId);
-        orderInfo.setPay_status(2);
-        orderInfo.setOrder_status(201);
-        orderInfo.setShipping_status(0);
+        orderInfo.setPay_status(PayStatusEnum.PAYED.getCode());
+        orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode());
+        orderInfo.setShipping_status(ShippingStatusEnum.NOT_SHIPPED.getCode());
         orderInfo.setPay_time(new Date());
         int num = orderService.update(orderInfo);
         if (num > 0) {
@@ -166,28 +166,28 @@ public class ApiOrderController extends ApiBaseAction {
     public Object cancelOrder(Integer orderId) {
         try {
             OrderVo orderVo = orderService.queryObject(orderId);
-            if (orderVo.getOrder_status() == 300) {
+            if (Objects.equals(orderVo.getOrder_status(), OrderStatusEnum.SHIPPED.getCode())) {
                 return toResponsFail("已发货，不能取消");
-            } else if (orderVo.getOrder_status() == 301) {
+            } else if (Objects.equals(orderVo.getOrder_status(), OrderStatusEnum.CONFIRMED.getCode())) {
                 return toResponsFail("已收货，不能取消");
             }
             // 需要退款
-            if (orderVo.getPay_status() == 2) {
+            if (Objects.equals(orderVo.getPay_status(), PayStatusEnum.PAYED.getCode())) {
                 WeichatRefundApiResult result = WechatUtil.wxRefund(orderVo.getId().toString(), 0.01, 0.01);
                 if ("SUCCESS".equals(result.getResult_code())) {
-                    if (orderVo.getOrder_status() == 201) {
-                        orderVo.setOrder_status(401);
-                    } else if (orderVo.getOrder_status() == 300) {
-                        orderVo.setOrder_status(402);
+                    if (Objects.equals(orderVo.getOrder_status(), OrderStatusEnum.WAITTING_SHIP.getCode())) {
+                        orderVo.setOrder_status(OrderStatusEnum.REFUND_WITHOUT_SHIP.getCode());
+                    } else if (Objects.equals(orderVo.getOrder_status(), OrderStatusEnum.SHIPPED.getCode())) {
+                        orderVo.setOrder_status(OrderStatusEnum.REFUND_WITH_GOODS_RETURNED.getCode());
                     }
-                    orderVo.setPay_status(4);
+                    orderVo.setPay_status(PayStatusEnum.REFUND.getCode());
                     orderService.update(orderVo);
                     return toResponsMsgSuccess("取消成功");
                 } else {
                     return toResponsObject(400, "取消成失败", "");
                 }
             } else {
-                orderVo.setOrder_status(101);
+                orderVo.setOrder_status(OrderStatusEnum.CANCEL.getCode());
                 orderService.update(orderVo);
                 return toResponsSuccess("取消成功");
             }
@@ -205,11 +205,11 @@ public class ApiOrderController extends ApiBaseAction {
     public Object confirmOrder(Integer orderId) {
         try {
             OrderVo orderVo = orderService.queryObject(orderId);
-            orderVo.setOrder_status(301);
-            orderVo.setShipping_status(2);
+            orderVo.setOrder_status(OrderStatusEnum.CONFIRMED.getCode());
+            orderVo.setShipping_status(ShippingStatusEnum.CONFIRMED.getCode());
             orderVo.setConfirm_time(new Date());
             orderService.update(orderVo);
-            return toResponsSuccess("取消成功");
+            return toResponsSuccess("确认收货成功");
         } catch (Exception e) {
             e.printStackTrace();
         }

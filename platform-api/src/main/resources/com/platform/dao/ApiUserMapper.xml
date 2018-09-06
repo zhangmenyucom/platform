@@ -180,8 +180,7 @@
         a.send_status,
         a.sms_text
         from sms_log a
-        left join sms_log b on a.user_id = b.user_id and b.log_date > a.log_date
-        where a.user_id = #{user_id} and b.id is null
+        where a.user_id = #{user_id} order by a.log_date desc limit 1
     </select>
 
     <insert id="saveSmsCodeLog" parameterType="com.platform.entity.SmsLogVo">

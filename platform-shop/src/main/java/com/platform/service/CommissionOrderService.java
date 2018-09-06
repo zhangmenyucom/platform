@@ -1,6 +1,7 @@
 package com.platform.service;
 
 import com.platform.entity.CommissionOrderEntity;
+import com.platform.vo.CommissionOrderVo;
 
 import java.util.List;
 import java.util.Map;
@@ -69,4 +70,9 @@ public interface CommissionOrderService {
      * @return 删除条数
      */
     int deleteBatch(Long[] ids);
+
+    /**
+     * 佣金详情
+     **/
+    List<CommissionOrderVo> queryDetailList(Map<String, Object> map);
 }
