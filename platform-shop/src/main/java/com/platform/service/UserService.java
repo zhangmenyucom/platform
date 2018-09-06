@@ -1,6 +1,7 @@
 package com.platform.service;
 
 import com.platform.entity.UserEntity;
+import com.platform.vo.UserVo;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,14 @@ public interface UserService {
      * @return list
      */
     List<UserEntity> queryList(Map<String, Object> map);
+
+    /**
+     * 分页查询
+     *
+     * @param map 参数
+     * @return list
+     */
+    List<UserVo> queryDetailInfoList(Map<String, Object> map);
 
     /**
      * 分页统计总数

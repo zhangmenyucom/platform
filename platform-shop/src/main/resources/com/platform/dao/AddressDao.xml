@@ -45,7 +45,7 @@
         address.city_Name,
         address.county_Name,
         address.detail_Info,
-        user.username shop_user_name
+        user.nickname as shop_user_name
         from address LEFT JOIN user ON address.user_id = user.id
         WHERE 1=1
         <if test="userName != null and userName != ''">

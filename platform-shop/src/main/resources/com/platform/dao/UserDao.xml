@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.UserEntity" id="userMap">
         <result property="id" column="id"/>
+        <result property="parentId" column="parent_id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="gender" column="gender"/>
@@ -59,6 +60,44 @@
         user_level.name levelName
         from user LEFT JOIN user_level ON user.user_level_id=user_level.id
         WHERE 1=1
+        <if test="username != null and username.trim() != ''">
+            and username like concat('%',#{username},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+    <select id="queryDetailInfoList" resultType="com.platform.vo.UserVo">
+        select
+        user.id,
+        user.parent_id,
+        u.avatar as parentAvatar,
+        user.username,
+        user.password,
+        user.gender,
+        user.birthday,
+        user.register_time,
+        user.last_login_time,
+        user.last_login_ip,
+        user.user_level_id,
+        user.nickname,
+        user.mobile,
+        user.register_ip,
+        user.avatar,
+        user.weixin_openid,
+        user_level.name levelName
+        from user
+        LEFT JOIN user_level ON user.user_level_id=user_level.id
+        LEFT  JOIN user u on user.parent_id=u.id
+       WHERE 1=1
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')
         </if>

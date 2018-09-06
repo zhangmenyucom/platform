@@ -6,6 +6,7 @@ import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.platform.utils.excel.ExcelExport;
+import com.platform.vo.UserVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class UserController {
         //查询列表数据
         Query query = new Query(params);
 
-        List<UserEntity> userList = userService.queryList(query);
+        List<UserVo> userList = userService.queryDetailInfoList(query);
         int total = userService.queryTotal(query);
 
         PageUtils pageUtil = new PageUtils(userList, total, query.getLimit(), query.getPage());
