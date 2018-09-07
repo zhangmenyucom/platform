@@ -92,5 +92,5 @@ public class OrderEntity implements Serializable {
     private String orderType;
 
     //
-    private String userName;
+    private String nickName;
 }

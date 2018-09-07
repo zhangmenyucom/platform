@@ -35,31 +35,48 @@
         <p slot="title">{{title}}</p>
 		<i-form ref="formValidate" :model="withdrawOrder" :rules="ruleValidate" :label-width="80">
             <Form-item label="流水号" prop="orderSn">
-                <i-input v-model="withdrawOrder.orderSn" placeholder="流水号"/>
+                <i-input v-model="withdrawOrder.orderSn" placeholder="流水号" readonly/>
             </Form-item>
             <Form-item label="提现人id" prop="userId">
-                <i-input v-model="withdrawOrder.userId" placeholder="提现人id"/>
+                <i-input v-model="withdrawOrder.userId" placeholder="提现人id" readonly/>
             </Form-item>
             <Form-item label="提现金额" prop="withdrawAmount">
-                <i-input v-model="withdrawOrder.withdrawAmount" placeholder="提现金额"/>
+                <i-input v-model="withdrawOrder.withdrawAmount" placeholder="提现金额" readonly/>
             </Form-item>
             <Form-item label="提现账户" prop="withdrawAccount">
-                <i-input v-model="withdrawOrder.withdrawAccount" placeholder="提现账户"/>
+                <i-input v-model="withdrawOrder.withdrawAccount" placeholder="提现账户" readonly/>
             </Form-item>
-            <Form-item label="账户类型 0:微信 1：支付宝 3：银行卡" prop="accountType">
-                <i-input v-model="withdrawOrder.accountType" placeholder="账户类型 0:微信 1：支付宝 3：银行卡"/>
+            <Form-item label="账户类型" prop="accountType" readonly>
+                <Radio-group v-model="withdrawOrder.accountType">
+                    <Radio label="0" disabled>
+                        <span>微信</span>
+                    </Radio>
+                    <Radio label="1" disabled>
+                        <span>支付宝</span>
+                    </Radio>
+                    <Radio label="3" disabled>
+                        <span>银行卡</span>
+                    </Radio>
+                </Radio-group>
             </Form-item>
-            <Form-item label="提现状态 0:提交审核 1：审核通过 2：审核不通过 3：提现成功" prop="status">
-                <i-input v-model="withdrawOrder.status" placeholder="提现状态 0:提交审核 1：审核通过 2：审核不通过 3：提现成功"/>
+            <Form-item label="提现状态" prop="status">
+                <Radio-group v-model="withdrawOrder.status">
+                    <Radio label="0" disabled>
+                        <span>提交审核</span>
+                    </Radio>
+                    <Radio label="1">
+                        <span>审核通过</span>
+                    </Radio>
+                    <Radio label="2">
+                        <span>审核不通过</span>
+                    </Radio>
+                    <Radio label="3" disabled>h
+                        <span>提现成功</span>
+                    </Radio>
+                </Radio-group>
             </Form-item>
             <Form-item label="备注" prop="comment">
                 <i-input v-model="withdrawOrder.comment" placeholder="备注"/>
-            </Form-item>
-            <Form-item label="创建时间" prop="createTime">
-                <i-input v-model="withdrawOrder.createTime" placeholder="创建时间"/>
-            </Form-item>
-            <Form-item label="更新时间" prop="updateTime">
-                <i-input v-model="withdrawOrder.updateTime" placeholder="更新时间"/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>

@@ -43,14 +43,14 @@
     </resultMap>
 
     <select id="queryObject" resultType="com.platform.entity.OrderEntity">
-		select o.*,u.username as username
+		select o.*,u.nickname as nickName
         from user_order o
         left join user u on o.user_id = u.id
         where o.id = #{value}
 	</select>
 
     <select id="queryList" resultType="com.platform.entity.OrderEntity">
-        select o.*,u.username as username
+        select o.*,u.nickname as nickName
         from user_order o
         left join user u on o.user_id = u.id
         WHERE 1=1
