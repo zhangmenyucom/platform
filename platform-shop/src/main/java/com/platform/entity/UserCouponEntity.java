@@ -34,6 +34,9 @@ public class UserCouponEntity implements Serializable {
      * 会员Id
      **/
     private Integer userId;
+
+    /**昵称**/
+    private String nickname;
     /**
      * 使用时间
      **/

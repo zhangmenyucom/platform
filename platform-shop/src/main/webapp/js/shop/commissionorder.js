@@ -3,7 +3,7 @@ $(function () {
         url: '../commissionorder/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '用户名', name: 'userId', index: 'user_id', width: 40},
+            {label: '用户名', name: 'nickname', index: 'nickname', width: 80},
             {
                 label: '头像', name: 'avatar', index: 'avatar', width: 40, formatter: function (value) {
                 return transImg(value);

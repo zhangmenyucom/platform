@@ -4,11 +4,36 @@ $(function () {
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
             {label: '流水号', name: 'orderSn', index: 'order_sn', width: 80},
-            {label: '提现人id', name: 'userId', index: 'user_id', width: 80},
+            {label: '提现人id', name: 'userId', index: 'user_id', width: 40},
+            {label: '昵称', name: 'nickname', index: 'nickname', width: 80},
             {label: '提现金额', name: 'withdrawAmount', index: 'withdraw_amount', width: 80},
             {label: '提现账户', name: 'withdrawAccount', index: 'withdraw_account', width: 80},
-            {label: '账户类型 0:微信 1：支付宝 3：银行卡', name: 'accountType', index: 'account_type', width: 80},
-            {label: '提现状态 0:提交审核 1：审核通过 2：审核不通过 3：提现成功', name: 'status', index: 'status', width: 80},
+            {
+                label: '账户类型', name: 'accountType', index: 'account_type', width: 80, formatter: function (value) {
+                if (value == 0) {
+                    return '微信';
+                } else if (value == 1) {
+                    return '支付宝';
+                } else if (value == 3) {
+                    return '银行卡';
+                }
+                return value;
+            }
+            },
+            {
+                label: '提现状态', name: 'status', index: 'status', width: 80, formatter: function (value) {
+                if (value == 0) {
+                    return '提交审核';
+                } else if (value == 1) {
+                    return '审核通过';
+                } else if (value == 2) {
+                    return '审核不通过';
+                } else if (value == 3) {
+                    return '提现成功';
+                }
+                return value;
+            }
+            },
             {label: '备注', name: 'comment', index: 'comment', width: 80},
             {
                 label: '创建时间', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {

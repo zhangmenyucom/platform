@@ -22,6 +22,8 @@ public class WithdrawOrderEntity implements Serializable {
     private String orderSn;
     /** 提现人id **/
     private Long userId;
+    /**昵称**/
+    private String nickname;
     /** 提现金额 **/
     private BigDecimal withdrawAmount;
     /** 提现账户 **/

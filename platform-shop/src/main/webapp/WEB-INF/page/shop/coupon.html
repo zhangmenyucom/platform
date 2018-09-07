@@ -108,7 +108,7 @@
             </Form-item>
             <Form-item v-if="selectData.sendType == 1" label="下发会员">
                 <i-select v-model="user" filterable multiple>
-                    <i-option v-for="user in users" :value="user.id" :key="user.id">{{user.username}}</i-option>
+                    <i-option v-for="user in users" :value="user.id" :key="user.id">{{user.nickname}}</i-option>
                 </i-select>
             </Form-item>
             <Form-item v-if="selectData.sendType == 1" label="短信通知">

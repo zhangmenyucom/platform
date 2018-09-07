@@ -23,6 +23,8 @@ public class CommissionOrderVo implements Serializable {
     private Long id;
     /**佣金所属人**/
     private Long userId;
+    /**昵称**/
+    private String nickname;
     /**头像**/
     private String avatar;
     /** 佣金订单号 **/

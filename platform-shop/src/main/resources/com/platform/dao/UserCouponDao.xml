@@ -32,13 +32,14 @@
         user_coupon.coupon_id,
         user_coupon.coupon_number,
         user_coupon.user_id,
+        user.nickname,
         user_coupon.used_time,
         user_coupon.add_time,
         user_coupon.order_sn,
         user.username user_name,
         coupon.name coupon_name
         from user_coupon
-        LEFT JOIN user ON user_coupon.user_id = user.id
+        LEFT JOIN user  ON user_coupon.user_id = user.id
         LEFT JOIN coupon ON user_coupon.coupon_id = coupon.id
         WHERE 1=1
         <if test="userName != null and userName.trim() != ''">
