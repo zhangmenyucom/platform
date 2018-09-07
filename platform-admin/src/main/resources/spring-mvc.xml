@@ -18,33 +18,31 @@
     <context:annotation-config/>
     <mvc:default-servlet-handler/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-    <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/html;charset=UTF-8</value>
-                        <value>application/json;charset=UTF-8</value>
-                    </list>
-                </property>
-                <property name="fastJsonConfig">
-                    <bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
-                        <property name="features">
-                            <list>
-                                <value>AllowArbitraryCommas</value>
-                                <value>AllowUnQuotedFieldNames</value>
-                                <!-- 禁用fastjson循环引用检测 -->
-                                <value>DisableCircularReferenceDetect</value>
-                            </list>
-                        </property>
-                        <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
-                    </bean>
-                </property>
 
-            </bean>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <ref bean="stringHttpMessageConverter"/>
+            <ref bean="fastJsonHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <constructor-arg value="UTF-8" index="0"></constructor-arg><!--
+            避免出现乱码 -->
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="fastJsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
     <!-- 为了加载拦截器 需要 日志拦截器 （登录拦截和权限拦截已在shiro实现，看实现 情况处理） -->
     <mvc:interceptors>
         <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->

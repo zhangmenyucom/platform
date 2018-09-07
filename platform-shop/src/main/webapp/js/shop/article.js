@@ -5,28 +5,28 @@ $(function () {
 			{label: 'id', name: 'id', index: 'id', key: true, hidden: true},
 			{label: '标题', name: 'title', index: 'title', width: 80},
 			{label: '作者', name: 'author', index: 'author', width: 80},
-			{label: '内容', name: 'content', index: 'content', width: 80},
+			{label: '内容', name: 'content', index: 'content', width: 80, hidden: true},
 			{label: '出处', name: 'sourceUrl', index: 'source_url', width: 80},
 			{label: '顺序', name: 'sortOrder', index: 'sort_order', width: 80},
 			{label: '是否上架', name: 'status', index: 'status', width: 80,formatter: function (value) {
                 return transIsNot(value);
             }}]
     });
-    $('#article_content').editable({
+    $('#content').editable({
         inlineMode: false,
         alwaysBlank: true,
-        height: '500px', //高度
-        minHeight: '200px',
+        height: 'auto', //高度
         language: "zh_cn",
+        minHeight: '200px',
         spellcheck: false,
         plainPaste: true,
         enableScript: false,
         imageButtons: ["floatImageLeft", "floatImageNone", "floatImageRight", "linkImage", "replaceImage", "removeImage"],
         allowedImageTypes: ["jpeg", "jpg", "png", "gif"],
-        imageUploadURL: '../sys/oss/upload',
+        imageUploadURL: '../sys/oss/upload',//上传到本地服务器
         imageUploadParams: {id: "edit"},
-        imagesLoadURL: '../sys/oss/queryAll'
-    })
+        imagesLoadURL: '../sys/oss/queryAll'//管理图片
+    });
 });
 
 var vm = new Vue({
@@ -49,11 +49,11 @@ var vm = new Vue({
 			vm.reload();
 		},
 		add: function () {
-            $('#article_content').editable('setHTML', '');
 			vm.showList = false;
-			vm.title = "新增";
-			vm.article = {};
-		},
+            vm.title = "新增";
+            vm.article = {};
+            $('#content').editable('setHTML', '');
+        },
 		update: function (event) {
             var id = getSelectedRow("#jqGrid");
 			if (id == null) {
@@ -66,12 +66,12 @@ var vm = new Vue({
 		},
 		saveOrUpdate: function (event) {
             var url = vm.article.id == null ? "../article/save" : "../article/update";
-            vm.article.content = $('#article_content').editable('getHTML');
+            vm.article.content = $('#content').editable('getHTML');
             Ajax.request({
-			    url: url,
-                params: JSON.stringify(vm.article),
                 type: "POST",
-			    contentType: "application/json",
+                url: url,
+                contentType: "application/json",
+                params: JSON.stringify(vm.article),
                 successCallback: function (r) {
                     alert('操作成功', function (index) {
                         vm.reload();
@@ -90,7 +90,7 @@ var vm = new Vue({
 				    url: "../article/delete",
                     params: JSON.stringify(ids),
                     type: "POST",
-				    contentType: "application/json",
+				    contentType: "application/json;charset=UTF-8",
                     successCallback: function () {
                         alert('操作成功', function (index) {
                             vm.reload();
@@ -105,7 +105,7 @@ var vm = new Vue({
                 async: true,
                 successCallback: function (r) {
                     vm.article = r.article;
-                    $('#article_content').editable('setHTML', vm.article.content);
+                    $('#content').editable('setHTML', vm.article.content);
                 }
             });
 		},
