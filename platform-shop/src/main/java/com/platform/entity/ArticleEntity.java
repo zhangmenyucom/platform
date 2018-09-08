@@ -19,6 +19,8 @@ public class ArticleEntity implements Serializable {
     private Long id;
     /** 标题 **/
     private String title;
+    /** 头图 **/
+    private String bannerPic;
     /** 作者 **/
     private String author;
     /** 内容 **/

@@ -1,27 +1,41 @@
 $(function () {
     $("#jqGrid").Grid({
-        url: '../collect/list',
+        url: '../smslog/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '用户', name: 'userName', index: 'user_name', width: 80},
-            {label: '商品', name: 'valueName', index: 'value_name', width: 80},
+            {label: '发送人', name: 'nickName', index: 'nickName', width: 80},
+            {label: '手机', name: 'phone', index: 'phone', width: 80},
             {
-                label: '添加时间', name: 'addTime', index: 'add_time', width: 80, formatter: function (value) {
+                label: '发送时间', name: 'logDate', index: 'log_date', width: 80, formatter: function (value) {
                 return transDate(value);
             }
+            },
+            {label: '验证码', name: 'smsCode', index: 'sms_code', width: 80},
+            {
+                label: '发送状态', name: 'sendStatus', index: 'send_status', width: 80, formatter: function (value) {
+                if (value == 1) {
+                    return '成功';
+                } else if (value == 0) {
+                    return '失败';
+                }
+                return '-';
             }
-            // {label: '提醒', name: 'isAttention', index: 'is_attention', width: 80}
-            // {label: '类型', name: 'typeId', index: 'type_id', width: 80}
-        ]
+            },
+            {label: '内容', name: 'smsText', index: 'sms_text', width: 80}]
     });
 });
 
-var vm = new Vue({
+let vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
         title: null,
-        collect: {},
+        smsLog: {},
+        ruleValidate: {
+            name: [
+                {required: true, message: '名称不能为空', trigger: 'blur'}
+            ]
+        },
         q: {
             name: ''
         }
@@ -33,10 +47,10 @@ var vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.collect = {};
+            vm.smsLog = {};
         },
         update: function (event) {
-            var id = getSelectedRow("#jqGrid");
+            let id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -46,13 +60,12 @@ var vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            var url = vm.collect.id == null ? "../collect/save" : "../collect/update";
-
+            let url = vm.smsLog.id == null ? "../smslog/save" : "../smslog/update";
             Ajax.request({
-                type: "POST",
                 url: url,
+                params: JSON.stringify(vm.smsLog),
+                type: "POST",
                 contentType: "application/json",
-                params: JSON.stringify(vm.collect),
                 successCallback: function (r) {
                     alert('操作成功', function (index) {
                         vm.reload();
@@ -61,19 +74,18 @@ var vm = new Vue({
             });
         },
         del: function (event) {
-            var ids = getSelectedRows("#jqGrid");
+            let ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }
 
             confirm('确定要删除选中的记录？', function () {
-
                 Ajax.request({
-                    type: "POST",
-                    url: "../collect/delete",
-                    contentType: "application/json",
+                    url: "../smslog/delete",
                     params: JSON.stringify(ids),
-                    successCallback: function (r) {
+                    type: "POST",
+                    contentType: "application/json",
+                    successCallback: function () {
                         alert('操作成功', function (index) {
                             vm.reload();
                         });
@@ -83,20 +95,35 @@ var vm = new Vue({
         },
         getInfo: function (id) {
             Ajax.request({
-                url: "../collect/info/" + id,
+                url: "../smslog/info/" + id,
                 async: true,
                 successCallback: function (r) {
-                    vm.collect = r.collect;
+                    vm.smsLog = r.smsLog;
                 }
             });
         },
         reload: function (event) {
             vm.showList = true;
-            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page
             }).trigger("reloadGrid");
+            vm.handleReset('formValidate');
+        },
+        reloadSearch: function () {
+            vm.q = {
+                name: ''
+            }
+            vm.reload();
+        },
+        handleSubmit: function (name) {
+            handleSubmitValidate(this, name, function () {
+                vm.saveOrUpdate()
+            });
+        },
+        handleReset: function (name) {
+            handleResetForm(this, name);
         }
     }
 });

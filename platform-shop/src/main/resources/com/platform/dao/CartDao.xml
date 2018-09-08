@@ -27,7 +27,7 @@
 	</select>
 
     <select id="queryList" resultMap="cartMap">
-        select a.* ,b.username as user_name
+        select a.* ,b.nickname as user_name
         from cart a
         left join user b on a.user_id = b.id
         <choose>

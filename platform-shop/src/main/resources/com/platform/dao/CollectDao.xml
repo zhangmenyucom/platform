@@ -20,7 +20,7 @@
 	</select>
 
     <select id="queryList" resultType="com.platform.entity.CollectEntity">
-        select a.* , b.username as user_name,c.name as value_name
+        select a.* , b.nickname as user_name,c.name as value_name
         from collect a
         left join user b on a.user_id = b.id
         left join goods c on a.value_id = c.id

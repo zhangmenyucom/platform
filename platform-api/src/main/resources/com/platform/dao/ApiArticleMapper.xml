@@ -7,6 +7,7 @@
         <result property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="author" column="author"/>
+        <result property="bannerPic" column="banner_pic"/>
         <result property="content" column="content"/>
         <result property="sourceUrl" column="source_url"/>
         <result property="viewTimes" column="view_times"/>
@@ -21,6 +22,7 @@
 			`id`,
 			`title`,
 			`author`,
+			`banner_pic`,
 			`content`,
 			`source_url`,
 			`view_times`,
@@ -37,6 +39,7 @@
     		`id`,
     		`title`,
     		`author`,
+    		`banner_pic`,
     		`content`,
     		`source_url`,
     		`view_times`,
@@ -54,7 +57,7 @@
                 order by ${sidx} ${order}
             </when>
 			<otherwise>
-                order by id desc
+                order by sort_order ASC ,id desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
@@ -74,6 +77,7 @@
 		insert into article(
 			`title`,
 			`author`,
+			`banner_pic`,
 			`content`,
 			`source_url`,
 			`view_times`,
@@ -84,6 +88,7 @@
 		values(
 			#{title},
 			#{author},
+			#{banner_pic},
 			#{content},
 			#{sourceUrl},
 			#{viewTimes},
@@ -98,6 +103,7 @@
 		<set>
 			<if test="title != null">`title` = #{title}, </if>
 			<if test="author != null">`author` = #{author}, </if>
+			<if test="bannerPic != null">`banner_pic` = #{bannerPic}, </if>
 			<if test="content != null">`content` = #{content}, </if>
 			<if test="sourceUrl != null">`source_url` = #{sourceUrl}, </if>
 			<if test="viewTimes != null">`view_times` = #{viewTimes}, </if>

@@ -7,7 +7,7 @@
     <resultMap type="com.platform.entity.FootprintEntity" id="footprintMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
-        <result property="userName" column="user_name"/>
+        <result property="nickName" column="nickname"/>
         <result property="goodsId" column="goods_id"/>
         <result property="goodsName" column="goods_name"/>
         <result property="addTime" column="add_time"/>
@@ -18,7 +18,7 @@
 	</select>
 
     <select id="queryList" resultMap="footprintMap">
-        select a.* ,b.username as user_name,c.name as goods_name
+        select a.* ,b.nickname as nickname,c.name as goods_name
         from footprint a
         left join user b on a.user_id = b.id
         left join goods c on a.goods_id = c.id

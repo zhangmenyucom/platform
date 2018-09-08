@@ -40,6 +40,29 @@
             <Form-item label="作者" prop="author">
                 <i-input v-model="article.author" placeholder="作者"/>
             </Form-item>
+            <Row>
+                <i-col span="16">
+                    <Form-item label="头图" prop="bannerPic">
+                        <i-input v-model="article.bannerPic" placeholder="头图" readonly/>
+                    </Form-item>
+                </i-col>
+                <i-col span="3">
+                    <Form-item :label-width="1">
+                        <Upload style="width: 300px;" action="../sys/oss/upload" :format="['jpg','jpeg','png']"
+                                max-size="20480"
+                                :on-success="handleSuccessPicUrl" :on-format-error="handleFormatError"
+                                :show-upload-list="false"
+                                :on-exceeded-size="handleMaxSize">
+                            <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
+                        </Upload>
+                    </Form-item>
+                </i-col>
+                <i-col span="3">
+                    <Form-item :label-width="1">
+                        <i-button icon="eye" @click="eyeImagePicUrl">预览图片</i-button>
+                    </Form-item>
+                </i-col>
+            </Row>
             <Form-item label="内容" prop="content">
                 <div id="content" placeholder="文章内容"></div>
             </Form-item>

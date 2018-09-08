@@ -43,7 +43,7 @@
         LEFT JOIN coupon ON user_coupon.coupon_id = coupon.id
         WHERE 1=1
         <if test="userName != null and userName.trim() != ''">
-            AND user.username LIKE concat('%',#{userName},'%')
+            AND user.nickname LIKE concat('%',#{userName},'%')
         </if>
         <if test="couponName != null and couponName.trim() != ''">
             AND coupon.name LIKE concat('%',#{couponName},'%')

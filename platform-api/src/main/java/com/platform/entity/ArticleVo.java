@@ -23,6 +23,8 @@ public class ArticleVo implements Serializable {
     private String title;
     /** 作者 **/
     private String author;
+    /** 头图 **/
+    private String bannerPic;
     /** 内容 **/
     private String content;
     /** 出处 **/

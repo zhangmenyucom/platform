@@ -6,7 +6,11 @@ $(function () {
             {label: '活动标题', name: 'title', index: 'title', width: 80},
             {label: '作者', name: 'author', index: 'author', width: 80},
             {label: '活动内容', name: 'content', index: 'content', width: 80},
-            {label: '图标地址', name: 'banner', index: 'banner', width: 80},
+            {
+                label: '图标地址', name: 'banner', index: 'banner', width: 80, formatter: function (value) {
+                return transImg(value);
+            }
+            },
             {
                 label: '开始时间', name: 'startDate', index: 'startDate', width: 80, formatter: function (value) {
                 return transDate(value);
@@ -27,11 +31,11 @@ let vm = new Vue({
         showList: true,
         title: null,
         activity: {
-            title:"",
-            author:"",
-            content:"",
-            banner:"",
-            position:""
+            title: "",
+            author: "",
+            content: "",
+            banner: "",
+            position: ""
         },
         ruleValidate: {
             name: [
@@ -50,11 +54,11 @@ let vm = new Vue({
             vm.showList = false;
             vm.title = "新增";
             vm.activity = {
-                title:"",
-                author:"",
-                content:"",
-                banner:"",
-                position:""
+                title: "",
+                author: "",
+                content: "",
+                banner: "",
+                position: ""
             };
         },
         update: function (event) {
@@ -133,14 +137,9 @@ let vm = new Vue({
         handleReset: function (name) {
             handleResetForm(this, name);
         },
-        handleView:function(name) {
+        handleView: function (name) {
             this.imgName = name;
             this.visible = true;
-        },
-        handleSubmit: function (name) {
-            handleSubmitValidate(this, name, function () {
-                vm.saveOrUpdate()
-            });
         },
         handleFormatError: function (file) {
             this.$Notice.warning({
