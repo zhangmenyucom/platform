@@ -43,7 +43,7 @@ public class ApiUserController extends ApiBaseAction {
         String phone = jsonParams.getString("phone");
         // 一分钟之内不能重复发送短信
         SmsLogVo smsLogVo = userService.querySmsCodeByUserId(loginUser.getUserId());
-        if (null != smsLogVo && (System.currentTimeMillis() / 1000 - smsLogVo.getLog_date()) < 1 * 60) {
+        if (null != smsLogVo && (System.currentTimeMillis() / 1000 - smsLogVo.getLog_date().getTime()) < 60) {
             return toResponsFail("短信已发送");
         }
         //生成验证码
@@ -78,7 +78,7 @@ public class ApiUserController extends ApiBaseAction {
 
         if ("0".equals(arr[0])) {
             smsLogVo = new SmsLogVo();
-            smsLogVo.setLog_date(System.currentTimeMillis() / 1000);
+            smsLogVo.setLog_date(new Date());
             smsLogVo.setUser_id(loginUser.getUserId());
             smsLogVo.setPhone(phone);
             smsLogVo.setSms_code(sms_code);
