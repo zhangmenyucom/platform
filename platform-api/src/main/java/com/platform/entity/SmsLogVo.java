@@ -20,7 +20,7 @@ public class SmsLogVo implements Serializable {
     private Long id;
     private Long user_id;
     private String phone;
-    private Long log_date;
+    private Date log_date;
     /** 发送模板**/
     private String sms_code;
     /** 1成功 0失败**/
