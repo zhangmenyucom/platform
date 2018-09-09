@@ -16,8 +16,10 @@ import com.platform.util.ApiBaseAction;
 import com.platform.util.wechat.WechatUtil;
 import com.platform.util.wechat.WeichatRefundApiResult;
 import com.platform.utils.*;
+import com.sun.org.apache.xerces.internal.dom.PSVIAttrNSImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +43,7 @@ import static com.platform.enums.SpecialGoodsEnum.SPECIAL_GOODS_ENUM_MAP;
 @Api(tags = "商户支付")
 @RestController
 @RequestMapping("/api/pay")
+@Slf4j
 public class ApiPayController extends ApiBaseAction {
     private Logger logger = Logger.getLogger(getClass());
     @Autowired
@@ -299,6 +302,7 @@ public class ApiPayController extends ApiBaseAction {
                         userVo.setUserId(orderInfo.getUser_id());
                         if (orderInfo.getParent_id() != null) {
                             userVo.setParentId(Long.valueOf(orderInfo.getParent_id()));
+                            userSource.setParentId(Long.valueOf(orderInfo.getParent_id()));
                         }
                         userVo.setUser_level_id(SPECIAL_GOODS_ENUM_MAP.get(goodsId).getRoleId());
                         userService.update(userVo);
@@ -345,8 +349,9 @@ public class ApiPayController extends ApiBaseAction {
             if (commissionOrderService.queryList(map).isEmpty()) {
                 UserVo grandP = new UserVo();
                 grandP.setUserId(user.getUserId());
-                grandP.setTotalBalance(user.getTotalBalance().add(commission.getGainBalance()));
-                grandP.setAvilableBalance(user.getAvilableBalance().add(commission.getGainBalance()));
+                grandP.setTotalBalance(user.getTotalBalance().add(new BigDecimal("" + commission.getGainBalance())));
+                grandP.setAvilableBalance(user.getAvilableBalance().add(new BigDecimal("" + commission.getGainBalance())));
+                log.info(JsonUtil.getJsonByObj("grantP" + grandP));
                 userService.update(grandP);
                 commissionOrderService.save(commission);
             }

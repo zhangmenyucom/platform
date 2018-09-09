@@ -1,5 +1,6 @@
 package com.platform.entity;
 
+import com.platform.utils.JsonUtil;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -59,4 +60,17 @@ public class UserVo implements Serializable {
     private BigDecimal avilableBalance;
     /**冻结佣金**/
     private BigDecimal lockBalance;
+
+    public static void main(String[] args) {
+        CommissionOrderVo commission=new CommissionOrderVo();
+        commission.setGainBalance(BigDecimal.valueOf(5.4));
+        UserVo user=new UserVo();
+        user.setTotalBalance(BigDecimal.valueOf(1.2));
+        user.setAvilableBalance(BigDecimal.valueOf(1.3));
+        UserVo grandP = new UserVo();
+        grandP.setUserId(user.getUserId());
+        grandP.setTotalBalance(user.getTotalBalance().add(new BigDecimal(""+commission.getGainBalance())));
+        grandP.setAvilableBalance(user.getAvilableBalance().add(new BigDecimal(""+commission.getGainBalance())));
+        System.out.println(JsonUtil.getJsonByObj(grandP));
+    }
 }

@@ -32,8 +32,6 @@ import java.util.Date;
 public class ApiUserController extends ApiBaseAction {
     @Autowired
     private ApiUserService userService;
-    @Autowired
-    private SysConfigService sysConfigService;
 
     /**
      * 发送短信
@@ -45,7 +43,7 @@ public class ApiUserController extends ApiBaseAction {
         String phone = jsonParams.getString("phone");
         /** 一分钟之内不能重复发送短信**/
         SmsLogVo smsLogVo = userService.querySmsCodeByUserId(loginUser.getUserId());
-        if (null != smsLogVo && (System.currentTimeMillis() / 1000 - smsLogVo.getLog_date().getTime()) < 1 * 60) {
+        if (null != smsLogVo && (System.currentTimeMillis() - smsLogVo.getLog_date().getTime()) < 1 * 60000) {
             return toResponsFail("短信已发送");
         }
         /**生成验证码**/
@@ -124,7 +122,7 @@ public class ApiUserController extends ApiBaseAction {
      */
     @ApiOperation(value = "签到")
     @PostMapping("sign")
-    public Object sign(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
+    public Object sign(@LoginUser UserVo loginUser) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
         userVo.setPoint(userVo.getPoint() + 10);
         userService.update(userVo);

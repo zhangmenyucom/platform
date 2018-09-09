@@ -58,36 +58,36 @@ public class CommissionRule {
                         return commissionOrderVo;
                     case VIP:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5.4));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5.4d));
                             commissionOrderVo.setDetail("会员发展会员佣金奖励5.4元");
                             return commissionOrderVo;
                         }
                         if (grade == 2) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3.6));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3.6d));
                             commissionOrderVo.setDetail("会员下级发展会员奖励佣金3.6元");
                             return commissionOrderVo;
                         }
                         break;
                     case CHUANGKE:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5.4));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5.4d));
                             commissionOrderVo.setDetail("创客发展会员奖励佣金5.4元");
                             return commissionOrderVo;
                         }
                         if (grade == 2) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3.6));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3.6d));
                             commissionOrderVo.setDetail("创客下级发展会员佣金3.6元");
                             return commissionOrderVo;
                         }
                         break;
                     case HEHUOREN:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5.4));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5.4d));
                             commissionOrderVo.setDetail("合伙人发展会员奖励佣金5.4元");
                             return commissionOrderVo;
                         }
                         if (grade == 2) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3.6));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3.6d));
                             commissionOrderVo.setDetail("合伙人下级发展会员奖励佣金3.6元");
                             return commissionOrderVo;
                         }
@@ -102,36 +102,36 @@ public class CommissionRule {
                         return commissionOrderVo;
                     case VIP:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5400));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5400d));
                             commissionOrderVo.setDetail("会员发展创客奖励佣金5400元");
                             return commissionOrderVo;
                         }
                         if (grade == 2) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3600));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3600d));
                             commissionOrderVo.setDetail("会员下级发展创客奖励佣金3600元");
                             return commissionOrderVo;
                         }
                         break;
                     case CHUANGKE:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5400));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5400d));
                             commissionOrderVo.setDetail("创客发展创客奖励佣金5400元");
                             return commissionOrderVo;
                         }
                         if (grade == 2) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3600));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3600d));
                             commissionOrderVo.setDetail("创客下级发展创客奖励佣金3600元");
                             return commissionOrderVo;
                         }
                         break;
                     case HEHUOREN:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5400));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(5400d));
                             commissionOrderVo.setDetail("合伙人发展创客奖励佣金5400元");
                             return commissionOrderVo;
                         }
                         if (grade == 2) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3600));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(3600d));
                             commissionOrderVo.setDetail("合伙人下级发展创客奖励佣金3600元");
                             return commissionOrderVo;
                         }
@@ -146,7 +146,7 @@ public class CommissionRule {
                         return commissionOrderVo;
                     case VIP:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(20000));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(20000d));
                             commissionOrderVo.setDetail("会员发展合伙人奖励佣金20000元");
                             return commissionOrderVo;
                         }
@@ -158,7 +158,7 @@ public class CommissionRule {
                         break;
                     case CHUANGKE:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(20000));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(20000d));
                             commissionOrderVo.setDetail("创客发展合伙人奖励佣金20000元");
                             return commissionOrderVo;
                         }
@@ -170,7 +170,7 @@ public class CommissionRule {
                         break;
                     case HEHUOREN:
                         if (grade == 1) {
-                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(20000));
+                            commissionOrderVo.setGainBalance(BigDecimal.valueOf(20000d));
                             commissionOrderVo.setDetail("合伙人发展合伙人奖励佣金20000元");
                             return commissionOrderVo;
                         }
