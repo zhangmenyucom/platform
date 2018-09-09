@@ -67,7 +67,7 @@ public class ApiTransferController extends ApiBaseAction {
             parm.put("spbill_create_ip", PayUtil.getLocalIp(request));
             parm.put("sign", PayUtil.getSign(parm, API_SECRET));
             String restxml = HttpUtils.posts(TRANSFERS_PAY, XmlUtil.xmlFormat(parm, false));
-            restmap = XmlUtil.xmlParse(restxml);
+            restmap = XmlUtil.xmlParse2(restxml);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
