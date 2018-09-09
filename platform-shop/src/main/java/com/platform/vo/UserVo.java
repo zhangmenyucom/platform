@@ -58,6 +58,10 @@ public class UserVo implements Serializable {
      **/
     private String nickname;
     /**
+     * 微信名
+     **/
+    private String parentNickname;
+    /**
      * 手机号码
      **/
     private String mobile;

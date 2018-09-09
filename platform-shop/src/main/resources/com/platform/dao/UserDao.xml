@@ -80,6 +80,7 @@
         user.id,
         user.parent_id,
         u.avatar as parentAvatar,
+        u.nickname as parentNickname,
         user.username,
         user.password,
         user.gender,

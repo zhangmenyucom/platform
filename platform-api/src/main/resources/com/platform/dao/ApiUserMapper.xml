@@ -41,6 +41,7 @@
         <result property="mobile" column="mobile"/>
         <result property="register_ip" column="register_ip"/>
         <result property="avatar" column="avatar"/>
+        <result property="point" column="point"/>
         <result property="totalBalance" column="total_balance"/>
         <result property="avilableBalance" column="avilable_balance"/>
         <result property="lockBalance" column="lock_balance"/>

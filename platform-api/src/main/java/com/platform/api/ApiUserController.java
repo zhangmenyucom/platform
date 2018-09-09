@@ -5,10 +5,9 @@ import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
-import com.platform.entity.SmsConfig;
-import com.platform.entity.SmsLogVo;
-import com.platform.entity.UserDetailVo;
-import com.platform.entity.UserVo;
+import com.platform.dao.ApiSignRecordMapper;
+import com.platform.entity.*;
+import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
 import com.platform.service.SysConfigService;
 import com.platform.util.ApiBaseAction;
@@ -18,8 +17,11 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 作者: @author Harmon <br>
@@ -33,11 +35,14 @@ public class ApiUserController extends ApiBaseAction {
     @Autowired
     private ApiUserService userService;
 
+    @Autowired
+    private ApiSignRecordService apiSignRecordService;
+
     /**
      * 发送短信
      */
     @ApiOperation(value = "发送短信")
-    @PostMapping("smscode")
+    @PostMapping("/smscode")
     public Object smscode(@LoginUser UserVo loginUser) {
         JSONObject jsonParams = getJsonRequest();
         String phone = jsonParams.getString("phone");
@@ -53,7 +58,7 @@ public class ApiUserController extends ApiBaseAction {
         try {
             String[] params = {sms_code, "2"};
             SmsSingleSenderResult senderResult = MSUtil.sendMessage(phone, params);
-            if (senderResult.result == 0){
+            if (senderResult.result == 0) {
                 smsLogVo = new SmsLogVo();
                 smsLogVo.setLog_date(new Date());
                 smsLogVo.setUser_id(loginUser.getUserId());
@@ -62,7 +67,7 @@ public class ApiUserController extends ApiBaseAction {
                 smsLogVo.setSms_text(msgContent);
                 userService.saveSmsCodeLog(smsLogVo);
                 return toResponsSuccess("短信发送成功");
-            } else{
+            } else {
                 return toResponsFail("短信发送失败");
             }
 
@@ -78,7 +83,7 @@ public class ApiUserController extends ApiBaseAction {
      * @return
      */
     @ApiOperation(value = "获取当前会员等级")
-    @GetMapping("getUserLevel")
+    @GetMapping("/getUserLevel")
     public Object getUserLevel(@LoginUser UserVo loginUser) {
         String userLevel = userService.getUserLevel(loginUser);
         return toResponsSuccess(userLevel);
@@ -88,7 +93,7 @@ public class ApiUserController extends ApiBaseAction {
      * 绑定手机
      */
     @ApiOperation(value = "绑定手机")
-    @PostMapping("bindMobile")
+    @PostMapping("/bindMobile")
     public Object bindMobile(@LoginUser UserVo loginUser) {
         JSONObject jsonParams = getJsonRequest();
         SmsLogVo smsLogVo = userService.querySmsCodeByUserId(loginUser.getUserId());
@@ -109,7 +114,7 @@ public class ApiUserController extends ApiBaseAction {
      * 绑定手机(微信获取)
      */
     @ApiOperation(value = "通过微信绑定手机")
-    @GetMapping("bindMobileWx")
+    @GetMapping("/bindMobileWx")
     public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
         userVo.setMobile(mobile);
@@ -121,8 +126,17 @@ public class ApiUserController extends ApiBaseAction {
      * 签到
      */
     @ApiOperation(value = "签到")
-    @PostMapping("sign")
+    @PostMapping("/sign")
     public Object sign(@LoginUser UserVo loginUser) {
+        SignRecordVo signRecordVo = apiSignRecordService.queryLatestSign(loginUser.getUserId());
+        if(signRecordVo!=null){
+            SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+            String nowDay = sf.format(new Date());
+            String day = sf.format(signRecordVo.getSignDate());
+            if(day.equals(nowDay)){
+                return toResponsFail("您今天已经签过到了,请明天再来哦");
+            }
+        }
         UserVo userVo = userService.queryObject(loginUser.getUserId());
         userVo.setPoint(userVo.getPoint() + 10);
         userService.update(userVo);
@@ -133,7 +147,7 @@ public class ApiUserController extends ApiBaseAction {
      * 获取用户详细信息
      */
     @ApiOperation(value = "获取用户详细信息")
-    @GetMapping("detailInfo")
+    @GetMapping("/detailInfo")
     public Object getUserDetailInfo(UserVo loginUser) {
         UserDetailVo userDetailVo = userService.queryUserDetailInfo(loginUser.getUserId());
         return toResponsSuccess(userDetailVo);

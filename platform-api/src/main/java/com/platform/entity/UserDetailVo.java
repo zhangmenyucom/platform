@@ -49,6 +49,8 @@ public class UserDetailVo implements Serializable {
     private String avatar;
     /**微信Id**/
     private String weixin_openid;
+    /**积分**/
+    private Integer point;
     /**总佣金**/
     private BigDecimal totalBalance;
     /**可用佣金**/

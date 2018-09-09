@@ -40,7 +40,7 @@ $(function () {
             }
             },
             {
-                label: '上级id', name: 'parentId', index: 'parentId', width: 40
+                label: '上级', name: 'parentNickname', index: 'parentNickname', width: 40
             },
             {
                 label: '上级头像', name: 'parentAvatar', index: 'parentAvatar', width: 40, formatter: function (value) {
