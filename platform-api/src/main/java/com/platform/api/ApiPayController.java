@@ -289,14 +289,6 @@ public class ApiPayController extends ApiBaseAction {
 
                 /**推荐反佣金(3级)**/
                 UserVo userSource = userService.queryObject(orderInfo.getUser_id());
-                UserVo userParent = null;
-                UserVo userGrandFater = null;
-                if (userSource.getParentId() != null) {
-                    userParent = userService.queryObject(userSource.getParentId());
-                    if (userParent.getParentId() != null) {
-                        userGrandFater = userService.queryObject(userParent.getParentId());
-                    }
-                }
                 Map<String, Object> queryMap = new HashMap<>(1);
                 queryMap.put("order_id", orderInfo.getId());
                 List<Integer> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
@@ -310,6 +302,15 @@ public class ApiPayController extends ApiBaseAction {
                         }
                         userVo.setUser_level_id(SPECIAL_GOODS_ENUM_MAP.get(goodsId).getRoleId());
                         userService.update(userVo);
+
+                        UserVo userParent = null;
+                        UserVo userGrandFater = null;
+                        if (userSource.getParentId() != null) {
+                            userParent = userService.queryObject(userSource.getParentId());
+                            if (userParent.getParentId() != null) {
+                                userGrandFater = userService.queryObject(userParent.getParentId());
+                            }
+                        }
                         if (userParent != null) {
                             /**第一级提成**/
                             CommissionOrderVo commissionFirst = commissionRule.getCommition(userParent, orderInfo, 1);
