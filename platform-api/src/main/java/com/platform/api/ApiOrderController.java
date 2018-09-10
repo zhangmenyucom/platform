@@ -15,6 +15,7 @@ import com.platform.util.ApiBaseAction;
 import com.platform.util.ApiPageUtils;
 import com.platform.util.wechat.WechatUtil;
 import com.platform.util.wechat.WeichatRefundApiResult;
+import com.platform.utils.HttpApiClient;
 import com.platform.utils.Query;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -109,10 +110,8 @@ public class ApiOrderController extends ApiBaseAction {
         resultObj.put("orderInfo", orderInfo);
         resultObj.put("orderGoods", orderGoods);
         resultObj.put("handleOption", handleOption);
-        if (!StringUtils.isEmpty(orderInfo.getShipping_code()) && !StringUtils.isEmpty(orderInfo.getShipping_no())) {
-            // 快递
-            List Traces = apiKdniaoService.getOrderTracesByJson(orderInfo.getShipping_code(), orderInfo.getShipping_no());
-            resultObj.put("shippingList", Traces);
+        if (!StringUtils.isEmpty(orderInfo.getShipping_no())) {
+            resultObj.put("shippingList", HttpApiClient.getMailInfo(orderInfo.getShipping_no()).getData());
         }
         return toResponsSuccess(resultObj);
     }
