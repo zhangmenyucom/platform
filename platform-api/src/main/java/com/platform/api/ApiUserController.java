@@ -56,7 +56,7 @@ public class ApiUserController extends ApiBaseAction {
         String msgContent = "您的验证码是：" + sms_code + "，请在页面中提交验证码完成验证。";
         /**发送短信**/
         try {
-            String[] params = {sms_code, "2"};
+            String[] params = {sms_code, "1"};
             SmsSingleSenderResult senderResult = MSUtil.sendMessage(phone, params);
             if (senderResult.result == 0) {
                 smsLogVo = new SmsLogVo();
