@@ -34,29 +34,63 @@
     <Card v-show="!showList">
         <p slot="title">{{title}}</p>
 		<i-form ref="formValidate" :model="gift" :rules="ruleValidate" :label-width="80">
-            <Form-item label="礼品类型 1：线下商品 2：线上商品" prop="type">
-                <i-input v-model="gift.type" placeholder="礼品类型 1：线下商品 2：线上商品"/>
+            <Form-item label="礼品类型" prop="type">
+                <Radio-group v-model="gift.type">
+                    <Radio label="1">
+                        <span>线下商品</span>
+                    </Radio>
+                    <Radio label="2">
+                        <span>线上商品</span>
+                    </Radio>
+                </Radio-group>
             </Form-item>
-            <Form-item label="礼品名称" prop="picUrl">
-                <i-input v-model="gift.picUrl" placeholder="礼品名称"/>
+            <Row>
+                <i-col span="16">
+                    <Form-item label="图片地址" prop="picUrl">
+                        <i-input v-model="gift.picUrl" placeholder="图片地址" readonly/>
+                    </Form-item>
+                </i-col>
+                <i-col span="3">
+                    <Form-item :label-width="1">
+                        <Upload style="width: 300px;" action="../sys/oss/upload" :format="['jpg','jpeg','png']"
+                                max-size="20480"
+                                :on-success="handleSuccessPicUrl" :on-format-error="handleFormatError"
+                                :show-upload-list="false"
+                                :on-exceeded-size="handleMaxSize">
+                            <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
+                        </Upload>
+                    </Form-item>
+                </i-col>
+                <i-col span="3">
+                    <Form-item :label-width="1">
+                        <i-button icon="eye" @click="eyeImagePicUrl">预览图片</i-button>
+                    </Form-item>
+                </i-col>
+            </Row>
+            <Form-item label="礼品名称" prop="name">
+                <i-input v-model="gift.name" placeholder="礼品名称"/>
             </Form-item>
-            <Form-item label="兑换所需要积分" prop="pointValue">
+            <Form-item label="需要积分" prop="pointValue">
                 <i-input v-model="gift.pointValue" placeholder="兑换所需要积分"/>
             </Form-item>
-            <Form-item label="0:下架 1：上架" prop="status">
-                <i-input v-model="gift.status" placeholder="0:下架 1：上架"/>
+            <Form-item label="上下架" prop="status">
+                <Radio-group v-model="gift.status">
+                    <Radio label="0">
+                        <span>下架</span>
+                    </Radio>
+                    <Radio label="1">
+                        <span>上架</span>
+                    </Radio>
+                </Radio-group>
+            </Form-item>
+            <Form-item label="说明" prop="giftDesc">
+                <i-input v-model="gift.giftDesc" placeholder="说明"/>
             </Form-item>
             <Form-item label="排序" prop="sortOrder">
                 <i-input v-model="gift.sortOrder" placeholder="排序"/>
             </Form-item>
             <Form-item label="线上商品id" prop="goodsId">
                 <i-input v-model="gift.goodsId" placeholder="线上商品id"/>
-            </Form-item>
-            <Form-item label="创建时间" prop="createTime">
-                <i-input v-model="gift.createTime" placeholder="创建时间"/>
-            </Form-item>
-            <Form-item label="更新时间" prop="updateTime">
-                <i-input v-model="gift.updateTime" placeholder="更新时间"/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>

@@ -1,27 +1,19 @@
 $(function () {
     $("#jqGrid").Grid({
-        url: '../smslog/list',
+        url: '../giftexchangerecord/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '发送人', name: 'nickName', index: 'nickName', width: 80},
-            {label: '手机', name: 'phone', index: 'phone', width: 80},
+            {label: '用户id', name: 'userId', index: 'user_id', width: 80, hidden: true},
+            {label: '用户', name: 'nickName', index: 'nickName', width: 80},
+            {label: '礼品名称', name: 'giftName', index: 'giftName', width: 80},
+            {label: '使用积分', name: 'usePoint', index: 'use_point', width: 80},
+            {label: '订单号', name: 'orderSn', index: 'orderSn', width: 80},
             {
-                label: '发送时间', name: 'logDate', index: 'log_date', width: 80, formatter: function (value) {
+                label: '兑换时间', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
                 return transDate(value);
             }
             },
-            {label: '验证码', name: 'smsCode', index: 'sms_code', width: 80},
-            {
-                label: '发送状态', name: 'sendStatus', index: 'send_status', width: 80, formatter: function (value) {
-                if (value == 1) {
-                    return '成功';
-                } else if (value == 0) {
-                    return '失败';
-                }
-                return '-';
-            }
-            },
-            {label: '内容', name: 'smsText', index: 'sms_text', width: 80}]
+            {label: '更新时间', name: 'updateTime', index: 'update_time', width: 80, hidden: true}]
     });
 });
 
@@ -30,7 +22,7 @@ let vm = new Vue({
     data: {
         showList: true,
         title: null,
-        smsLog: {},
+        giftExchangeRecord: {},
         ruleValidate: {
             name: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
@@ -47,7 +39,7 @@ let vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.smsLog = {};
+            vm.giftExchangeRecord = {};
         },
         update: function (event) {
             let id = getSelectedRow("#jqGrid");
@@ -60,10 +52,10 @@ let vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            let url = vm.smsLog.id == null ? "../smslog/save" : "../smslog/update";
+            let url = vm.giftExchangeRecord.id == null ? "../giftexchangerecord/save" : "../giftexchangerecord/update";
             Ajax.request({
                 url: url,
-                params: JSON.stringify(vm.smsLog),
+                params: JSON.stringify(vm.giftExchangeRecord),
                 type: "POST",
                 contentType: "application/json",
                 successCallback: function (r) {
@@ -81,7 +73,7 @@ let vm = new Vue({
 
             confirm('确定要删除选中的记录？', function () {
                 Ajax.request({
-                    url: "../smslog/delete",
+                    url: "../giftexchangerecord/delete",
                     params: JSON.stringify(ids),
                     type: "POST",
                     contentType: "application/json",
@@ -95,10 +87,10 @@ let vm = new Vue({
         },
         getInfo: function (id) {
             Ajax.request({
-                url: "../smslog/info/" + id,
+                url: "../giftexchangerecord/info/" + id,
                 async: true,
                 successCallback: function (r) {
-                    vm.smsLog = r.smsLog;
+                    vm.giftExchangeRecord = r.giftExchangeRecord;
                 }
             });
         },

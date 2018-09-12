@@ -64,11 +64,7 @@ Page({
   getIndexData: function () {
     let that = this;
     var data = new Object();
-    util.request(api.
-    
-    
-    
-    s).then(function (res) {
+    util.request(api.s).then(function (res) {
       if (res.errno === 0) {
         data.newGoods= res.data.newGoodsList
       that.setData(data);

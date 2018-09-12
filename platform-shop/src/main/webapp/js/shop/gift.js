@@ -3,13 +3,45 @@ $(function () {
         url: '../gift/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '礼品类型 1：线下商品 2：线上商品', name: 'type', index: 'type', width: 80},
-            {label: '礼品图片', name: 'picUrl', index: 'pic_url', width: 80},
-            {label: '兑换所需要积分', name: 'pointValue', index: 'point_value', width: 80},
-            {label: '0:下架 1：上架', name: 'status', index: 'status', width: 80},
-            {label: '排序', name: 'sortOrder', index: 'sort_order', width: 80},
-            {label: '线上商品id', name: 'goodsId', index: 'goods_id', width: 80},
-            {label: '创建时间', name: 'createTime', index: 'create_time', width: 80},
+            {label: '礼品名称', name: 'name', index: 'name', width: 80},
+            {
+                label: '礼品类型', name: 'type', index: 'type', width: 80, formatter: function (value) {
+                if (value == 1) {
+                    return '线下礼品';
+                } else if (value == 2) {
+                    return '线上礼品';
+                } else {
+                    return '-';
+                }
+                return value;
+            }
+            },
+            {
+                label: '礼品图片', name: 'picUrl', index: 'pic_url', width: 80, formatter: function (value) {
+                return transImg(value);
+            }
+            },
+            {label: '所需积分', name: 'pointValue', index: 'point_value', width: 40},
+            {
+                label: '上下架', name: 'status', index: 'status', width: 40, formatter: function (value) {
+                if (value == 0) {
+                    return '下架';
+                } else if (value == 1) {
+                    return '上架';
+                } else {
+                    return '-';
+                }
+                return value;
+            }
+            },
+            {label: '说明', name: 'giftDesc', index: 'gift_desc', width: 120},
+            {label: '排序', name: 'sortOrder', index: 'sort_order', width: 40},
+            {label: '线上礼品id', name: 'goodsId', index: 'goods_id', width: 80},
+            {
+                label: '创建时间', name: 'createTime', index: 'create_time', width: 100, formatter: function (value) {
+                return transDate(value);
+            }
+            },
             {label: '更新时间', name: 'updateTime', index: 'update_time', width: 80, hidden: true}]
     });
 });
@@ -19,7 +51,9 @@ let vm = new Vue({
     data: {
         showList: true,
         title: null,
-        gift: {},
+        gift: {
+            picUrl:""
+        },
         ruleValidate: {
             name: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
@@ -36,7 +70,9 @@ let vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.gift = {};
+            vm.gift = {
+                picUrl:""
+            };
         },
         update: function (event) {
             let id = getSelectedRow("#jqGrid");
@@ -111,8 +147,30 @@ let vm = new Vue({
                 vm.saveOrUpdate()
             });
         },
+        handleFormatError: function (file) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: '文件 ' + file.name + ' 格式不正确，请上传 jpg 或 png 格式的图片。'
+            });
+        },
+        handleMaxSize: function (file) {
+            this.$Notice.warning({
+                title: '超出文件大小限制',
+                desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            });
+        },
         handleReset: function (name) {
             handleResetForm(this, name);
+        },
+        handleSuccessPicUrl: function (res, file) {
+            vm.gift.picUrl = file.response.url;
+        },
+        eyeImagePicUrl: function () {
+            var url = vm.gift.picUrl;
+            eyeImage(url);
+        },
+        eyeImage: function (e) {
+            eyeImage($(e.target).attr('src'));
         }
     }
 });

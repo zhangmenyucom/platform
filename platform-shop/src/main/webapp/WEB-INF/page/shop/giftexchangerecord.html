@@ -16,15 +16,15 @@
                 <i-button @click="reloadSearch">重置</i-button>
             </div>
             <div class="buttons-group">
-                #if($shiro.hasPermission("gitexchangerecord:save"))
+              <!--  #if($shiro.hasPermission("giftexchangerecord:save"))
                 <i-button type="info" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</i-button>
                 #end
-                #if($shiro.hasPermission("gitexchangerecord:update"))
+                #if($shiro.hasPermission("giftexchangerecord:update"))
                 <i-button type="warning" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</i-button>
                 #end
-                #if($shiro.hasPermission("gitexchangerecord:delete"))
+                #if($shiro.hasPermission("giftexchangerecord:delete"))
                 <i-button type="error" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</i-button>
-                #end
+                #end-->
             </div>
         </Row>
 	    <table id="jqGrid"></table>
@@ -33,24 +33,24 @@
 
     <Card v-show="!showList">
         <p slot="title">{{title}}</p>
-		<i-form ref="formValidate" :model="gitExchangeRecord" :rules="ruleValidate" :label-width="80">
+		<i-form ref="formValidate" :model="giftExchangeRecord" :rules="ruleValidate" :label-width="80">
             <Form-item label="用户id" prop="userId">
-                <i-input v-model="gitExchangeRecord.userId" placeholder="用户id"/>
+                <i-input v-model="giftExchangeRecord.userId" placeholder="用户id"/>
             </Form-item>
             <Form-item label="礼品id" prop="giftId">
-                <i-input v-model="gitExchangeRecord.giftId" placeholder="礼品id"/>
+                <i-input v-model="giftExchangeRecord.giftId" placeholder="礼品id"/>
             </Form-item>
             <Form-item label="使用积分" prop="usePoint">
-                <i-input v-model="gitExchangeRecord.usePoint" placeholder="使用积分"/>
+                <i-input v-model="giftExchangeRecord.usePoint" placeholder="使用积分"/>
             </Form-item>
             <Form-item label="订单id" prop="orderId">
-                <i-input v-model="gitExchangeRecord.orderId" placeholder="订单id"/>
+                <i-input v-model="giftExchangeRecord.orderId" placeholder="订单id"/>
             </Form-item>
             <Form-item label="" prop="createTime">
-                <i-input v-model="gitExchangeRecord.createTime" placeholder=""/>
+                <i-input v-model="giftExchangeRecord.createTime" placeholder=""/>
             </Form-item>
             <Form-item label="" prop="updateTime">
-                <i-input v-model="gitExchangeRecord.updateTime" placeholder=""/>
+                <i-input v-model="giftExchangeRecord.updateTime" placeholder=""/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>
@@ -61,6 +61,6 @@
 	</Card>
 </div>
 
-<script src="${rc.contextPath}/js/shop/gitexchangerecord.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/js/shop/giftexchangerecord.js?_${date.systemTime}"></script>
 </body>
 </html>

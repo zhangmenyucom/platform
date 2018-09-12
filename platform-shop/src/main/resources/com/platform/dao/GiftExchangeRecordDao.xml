@@ -28,14 +28,19 @@
 
 	<select id="queryList" resultType="com.platform.entity.GiftExchangeRecordEntity">
 		select
-    		`id`,
-    		`user_id`,
-    		`gift_id`,
-    		`use_point`,
-    		`order_sn`,
-    		`create_time`,
-    		`update_time`
-		from gift_exchange_record
+    		r.`id`,
+    		r.`user_id`,
+    		r.`user_id`,
+		    u.nickname as nickName,
+		    g.name as giftName,
+    		r.`gift_id`,
+    		r.`use_point`,
+    		r.`order_sn`,
+    		r.`create_time`,
+    		r.`update_time`
+		from gift_exchange_record r
+		left join gift g on r.gift_id=g.id
+		left join user u on u.id=r.user_id
 		WHERE 1=1
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')

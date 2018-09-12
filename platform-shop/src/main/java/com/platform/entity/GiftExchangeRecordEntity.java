@@ -19,6 +19,10 @@ public class GiftExchangeRecordEntity implements Serializable {
     private Long id;
     /** 用户id **/
     private Long userId;
+    /**昵称**/
+    private String nickName;
+    /**礼品名称**/
+    private String giftName;
     /** 礼品id **/
     private Long giftId;
     /** 使用积分 **/
