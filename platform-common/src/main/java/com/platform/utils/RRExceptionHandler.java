@@ -41,7 +41,7 @@ public class RRExceptionHandler {
     @ExceptionHandler(AuthorizationException.class)
     public R handleAuthorizationException(AuthorizationException e) {
         logger.error(e.getMessage(), e);
-        return R.error("没有权限，请联系管理员授权");
+        return R.error("没有权限，请联系管理员授权或试试重新登录");
     }
 
     @ExceptionHandler(Exception.class)
