@@ -19,6 +19,15 @@ var vm = new Vue({
         ruleValidate: {
             name: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
+            ],
+            desc: [
+                {required: true, message: '描述不能为空', trigger: 'blur'}
+            ],
+            width: [
+                {required: true, message: '宽度不能为空', trigger: 'blur'}
+            ],
+            height: [
+                {required: true, message: '高度不能为空', trigger: 'blur'}
             ]
         },
         q: {
