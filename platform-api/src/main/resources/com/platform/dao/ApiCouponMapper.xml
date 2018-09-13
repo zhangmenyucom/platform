@@ -140,7 +140,7 @@
             and b.source_key = #{source_key}
         </if>
         <if test="unUsed != null and unUsed == true">
-            and b.used_time is null and (b.order_id  is null or b.order_id =0)
+            and b.used_time is null and (b.order_sn  is null or b.order_sn =0)
         </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -185,7 +185,7 @@
         and a.use_end_date >= now()
         and now() >= a.use_start_date
         and a.send_type in (1,4)
-        and b.user_id = #{user_id} and b.order_id is null
+        and b.user_id = #{user_id} and b.order_sn is null
     </select>
 
     <select id="getUserCoupon" resultMap="couponMap">
