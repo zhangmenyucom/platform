@@ -1,6 +1,5 @@
 package com.platform.api;
 
-import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.entity.GiftExchangeRecordEntityVo;
 import com.platform.entity.UserVo;
@@ -8,7 +7,6 @@ import com.platform.service.ApiGiftExchangeRecordService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
