@@ -1,6 +1,9 @@
 package com.platform.api;
 
+import com.platform.annotation.IgnoreAuth;
+import com.platform.annotation.LoginUser;
 import com.platform.entity.GiftExchangeRecordEntityVo;
+import com.platform.entity.UserVo;
 import com.platform.service.ApiGiftExchangeRecordService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
@@ -20,7 +23,7 @@ import java.util.Map;
  * @date 2018-09-13 15:20:44
  */
 @RestController
-@RequestMapping("giftexchangerecord")
+@RequestMapping("/api/giftexchangerecord")
 public class ApiGiftExchangeRecordController {
     @Autowired
     private ApiGiftExchangeRecordService giftExchangeRecordService;
@@ -29,9 +32,9 @@ public class ApiGiftExchangeRecordController {
      * 查看列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("giftexchangerecord:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@LoginUser UserVo loginUser, @RequestParam Map<String, Object> params) {
         //查询列表数据
+        params.put("userId", loginUser.getUserId());
         Query query = new Query(params);
         List<GiftExchangeRecordEntityVo> giftExchangeRecordList = giftExchangeRecordService.queryList(query);
         int total = giftExchangeRecordService.queryTotal(query);
@@ -43,7 +46,6 @@ public class ApiGiftExchangeRecordController {
      * 查看信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("giftexchangerecord:info")
     public R info(@PathVariable("id") Long id) {
         GiftExchangeRecordEntityVo giftExchangeRecord = giftExchangeRecordService.queryObject(id);
         return R.ok().put("giftExchangeRecord", giftExchangeRecord);
@@ -54,7 +56,6 @@ public class ApiGiftExchangeRecordController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("giftexchangerecord:update")
     public R update(@RequestBody GiftExchangeRecordEntityVo giftExchangeRecord) {
         giftExchangeRecordService.update(giftExchangeRecord);
         return R.ok();

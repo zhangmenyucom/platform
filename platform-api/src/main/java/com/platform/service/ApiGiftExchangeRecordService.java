@@ -2,6 +2,7 @@ package com.platform.service;
 
 import com.platform.dao.ApiGiftExchangeRecordMapper;
 import com.platform.entity.GiftExchangeRecordEntityVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Service
 public class ApiGiftExchangeRecordService {
 
+    @Autowired
     private ApiGiftExchangeRecordMapper giftExchangeRecordMapper;
 
     public GiftExchangeRecordEntityVo queryObject(Long id) {

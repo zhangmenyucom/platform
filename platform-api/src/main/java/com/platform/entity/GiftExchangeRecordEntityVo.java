@@ -1,5 +1,7 @@
 package com.platform.entity;
+
 import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,18 +17,40 @@ import java.util.Date;
 public class GiftExchangeRecordEntityVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** 主键 **/
+    /**
+     * 主键
+     **/
     private Long id;
-    /** 用户id **/
+    /**
+     * 用户id
+     **/
     private Long userId;
-    /** 礼品id **/
+    /**
+     * 礼品id
+     **/
     private Long giftId;
-    /** 使用积分 **/
+    /**
+     * 用户昵称
+     **/
+    private String nickName;
+    /**
+     * 礼品名称
+     **/
+    private String giftName;
+    /**
+     * 使用积分
+     **/
     private Long usePoint;
-    /** 订单号 **/
+    /**
+     * 订单号
+     **/
     private String orderSn;
-    /** 创建时间 **/
+    /**
+     * 创建时间
+     **/
     private Date createTime;
-    /** 更新时间 **/
+    /**
+     * 更新时间
+     **/
     private Date updateTime;
 }

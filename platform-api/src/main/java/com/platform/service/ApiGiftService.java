@@ -3,6 +3,7 @@ package com.platform.service;
 import com.platform.dao.ApiGiftMapper;
 import com.platform.entity.GiftEntityVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2018-09-13 15:20:44
  */
+@Service
 public class ApiGiftService {
     @Autowired
     private ApiGiftMapper giftDaoMapper;
