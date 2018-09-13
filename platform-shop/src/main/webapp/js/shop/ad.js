@@ -34,15 +34,16 @@ var vm = new Vue({
         showList: true,
         title: null,
         ad: {enabled: 1, imageUrl: '', mediaType: 0},
+        formValidate: {
+            name: '',
+            imageUrl: ''
+        },
         ruleValidate: {
             name: [
                 {required: true, message: '广告名称不能为空', trigger: 'blur'}
             ],
             imageUrl: [
                 {required: true, message: '图片不能为空', trigger: 'blur'}
-            ],
-            endTime: [
-                {required: true, message: '结束时间不能为空', trigger: 'blur'}
             ]
         },
         q: {
