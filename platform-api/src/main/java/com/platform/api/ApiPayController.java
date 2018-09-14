@@ -351,7 +351,7 @@ public class ApiPayController extends ApiBaseAction {
                 grandP.setUserId(user.getUserId());
                 grandP.setTotalBalance(user.getTotalBalance().add(new BigDecimal("" + commission.getGainBalance())));
                 grandP.setAvilableBalance(user.getAvilableBalance().add(new BigDecimal("" + commission.getGainBalance())));
-                log.info(JsonUtil.getJsonByObj("grantP" + grandP));
+                log.info("grantP" + JsonUtil.getJsonByObj(grandP));
                 userService.update(grandP);
                 commissionOrderService.save(commission);
             }

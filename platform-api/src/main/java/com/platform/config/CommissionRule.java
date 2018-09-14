@@ -187,4 +187,9 @@ public class CommissionRule {
         }
         return commissionOrderVo;
     }
+
+    public static void main(String[] args) {
+        CommissionOrderVo commissionOrderVo=new CommissionOrderVo().setOrderSn("!23").setGainBalance(BigDecimal.valueOf(12.3));
+        System.out.println(JsonUtil.getJsonByObj(commissionOrderVo));
+    }
 }
