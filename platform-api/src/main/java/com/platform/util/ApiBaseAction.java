@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.platform.entity.TokenEntity;
 import com.platform.interceptor.AuthorizationInterceptor;
 import com.platform.service.TokenService;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Logger;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,6 +156,7 @@ public class ApiBaseAction {
      */
     public Long getUserId() {
         String token = request.getHeader(AuthorizationInterceptor.LOGIN_TOKEN_KEY);
+        System.out.println("token" + token);
         //查询token信息
         TokenEntity tokenEntity = tokenService.queryByToken(token);
         if (tokenEntity == null) {
