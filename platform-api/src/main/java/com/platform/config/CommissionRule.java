@@ -190,6 +190,7 @@ public class CommissionRule {
 
     public static void main(String[] args) {
         CommissionOrderVo commissionOrderVo=new CommissionOrderVo().setOrderSn("!23").setGainBalance(BigDecimal.valueOf(12.3));
+        commissionOrderVo.setGainBalance(commissionOrderVo.getGainBalance().add(new BigDecimal(""+12.4)));
         System.out.println(JsonUtil.getJsonByObj(commissionOrderVo));
     }
 }
