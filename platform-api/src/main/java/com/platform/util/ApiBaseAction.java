@@ -160,7 +160,7 @@ public class ApiBaseAction {
         String token = request.getHeader(AuthorizationInterceptor.LOGIN_TOKEN_KEY);
         //查询token信息
         TokenEntity tokenEntity = tokenService.queryByToken(token);
-        if (tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()) {
+        if (tokenEntity == null) {
             return null;
         }
         return tokenEntity.getUserId();
