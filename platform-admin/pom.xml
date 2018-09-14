@@ -12,7 +12,9 @@
     <packaging>war</packaging>
     <name>platform-admin</name>
     <description>管理后台</description>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.platform</groupId>
@@ -24,11 +26,11 @@
             <artifactId>platform-gen</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-<!--        <dependency>
-            <groupId>com.platform</groupId>
-            <artifactId>platform-schedule</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>com.platform</groupId>
+                    <artifactId>platform-schedule</artifactId>
+                    <version>1.0.0-SNAPSHOT</version>
+                </dependency>-->
         <dependency>
             <groupId>com.platform</groupId>
             <artifactId>platform-api</artifactId>
@@ -90,6 +92,7 @@
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
+                    <resourceEncoding>UTF-8</resourceEncoding>
                     <warSourceDirectory>src/main/webapp</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <webResources>
