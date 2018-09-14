@@ -39,8 +39,6 @@ public class ApiOrderController extends ApiBaseAction {
     private ApiOrderService orderService;
     @Autowired
     private ApiOrderGoodsService orderGoodsService;
-    @Autowired
-    private ApiKdniaoService apiKdniaoService;
 
     /**
      */
@@ -48,7 +46,6 @@ public class ApiOrderController extends ApiBaseAction {
     @IgnoreAuth
     @GetMapping("index")
     public Object index() {
-        //
         return toResponsSuccess("");
     }
 
@@ -69,7 +66,6 @@ public class ApiOrderController extends ApiBaseAction {
         List<OrderVo> orderEntityList = orderService.queryList(query);
         int total = orderService.queryTotal(query);
         ApiPageUtils pageUtil = new ApiPageUtils(orderEntityList, total, query.getLimit(), query.getPage());
-        //
         for (OrderVo item : orderEntityList) {
             Map orderGoodsParam = new HashMap(1);
             orderGoodsParam.put("order_id", item.getId());

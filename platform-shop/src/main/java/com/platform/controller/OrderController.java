@@ -60,7 +60,6 @@ public class OrderController {
     @RequiresPermissions("order:save")
     public R save(@RequestBody OrderEntity order) {
         orderService.save(order);
-
         return R.ok();
     }
 
