@@ -25,6 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/activity")
 public class ApiActivityController {
+
     @Autowired
     private ApiActivityService apiActivityService;
 
