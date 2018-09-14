@@ -84,7 +84,7 @@ public class CategoryController {
     @RequestMapping("/delete")
     @RequiresPermissions("category:delete")
     public R delete(@RequestBody Integer[] ids) {
-        if (Arrays.stream(ids).anyMatch(e -> e == -1)) {
+        if (Arrays.stream(ids).anyMatch(e -> e == 0)) {
             return R.error("不能删除根类目");
         }
         categoryService.deleteBatch(ids);
@@ -113,7 +113,7 @@ public class CategoryController {
      */
     @RequestMapping("/getAreaTree")
     public R getAreaTree() {
-        List<CategoryEntity> list = categoryService.queryList(new HashMap<String, Object>());
+        List<CategoryEntity> list = categoryService.queryList(new HashMap<>(0));
         for (CategoryEntity sysRegionEntity : list) {
             sysRegionEntity.setValue(sysRegionEntity.getId() + "");
             sysRegionEntity.setLabel(sysRegionEntity.getName());
