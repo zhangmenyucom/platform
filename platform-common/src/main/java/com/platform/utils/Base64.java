@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
  * 描述: Base64 <br>
  */
 public class Base64 {
-    // 加密
+    /** 加密**/
     public static String encode(String str) {
         byte[] b = null;
         String s = null;
@@ -26,9 +26,9 @@ public class Base64 {
         return s;
     }
 
-    // 解密
+    /** 解密**/
     public static String decode(String s) {
-        byte[] b = null;
+        byte[] b;
         String result = null;
         if (s != null) {
             BASE64Decoder decoder = new BASE64Decoder();
