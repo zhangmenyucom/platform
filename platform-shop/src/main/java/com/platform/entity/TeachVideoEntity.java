@@ -1,5 +1,7 @@
 package com.platform.entity;
+
 import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,18 +17,36 @@ import java.util.Date;
 public class TeachVideoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** 主键 **/
+    /**
+     * 主键
+     **/
     private Long id;
-    /** 名称 **/
+    /**
+     * 名称
+     **/
     private String title;
-    /** 简介 **/
+    /**
+     * 简介
+     **/
     private String brief;
-    /** 视频地址 **/
+    /**
+     * 首图
+     **/
+    private String wrapper;
+    /**
+     * 视频地址
+     **/
     private String videoUrl;
-    /** 0:未上架 1：上架 **/
+    /**
+     * 0:未上架 1：上架
+     **/
     private Integer status;
-    /** 创建时间 **/
+    /**
+     * 创建时间
+     **/
     private Date createTime;
-    /** 更新时间 **/
+    /**
+     * 更新时间
+     **/
     private Date updateTime;
 }

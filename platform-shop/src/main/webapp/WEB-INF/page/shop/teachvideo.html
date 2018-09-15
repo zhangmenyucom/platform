@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="rrapp" v-cloak>
-	<div v-show="showList">
+    <div v-show="showList">
         <Row :gutter="16">
             <div class="search-group">
                 <i-col span="4">
@@ -27,8 +27,8 @@
                 #end
             </div>
         </Row>
-	    <table id="jqGrid"></table>
-	    <div id="jqGridPager"></div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
     </div>
 
     <Card v-show="!showList">
@@ -42,6 +42,29 @@
                     <Form-item label="简介" prop="brief">
                         <i-input v-model="teachVideo.brief" placeholder="简介"/>
                     </Form-item>
+                    <Row>
+                        <i-col span="16">
+                            <Form-item label="封面" prop="wrapper">
+                                <i-input v-model="teachVideo.wrapper" placeholder="头图" readonly/>
+                            </Form-item>
+                        </i-col>
+                        <i-col span="3">
+                            <Form-item :label-width="1">
+                                <Upload style="width: 300px;" action="../sys/oss/upload" :format="['jpg','jpeg','png']"
+                                        max-size="20480"
+                                        :on-success="handleSuccessPicUrl" :on-format-error="handleFormatError"
+                                        :show-upload-list="false"
+                                        :on-exceeded-size="handleMaxSize">
+                                    <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
+                                </Upload>
+                            </Form-item>
+                        </i-col>
+                        <i-col span="3">
+                            <Form-item :label-width="1">
+                                <i-button icon="eye" @click="eyeImagePicUrl">预览图片</i-button>
+                            </Form-item>
+                        </i-col>
+                    </Row>
                     <Row>
                         <i-col span="16">
                             <Form-item label="视频地址" prop="videoUrl">
@@ -77,13 +100,14 @@
                     </Form-item>
                     <Form-item>
                         <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>
-                        <i-button type="warning" @click="reload" style="margin-left: 8px"/>返回</i-button>
+                        <i-button type="warning" @click="reload" style="margin-left: 8px"/>
+                        返回</i-button>
                         <i-button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">重置</i-button>
                     </Form-item>
                 </i-form>
             </Tab-Pane>
         </Tabs>
-	</Card>
+    </Card>
 </div>
 
 <script src="${rc.contextPath}/js/shop/teachvideo.js?_${date.systemTime}"></script>

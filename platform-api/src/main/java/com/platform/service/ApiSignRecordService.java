@@ -2,6 +2,7 @@ package com.platform.service;
 
 import com.platform.dao.ApiSignRecordMapper;
 import com.platform.entity.SignRecordVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Map;
  */
 @Service
 public class ApiSignRecordService {
+    @Autowired
     private ApiSignRecordMapper signRecordDao;
 
     public SignRecordVo queryObject(Long id) {

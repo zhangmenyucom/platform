@@ -7,6 +7,7 @@
         <result property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="brief" column="brief"/>
+        <result property="wrapper" column="wrapper"/>
         <result property="videoUrl" column="video_url"/>
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
@@ -18,6 +19,7 @@
 			`id`,
 			`title`,
 			`brief`,
+			`wrapper`,
 			`video_url`,
 			`status`,
 			`create_time`,
@@ -31,6 +33,7 @@
     		`id`,
     		`title`,
     		`brief`,
+    		`wrapper`,
     		`video_url`,
     		`status`,
     		`create_time`,
@@ -65,6 +68,7 @@
 		insert into teach_video(
 			`title`,
 			`brief`,
+			`wrapper`,
 			`video_url`,
 			`status`,
 			`create_time`,
@@ -72,6 +76,7 @@
 		values(
 			#{title},
 			#{brief},
+			#{wrapper},
 			#{videoUrl},
 			#{status},
 			#{createTime},
@@ -83,6 +88,7 @@
 		<set>
 			<if test="title != null">`title` = #{title}, </if>
 			<if test="brief != null">`brief` = #{brief}, </if>
+			<if test="wrapper != null">`wrapper` = #{wrapper}, </if>
 			<if test="videoUrl != null">`video_url` = #{videoUrl}, </if>
 			<if test="status != null">`status` = #{status}, </if>
 			<if test="createTime != null">`create_time` = #{createTime}, </if>
