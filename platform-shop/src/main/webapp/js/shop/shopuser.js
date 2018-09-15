@@ -1,9 +1,10 @@
 $(function () {
     $("#jqGrid").Grid({
         url: '../user/list',
-        colModel: [{
-            label: 'id', name: 'id', index: 'id', key: true, hidden: true
-        },
+        colModel: [
+            {
+                label: 'id', name: 'id', index: 'id', key: true, hidden: true
+            },
             {
                 label: '会员名称', name: 'username', index: 'username', hidden: true
             },
@@ -19,7 +20,7 @@ $(function () {
             }
             }, {
                 label: '出生日期', name: 'birthday', index: 'birthday', width: 80, formatter: function (value) {
-                    return transDate(value);
+                    return transDate(value, 'yyyy-MM-dd');
                 }
             },
             {
