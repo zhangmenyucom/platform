@@ -182,6 +182,7 @@ let vm = new Vue({
         eyeImagePicUrl: function () {
             var url = vm.teachVideo.wrapper;
             eyeImage(url);
+
         },
         eyeImage: function (e) {
             eyeImage($(e.target).attr('src'));
