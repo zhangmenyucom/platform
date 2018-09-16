@@ -117,7 +117,7 @@ public class ApiAuthController extends ApiBaseAction {
         if (null == userInfo || StringUtils.isNullOrEmpty(token)) {
             return toResponsFail("登录失败");
         }
-
+        userInfo.setMobile(userVo.getMobile());
         resultObj.put("token", token);
         resultObj.put("userInfo", userInfo);
         resultObj.put("userId", userVo.getUserId());
