@@ -5,6 +5,7 @@ import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
+import com.platform.common.vo.EncryptedDataBean;
 import com.platform.dao.ApiSignRecordMapper;
 import com.platform.entity.*;
 import com.platform.service.ApiSignRecordService;
@@ -14,6 +15,7 @@ import com.platform.util.ApiBaseAction;
 import com.platform.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.platform.interceptor.AuthorizationInterceptor.LOGIN_TOKEN_KEY;
 
 /**
  * 作者: @author Harmon <br>
@@ -115,11 +119,22 @@ public class ApiUserController extends ApiBaseAction {
      */
     @ApiOperation(value = "通过微信绑定手机")
     @GetMapping("/bindMobileWx")
-    public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("mobile") String mobile) {
+    public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("iv") String iv, @RequestParam("encryptedData") String encryptedData) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
-        userVo.setMobile(mobile);
-        userService.update(userVo);
-        return toResponsSuccess("手机绑定成功");
+        String token = request.getHeader(LOGIN_TOKEN_KEY);
+        //如果header中不存在token，则从参数中获取token
+        if (org.apache.commons.lang.StringUtils.isBlank(token)) {
+            token = request.getParameter(LOGIN_TOKEN_KEY);
+        }
+        try {
+            EncryptedDataBean decrypt = AESDecodeUtils.decrypt(token.getBytes(), iv.getBytes(), encryptedData.getBytes());
+            userVo.setMobile(decrypt.getPhoneNumber());
+            userService.update(userVo);
+            return toResponsObject(0, "手机绑定成功", decrypt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return toResponsFail("绑定失败");
     }
 
     /**
@@ -129,11 +144,11 @@ public class ApiUserController extends ApiBaseAction {
     @PostMapping("/sign")
     public Object sign(@LoginUser UserVo loginUser) {
         SignRecordVo signRecordVo = apiSignRecordService.queryLatestSign(loginUser.getUserId());
-        if(signRecordVo!=null){
+        if (signRecordVo != null) {
             SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
             String nowDay = sf.format(new Date());
             String day = sf.format(signRecordVo.getSignDate());
-            if(day.equals(nowDay)){
+            if (day.equals(nowDay)) {
                 return toResponsFail("您今天已经签过到了,请明天再来哦");
             }
         }
