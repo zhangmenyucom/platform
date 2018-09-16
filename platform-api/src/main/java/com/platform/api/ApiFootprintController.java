@@ -60,40 +60,31 @@ public class ApiFootprintController extends ApiBaseAction {
     public Object list(@LoginUser UserVo loginUser,
                        @RequestParam(value = "page", defaultValue = "1") Integer page,
                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
-        Map<String, Object> resultObj = new HashMap<String, Object>();
+        Map<String, Object> resultObj = new HashMap<>(1);
 
         //查询列表数据
         PageHelper.startPage(0, 10, false);
         List<FootprintVo> footprintVos = footprintService.queryListFootprint(loginUser.getUserId() + "");
 
         ApiPageUtils pageUtil = new ApiPageUtils(footprintVos, 0, size, page);
-        //
-        Map<String, List<FootprintVo>> footPrintMap = new TreeMap<String, List<FootprintVo>>(new Comparator<String>() {
-            /*
-             * int compare(Object o1, Object o2) 返回一个基本类型的整型，
-             * 返回负数表示：o1 小于o2，
-             * 返回0 表示：o1和o2相等，
-             * 返回正数表示：o1大于o2。
-             */
-            @Override
-            public int compare(String o1, String o2) {
-
-                //指定排序器按照降序排列
-                return o2.compareTo(o1);
-            }
-        });
+        /*
+         * int compare(Object o1, Object o2) 返回一个基本类型的整型，
+         * 返回负数表示：o1 小于o2，
+         * 返回0 表示：o1和o2相等，
+         * 返回正数表示：o1大于o2。
+         */
+        Map<String, List<FootprintVo>> footPrintMap = new TreeMap<>(Comparator.reverseOrder());
 
         if (null != footprintVos && footprintVos.size() > 0) {
             for (FootprintVo footprintVo : footprintVos) {
-                String addTime = DateUtils.timeToStr(footprintVo.getAdd_time(), DateUtils.DATE_PATTERN);
-                List<FootprintVo> tmpList = footPrintMap.get(addTime);
-                if (null == footPrintMap.get(addTime)) {
-                    tmpList = new ArrayList<FootprintVo>();
+                List<FootprintVo> tmpList = footPrintMap.get(footprintVo.getAdd_time());
+                if (null == footPrintMap.get(footprintVo.getAdd_time())) {
+                    tmpList = new ArrayList<>();
                 }
                 tmpList.add(footprintVo);
-                footPrintMap.put(addTime, tmpList);
+                footPrintMap.put(footprintVo.getAdd_time().getTime()+"", tmpList);
             }
-            List<List<FootprintVo>> footprintVoList = new ArrayList<List<FootprintVo>>();
+            List<List<FootprintVo>> footprintVoList = new ArrayList<>();
             for (Map.Entry<String, List<FootprintVo>> entry : footPrintMap.entrySet()) {
                 footprintVoList.add(entry.getValue());
             }
@@ -103,7 +94,6 @@ public class ApiFootprintController extends ApiBaseAction {
             resultObj.put("currentPage", pageUtil.getCurrentPage());
             resultObj.put("data", footprintVoList);
         }
-
         return this.toResponsSuccess(resultObj);
     }
 
@@ -115,10 +105,10 @@ public class ApiFootprintController extends ApiBaseAction {
     public Object sharelist(@LoginUser UserVo loginUser,
                             @RequestParam(value = "page", defaultValue = "1") Integer page,
                             @RequestParam(value = "size", defaultValue = "10") Integer size) {
-        Map<String, List<FootprintVo>> resultObj = new HashMap<String, List<FootprintVo>>();
+        Map<String, List<FootprintVo>> resultObj = new HashMap<>(1);
 
         //查询列表数据
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>(1);
         params.put("sidx", "f.id");
         params.put("order", "desc");
         params.put("referrer", loginUser.getUserId());

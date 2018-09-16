@@ -5,6 +5,7 @@ import com.platform.utils.JsonTimeSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -33,5 +34,5 @@ public class FootprintEntity implements Serializable {
     /**
      * 记录时间
      **/
-    private Long addTime;
+    private Date addTime;
 }

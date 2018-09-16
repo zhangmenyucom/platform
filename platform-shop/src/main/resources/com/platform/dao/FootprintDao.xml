@@ -50,7 +50,7 @@
 		(
 			#{userId}, 
 			#{goodsId}, 
-			#{addTime}
+			NOW()
 		)
 	</insert>
 

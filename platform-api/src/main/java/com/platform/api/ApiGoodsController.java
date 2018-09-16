@@ -160,9 +160,7 @@ public class ApiGoodsController extends ApiBaseAction {
                 }
             }
         }
-        //
         List<ProductVo> productEntityList = productService.queryList(param);
-        //
         List<GoodsGalleryVo> gallery = goodsGalleryService.queryList(param);
         Map ngaParam = new HashMap(0);
         ngaParam.put("fields", "nga.value, na.name");
@@ -172,7 +170,6 @@ public class ApiGoodsController extends ApiBaseAction {
         List<AttributeVo> attribute = attributeService.queryList(ngaParam);
         //
         Map issueParam = new HashMap(0);
-//        issueParam.put("goods_id", id);
         List<GoodsIssueVo> issue = goodsIssueService.queryList(issueParam);
         //
         BrandVo brand = brandService.queryObject(info.getBrand_id());
@@ -207,7 +204,6 @@ public class ApiGoodsController extends ApiBaseAction {
         }
         //记录用户的足迹
         FootprintVo footprintEntity = new FootprintVo();
-        footprintEntity.setAdd_time(System.currentTimeMillis() / 1000);
         footprintEntity.setGoods_brief(info.getGoods_brief());
         footprintEntity.setList_pic_url(info.getList_pic_url());
         footprintEntity.setGoods_id(info.getId());
@@ -279,9 +275,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @GetMapping(value = "category")
     public Object category(Integer id) {
         Map<String, Object> resultObj = new HashMap(0);
-        //
         CategoryVo currentCategory = categoryService.queryObject(id);
-        //
         CategoryVo parentCategory = categoryService.queryObject(currentCategory.getParent_id());
         Map params = new HashMap(0);
         params.put("parent_id", currentCategory.getParent_id());
@@ -297,7 +291,8 @@ public class ApiGoodsController extends ApiBaseAction {
      * 　　获取商品列表
      */
     @ApiOperation(value = "获取商品列表")
-    @ApiImplicitParams({@ApiImplicitParam(name = "categoryId", value = "分类id", paramType = "path", required = true),
+    @ApiImplicitParams(
+            {@ApiImplicitParam(name = "categoryId", value = "分类id", paramType = "path", required = true),
             @ApiImplicitParam(name = "brandId", value = "品牌Id", paramType = "path", required = true),
             @ApiImplicitParam(name = "isNew", value = "新商品", paramType = "path", required = true),
             @ApiImplicitParam(name = "isHot", value = "热卖商品", paramType = "path", required = true)})

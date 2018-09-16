@@ -53,7 +53,7 @@
         </if>
     </select>
     <select id="queryListFootprint" resultMap="footprintMap">
-			         SELECT
+			    SELECT
 				MAX(f.id) id,
 				f.user_id,
 				f.goods_id,
@@ -99,7 +99,7 @@
 		(
 			#{user_id},
 			#{goods_id},
-			#{add_time},
+			NOW(),
 			#{referrer}
 		)
 	</insert>
@@ -122,8 +122,8 @@
     <delete id="deleteByParam">
         delete from footprint
         where 1 = 1
-        <if test="userId != null">and `user_id` = #{userId} </if>
-        <if test="goodsId != null">and `goods_id` = #{goodsId} </if>
+        <if test="userId != null">and `user_id` = #{userId}</if>
+        <if test="goodsId != null">and `goods_id` = #{goodsId}</if>
     </delete>
 
     <delete id="deleteBatch">
@@ -162,6 +162,4 @@
             limit #{offset}, #{limit}
         </if>
     </select>
-
-
 </mapper>
