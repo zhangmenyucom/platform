@@ -8,7 +8,7 @@ $(function () {
         url: url,
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '会员', name: 'userName', index: 'user_name', width: 20},
+            {label: '会员', name: 'userName', index: 'user_name', width: 80},
             // {label: 'sessionId', name: 'sessionId', index: 'session_id', width: 80 },
             {label: '商品', name: 'goodsName', index: 'goods_name', width: 100},
             {label: '商品序列号', name: 'goodsSn', index: 'goods_sn', width: 30},

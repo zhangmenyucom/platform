@@ -39,4 +39,10 @@ public class UserInfo implements Serializable {
      * 手机号
      **/
     private String mobile;
+
+    /**
+     * 积分
+     **/
+    private Long point;
+
 }
