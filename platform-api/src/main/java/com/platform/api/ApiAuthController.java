@@ -12,15 +12,12 @@ import com.platform.service.ApiUserService;
 import com.platform.service.TokenService;
 import com.platform.util.ApiBaseAction;
 import com.platform.util.ApiUserUtils;
-import com.platform.util.CommonUtil;
-import com.platform.utils.CharUtil;
 import com.platform.utils.JsonUtil;
 import com.platform.utils.R;
 import com.platform.validator.Assert;
 import com.qiniu.util.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import net.sf.json.util.JSONUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +79,7 @@ public class ApiAuthController extends ApiBaseAction {
         }
         /**验证用户信息完整性**/
         System.out.println("fullUserInfo:" + JsonUtil.getJsonByObj(fullUserInfo));
-        Constants.SESSION_KEY = sessionData.getString("session_key");
+
         /*String sha1 = CommonUtil.getSha1(fullUserInfo.getRawData() + sessionData.getString("session_key"));
         System.out.println("shal"+sha1);
         if (!fullUserInfo.getSignature().equals(sha1)) {
@@ -116,7 +113,8 @@ public class ApiAuthController extends ApiBaseAction {
         Map<String, Object> tokenMap = tokenService.createToken(userVo.getUserId());
         String token = MapUtils.getString(tokenMap, "token");
         System.out.println("token" + token);
-
+        /**记录Sessionkey用于获取手机号时用**/
+        Constants.SESSION_KEY_MAP.put(userVo.getUserId(), sessionData.getString("session_key"));
         if (null == userInfo || StringUtils.isNullOrEmpty(token)) {
             return toResponsFail("登录失败");
         }

@@ -13,7 +13,6 @@ import com.platform.entity.UserVo;
 import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
 import com.platform.util.ApiBaseAction;
-import com.platform.utils.AESDecodeUtils;
 import com.platform.utils.CharUtil;
 import com.platform.utils.MSUtil;
 import com.platform.utils.WXAppletUserInfo;
@@ -23,10 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Base64;
 import java.util.Date;
-
-import static com.platform.interceptor.AuthorizationInterceptor.LOGIN_TOKEN_KEY;
 
 /**
  * 作者: @author Harmon <br>
@@ -123,10 +119,10 @@ public class ApiUserController extends ApiBaseAction {
     public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("iv") String iv, @RequestParam("encryptedData") String encryptedData) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
         try {
-            System.out.println("sessionKey:" + Constants.SESSION_KEY);
+            System.out.println("sessionKey:" + Constants.SESSION_KEY_MAP.get(userVo.getUserId()));
             System.out.println("iv:" + iv);
             System.out.println("encryptedData:" + encryptedData);
-            EncryptedDataBean decrypt = WXAppletUserInfo.getUserMobile(Constants.SESSION_KEY, iv, encryptedData);
+            EncryptedDataBean decrypt = WXAppletUserInfo.getUserMobile(Constants.SESSION_KEY_MAP.get(userVo.getUserId()), iv, encryptedData);
             userVo.setMobile(decrypt.getPhoneNumber());
             userService.update(userVo);
             return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "手机绑定成功", decrypt);
