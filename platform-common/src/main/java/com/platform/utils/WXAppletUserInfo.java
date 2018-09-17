@@ -1,7 +1,6 @@
 package com.platform.utils;
 
 import com.platform.common.vo.EncryptedDataBean;
-import net.sf.json.JSONObject;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
@@ -13,6 +12,9 @@ import java.security.Security;
 import java.util.Arrays;
 
 public class WXAppletUserInfo {
+    public static void main(String[] args) throws Exception {
+        getUserMobile("a5rp3wjfazpqakqj181rgdfnzwijncy3","/UufPunN1z/dq+6E4P2O5w==","iGzVycm5fYNKmFx6+3RaCjmIvccutIYxnT0FSt/wpyTqa0Cr2kDB/okJ3A2wBuieTR0ij5TKxxHS5zSRyzzhXzVXsJIWmF1SNoHjeAv+TD7eSYH9oQ/fc86KUZVbBVSfgXdis1A+Pi/e4cwK8eaOqOaVSvJekByrI5D9SAZ4fPP0RHkWyLidax1H8AniSzETIsdZ3dbMVqSy9YMH1Q3YVg==");
+    }
     /**
      * 解密用户敏感数据获取用户信息
      *
@@ -37,7 +39,7 @@ public class WXAppletUserInfo {
             }
             // 初始化
             Security.addProvider(new BouncyCastleProvider());
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
             SecretKeySpec spec = new SecretKeySpec(keyBytes, "AES");
             AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
             parameters.init(new IvParameterSpec(ivBytes));

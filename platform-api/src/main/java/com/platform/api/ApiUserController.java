@@ -3,6 +3,7 @@ package com.platform.api;
 import com.alibaba.fastjson.JSONObject;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.LoginUser;
+import com.platform.common.Constants;
 import com.platform.common.ResponseCodeEnum;
 import com.platform.common.vo.EncryptedDataBean;
 import com.platform.entity.SignRecordVo;
@@ -121,13 +122,11 @@ public class ApiUserController extends ApiBaseAction {
     @GetMapping("/bindMobileWx")
     public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("iv") String iv, @RequestParam("encryptedData") String encryptedData) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
-        String token = request.getHeader(LOGIN_TOKEN_KEY);
-        //如果header中不存在token，则从参数中获取token
-        if (org.apache.commons.lang.StringUtils.isBlank(token)) {
-            token = request.getParameter(LOGIN_TOKEN_KEY);
-        }
         try {
-            EncryptedDataBean decrypt = WXAppletUserInfo.getUserMobile(token,iv,encryptedData);
+            System.out.println("sessionKey:" + Constants.SESSION_KEY);
+            System.out.println("iv:" + iv);
+            System.out.println("encryptedData:" + encryptedData);
+            EncryptedDataBean decrypt = WXAppletUserInfo.getUserMobile(Constants.SESSION_KEY, iv, encryptedData);
             userVo.setMobile(decrypt.getPhoneNumber());
             userService.update(userVo);
             return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "手机绑定成功", decrypt);

@@ -3,6 +3,7 @@ package com.platform.api;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.platform.annotation.IgnoreAuth;
+import com.platform.common.Constants;
 import com.platform.entity.FullUserInfo;
 import com.platform.entity.UserInfo;
 import com.platform.entity.UserLevelEnum;
@@ -46,6 +47,7 @@ public class ApiAuthController extends ApiBaseAction {
     private Logger logger = Logger.getLogger(getClass());
     @Autowired
     private ApiUserService userService;
+
     /**
      * 登录
      */
@@ -71,15 +73,16 @@ public class ApiAuthController extends ApiBaseAction {
         String requestUrl = ApiUserUtils.getWebAccess(code);
         logger.info("》》》组合token为：" + requestUrl);
         String res = restTemplate.getForObject(requestUrl, String.class);
-        System.out.println("res:"+res);
+        System.out.println("res:" + res);
         JSONObject sessionData = JSON.parseObject(res);
-        System.out.println("sessionData"+ JsonUtil.getJsonByObj(sessionData));
+        System.out.println("sessionData" + JsonUtil.getJsonByObj(sessionData));
 
         if (null == sessionData || StringUtils.isNullOrEmpty(sessionData.getString("openid"))) {
             return toResponsFail("登录失败");
         }
         /**验证用户信息完整性**/
-        System.out.println("fullUserInfo:"+JsonUtil.getJsonByObj(fullUserInfo));
+        System.out.println("fullUserInfo:" + JsonUtil.getJsonByObj(fullUserInfo));
+        Constants.SESSION_KEY = sessionData.getString("session_key");
         /*String sha1 = CommonUtil.getSha1(fullUserInfo.getRawData() + sessionData.getString("session_key"));
         System.out.println("shal"+sha1);
         if (!fullUserInfo.getSignature().equals(sha1)) {
@@ -112,7 +115,7 @@ public class ApiAuthController extends ApiBaseAction {
 
         Map<String, Object> tokenMap = tokenService.createToken(userVo.getUserId());
         String token = MapUtils.getString(tokenMap, "token");
-        System.out.println("token"+token);
+        System.out.println("token" + token);
 
         if (null == userInfo || StringUtils.isNullOrEmpty(token)) {
             return toResponsFail("登录失败");
@@ -124,6 +127,7 @@ public class ApiAuthController extends ApiBaseAction {
         resultObj.put("userId", userVo.getUserId());
         return toResponsSuccess(resultObj);
     }
+
     @Autowired
     private TokenService tokenService;
 
