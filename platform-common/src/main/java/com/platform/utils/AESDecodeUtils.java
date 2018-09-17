@@ -1,11 +1,19 @@
 package com.platform.utils;
 
 import com.platform.common.vo.EncryptedDataBean;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.AlgorithmParameters;
+import java.security.SecureRandom;
+import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
+import java.util.Arrays;
 
 /**
  * @author hgg
@@ -21,11 +29,14 @@ public class AESDecodeUtils {
     }
 
     public static EncryptedDataBean decrypt(byte[] key, byte[] iv, byte[] encData) throws Exception {
-        AlgorithmParameterSpec ivSpec = new IvParameterSpec(iv);
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        SecretKeySpec keySpec = new SecretKeySpec(key, "AES");
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-        //解析解密后的字符串
+
+        Security.addProvider(new BouncyCastleProvider());
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+        SecretKeySpec spec = new SecretKeySpec(key, "AES");
+        AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
+        parameters.init(new IvParameterSpec(iv));
+        cipher.init(Cipher.DECRYPT_MODE, spec, parameters);
+        byte[] resultByte = cipher.doFinal(encData);
         return JsonUtil.getObjet(new String(cipher.doFinal(encData), "UTF-8"), EncryptedDataBean.class);
     }
 }
