@@ -14,13 +14,8 @@ import java.util.Date;
  * @date 2017-12-16 23:38:05
  */
 @Data
-public class SysSmsLogEntity implements Serializable {
+public class SysSmsLogEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     */
-    private String id;
     /**
      * 操作人
      */

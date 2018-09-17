@@ -1,5 +1,7 @@
 package com.platform.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 
@@ -11,55 +13,12 @@ import java.io.Serializable;
  * @email 516195940@qq.com
  * @date 2017-08-20 15:41:56
  */
-public class TopicCategoryEntity implements Serializable {
+@Data
+public class TopicCategoryEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Integer id;
     //活动类别主题
     private String title;
     //活动类别图片链接
     private String picUrl;
-
-    /**
-     * 设置：主键
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * 获取：主键
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * 设置：活动类别主题
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * 获取：活动类别主题
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * 设置：活动类别图片链接
-     */
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    /**
-     * 获取：活动类别图片链接
-     */
-    public String getPicUrl() {
-        return picUrl;
-    }
 }

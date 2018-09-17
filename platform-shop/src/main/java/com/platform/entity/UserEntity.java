@@ -14,12 +14,9 @@ import java.util.Date;
  * @date 2017-08-16 15:02:28
  */
 @Data
-public class UserEntity implements Serializable {
+public class UserEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    /**主键**/
-    private Integer id;
     /**父级id**/
     private Integer parentId;
     /**会员名称**/

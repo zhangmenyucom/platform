@@ -14,13 +14,8 @@ import java.util.Date;
  * @date 2017-03-25 12:13:26
  */
 @Data
-public class SysOssEntity implements Serializable {
+public class SysOssEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     */
-    private Long id;
     /**
      * URL地址
      */

@@ -15,11 +15,9 @@ import java.math.BigDecimal;
  * @date 2017-08-30 14:31:21
  */
 @Data
-public class ProductEntity implements Serializable {
+public class ProductEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**主键**/
-    private Integer id;
     /**商品Id**/
     private Integer goodsId;
     /**商品规格ids**/

@@ -1,5 +1,7 @@
 package com.platform.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 
@@ -10,7 +12,8 @@ import java.io.Serializable;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:10
  */
-public class SpecificationEntity implements Serializable {
+@Data
+public class SpecificationEntity extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//主键
@@ -20,40 +23,4 @@ public class SpecificationEntity implements Serializable {
 	//排序
 	private Integer sortOrder;
 
-	/**
-	 * 设置：主键
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：主键
-	 */
-	public Integer getId() {
-		return id;
-	}
-	/**
-	 * 设置：规范名称
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * 获取：规范名称
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 * 设置：排序
-	 */
-	public void setSortOrder(Integer sortOrder) {
-		this.sortOrder = sortOrder;
-	}
-	/**
-	 * 获取：排序
-	 */
-	public Integer getSortOrder() {
-		return sortOrder;
-	}
 }

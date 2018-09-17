@@ -15,13 +15,8 @@ import java.util.Date;
  * @date 2017-08-19 15:40:33
  */
 @Data
-public class UserCouponEntity implements Serializable {
+public class UserCouponEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     **/
-    private Integer id;
     /**
      * 优惠券Id
      **/

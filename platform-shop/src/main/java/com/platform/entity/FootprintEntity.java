@@ -14,13 +14,9 @@ import java.util.Date;
  * @date 2017-08-13 10:41:08
  */
 @Data
-public class FootprintEntity implements Serializable {
+public class FootprintEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     **/
-    private Integer id;
     /**
      * 会员Id
      **/

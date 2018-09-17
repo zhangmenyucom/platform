@@ -1,5 +1,7 @@
 package com.platform.entity;
+
 import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +14,7 @@ import java.util.Date;
  * @date 2018-09-09 04:53:06
  */
 @Data
-public class SmsLogEntity implements Serializable {
+public class SmsLogEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 主键 **/

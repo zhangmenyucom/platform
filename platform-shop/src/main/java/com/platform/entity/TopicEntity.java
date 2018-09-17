@@ -14,11 +14,9 @@ import java.math.BigDecimal;
  * @date 2017-08-20 14:10:08
  */
 @Data
-public class TopicEntity implements Serializable {
+public class TopicEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Integer id;
     //活动主题
     private String title;
     //活动内容

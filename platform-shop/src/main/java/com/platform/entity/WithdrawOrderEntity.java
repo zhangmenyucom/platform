@@ -13,11 +13,8 @@ import java.util.Date;
  * @date 2018-08-24 22:02:34
  */
 @Data
-public class WithdrawOrderEntity implements Serializable {
+public class WithdrawOrderEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /** 主键id **/
-    private Long id;
     /**订单号**/
     private String orderSn;
     /** 提现人id **/
@@ -34,8 +31,4 @@ public class WithdrawOrderEntity implements Serializable {
     private Integer status;
     /** 备注 **/
     private String comment;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
 }

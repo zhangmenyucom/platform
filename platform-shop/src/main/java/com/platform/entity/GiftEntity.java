@@ -12,11 +12,8 @@ import java.util.Date;
  * @date 2018-09-12 18:50:18
  */
 @Data
-public class GiftEntity implements Serializable {
+public class GiftEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /** 主键 **/
-    private Long id;
     /** 礼品类型 1：线下商品 2：线上商品 **/
     private Integer type;
     /** 礼品名称 **/
@@ -33,8 +30,4 @@ public class GiftEntity implements Serializable {
     private Integer sortOrder;
     /** 线上商品id **/
     private Long goodsId;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
 }

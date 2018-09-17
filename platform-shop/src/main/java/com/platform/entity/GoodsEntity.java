@@ -15,13 +15,8 @@ import java.util.List;
  * @date 2017-08-13 10:41:08
  */
 @Data
-public class GoodsEntity implements Serializable {
+public class GoodsEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     **/
-    private Integer id;
     /**
      * 商品类型Id
      **/

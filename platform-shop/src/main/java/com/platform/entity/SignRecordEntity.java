@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 2018-09-09 21:48:06
  */
 @Data
-public class SignRecordEntity implements Serializable {
+public class SignRecordEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**  **/

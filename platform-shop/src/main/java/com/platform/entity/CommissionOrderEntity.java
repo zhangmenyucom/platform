@@ -13,11 +13,9 @@ import java.util.Date;
  * @date 2018-08-24 22:02:34
  */
 @Data
-public class CommissionOrderEntity implements Serializable {
+public class CommissionOrderEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**  **/
-    private Long id;
     /**佣金所属人**/
     private Long userId;
     /** 佣金订单号 **/
@@ -28,8 +26,4 @@ public class CommissionOrderEntity implements Serializable {
     private Long sourceUserId;
     /** 佣金说明 **/
     private String detail;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
 }

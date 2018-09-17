@@ -14,7 +14,7 @@ import java.util.Date;
  * @date 2018-08-26 18:25:17
  */
 @Data
-public class TeachVideoEntity implements Serializable {
+public class TeachVideoEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
