@@ -1,0 +1,64 @@
+<view class='myTeam-box'>
+      <!-- 我的信息 -->  
+      <view scroll-x="false"  class='scroll-views'>
+        <view class='myInfo'>
+        <!-- 第一行 -->
+          <view class='info-box'>
+            <view class='info'>
+              <image src='{{dataArray.avatar}}'></image>
+              <text>{{dataArray.nickname}}</text>
+            </view>
+          </view>
+
+        <!-- 第二行 -->
+          <view class='info-box'>
+            <view class='info'>
+              <text>用户等级：{{dataArray.user_level_id}}</text>
+            </view>
+
+            <view class='info'>
+              <text>用户身份{{dataArray.userLevel}}</text>
+            </view>
+          </view>
+
+        <!-- 第三行 -->
+          <view class='info-box'>
+            <view class='info'>
+              <span>总资金：<span style="color:red;font-size:32rpx">{{dataArray.totalBalance}}</span></span>
+            </view>
+
+            <view class='info'>
+              <span>可用资金：<span style="color:red;font-size:32rpx">{{dataArray.avilableBalance}}</span></span>
+            </view>
+          </view>
+
+        <!-- 第四行 -->
+          <view class='info-box'>
+            <view class='info'>
+              <text>注册时间：{{dataArray.register_time}}</text>
+            </view>
+
+            <view class='info'>
+              <text>最后登录：{{dataArray.last_login_time}}</text>
+            </view>
+          </view>
+          
+        </view>
+      </view>
+
+      <view class='typelist selected {{animationHidden?"":"animation"}}' style='top:{{currentTop}}px;' hidden='{{selectedHidden}}' bindtap='backTap'>
+        <text>{{selectedItem.nickname}}</text>
+      </view>
+
+
+      <scroll-view class="searchbar-result" style='top:{{scrollTop}}px'>
+        <view class='typelist' data-item='{{item}}' wx:for="{{datalists}}" wx:key="{{index}}" bindtap='selectList'>
+          <text>{{item.nickname}}</text>
+        </view>
+      </scroll-view>
+</view>
+
+
+
+
+

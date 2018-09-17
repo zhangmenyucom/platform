@@ -15,6 +15,11 @@
       <image src="{{item.icon_url}}" background-size="cover"></image>
       <text>{{item.name}}</text>
     </navigator>
+
+    <navigator  class="item" url="/pages/recommend/recommend?userId={{userId}}" >
+      <image src="/static/images/images/recommend.png" background-size="cover"></image>
+      <text>项目推荐</text>
+    </navigator>
   </view>
   
 
@@ -44,7 +49,7 @@
   </view>
 
   <!-- 新闻资讯 -->
-  <view class='news-box'>
+  <!-- <view class='news-box'>
     <view class='title'>
       <label>媒体文章</label>
       <navigator url='/pages/news/news'><text>查看全部</text></navigator>
@@ -56,7 +61,29 @@
         <navigator url='/pages/article/article?newsId={{item.id}}'><rich-text>{{item.title}}</rich-text></navigator>
       </view>
     </view>
+  </view> -->
+
+    <view class='title' style='width:90%;margin:0 auto;'>
+      <label>媒体文章</label>
+      <navigator url='/pages/news/news'><text>查看全部</text></navigator>
   </view>
+
+<view class='activityList-box'>
+    <navigator url='/pages/article/article?newsId={{item.id}}' class="activityList" wx:for="{{news}}" wx:key="{{item.id}}">
+        <image class="" src="{{item.bannerPic}}"></image>
+        <view class="info">
+            <view class="title-box" >
+                <text class="title" >{{item.title}}</text>
+            </view>
+
+            <view class="authors">发起者：{{item.author}}</view>
+            <view class="contents">{{item.content}}</view>
+            <view class="time">时间：{{item.createTime}}</view>
+            <!-- <view class="address">地点：{{item.position}}</view> -->
+        </view>
+    </navigator>
+    
+</view>
 
 
   <!-- <view class="a-section a-brand">

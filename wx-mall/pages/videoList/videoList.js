@@ -1,9 +1,7 @@
-// pages/news/news.js
-
+// pages/videoList/videoList.js
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 const user = require('../../services/user.js');
-
 
 Page({
 
@@ -11,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    news:[],
+    videoList:[],
     limit:10,
     page:1
   },
@@ -35,18 +33,18 @@ Page({
    */
   onShow: function () {
     var _this = this
-    var newsData ={'page':_this.data.page,'limit':_this.data.limit}
-    util.request(api.IndexUrlNews, newsData).then(function (res) {
-      console.log(res)
-      if (res.code == 0) {
+    var data = {'limit':_this.data.limit,'page':_this.data.page}
+    util.request(api.VideoList,data).then((res)=>{
+      if(res.code == 0){
         var arr = res.page.list
-        var arr1= []
-        for(var i =0 ;i<arr.length;i++){
+        var arr1 = []
+        for(var i=0;i<arr.length;i++){
           var item = arr[i]
           item.createTime = util.formatTime(new Date(item.createTime)).substring(0, 10)
           arr1.push(item)
         }
-        _this.setData({ news: arr1 })
+        _this.setData({videoList:arr1})
+        console.log(_this.data.videoList)
       }
     })
   },

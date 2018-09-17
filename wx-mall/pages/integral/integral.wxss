@@ -1,0 +1,1 @@
+.btnBox{width:100%;display:flex;align-items:center}.btnBox .integral{width:49.8%;height:90rpx;display:flex;align-items:center;border:1px solid #333}.btnBox .integral image{width:40rpx;height:40rpx;margin-left:50rpx}.btnBox .integral text{font-size:28rpx;color:#333;margin-left:40rpx}

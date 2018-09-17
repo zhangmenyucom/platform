@@ -24,5 +24,6 @@ App({
     token: '',
     userCoupon: 'NO_USE_COUPON',//默认不适用优惠券
     courseCouponCode: {},//购买课程的时候优惠券信息
+    userId:''
   }
 })

@@ -17,7 +17,9 @@ Page({
       {'brokerage':0.00,'name':'佣金明细','icon_url':'/static/images/images/yongjinmingxi.png'},
       {'brokerage':0,'name':'我的团队','icon_url':'/static/images/images/wodetuandui.png'}
     ],
-    userInfo:[]
+    userInfo:[],
+    userId:'',
+    thrid:''
   },
 
   /**
@@ -43,8 +45,25 @@ Page({
     var _this = this
     let data = {'userId':this.data.userId}
     util.request(api.Recommend,data).then(function(res){
-      console.log('res==' + JSON.stringify(res))
+      // console.log('res==' + JSON.stringify(res))
+      res.data.register_time = util.formatTime(new Date(res.data.register_time)).substring(0, 10)
       _this.setData({userInfo:res.data})
+      var arr = res.data.subUserList
+      var arr1=[]
+      var jslength = 0;
+      for(var i=0;i< arr.length;i++){
+        var item = arr[i]
+        if (Array.isArray(item.subUserList) && item.subUserList.length > 0){
+          var item1 = item.subUserList
+          for(var j=0;j<item1.length;j++){
+            var item2 = item1[j]       
+            arr1.push(item2)
+          }
+          console.log(arr1.length,arr.length)
+        }    
+      }
+      var thrid = Number(arr.length) + Number(arr1.length) + 1
+      _this.setData({ thrid: thrid })
     })
   },
 
