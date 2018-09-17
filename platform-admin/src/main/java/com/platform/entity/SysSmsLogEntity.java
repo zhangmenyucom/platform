@@ -20,7 +20,7 @@ public class SysSmsLogEntity implements Serializable {
     /**
      * 主键
      */
-    private String id;
+    private Integer id;
     /**
      * 操作人
      */
