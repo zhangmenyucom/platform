@@ -155,6 +155,11 @@ public class ApiUserController extends ApiBaseAction {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
         userVo.setPoint(userVo.getPoint() + 10);
         userService.update(userVo);
+        SignRecordVo signRecord = new SignRecordVo();
+        signRecord.setGainPoint(10L);
+        signRecord.setSignDate(new Date());
+        signRecord.setUserId(loginUser.getUserId());
+        apiSignRecordService.save(signRecord);
         return toResponsSuccess("签到成功");
     }
 
