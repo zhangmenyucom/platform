@@ -13,6 +13,7 @@ import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
 import com.platform.util.ApiBaseAction;
 import com.platform.utils.AESDecodeUtils;
+import com.platform.utils.Base64;
 import com.platform.utils.CharUtil;
 import com.platform.utils.MSUtil;
 import io.swagger.annotations.Api;
@@ -125,7 +126,7 @@ public class ApiUserController extends ApiBaseAction {
             token = request.getParameter(LOGIN_TOKEN_KEY);
         }
         try {
-            EncryptedDataBean decrypt = AESDecodeUtils.decrypt(token.getBytes(), iv.getBytes(), encryptedData.getBytes());
+            EncryptedDataBean decrypt = AESDecodeUtils.decrypt(Base64.decode(token).getBytes(), Base64.decode(iv).getBytes(),Base64.decode(encryptedData).getBytes());
             userVo.setMobile(decrypt.getPhoneNumber());
             userService.update(userVo);
             return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "手机绑定成功", decrypt);
