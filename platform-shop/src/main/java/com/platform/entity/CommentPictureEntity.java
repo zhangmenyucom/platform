@@ -16,9 +16,6 @@ import java.io.Serializable;
 @Data
 public class CommentPictureEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    //主键
-    private Integer id;
     //评价Id
     private Integer commentId;
     //评价图片
