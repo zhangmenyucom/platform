@@ -3,6 +3,7 @@ package com.platform.api;
 import com.alibaba.fastjson.JSONObject;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.LoginUser;
+import com.platform.common.ResponseCodeEnum;
 import com.platform.common.vo.EncryptedDataBean;
 import com.platform.entity.SignRecordVo;
 import com.platform.entity.SmsLogVo;
@@ -127,7 +128,7 @@ public class ApiUserController extends ApiBaseAction {
             EncryptedDataBean decrypt = AESDecodeUtils.decrypt(token.getBytes(), iv.getBytes(), encryptedData.getBytes());
             userVo.setMobile(decrypt.getPhoneNumber());
             userService.update(userVo);
-            return toResponsObject(0, "手机绑定成功", decrypt);
+            return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "手机绑定成功", decrypt);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,7 +158,7 @@ public class ApiUserController extends ApiBaseAction {
         signRecord.setSignDate(new Date());
         signRecord.setUserId(loginUser.getUserId());
         apiSignRecordService.save(signRecord);
-        return toResponsObject(0, "签到成功,获取10积分", "签到成功");
+        return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "签到成功,获取10积分", "签到成功");
     }
 
     /**
@@ -169,6 +170,4 @@ public class ApiUserController extends ApiBaseAction {
         UserDetailVo userDetailVo = userService.queryUserDetailInfo(loginUser.getUserId());
         return toResponsSuccess(userDetailVo);
     }
-
-
 }
