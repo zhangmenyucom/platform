@@ -20,7 +20,7 @@ public interface CommentService {
      * @param id 主键
      * @return 实体
      */
-    CommentEntity queryObject(Integer id);
+    CommentEntity queryObject(Long id);
 
     /**
      * 分页查询

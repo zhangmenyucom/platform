@@ -47,7 +47,7 @@ public class CommentController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("comment:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         CommentEntity comment = commentService.queryObject(id);
 
         return R.ok().put("comment", comment);

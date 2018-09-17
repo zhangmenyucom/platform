@@ -18,8 +18,6 @@ import java.math.BigDecimal;
 public class BrandEntity extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**主键**/
-    private Integer id;
     /**品牌名称**/
     private String name;
     /**图片**/

@@ -16,9 +16,9 @@ import java.io.Serializable;
 public class GoodsAttributeEntity extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//商品Id
-	private Integer goodsId;
+	private Long goodsId;
 	//属性Id
-	private Integer attributeId;
+	private Long attributeId;
 	//属性值
 	private String value;
 

@@ -63,7 +63,7 @@ public class GoodsServiceImpl implements GoodsService {
         if (null != list && list.size() != 0) {
             throw new RRException("商品名称已存在！");
         }
-        Integer id = goodsDao.queryMaxId() + 1;
+        Long id = goodsDao.queryMaxId() + 1;
         goods.setId(id);
 
         //保存产品信息
@@ -123,7 +123,7 @@ public class GoodsServiceImpl implements GoodsService {
         //商品轮播图
         //修改时全删全插
         List<GoodsGalleryEntity> galleryEntityList = goods.getGoodsImgList();
-        Map<String, Integer> map = new HashMap<>(1);
+        Map<String, Long> map = new HashMap<>(1);
         map.put("goodsId", goods.getId());
         goodsGalleryDao.deleteByGoodsId(map);
 

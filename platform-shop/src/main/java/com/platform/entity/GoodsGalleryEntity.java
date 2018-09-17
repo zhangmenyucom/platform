@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class GoodsGalleryEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     //商品id
-    private Integer goodsId;
+    private Long goodsId;
     //图片
     private String imgUrl;
     //描述

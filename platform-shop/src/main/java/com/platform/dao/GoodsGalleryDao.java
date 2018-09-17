@@ -12,5 +12,5 @@ import java.util.Map;
  * @date 2017-08-23 14:41:43
  */
 public interface GoodsGalleryDao extends BaseDao<GoodsGalleryEntity> {
-    int deleteByGoodsId(Map<String, Integer> map);
+    int deleteByGoodsId(Map<String, Long> map);
 }

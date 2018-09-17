@@ -108,7 +108,7 @@ public class GoodsEntity extends BaseEntity implements Serializable {
     /**
      * 主sku　product_id
      **/
-    private Integer primaryProductId;
+    private Long primaryProductId;
     /**
      * 单位价格，单价
      **/
