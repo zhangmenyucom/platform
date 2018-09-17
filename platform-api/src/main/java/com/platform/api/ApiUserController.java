@@ -157,7 +157,7 @@ public class ApiUserController extends ApiBaseAction {
         signRecord.setSignDate(new Date());
         signRecord.setUserId(loginUser.getUserId());
         apiSignRecordService.save(signRecord);
-        return toResponsSuccess("签到成功");
+        return toResponsObject(0, "签到成功,获取10积分", "签到成功");
     }
 
     /**
