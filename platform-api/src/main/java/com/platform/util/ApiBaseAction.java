@@ -1,6 +1,7 @@
 package com.platform.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.platform.common.ResponseCodeEnum;
 import com.platform.entity.TokenEntity;
 import com.platform.interceptor.AuthorizationInterceptor;
 import com.platform.service.TokenService;
@@ -54,11 +55,11 @@ public class ApiBaseAction {
     @ResponseBody
     public Map<String, Object> bindException(Exception e) {
         if (e instanceof BindException) {
-            return toResponsObject(1, "参数绑定异常", e.getMessage());
+            return toResponsObject(ResponseCodeEnum.FAIL.getCode(), "参数绑定异常", e.getMessage());
         } else if (e instanceof UnauthorizedException) {
-            return toResponsObject(1, "无访问权限", e.getMessage());
+            return toResponsObject(ResponseCodeEnum.FAIL.getCode(), "无访问权限", e.getMessage());
         }
-        return toResponsObject(1, "处理异常", e.getMessage());
+        return toResponsObject(ResponseCodeEnum.FAIL.getCode(), "处理异常", e.getMessage());
     }
 
     /**
@@ -94,7 +95,7 @@ public class ApiBaseAction {
     public Map<String, Object> toResponsSuccessForSelect(Object data) {
         Map<String, Object> result = new HashMap<>(2);
         result.put("list", data);
-        return toResponsObject(0, "执行成功", result);
+        return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "执行成功", result);
     }
 
     public Map<String, Object> toResponsFail(String msg) {

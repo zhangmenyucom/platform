@@ -22,6 +22,7 @@ function formatNumber(n) {
  * 封装微信的的request
  */
 function request(url, data = {}, method = "GET") {
+  var token = wx.getStorageSync('token')
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
@@ -29,10 +30,10 @@ function request(url, data = {}, method = "GET") {
       method: method,
       header: {
         'Content-Type': 'application/json',
-        'X-Nideshop-Token': wx.getStorageSync('token')
+        'X-Nideshop-Token': token
       },
       success: function (res) {
-        console.log("success");
+        // console.log("success");
 
 
         if (res.statusCode == 200) {
@@ -69,6 +70,8 @@ function request(url, data = {}, method = "GET") {
   });
 }
 
+
+
 /**
  * 检查微信会话是否过期
  */
@@ -94,7 +97,7 @@ function login() {
       success: function (res) {
         if (res.code) {
           //登录远程服务器
-          console.log(res)
+          // console.log(res)
           resolve(res);
         } else {
           reject(res);

@@ -8,7 +8,7 @@
     <text wx:else="{{userInfo.userId}}">{{userInfo.nickname}}</text>
     <span>加入时间：{{userInfo.register_time}}</span>
     <button class="withdrawCash">提现</button>
-    <span class="status">身份<span style="color:red">[VIP]</span></span>
+    <span class="status">身份<span style="color:red">{{userInfo.userLevel}}</span></span>
 </view>
 
 <!--推荐信息-->
@@ -24,20 +24,20 @@
         <text>可提现佣金</text>
       </view>
 
-      <view class='info'>
+      <navigator class='info' url='/pages/commission/commission?userId={{userId}}'>
         <image  src = '/static/images/images/yongjinmingxi.png'></image>
         <text>佣金明细</text>
-      </view>
+      </navigator>
 
-      <view class='info'>
+      <navigator url='/pages/myTeam/myTeam?userId={{userId}}' class='info'>
         <image src='/static/images/images/wodetuandui.png'></image>
         <text>我的团队</text>
-        <text class='team'>{{userInfo.subUserList.length}}人</text>
-      </view>
+        <text class='team'>{{thrid}}人</text>
+      </navigator>
     </view>
 
-    <view class='recommend1'>
+    <navigator url='/pages/qrCode/qrCode?userId={{userId}}' class='recommend1'>
       <image src='/static/images/images/QR.jpg' style='width:50rpx;height:50rpx;'></image>
       <text>推广二维码</text>
-    </view>
+    </navigator>
 </view>

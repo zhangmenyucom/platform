@@ -1,0 +1,13 @@
+<!--pages/integral/integral.wxml-->
+<image src='/static/images/images/icon_close_white.png' style='width:100%;height:270rpx;'></image>
+<view class='btnBox'>
+  <view class='integral'>
+    <image src='/static/images/images/yongjinmingxi.png'></image>
+    <text>积分：{{integral}}</text>
+  </view>
+
+  <view class='integral' style='border-left:none'>
+    <image src='/static/images/images/yongjinmingxi.png'></image>
+    <text>兑换记录</text>
+  </view>
+</view>

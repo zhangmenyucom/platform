@@ -37,6 +37,7 @@ Page({
     var _this = this
     var newsData ={'page':_this.data.page,'limit':_this.data.limit}
     util.request(api.IndexUrlNews, newsData).then(function (res) {
+      console.log(res)
       if (res.code == 0) {
         var arr = res.page.list
         var arr1= []

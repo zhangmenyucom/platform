@@ -1,0 +1,38 @@
+.swiper-tab{width:100%;border-bottom:2rpx solid #eeeeee;text-align:center;line-height:80rpx}.swiper-tab-list{font-size:32rpx;display:inline-block;width:33%;color:#777777}.on{color:#CC3D3D;border-bottom:5rpx solid #CC3D3D}.myInfo{width:100%;height:300rpx}.myInfo .info-box{width:90%;margin:20rpx auto;display:flex;align-items:center;justify-content:space-between}.myInfo .info-box .info{width:50%;display:flex;align-items:center}.myInfo .info-box .info image{width:80rpx;height:80rpx;border-radius:50%}.myInfo .info-box .info text,.myInfo .info-box .info span{display:inline-block;font-size:28rpx;font-family:PingFangSC-Regular;color:#333333;line-height:20px;margin-left:20rpx}
+
+
+
+/*灰色列表  */
+.typelist{
+  position: relative;
+  background-color: #f2f2f2;
+  height: 44px;
+  line-height: 44px;
+  width: 630rpx;
+   margin: 0 auto; 
+  margin-top: 10px;
+  border-radius: 10rpx;
+   padding: 0 30rpx; 
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/*选中样式  */
+.selected{
+  opacity: 1;
+  color: #fff;
+  z-index: 10;
+}
+/*scroll下移  */
+.searchbar-result{
+  position: absolute;
+  transition-duration: .8s;
+  -webkit-transition-duration: .8s;
+}
+.animation{
+  opacity: 0.6;
+  background-color: #09bb07; 
+  transition-duration: .8s;
+  -webkit-transition-duration: .8s;
+}

@@ -1,0 +1,19 @@
+
+
+
+<view class='activityList-box'>
+    <navigator url='/pages/video/video?url={{item.videoUrl}}&title={{item.title}}&content={{item.brief}}' class="activityList" wx:for="{{videoList}}" wx:key="{{item}}">
+        <video  show-center-play-btn='false' poster='{{item.videoUrl}}'   src="{{item.videoUrl}}" controls loop='true'></video>
+        <view class="info">
+            <view class="title-box" >
+                <text class="title" >{{item.title}}</text>
+            </view>
+
+            <!-- <view class="author">发起者：{{item.author}}</view> -->
+            <view class="content">{{item.brief}}</view>
+            <view class="time">时间：{{item.createTime}}</view>
+            <!-- <view class="address">地点：{{item.position}}</view> -->
+        </view>
+    </navigator>
+    
+</view>

@@ -1,6 +1,6 @@
 <!--pages/news/news.wxml-->
   <!-- 新闻资讯 -->
-  <view class='news-box' style='border:none'>
+  <!-- <view class='news-box' style='border:none'>
 
     <navigator url='/pages/article/article?newsId={{item.id}}' class='news' wx:for="{{news}}" wx:key="{{item}}">
       <view class='title'><rich-text>{{item.title}}</rich-text></view>
@@ -10,4 +10,23 @@
       </view>
       
     </navigator>
-  </view>
+  </view> -->
+
+  <!--pages/activityList/activityList.wxml-->
+<view class='activityList-box'>
+    <navigator url='/pages/article/article?newsId={{item.id}}' class="activityList" wx:for="{{news}}" wx:key="{{item.id}}">
+        <image class="" src="{{item.bannerPic}}"></image>
+        <view class="info">
+            <view class="title-box" >
+                <text class="title" >{{item.title}}</text>
+            </view>
+
+            <view class="authors">发起者：{{item.author}}</view>
+            <view class="content">{{item.content}}</view>
+            <view class="time">时间：{{item.createTime}}</view>
+            <!-- <view class="address">地点：{{item.position}}</view> -->
+        </view>
+    </navigator>
+    
+</view>
+

@@ -1,0 +1,96 @@
+// out: commission.wxss, compress:true, sourceMap:false
+
+.commission-box{
+    width: 100%;
+    overflow: auto;
+    
+    .commission{
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 40rpx;
+        .commission-top{
+            width: 100%;
+            text-align: left;
+            border-bottom: 1px solid #d9d9d9;
+            padding:20rpx 0 20rpx 0;
+            text{
+                font-size: 32rpx;
+            }
+        }
+        .orderSn,.time{border:none;padding:10rpx 0 10rpx 0;}
+        .orderInfo{
+            display: flex;
+            align-items: center;
+            image{
+                width: 240rpx;
+                height: 160rpx;
+                margin-left: 10rpx;
+            }
+            .userInfo-box{
+                width: 410rpx;
+                overflow: auto;
+                margin-left: 30rpx;      
+                .userInfo{
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    .role{
+                        position: absolute;
+                        right: 0;
+                    }
+                    .sourceAvatar{
+                        width: 50rpx;
+                        height: 50rpx;
+                        border-radius: 50%;
+                    }
+                    view{
+                        margin-left: 20rpx;
+                    }
+                }
+
+                .goodInfo{
+                    
+                    view{
+                        margin-top: 10rpx;
+                    }
+                }
+            }
+        }
+    }
+
+    .commission:nth-child(1){
+        margin-top: 0;
+    }
+
+    
+}
+
+
+
+
+
+
+.commissions{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    left: 8%;
+    image{
+        width: 300rpx;
+        height: 300rpx;
+    }
+    text{
+        font-size: 36rpx;
+    }
+    .return{
+        margin-top: 30rpx;
+        width: 300rpx;
+        line-height: 80rpx;
+        background:gray;
+        text-align: center;
+    }
+}
