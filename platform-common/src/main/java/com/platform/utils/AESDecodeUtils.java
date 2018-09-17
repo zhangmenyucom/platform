@@ -14,9 +14,9 @@ import java.security.spec.AlgorithmParameterSpec;
  */
 public class AESDecodeUtils {
     public static void main(String[] args) throws Exception {
-        byte[] encrypData = Base64.decode("mgxuts7uEbdnBclp0Qim0TS3MGoaSyE09MqTvbeG9Z1PjxsDwjVH0FxG1Q==").getBytes();
-        byte[] ivData = Base64.decode("SG386etdA3sOXHxqfnw==").getBytes();
-        byte[] sessionKey = Base64.decode("Fn6r4IOiZJBXn4hQ0w==").getBytes();
+        byte[] encrypData = java.util.Base64.getDecoder().decode("PwBjjfHsL7J6DysSqi8idAJXW+iHPjWHufbtOu0eWwRBAHi7wQFBbLB7qmPnk+M2H7GCpCEYGwekcZK8+otQX9NUg4fmpu5AhnmbQWW9zokLXgcH/01LCUFrJhsJ6E+ZKla6p2cZ8YTOtZEFaIapWYMQMIz3C+NE0dZoO+koXrhfL4U1IYvmC+nNEWbd9uIP0ESqdNk19y9O5A0Hg2xDfg==");
+        byte[] ivData = java.util.Base64.getDecoder().decode("+Puyus9Aua7znYWSjT1eEQ==");
+        byte[] sessionKey = java.util.Base64.getDecoder().decode("4ea1ohbscffn0xf8i67zkj2mfd66lo6q");
         System.out.println(decrypt(sessionKey, ivData, encrypData));
     }
 

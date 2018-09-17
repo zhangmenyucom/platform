@@ -13,7 +13,6 @@ import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
 import com.platform.util.ApiBaseAction;
 import com.platform.utils.AESDecodeUtils;
-import com.platform.utils.Base64;
 import com.platform.utils.CharUtil;
 import com.platform.utils.MSUtil;
 import io.swagger.annotations.Api;
@@ -22,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 
 import static com.platform.interceptor.AuthorizationInterceptor.LOGIN_TOKEN_KEY;
@@ -126,7 +126,7 @@ public class ApiUserController extends ApiBaseAction {
             token = request.getParameter(LOGIN_TOKEN_KEY);
         }
         try {
-            EncryptedDataBean decrypt = AESDecodeUtils.decrypt(Base64.decode(token).getBytes(), Base64.decode(iv).getBytes(),Base64.decode(encryptedData).getBytes());
+            EncryptedDataBean decrypt = AESDecodeUtils.decrypt(Base64.getDecoder().decode(token),Base64.getDecoder().decode(iv),Base64.getDecoder().decode(encryptedData));
             userVo.setMobile(decrypt.getPhoneNumber());
             userService.update(userVo);
             return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "手机绑定成功", decrypt);
