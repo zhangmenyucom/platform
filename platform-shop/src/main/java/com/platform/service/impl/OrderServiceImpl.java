@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.OrderDao;
 import com.platform.dao.ShippingDao;
 import com.platform.entity.OrderEntity;
@@ -30,11 +31,13 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.queryObject(id);
     }
 
+    @MerchantFilter
     @Override
     public List<OrderEntity> queryList(Map<String, Object> map) {
         return orderDao.queryList(map);
     }
 
+    @MerchantFilter
     @Override
     public int queryTotal(Map<String, Object> map) {
         return orderDao.queryTotal(map);
@@ -45,16 +48,19 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.save(order);
     }
 
+    @MerchantFilter
     @Override
     public int update(OrderEntity order) {
         return orderDao.update(order);
     }
 
+    @MerchantFilter
     @Override
     public int delete(Integer id) {
         return orderDao.delete(id);
     }
 
+    @MerchantFilter
     @Override
     public int deleteBatch(Integer[] ids) {
         return orderDao.deleteBatch(ids);
@@ -82,6 +88,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @MerchantFilter
     public int sendGoods(OrderEntity order) {
         //付款状态
         Integer payStatus = order.getPayStatus();

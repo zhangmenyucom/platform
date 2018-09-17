@@ -15,25 +15,23 @@ import java.util.Date;
  * @date 2017-08-19 09:37:35
  */
 @Data
-public class AdEntity implements Serializable {
+public class AdEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Integer id;
-    //广告位置Id
+    /**广告位置Id**/
     private Integer adPositionId;
-    //形式
+    /**形式**/
     private Integer mediaType;
-    //广告名称
+    /**广告名称**/
     private String name;
-    //链接
+    /**链接**/
     private String link;
-    //图片
+    /**图片**/
     private String imageUrl;
-    //内容
+    /**内容**/
     private String content;
-    //结束时间
+    /**结束时间**/
     private Date endTime;
-    //状态
+    /**状态**/
     private Integer enabled;
 }

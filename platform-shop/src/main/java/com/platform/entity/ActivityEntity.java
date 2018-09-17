@@ -1,5 +1,7 @@
 package com.platform.entity;
+
 import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,27 +14,35 @@ import java.util.Date;
  * @date 2018-08-22 00:14:02
  */
 @Data
-public class ActivityEntity implements Serializable {
+public class ActivityEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**  **/
-    private Long id;
-    /** 活动标题 **/
+    /**
+     * 活动标题
+     **/
     private String title;
-    /** 作者 **/
+    /**
+     * 作者
+     **/
     private String author;
-    /** 活动内容 **/
+    /**
+     * 活动内容
+     **/
     private String content;
-    /** 图标地址 **/
+    /**
+     * 图标地址
+     **/
     private String banner;
-    /** 活动时间 **/
+    /**
+     * 活动时间
+     **/
     private Date startDate;
-    /** 活动截至日期 **/
+    /**
+     * 活动截至日期
+     **/
     private Date endDate;
-    /** 活动地址 **/
+    /**
+     * 活动地址
+     **/
     private String position;
-    /**创建时间**/
-    private Date createTime;
-    /**更新时间**/
-    private Date updateTime;
 }

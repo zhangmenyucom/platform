@@ -14,10 +14,8 @@ import java.io.Serializable;
  * @date 2017-10-02 14:11:24
  */
 @Data
-public class AddressEntity implements Serializable {
+public class AddressEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    private Integer id;
     /**
      * 会员ID
      **/

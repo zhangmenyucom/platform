@@ -1,5 +1,7 @@
 package com.platform.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 
@@ -11,55 +13,11 @@ import java.io.Serializable;
  * @email 516195940@qq.com
  * @date 2017-08-17 16:13:27
  */
-public class AttributeCategoryEntity implements Serializable {
+@Data
+public class AttributeCategoryEntity extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    //
-    private Integer id;
     //
     private String name;
     //
     private Integer enabled;
-
-    /**
-     * 设置：
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * 获取：
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * 设置：
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * 获取：
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * 设置：
-     */
-    public void setEnabled(Integer enabled) {
-        this.enabled = enabled;
-    }
-
-    /**
-     * 获取：
-     */
-    public Integer getEnabled() {
-        return enabled;
-    }
 }

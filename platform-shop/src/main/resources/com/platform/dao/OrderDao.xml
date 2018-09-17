@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.OrderEntity" id="orderMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="orderSn" column="order_sn"/>
         <result property="userId" column="user_id"/>
         <result property="orderStatus" column="order_status"/>
@@ -43,17 +44,21 @@
     </resultMap>
 
     <select id="queryObject" resultType="com.platform.entity.OrderEntity">
-		select o.*,u.nickname as nickName
+        select o.*,u.nickname as nickName
         from user_order o
         left join user u on o.user_id = u.id
-        where o.id = #{value}
-	</select>
+        where 1=1
+        and o.id = #{value}
+    </select>
 
     <select id="queryList" resultType="com.platform.entity.OrderEntity">
         select o.*,u.nickname as nickName
         from user_order o
         left join user u on o.user_id = u.id
         WHERE 1=1
+        <if test="merchantId!=null">
+            and o.merchant_id=#{merchantId}
+        </if>
         <if test="orderSn != null and orderSn.trim() != ''">
             AND o.order_sn LIKE concat('%',#{orderSn},'%')
         </if>
@@ -84,6 +89,9 @@
 
     <select id="queryTotal" resultType="int">
         select count(*) from user_order WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="orderSn != null and orderSn.trim() != ''">
             AND order_sn LIKE concat('%',#{orderSn},'%')
         </if>
@@ -213,15 +221,27 @@
             <if test="callbackStatus != null">`callback_status` = #{callbackStatus},</if>
             <if test="orderType != null">`order_type` = #{orderType}</if>
         </set>
-        where id = #{id}
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and id = #{id}
     </update>
 
     <delete id="delete">
-		delete from user_order where id = #{value}
-	</delete>
+        delete from user_order where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and id = #{value}
+    </delete>
 
     <delete id="deleteBatch">
-        delete from user_order where id in
+        delete from user_order where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

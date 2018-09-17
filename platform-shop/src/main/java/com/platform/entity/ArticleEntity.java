@@ -12,11 +12,8 @@ import java.util.Date;
  * @date 2018-08-22 00:14:02
  */
 @Data
-public class ArticleEntity implements Serializable {
+public class ArticleEntity extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /** id **/
-    private Long id;
     /** 标题 **/
     private String title;
     /** 头图 **/
@@ -33,8 +30,4 @@ public class ArticleEntity implements Serializable {
     private Integer sortOrder;
     /** 状态：0 未上架 1：上架 **/
     private Integer status;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
 }
