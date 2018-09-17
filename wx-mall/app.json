@@ -39,12 +39,18 @@
     "pages/article/article",
     "pages/about/about",
     "pages/activityList/activityList",
-    "pages/activity/activity"
+    "pages/activity/activity",
+    "pages/videoList/videoList",
+    "pages/video/video",
+    "pages/commission/commission",
+    "pages/qrCode/qrCode",
+    "pages/myTeam/myTeam",
+    "pages/integral/integral"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "V美雾肽",
+    "navigationBarTitleText": "V美系统",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },

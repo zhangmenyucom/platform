@@ -14,11 +14,13 @@ module.exports = {
   indexUrlArticle: NewApiRootUrl + 'article/info/',//文章详情
   indexUrlActivityDetail: NewApiRootUrl + 'activity/info/',//活动详情
     Recommend: NewApiRootUrl +'user/detailInfo',//推荐有奖，项目推荐
-
+    VideoList: NewApiRootUrl+'teachvideo/list',//视频列表
     CatalogList: NewApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
     CatalogCurrent: NewApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口
-
+    Commission: NewApiRootUrl + 'commissionorder/list',//佣金
     AuthLoginByWeixin: NewApiRootUrl + 'auth/login_by_weixin', //微信登录
+    SignIn:NewApiRootUrl +'user/sign',//签到
+    Integral: NewApiRootUrl +'gift/list',//积分商品
 
     GoodsCount: NewApiRootUrl + 'goods/count',  //统计商品总数
     GoodsList: NewApiRootUrl + 'goods/list',  //获得商品列表
@@ -77,7 +79,7 @@ module.exports = {
     
     FeedbackAdd: NewApiRootUrl + 'feedback/save', //添加反馈
     SmsCode: NewApiRootUrl + 'user/smscode', //发送短信
-    BindMobile: NewApiRootUrl + 'user/bindMobileWx', //绑定手机
+    BindMobile: NewApiRootUrl + 'user/bindMobile', //绑定手机
     Login: NewApiRootUrl + 'auth/login', //账号登录
     Register: NewApiRootUrl + 'auth/register', //注册
     CouponList: NewApiRootUrl + 'coupon/list', // 优惠券列表

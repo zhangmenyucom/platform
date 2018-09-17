@@ -202,7 +202,7 @@ Page({
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
         var calc = clientHeight * rpxR - 100;
-        console.log(calc)
+        // console.log(calc)
         that.setData({
           winHeight: calc
         });
@@ -304,7 +304,14 @@ Page({
       let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey());
       if (!checkedProduct || checkedProduct.length <= 0) {
         //找不到对应的product信息，提示没有库存
+        wx.showModal({
+          title: '提示',
+          content: '没有库存',
+        })
+        // console.log('aa=' + JSON.stringify(checkedProduct) + 'bb=' + JSON.stringify(checkedProduct.length))
         return false;
+      }else{
+        // console.log('a=' + JSON.stringify(checkedProduct) + 'b=' + JSON.stringify(checkedProduct.length))
       }
 
       //验证库存
@@ -359,6 +366,10 @@ Page({
       let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey());
       if (!checkedProduct || checkedProduct.length <= 0) {
         //找不到对应的product信息，提示没有库存
+        wx.showModal({
+          title: '提示',
+          content: '没有库存',
+        })
         return false;
       }
 

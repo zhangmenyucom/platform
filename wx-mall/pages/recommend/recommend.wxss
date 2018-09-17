@@ -28,8 +28,8 @@
 }
 .user-box .status {
   position: absolute;
-  right: 80rpx;
-  top: 118rpx;
+  right: 25rpx;
+  top: 50rpx;
 }
 .user-box .status span {
   margin-left: 20rpx;

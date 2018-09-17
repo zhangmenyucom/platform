@@ -130,11 +130,16 @@ Page({
   },
 
   submitOrder: function () {
+    var parentId = wx.getStorageSync('parentId')
+    var userId = wx.getStorageSync('userId')
+    if(parentId == userId){
+      parentId = null
+    }
     if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
     }
-    util.request(api.OrderSubmit, { addressId: this.data.addressId, couponId: this.data.couponId, type: this.data.buyType }, 'POST').then(res => {
+    util.request(api.OrderSubmit, { addressId: this.data.addressId, couponId: this.data.couponId, type: this.data.buyType, parentId: parentId }, 'POST').then(res => {
       if (res.errno === 0) {
         const orderId = res.data.orderInfo.id;
         pay.payOrder(parseInt(orderId)).then(res => {

@@ -16,24 +16,24 @@ Page({
     banner: [],
     activity:[],
     news:[],
+    limit:3,
+    page:1,
+    parentId:null,
     channel: [
       {
-        id: 1, url: 'http://pdjawoz4r.bkt.clouddn.com/whcmhlkj.com/20180822/200235950f91ee.mp4', icon_url
+        id: 1, url: '/pages/videoList/videoList', icon_url
         :"/static/images/images/teacherVideo.png",name:'导师视频'},
       {
-        id: 1, url: '/pages/category/category?id=1005000', icon_url
+        id: 1, url: '/pages/category/category?id=1005000&parentId=' + wx.getStorageSync('parentId'), icon_url
           : "/static/images/images/wshop.png", name: '微商城'
       },
       {
         id: 1, url: '/pages/category/category?id=1005000', icon_url
           : "/static/images/images/buss.png", name: '商家入驻'
       },
+   
       {
-        id: 1, url: '/pages/recommend/recommend?userId='+wx.getStorageSync('userId'), icon_url
-          : "/static/images/images/recommend.png", name: '项目推荐'
-      },
-      {
-        id: 1, url: '/pages/category/category?id=1005000', icon_url
+        id: 1, url: '/pages/integral/integral', icon_url
           : "/static/images/images/price.png", name: '礼品兑换'
       },
       {
@@ -64,36 +64,36 @@ Page({
   getIndexData: function () {
     let that = this;
     var data = new Object();
-    util.request(api.s).then(function (res) {
-      if (res.errno === 0) {
-        data.newGoods= res.data.newGoodsList
-      that.setData(data);
-      }
-    });
-    util.request(api.IndexUrlHotGoods).then(function (res) {
-      if (res.errno === 0) {
-        data.hotGoods = res.data.hotGoodsList
-        that.setData(data);
-      }
-    });
-    util.request(api.IndexUrlTopic).then(function (res) {
-      if (res.errno === 0) {
-        data.topics = res.data.topicList
-      that.setData(data);
-      }
-    });
-    util.request(api.IndexUrlBrand).then(function (res) {
-      if (res.errno === 0) {
-        data.brand = res.data.brandList
-      that.setData(data);
-      }
-    });
-    util.request(api.IndexUrlCategory).then(function (res) {
-      if (res.errno === 0) {
-        data.floorGoods = res.data.categoryList
-        that.setData(data);
-      }
-    });
+    // util.request(api.s).then(function (res) {
+    //   if (res.errno === 0) {
+    //     data.newGoods= res.data.newGoodsList
+    //   that.setData(data);
+    //   }
+    // });
+    // util.request(api.IndexUrlHotGoods).then(function (res) {
+    //   if (res.errno === 0) {
+    //     data.hotGoods = res.data.hotGoodsList
+    //     that.setData(data);
+    //   }
+    // });
+    // util.request(api.IndexUrlTopic).then(function (res) {
+    //   if (res.errno === 0) {
+    //     data.topics = res.data.topicList
+    //   that.setData(data);
+    //   }
+    // });
+    // util.request(api.IndexUrlBrand).then(function (res) {
+    //   if (res.errno === 0) {
+    //     data.brand = res.data.brandList
+    //   that.setData(data);
+    //   }
+    // });
+    // util.request(api.IndexUrlCategory).then(function (res) {
+    //   if (res.errno === 0) {
+    //     data.floorGoods = res.data.categoryList
+    //     that.setData(data);
+    //   }
+    // });
     util.request(api.IndexUrlBanner).then(function (res) {
 
       if (res.errno === 0) {
@@ -103,7 +103,7 @@ Page({
     });
     
     //活动资讯
-    let activityData = {'limit':3,'page':1} 
+    let activityData = {'limit':that.data.limit,'page':that.data.page} 
     util.request(api.IndexUrlActivity,activityData).then(function(res){
       if(res.code == 0){
         var arr = []
@@ -121,19 +121,48 @@ Page({
     util.request(api.IndexUrlNews,activityData).then(function(res){
       console.log(res)
       if(res.code == 0){
-        that.setData({news:res.page.list})
+        var arr = []
+        for (var i = 0; i < res.page.list.length; i++) {
+          var item = res.page.list[i]
+          var st = item.createTime
+          // var et = item.endDate
+          item.createTime = util.formatTime(new Date(st))
+          arr.push(item)
+        }
+        that.setData({ news: arr })
       }
     })
 
   },
   onLoad: function (options) {
-    // this.getIndexData();
+    var _this = this
+    if (options.q !== undefined) {
+      var scan_url = decodeURIComponent(options.q);
+      var urlData = scan_url.substr(47);
+      console.warn("扫描的URL：" + urlData)
+      _this.setData({ parentId:urlData})
+      wx.setStorageSync('parentId', urlData)
+      wx.redirectTo({
+        url: '/pages/index/index?parentId=' + urlData,
+      })
+      console.log('PID=' + _this.data.parentId)
+      // util.alert('扫码进入。codeStore=' + urlData )
+    } else {
+      wx.redirectTo({
+        url: '/pages/index/index?parentId='+null ,
+      })
+      wx.setStorageSync('parentId', _this.data.parentId)
+      console.log('pID=' + _this.data.parentId)
+    }  
   },
   onReady: function () {
     // 页面渲染完成
   },
   onShow: function () {
     this.getIndexData();
+    var userId = wx.getStorageSync('userId')
+    this.setData({userId:userId})
+    console.log(userId)
   },
   onHide: function () {
     // 页面隐藏

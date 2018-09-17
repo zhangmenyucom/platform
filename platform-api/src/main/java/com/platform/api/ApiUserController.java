@@ -3,6 +3,8 @@ package com.platform.api;
 import com.alibaba.fastjson.JSONObject;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.LoginUser;
+import com.platform.common.Constants;
+import com.platform.common.ResponseCodeEnum;
 import com.platform.common.vo.EncryptedDataBean;
 import com.platform.entity.SignRecordVo;
 import com.platform.entity.SmsLogVo;
@@ -11,10 +13,9 @@ import com.platform.entity.UserVo;
 import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
 import com.platform.util.ApiBaseAction;
-import com.platform.utils.AESDecodeUtils;
-import com.platform.utils.Base64;
 import com.platform.utils.CharUtil;
 import com.platform.utils.MSUtil;
+import com.platform.utils.WXAppletUserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.platform.interceptor.AuthorizationInterceptor.LOGIN_TOKEN_KEY;
 
 /**
  * 作者: @author Harmon <br>
@@ -119,16 +118,14 @@ public class ApiUserController extends ApiBaseAction {
     @GetMapping("/bindMobileWx")
     public Object bindMobileWithWX(@LoginUser UserVo loginUser, @RequestParam("iv") String iv, @RequestParam("encryptedData") String encryptedData) {
         UserVo userVo = userService.queryObject(loginUser.getUserId());
-        String token = request.getHeader(LOGIN_TOKEN_KEY);
-        //如果header中不存在token，则从参数中获取token
-        if (org.apache.commons.lang.StringUtils.isBlank(token)) {
-            token = request.getParameter(LOGIN_TOKEN_KEY);
-        }
         try {
-            EncryptedDataBean decrypt = AESDecodeUtils.decrypt(Base64.decode(token).getBytes(), Base64.decode(iv).getBytes(),Base64.decode(encryptedData).getBytes());
+            System.out.println("sessionKey:" + Constants.SESSION_KEY_MAP.get(userVo.getUserId()));
+            System.out.println("iv:" + iv);
+            System.out.println("encryptedData:" + encryptedData);
+            EncryptedDataBean decrypt = WXAppletUserInfo.getUserMobile(Constants.SESSION_KEY_MAP.get(userVo.getUserId()), iv, encryptedData);
             userVo.setMobile(decrypt.getPhoneNumber());
             userService.update(userVo);
-            return toResponsObject(0, "手机绑定成功", decrypt);
+            return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "手机绑定成功", decrypt);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -158,7 +155,7 @@ public class ApiUserController extends ApiBaseAction {
         signRecord.setSignDate(new Date());
         signRecord.setUserId(loginUser.getUserId());
         apiSignRecordService.save(signRecord);
-        return toResponsSuccess("签到成功");
+        return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "签到成功,获取10积分", "签到成功");
     }
 
     /**
@@ -170,6 +167,4 @@ public class ApiUserController extends ApiBaseAction {
         UserDetailVo userDetailVo = userService.queryUserDetailInfo(loginUser.getUserId());
         return toResponsSuccess(userDetailVo);
     }
-
-
 }

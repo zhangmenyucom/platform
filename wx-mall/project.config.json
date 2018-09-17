@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.2.3",
 	"appid": "wxaf79383487fe6413",
-	"projectname": "wxshop.",
+	"projectname": "shop",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -55,10 +55,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "推荐有奖",
-					"pathName": "pages/recommend/recommend",
-					"query": ""
+					"id": 4,
+					"name": "积分",
+					"pathName": "pages/integral/integral",
+					"query": "userId=34"
 				},
 				{
 					"id": -1,
@@ -91,10 +91,40 @@
 					"query": ""
 				},
 				{
+					"id": 10,
+					"name": "video",
+					"pathName": "pages/video/video",
+					"query": "url=http://pdjawoz4r.bkt.clouddn.com/whcmhlkj.com/20180828/093508545ae9c8.mp4"
+				},
+				{
 					"id": -1,
-					"name": "activity",
-					"pathName": "pages/activity/activity",
-					"query": "activityId=7"
+					"name": "videoList",
+					"pathName": "pages/videoList/videoList",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "佣金",
+					"pathName": "pages/commission/commission",
+					"query": "page=1&limit=5&userId=28"
+				},
+				{
+					"id": -1,
+					"name": "二维码",
+					"pathName": "pages/qrCode/qrCode",
+					"query": "userId=28"
+				},
+				{
+					"id": 14,
+					"name": "推荐",
+					"pathName": "pages/recommend/recommend",
+					"query": "userId=28"
+				},
+				{
+					"id": 15,
+					"name": "团队",
+					"pathName": "pages/myTeam/myTeam",
+					"query": "userId=28"
 				}
 			]
 		}

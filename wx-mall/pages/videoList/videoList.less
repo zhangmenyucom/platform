@@ -1,0 +1,59 @@
+// out: videoList.wxss, compress:true, sourceMap:false
+.activityList-box{
+    width: 100%;
+    overflow: auto;
+    background: white;
+    text-align: left;
+    .activityList{
+        display: flex;
+        align-items: center;
+        width: 90%;
+        margin: 30rpx auto;
+        border-bottom: 1px solid #d9d9d9;
+        overflow: auto;
+        padding: 10rpx 0 10rpx 0;
+        video{
+            width: 240rpx;
+            height: 180rpx;
+        }
+        .info{
+            width: 500rpx;
+            overflow: auto;
+            margin-left: 30rpx;
+            .title-box{
+                text-align: center;
+                height: 30rpx;
+                line-height: 30rpx;
+                width: 100%;
+                text{display: inline-block; }
+                .title{
+                    width: 100%;
+                    float: left;
+                    font-size: 28rpx;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    white-space:nowrap;
+                    text-align: left;
+                }
+                
+            }
+            .author{
+                float: right;
+                font-size: 20rpx;
+                height: 20rpx;
+                margin-top: 10rpx;
+            }
+            .content,.time,.address{
+                width: 100%;
+                text-align: left;
+                margin-top: 10rpx;
+                font-size: 24rpx;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+            }
+            .content{margin-top: 50rpx;}
+            
+        }
+    }
+}

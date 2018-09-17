@@ -1,0 +1,8 @@
+<!--pages/video/video.wxml-->
+<view class='video-box'>
+<label>{{title}}</label>
+<video id='videocontext' autoplay='true' src="{{url}}" loop='true' controls></video>
+  
+  <text>{{content}}</text>
+  
+</view>
