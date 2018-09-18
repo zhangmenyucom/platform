@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.CommissionOrderEntity" id="commissionOrderMap">
         <result property="id" column="id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="orderSn" column="order_sn"/>
         <result property="gainBalance" column="gain_balance"/>

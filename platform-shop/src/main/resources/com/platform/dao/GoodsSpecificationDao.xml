@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.GoodsSpecificationEntity" id="goodsSpecificationMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="goodsId" column="goods_id"/>
         <result property="specificationId" column="specification_id"/>
         <result property="value" column="value"/>

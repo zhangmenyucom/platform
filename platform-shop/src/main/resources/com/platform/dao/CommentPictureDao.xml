@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.CommentPictureEntity" id="commentPictureMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="commentId" column="comment_id"/>
         <result property="picUrl" column="pic_url"/>
         <result property="sortOrder" column="sort_order"/>

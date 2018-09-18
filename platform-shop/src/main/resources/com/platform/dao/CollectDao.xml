@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.CollectEntity" id="collectMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
         <result property="valueId" column="value_id"/>

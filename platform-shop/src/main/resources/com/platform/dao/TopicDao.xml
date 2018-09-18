@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.TopicEntity" id="topicMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="title" column="title"/>
         <result property="content" column="content"/>
         <result property="avatar" column="avatar"/>

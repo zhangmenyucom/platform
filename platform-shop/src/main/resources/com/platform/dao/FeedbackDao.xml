@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.FeedbackEntity" id="feedbackMap">
         <result property="msgId" column="msg_id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
         <result property="mobile" column="mobile"/>

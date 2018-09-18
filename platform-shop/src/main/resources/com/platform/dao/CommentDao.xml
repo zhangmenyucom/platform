@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.CommentEntity" id="commentMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="typeId" column="type_id"/>
         <result property="valueId" column="value_id"/>
         <result property="content" column="content"/>

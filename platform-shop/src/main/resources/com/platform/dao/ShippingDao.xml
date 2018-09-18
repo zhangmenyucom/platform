@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.ShippingEntity" id="shippingMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="code" column="code"/>
         <result property="name" column="name"/>
     </resultMap>

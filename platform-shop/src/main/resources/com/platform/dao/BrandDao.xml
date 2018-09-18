@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.BrandEntity" id="brandMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="listPicUrl" column="list_pic_url"/>
         <result property="simpleDesc" column="simple_desc"/>

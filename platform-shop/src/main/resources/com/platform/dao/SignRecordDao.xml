@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.SignRecordEntity" id="signRecordMap">
         <result property="id" column="id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="nickname" column="nickname"/>
         <result property="gainPoint" column="gain_point"/>

@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.GoodsGalleryEntity" id="goodsGalleryMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="goodsId" column="goods_id"/>
         <result property="imgUrl" column="img_url"/>
         <result property="imgDesc" column="img_desc"/>

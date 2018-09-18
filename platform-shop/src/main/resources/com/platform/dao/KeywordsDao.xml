@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.KeywordsEntity" id="keywordsMap">
         <result property="id" column="id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="keyword" column="keyword"/>
         <result property="isHot" column="is_hot"/>
         <result property="isDefault" column="is_default"/>

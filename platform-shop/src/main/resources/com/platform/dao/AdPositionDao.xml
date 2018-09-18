@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.AdPositionEntity" id="adPositionMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="width" column="width"/>
         <result property="height" column="height"/>

@@ -6,6 +6,7 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.SpecificationEntity" id="specificationMap">
         <result property="id" column="id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="sortOrder" column="sort_order"/>
     </resultMap>

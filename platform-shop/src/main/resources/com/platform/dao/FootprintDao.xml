@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.FootprintEntity" id="footprintMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="nickName" column="nickname"/>
         <result property="goodsId" column="goods_id"/>

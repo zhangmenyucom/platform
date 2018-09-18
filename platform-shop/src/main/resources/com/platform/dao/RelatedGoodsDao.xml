@@ -6,6 +6,7 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.RelatedGoodsEntity" id="relatedGoodsMap">
         <result property="id" column="id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="goodsId" column="goods_id"/>
         <result property="relatedGoodsId" column="related_goods_id"/>
     </resultMap>

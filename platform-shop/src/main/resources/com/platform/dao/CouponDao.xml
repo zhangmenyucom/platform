@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.CouponEntity" id="couponMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="typeMoney" column="type_money"/>
         <result property="sendType" column="send_type"/>

@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.AttributeCategoryEntity" id="attributeCategoryMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="enabled" column="enabled"/>
     </resultMap>

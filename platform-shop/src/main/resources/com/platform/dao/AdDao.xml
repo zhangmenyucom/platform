@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.AdEntity" id="adMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="adPositionId" column="ad_position_id"/>
         <result property="mediaType" column="media_type"/>
         <result property="name" column="name"/>
@@ -43,7 +44,10 @@
         ad.enabled,
         ad_position.name ad_Position_Name
         from ad LEFT JOIN ad_position on ad.ad_position_id = ad_position.id
-        where 1=1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and ad.merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND ad.name LIKE concat('%',#{name},'%')
         </if>
