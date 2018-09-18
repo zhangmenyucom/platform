@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
  * @date 2017-12-16 23:38:05
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class SysSmsLogEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /**

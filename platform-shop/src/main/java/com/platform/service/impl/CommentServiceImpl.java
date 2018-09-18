@@ -19,7 +19,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-28 17:03:40
  */
-@Service("commentService")
+@Service
 public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;
@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentPictureDao commentPictureDao;
 
     @Override
-    public CommentEntity queryObject(Integer id) {
+    public CommentEntity queryObject(Long id) {
         return commentDao.queryObject(id);
     }
 

@@ -16,8 +16,6 @@ import java.io.Serializable;
 public class SpecificationEntity extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	//主键
-	private Integer id;
 	//规范名称
 	private String name;
 	//排序

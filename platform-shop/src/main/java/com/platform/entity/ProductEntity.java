@@ -19,7 +19,7 @@ public class ProductEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**商品Id**/
-    private Integer goodsId;
+    private Long goodsId;
     /**商品规格ids**/
     private String goodsSpecificationIds;
     /**商品序列号**/

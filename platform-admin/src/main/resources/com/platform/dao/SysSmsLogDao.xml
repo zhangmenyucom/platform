@@ -86,7 +86,6 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.SysSmsLogEntity">
 		insert into sys_sms_log(
-			`id`,
 			`user_id`,
 			`content`,
 			`mobile`,
@@ -101,7 +100,6 @@
 			`black_num`,
 			`return_msg`)
 		values(
-			#{id},
 			#{userId},
 			#{content},
 			#{mobile},
