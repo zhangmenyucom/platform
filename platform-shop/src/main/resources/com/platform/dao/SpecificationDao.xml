@@ -17,6 +17,10 @@
 
 	<select id="queryList" resultType="com.platform.entity.SpecificationEntity">
 		select * from specification
+		where 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -32,6 +36,10 @@
 	
  	<select id="queryTotal" resultType="int">
 		select count(*) from specification
+		where 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.SpecificationEntity" useGeneratedKeys="true" keyProperty="id">

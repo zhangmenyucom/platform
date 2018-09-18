@@ -27,7 +27,10 @@
 
 	<select id="queryList" resultType="com.platform.entity.OrderGoodsEntity">
 		select * from order_goods
-		WHERE 1=1
+		where 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 		<if test="orderId != null and orderId != ''">
 			AND order_id = #{orderId}
 		</if>
@@ -46,7 +49,10 @@
 	
  	<select id="queryTotal" resultType="int">
 		select count(*) from order_goods
-		WHERE 1=1
+		where 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 		<if test="orderId != null and orderId != ''">
 			AND order_id = #{orderId}
 		</if>

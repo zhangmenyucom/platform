@@ -52,7 +52,10 @@
         `topic_template_id`,
         `topic_tag_id`
         from topic
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="title != null and title.trim() != ''">
             AND title LIKE concat('%',#{title},'%')
         </if>
@@ -71,7 +74,10 @@
 
     <select id="queryTotal" resultType="int">
         select count(*) from topic
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="title != null and title.trim() != ''">
             AND title LIKE concat('%',#{title},'%')
         </if>

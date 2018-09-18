@@ -41,6 +41,9 @@
         from comment LEFT JOIN user ON comment.user_id = user.id
         LEFT JOIN goods ON comment.value_id = goods.id
         WHERE 1=1
+        <if test="merchantId!=null">
+            and comment.merchant_id=#{merchantId}
+        </if>
         <if test="userName != null and userName.trim() != ''">
             AND user.username LIKE concat('%',#{userName},'%')
         </if>
@@ -70,6 +73,9 @@
         select count(*) from comment LEFT JOIN user ON comment.user_id = user.id
         LEFT JOIN goods ON comment.value_id = goods.id
         WHERE 1=1
+        <if test="merchantId!=null">
+            and comment.merchant_id=#{merchantId}
+        </if>
         <if test="userName != null and userName.trim() != ''">
             AND user.username LIKE concat('%',#{userName},'%')
         </if>

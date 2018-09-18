@@ -30,7 +30,10 @@
     		`gain_point`,
     		`sign_date`
 		from sign_record s left join user u on s.user_id=u.id
-		WHERE 1=1
+		where 1=1
+		<if test="merchantId!=null">
+			and s.merchant_id=#{merchantId}
+		</if>
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
 		</if>
@@ -49,7 +52,10 @@
 	
  	<select id="queryTotal" resultType="int">
 		select count(*) from sign_record
-		WHERE 1=1
+		where 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

@@ -30,10 +30,13 @@
         goods_gallery.img_url,
         goods_gallery.img_desc,
         goods_gallery.sort_order,
-        goods.name goods_name
+        goods.name as goods_name
         from goods_gallery
         LEFT JOIN goods ON goods_gallery.goods_id = goods.id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods_gallery.merchant_id=#{merchantId}
+        </if>
         <if test="goodsName != null and goodsName.trim() != ''">
             AND goods.name LIKE concat('%',#{goodsName},'%')
         </if>
@@ -56,7 +59,10 @@
     <select id="queryTotal" resultType="int">
         select count(*) from goods_gallery
         LEFT JOIN goods ON goods_gallery.goods_id = goods.id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods_gallery.merchant_id=#{merchantId}
+        </if>
         <if test="goodsName != null and goodsName.trim() != ''">
             AND goods.name LIKE concat('%',#{goodsName},'%')
         </if>

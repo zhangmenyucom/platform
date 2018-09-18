@@ -25,7 +25,10 @@
         goods_issue.question,
         goods_issue.answer
         from goods_issue
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods_issue.merchant_id=#{merchantId}
+        </if>
         <if test="question != null and question.trim() != ''">
             AND goods_issue.question LIKE concat('%',#{question},'%')
         </if>
@@ -44,7 +47,10 @@
 
     <select id="queryTotal" resultType="int">
         select count(*) from goods_issue
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods_issue.merchant_id=#{merchantId}
+        </if>
         <if test="question != null and question.trim() != ''">
             AND goods_issue.question LIKE concat('%',#{question},'%')
         </if>

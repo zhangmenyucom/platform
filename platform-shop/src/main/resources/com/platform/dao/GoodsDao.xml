@@ -91,7 +91,10 @@
         ON goods.category_id = category.id
         LEFT JOIN attribute_category ON goods.attribute_category = attribute_category.id
         LEFT JOIN brand ON brand.id = goods.brand_id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods.merchant_id=#{merchantId}
+        </if>
         <!--  数据过滤  -->
         ${filterSql}
         <if test="name != null and name != ''">
@@ -112,7 +115,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-        select count(*) from goods WHERE 1=1
+        select count(*) from goods
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <!--  数据过滤  -->
         ${filterSql}
         <if test="name != null and name != ''">

@@ -47,7 +47,10 @@
         wo.`create_time`,
         wo.`update_time`
         from withdraw_order wo left join user u on u.id=wo.user_id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and wo.merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
@@ -66,7 +69,10 @@
 
     <select id="queryTotal" resultType="int">
         select count(*) from withdraw_order
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

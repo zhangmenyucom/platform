@@ -41,6 +41,9 @@
     		`update_time`
 		from commission_order
 		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
 		</if>
@@ -62,7 +65,12 @@
 		select c.*,u2.avatar,u2.nickname as nickname,u.avatar as source_avatar,u.user_level_id,u.nickname as source_user_name,
 		uo.actual_price,og.goods_name,og.list_pic_url as goods_pic_url,ul.name as level
 		from commission_order c,user u,user u2,user_order uo,order_goods og,user_level ul
-		where c.source_user_id=u.id
+		where
+		WHERE 1=1
+		<if test="merchantId!=null">
+			and c.merchant_id=#{merchantId}
+		</if>
+		and c.source_user_id=u.id
 		and c.order_sn=uo.order_sn
 		and uo.id =og.order_id
 		and u.user_level_id = ul.id
@@ -86,6 +94,9 @@
  	<select id="queryTotal" resultType="int">
 		select count(*) from commission_order
 		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

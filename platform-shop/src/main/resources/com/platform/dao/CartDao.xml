@@ -31,6 +31,10 @@
         select a.* ,b.nickname as user_name
         from cart a
         left join user b on a.user_id = b.id
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -45,8 +49,12 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from cart
-	</select>
+        select count(*) from cart
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+    </select>
 
     <insert id="save" parameterType="com.platform.entity.CartEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into cart
@@ -106,11 +114,20 @@
     </update>
 
     <delete id="delete">
-		delete from cart where id = #{value}
-	</delete>
+        delete from cart where
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
+        and id = #{value}
+    </delete>
 
     <delete id="deleteBatch">
-        delete from cart where id in
+        delete from cart where WHERE 1=1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
+        and id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

@@ -42,7 +42,10 @@
         from user_coupon
         LEFT JOIN user  ON user_coupon.user_id = user.id
         LEFT JOIN coupon ON user_coupon.coupon_id = coupon.id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and user_coupon.merchant_id=#{merchantId}
+        </if>
         <if test="userName != null and userName.trim() != ''">
             AND user.nickname LIKE concat('%',#{userName},'%')
         </if>
@@ -66,7 +69,10 @@
         select count(*)
         from user_coupon LEFT JOIN user ON user_coupon.user_id = user.id
         LEFT JOIN coupon ON user_coupon.coupon_id = coupon.id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and user_coupon.merchant_id=#{merchantId}
+        </if>
         <if test="userName != null and userName.trim() != ''">
             AND user.username LIKE concat('%',#{userName},'%')
         </if>

@@ -29,6 +29,9 @@
         `sort_order`
         from comment_picture
         WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="commentId != null and commentId.trim() != ''">
             AND comment_id = #{commentId}
         </if>
@@ -48,6 +51,9 @@
     <select id="queryTotal" resultType="int">
         select count(*) from comment_picture
         WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="commentId != null and commentId.trim() != ''">
             AND comment_id = #{commentId}
         </if>

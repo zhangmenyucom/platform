@@ -64,6 +64,9 @@
 			`is_show` as `show`
 		from category
 		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 		<if test="name != null and name.trim() != ''">
 			AND `name` LIKE concat('%',#{name},'%')
 		</if>
@@ -86,6 +89,9 @@
  	<select id="queryTotal" resultType="int">
 		select count(*) from category
 		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

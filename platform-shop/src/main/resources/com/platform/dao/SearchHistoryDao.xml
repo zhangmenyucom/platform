@@ -22,6 +22,10 @@
         select a.* ,b.username as user_name
         from search_history a
         left join user b on a.user_id = b.id
+        where 1=1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -37,6 +41,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from search_history
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.SearchHistoryEntity" useGeneratedKeys="true" keyProperty="id">

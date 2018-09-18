@@ -60,7 +60,10 @@
         user.weixin_openid,
         user_level.name levelName
         from user LEFT JOIN user_level ON user.user_level_id=user_level.id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and user.merchant_id=#{merchantId}
+        </if>
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')
         </if>
@@ -99,7 +102,10 @@
         from user
         LEFT JOIN user_level ON user.user_level_id=user_level.id
         LEFT  JOIN user u on user.parent_id=u.id
-       WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and user.merchant_id=#{merchantId}
+        </if>
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')
         </if>
@@ -119,6 +125,10 @@
     <select id="queryTotal" resultType="int">
         select count(*) from user
         WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and user.merchant_id=#{merchantId}
+        </if>
         <if test="username != null and username.trim() != ''">
             and username like concat('%',#{username},'%')
         </if>

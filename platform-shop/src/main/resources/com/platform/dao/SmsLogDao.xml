@@ -39,7 +39,10 @@
     		`send_status`,
     		`sms_text`
 		from sms_log s left join user u on u.id=s.user_id
-		WHERE 1=1
+		where 1=1
+		<if test="merchantId!=null">
+			and s.merchant_id=#{merchantId}
+		</if>
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
 		</if>
@@ -58,7 +61,10 @@
 	
  	<select id="queryTotal" resultType="int">
 		select count(*) from sms_log
-		WHERE 1=1
+		where 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

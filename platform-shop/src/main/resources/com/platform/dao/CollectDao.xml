@@ -25,6 +25,10 @@
         from collect a
         left join user b on a.user_id = b.id
         left join goods c on a.value_id = c.id
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -39,8 +43,11 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from collect
-	</select>
+        select count(*) from collect WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+    </select>
 
     <insert id="save" parameterType="com.platform.entity.CollectEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into collect

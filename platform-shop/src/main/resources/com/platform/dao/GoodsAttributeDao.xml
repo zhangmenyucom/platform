@@ -18,6 +18,10 @@
 
     <select id="queryList" resultType="com.platform.entity.GoodsAttributeEntity">
         select * from goods_attribute
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}

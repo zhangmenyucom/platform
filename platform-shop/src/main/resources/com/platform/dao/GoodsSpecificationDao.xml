@@ -35,7 +35,10 @@
         from goods_specification
         LEFT JOIN goods ON goods.id = goods_specification.goods_id
         LEFT JOIN specification ON specification.id = goods_specification.specification_id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods_specification.merchant_id=#{merchantId}
+        </if>
         <if test="goodsName != null and goodsName.trim() != ''">
             AND goods.name LIKE concat('%',#{goodsName},'%')
         </if>
@@ -61,7 +64,10 @@
     <select id="queryTotal" resultType="int">
         select count(*) from goods_specification
         LEFT JOIN goods ON goods.id = goods_specification.goods_id
-        WHERE 1=1
+        where 1=1
+        <if test="merchantId!=null">
+            and goods_specification.merchant_id=#{merchantId}
+        </if>
         <if test="goodsName != null and goodsName.trim() != ''">
             AND goods.name LIKE concat('%',#{goodsName},'%')
         </if>
@@ -73,8 +79,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.GoodsSpecificationEntity" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="save" parameterType="com.platform.entity.GoodsSpecificationEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into goods_specification(
 			`goods_id`,
 			`specification_id`,

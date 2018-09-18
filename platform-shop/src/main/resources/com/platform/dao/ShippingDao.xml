@@ -25,7 +25,11 @@
         `code`,
         `name`
         from shipping
-        WHERE 1=1  and status = 0
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and status = 0
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
@@ -44,7 +48,11 @@
 
     <select id="queryTotal" resultType="int">
         select count(*) from shipping
-        WHERE 1=1  and status = 0
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and status = 0
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
