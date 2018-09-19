@@ -30,10 +30,10 @@ public class CommissionRule {
     public CommissionOrderVo getCommition(UserVo userVo, OrderVo orderVo, Integer grade) {
         CommissionOrderVo commissionOrderVo = new CommissionOrderVo();
         commissionOrderVo.setActualPrice(orderVo.getActual_price())
-                .setCreateTime(new Date())
                 .setOrderSn(orderVo.getOrder_sn())
                 .setUserId(userVo.getUserId())
-                .setSourceUserId(orderVo.getUser_id());
+                .setSourceUserId(orderVo.getUser_id())
+                .setCreateTime(new Date());
         return this.processGainBanlance(commissionOrderVo, grade);
     }
 
@@ -43,8 +43,8 @@ public class CommissionRule {
 
         UserLevelEnum userSourceLevelEnum = LEVEL_MAP.get(userSource.getUser_level_id());
         UserLevelEnum userSelfLevelEnum = LEVEL_MAP.get(userSelf.getUser_level_id());
-        System.out.println("源"+ JsonUtil.getJsonByObj(userSourceLevelEnum));
-        System.out.println("本"+ JsonUtil.getJsonByObj(userSelfLevelEnum));
+        System.out.println("源" + JsonUtil.getJsonByObj(userSourceLevelEnum));
+        System.out.println("本" + JsonUtil.getJsonByObj(userSelfLevelEnum));
         switch (userSourceLevelEnum) {
             case NORMAL:
                 commissionOrderVo.setGainBalance(BigDecimal.ZERO);
@@ -189,8 +189,8 @@ public class CommissionRule {
     }
 
     public static void main(String[] args) {
-        CommissionOrderVo commissionOrderVo=new CommissionOrderVo().setOrderSn("!23").setGainBalance(BigDecimal.valueOf(12.3));
-        commissionOrderVo.setGainBalance(commissionOrderVo.getGainBalance().add(new BigDecimal(""+12.4)));
+        CommissionOrderVo commissionOrderVo = new CommissionOrderVo().setOrderSn("!23").setGainBalance(BigDecimal.valueOf(12.3));
+        commissionOrderVo.setGainBalance(commissionOrderVo.getGainBalance().add(new BigDecimal("" + 12.4)));
         System.out.println(JsonUtil.getJsonByObj(commissionOrderVo));
     }
 }

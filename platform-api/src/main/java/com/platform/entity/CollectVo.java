@@ -14,8 +14,6 @@ import java.io.Serializable;
 public class CollectVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Long id;
     //用户Id
     private Long user_id;
     //产品Id

@@ -37,12 +37,4 @@ public class TeachVideoVo extends BaseEntity  implements Serializable {
      * 0:未上架 1：上架
      **/
     private Integer status;
-    /**
-     * 创建时间
-     **/
-    private Date createTime;
-    /**
-     * 更新时间
-     **/
-    private Date updateTime;
 }

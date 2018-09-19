@@ -1,5 +1,7 @@
 package com.platform.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 
@@ -10,6 +12,7 @@ import java.io.Serializable;
  * @email 516195940@qq.com
  * @date 2017-08-15 08:03:39
  */
+@Data
 public class KeywordsVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,68 +30,4 @@ public class KeywordsVo extends BaseEntity  implements Serializable {
     private String scheme_url;
     //类型
     private Integer type;
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public Integer getIs_hot() {
-        return is_hot;
-    }
-
-    public void setIs_hot(Integer is_hot) {
-        this.is_hot = is_hot;
-    }
-
-    public Integer getIs_default() {
-        return is_default;
-    }
-
-    public void setIs_default(Integer is_default) {
-        this.is_default = is_default;
-    }
-
-    public Integer getIs_show() {
-        return is_show;
-    }
-
-    public void setIs_show(Integer is_show) {
-        this.is_show = is_show;
-    }
-
-    public Integer getSort_order() {
-        return sort_order;
-    }
-
-    public void setSort_order(Integer sort_order) {
-        this.sort_order = sort_order;
-    }
-
-    public String getScheme_url() {
-        return scheme_url;
-    }
-
-    public void setScheme_url(String scheme_url) {
-        this.scheme_url = scheme_url;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
 }

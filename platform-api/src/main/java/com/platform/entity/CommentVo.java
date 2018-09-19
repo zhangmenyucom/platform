@@ -15,8 +15,6 @@ import java.util.List;
 public class CommentVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Long id;
     //用户评论的类型;0评论的是商品,1评论的是文章
     private Integer type_id;
     //产品Id

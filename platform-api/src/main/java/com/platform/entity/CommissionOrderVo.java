@@ -33,10 +33,6 @@ public class CommissionOrderVo extends BaseEntity implements Serializable {
     private Long sourceUserId;
     /** 佣金说明 **/
     private String detail;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
     /**来源人头像**/
     private String sourceAvatar;
     /**来源人昵称**/

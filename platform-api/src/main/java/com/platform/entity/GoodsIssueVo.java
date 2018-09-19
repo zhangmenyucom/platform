@@ -13,9 +13,6 @@ import java.io.Serializable;
 @Data
 public class GoodsIssueVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    //主键
-    private Long id;
     //商品id
     private String goods_id;
     //问题

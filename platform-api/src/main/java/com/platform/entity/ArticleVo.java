@@ -32,8 +32,4 @@ public class ArticleVo extends BaseEntity implements Serializable {
     private Integer sortOrder;
     /** 状态：0 未上架 1：上架 **/
     private Integer status;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
 }

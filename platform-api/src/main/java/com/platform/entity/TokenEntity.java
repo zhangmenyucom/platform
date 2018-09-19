@@ -23,6 +23,4 @@ public class TokenEntity extends BaseEntity implements Serializable {
     private String token;
     /**过期时间**/
     private Date expireTime;
-    /**更新时间**/
-    private Date updateTime;
 }

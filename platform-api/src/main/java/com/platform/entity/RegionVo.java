@@ -23,7 +23,7 @@ public class RegionVo extends BaseEntity {
     }
 
     public RegionVo(SysRegionEntity regionEntity) {
-        id = regionEntity.getId();
+        this.setId(regionEntity.getId());
         parent_id = regionEntity.getParentId();
         name = regionEntity.getName();
         type = regionEntity.getType();

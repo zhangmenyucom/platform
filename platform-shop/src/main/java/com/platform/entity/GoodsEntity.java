@@ -58,10 +58,6 @@ public class GoodsEntity extends BaseEntity implements Serializable {
      **/
     private Date addTime;
     /**
-     * 修改时间
-     **/
-    private Date updateTime;
-    /**
      * 排序
      **/
     private Integer sortOrder;

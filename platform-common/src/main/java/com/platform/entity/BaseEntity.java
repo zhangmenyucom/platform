@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  * @date 2017年11月16日 下午10:43:36
  */
 @Data
+@Accessors(chain = true)
 public class BaseEntity {
     /**
      * 主键id
