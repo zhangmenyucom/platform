@@ -29,6 +29,9 @@
         </if>
         from keywords
         <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
             <if test="keyword != null">
                 and keyword like concat('%',#{keyword},'%')
             </if>
@@ -48,6 +51,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from keywords
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.KeywordsVo">

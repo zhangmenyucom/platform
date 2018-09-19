@@ -25,7 +25,10 @@
         select c.*,g.name, g.list_pic_url as list_pic_url, g.goods_brief as goods_brief, g.retail_price as retail_price
         from collect c
         left join goods g on c.value_id = g.id
-        where 1 = 1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and c.merchant_id=#{merchantId}
+        </if>
         <if test="user_id != null and user_id != ''">
             and c.user_id = #{user_id}
         </if>
@@ -51,7 +54,10 @@
     <select id="queryTotal" resultType="int">
         select count(*)
         from collect c
-        where 1 = 1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and c.merchant_id=#{merchantId}
+        </if>
         <if test="user_id != null and user_id != ''">
             and c.user_id = #{user_id}
         </if>

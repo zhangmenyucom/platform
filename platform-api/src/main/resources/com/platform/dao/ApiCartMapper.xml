@@ -33,7 +33,10 @@
         from cart a
         left join goods b on a.goods_id = b.id
         left join product c on c.goods_id = a.goods_id and c.id = a.product_id
-        where 1 = 1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="user_id != null">
             AND a.user_id = #{user_id}
         </if>
@@ -61,7 +64,10 @@
 
     <select id="queryTotal" resultType="int">
         select count(*) from cart a
-        where 1 = 1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="user_id != null">
             AND a.user_id = #{user_id}
         </if>

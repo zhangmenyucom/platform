@@ -45,6 +45,9 @@
         `update_time`
         from commission_order
         WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="userId!= null">
             AND user_id=#{userId}
         </if>
@@ -67,6 +70,9 @@
         <if test="userId!=null">
             and c.user_id=#{userId}
         </if>
+        <if test="merchantId!=null">
+            and c.merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -83,6 +89,9 @@
     <select id="queryTotal" resultType="int">
         select count(*) from commission_order
         WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

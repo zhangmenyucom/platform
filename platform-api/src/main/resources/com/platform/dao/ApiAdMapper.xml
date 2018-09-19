@@ -26,6 +26,9 @@
         <if test="ad_position_id != null and ad_position_id != null">
             and ad_position_id = #{ad_position_id}
         </if>
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -41,6 +44,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from ad
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.AdVo" useGeneratedKeys="true" keyProperty="id">

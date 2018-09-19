@@ -25,6 +25,9 @@
     <select id="queryList" resultMap="addressMap">
         select * from address
         <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
             <if test="user_id != null">
                 and user_id = #{user_id}
             </if>
@@ -44,6 +47,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from address
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.AddressVo" useGeneratedKeys="true" keyProperty="id">

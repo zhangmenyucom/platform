@@ -26,7 +26,12 @@
 			`gain_point`,
 			`sign_date`
 		from sign_record
-		where user_id = #{userId} order by sign_date desc limit 1
+		where
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and user_id = #{userId} order by sign_date desc limit 1
 	</select>
 
     <select id="queryList" resultType="com.platform.entity.SignRecordVo">
@@ -37,6 +42,9 @@
         `sign_date`
         from sign_record
         WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
@@ -56,6 +64,9 @@
     <select id="queryTotal" resultType="int">
         select count(*) from sign_record
         WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>

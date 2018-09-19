@@ -33,6 +33,9 @@
         </if>
         left join goods g on f.goods_id = g.id
         <where>
+            <if test="merchantId!=null">
+                and f.merchant_id=#{merchantId}
+            </if>
             <if test="user_id != null">
                 and f.user_id = #{user_id}
             </if>
@@ -53,28 +56,34 @@
         </if>
     </select>
     <select id="queryListFootprint" resultMap="footprintMap">
-			    SELECT
-				MAX(f.id) id,
-				f.user_id,
-				f.goods_id,
-				f.add_time add_time,
-				f.referrer,
-				g. NAME AS NAME,
-				g.list_pic_url AS list_pic_url,
-				g.goods_brief AS goods_brief,
-				g.retail_price AS retail_price
-			FROM
-				footprint f
-			  LEFT JOIN goods g ON f.goods_id = g.id
-			WHERE
-				f.user_id = #{0} GROUP BY goods_id
-			 ORDER BY
-				 id DESC
+        SELECT
+        MAX(f.id) id,
+        f.user_id,
+        f.goods_id,
+        f.add_time add_time,
+        f.referrer,
+        g. NAME AS NAME,
+        g.list_pic_url AS list_pic_url,
+        g.goods_brief AS goods_brief,
+        g.retail_price AS retail_price
+        FROM
+        footprint f
+        LEFT JOIN goods g ON f.goods_id = g.id
+        WHERE
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and f.merchant_id=#{merchantId}
+        </if>
+        and f.user_id = #{0} GROUP BY goods_id
+        ORDER BY id DESC
     </select>
 
     <select id="queryTotal" resultType="int">
         select count(*) from footprint f
         <where>
+            <if test="merchantId!=null">
+                and f.merchant_id=#{merchantId}
+            </if>
             <if test="user_id != null">
                 and f.user_id = #{user_id}
             </if>
@@ -143,6 +152,9 @@
         left join user u on u.id = f.user_id
         <where>
             u.id is not null
+            <if test="merchantId!=null">
+                and f.merchant_id=#{merchantId}
+            </if>
             <if test="user_id != null">
                 and f.user_id = #{user_id}
             </if>

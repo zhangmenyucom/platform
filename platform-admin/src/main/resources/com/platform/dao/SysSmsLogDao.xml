@@ -60,6 +60,9 @@
 		from sys_sms_log
 		LEFT JOIN sys_user ON sys_user.user_id = sys_sms_log.user_id
 		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 		<if test="sendId != null and sendId != ''">
 			AND sys_sms_log.send_id LIKE concat('%',#{sendId},'%')
 		</if>
@@ -79,6 +82,9 @@
  	<select id="queryTotal" resultType="int">
 		select count(*) from sys_sms_log
 		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 		<if test="sendId != null and sendId != ''">
 			AND send_id LIKE concat('%',#{sendId},'%')
 		</if>

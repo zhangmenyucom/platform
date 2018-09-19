@@ -8,14 +8,23 @@
 	</select>
 
 	<select id="queryList" resultType="com.platform.entity.SysOssEntity">
-		select * from sys_oss order by id desc
+		select * from sys_oss
+		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
+		order by id desc
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from sys_oss 
+		select count(*) from sys_oss
+		WHERE 1=1
+		<if test="merchantId!=null">
+			and merchant_id=#{merchantId}
+		</if>
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.SysOssEntity" useGeneratedKeys="true" keyProperty="id">

@@ -30,6 +30,9 @@
             inner join specification s on gs.specification_id= s.id
         </if>
         <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
             <if test="goods_id != null">
                 and gs.goods_id = #{goods_id}
             </if>
@@ -55,6 +58,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from goods_specification
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.GoodsSpecificationVo" useGeneratedKeys="true" keyProperty="id">

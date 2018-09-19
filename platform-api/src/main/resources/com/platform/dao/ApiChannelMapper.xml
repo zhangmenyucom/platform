@@ -18,6 +18,10 @@
 
     <select id="queryList" resultMap="channelMap">
         select * from channel
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="ad_position_id != null and ad_position_id != null">
             and ad_position_id = #{ad_position_id}
         </if>
@@ -36,6 +40,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from channel
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.ChannelVo" useGeneratedKeys="true" keyProperty="id">

@@ -35,7 +35,10 @@
             *
         </if>
         from category
-        where 1 = 1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="parent_id != null and parent_id != null">
             and parent_id = #{parent_id}
         </if>
@@ -63,6 +66,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from category
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.CategoryVo">

@@ -28,6 +28,9 @@
         from attribute na
         left join goods_attribute nga ON nga.attribute_id=na.id
         <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
             <if test="goods_id != null">
                 and nga.goods_id = #{goods_id}
             </if>
@@ -47,6 +50,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from attribute
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.AttributeVo" useGeneratedKeys="true" keyProperty="id">

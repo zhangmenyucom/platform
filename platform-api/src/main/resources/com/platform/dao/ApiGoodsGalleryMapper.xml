@@ -26,6 +26,9 @@
         </if>
         from goods_gallery
         <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
             <if test="goods_id != null">
                 and goods_id = #{goods_id}
             </if>
@@ -45,6 +48,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from goods_gallery
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.GoodsGalleryVo" useGeneratedKeys="true" keyProperty="id">

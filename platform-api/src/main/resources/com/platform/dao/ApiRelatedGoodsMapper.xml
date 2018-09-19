@@ -23,6 +23,10 @@
             *
         </if>
         from related_goods
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -38,6 +42,11 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from related_goods
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.RelatedGoodsVo" useGeneratedKeys="true" keyProperty="id">

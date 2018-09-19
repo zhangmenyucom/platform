@@ -52,7 +52,10 @@
             *
         </if>
         from goods
-        where 1 = 1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="is_new != null and is_new != ''">
             and is_new = #{is_new}
         </if>
@@ -123,6 +126,9 @@
         <if test="keyword != null">
             and a.keywords like concat('%',#{keyword},'%')
         </if>
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
         <if test="categoryIds != null">
             and a.category_id in
             <foreach item="item" collection="categoryIds" open="(" separator="," close=")">
@@ -159,6 +165,9 @@
             left join goods_group gg on gg.goods_id = a.id
         </if>
         where 1 = 1 and b.id is not null and c.id is null and a.is_delete != 1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
         <if test="is_new != null and is_new != ''">
             and a.is_new = #{is_new}
         </if>
@@ -209,6 +218,9 @@
     <select id="queryTotal" resultType="int">
 		select count(*) from goods
 		where 1 = 1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="is_delete != null">
             and is_delete = #{is_delete}
         </if>

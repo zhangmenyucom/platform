@@ -3,7 +3,7 @@
 
 <mapper namespace="com.platform.dao.ApiUserMapper">
 
-	<insert id="save" parameterType="com.platform.entity.UserVo" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="save" parameterType="com.platform.entity.UserVo" useGeneratedKeys="true" keyProperty="userId">
 		insert into tb_user
 		(
 			`username`,
@@ -20,11 +20,11 @@
 			)
 	</insert>
 
-	<select id="queryObject" resultType="com.platform.entity.UserVo">
+    <select id="queryObject" resultType="com.platform.entity.UserVo">
 		select * from tb_user where user_id = #{value}
 	</select>
 
-	<select id="queryByMobile" resultType="com.platform.entity.UserVo">
+    <select id="queryByMobile" resultType="com.platform.entity.UserVo">
 		select * from tb_user where mobile = #{value}
 	</select>
 

@@ -29,6 +29,9 @@
         from product a
         left join goods b on a.goods_id = b.id
         <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
             <if test="goods_id != null">
                 and a.goods_id = #{goods_id}
             </if>
@@ -48,5 +51,9 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from product
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 </mapper>

@@ -21,13 +21,21 @@
 	</select>
 
     <select id="queryByCouponNumber" resultMap="userCouponMap">
-        select * from user_coupon where coupon_number = #{coupon_number}
+        select * from user_coupon
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        and coupon_number = #{coupon_number}
     </select>
 
     <select id="queryList" resultMap="userCouponMap">
         select a.* from user_coupon a
         left join coupon b on b.id = a.coupon_id
         where 1 = 1
+        <if test="merchantId!=null">
+            and a.merchant_id=#{merchantId}
+        </if>
         <if test="coupon_number != null">
             and a.coupon_number = #{coupon_number}
         </if>
@@ -58,6 +66,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from user_coupon
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.UserCouponVo" useGeneratedKeys="true" keyProperty="id">
