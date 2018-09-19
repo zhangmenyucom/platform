@@ -22,19 +22,17 @@ public interface BaseDao<T> {
 
     int update(Map<String, Object> map);
 
-    int delete(Object id);
+    int delete(Long id);
 
     int delete(Map<String, Object> map);
 
-    int deleteBatch(Object[] id);
+    int deleteBatch(Long[] id);
 
-    T queryObject(Object id);
+    T queryObject(Long id);
 
     List<T> queryList(Map<String, Object> map);
 
-    List<T> queryList(Object id);
+    List<T> queryList(Long id);
 
     int queryTotal(Map<String, Object> map);
-
-    int queryTotal();
 }

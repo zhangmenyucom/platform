@@ -75,7 +75,7 @@ public class OrderEntity extends BaseEntity implements Serializable {
     /**
      * 快递公司Id
      **/
-    private Integer shippingId;
+    private Long shippingId;
     /**
      * 快递公司名称
      **/
