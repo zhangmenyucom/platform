@@ -2,6 +2,7 @@ package com.platform.service;
 
 import com.platform.dao.ApiSignRecordMapper;
 import com.platform.entity.SignRecordVo;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,39 +17,9 @@ import java.util.Map;
  * @date 2018-09-09 21:48:06
  */
 @Service
-public class ApiSignRecordService {
-    @Autowired
-    private ApiSignRecordMapper signRecordDao;
-
-    public SignRecordVo queryObject(Long id) {
-        return signRecordDao.queryObject(id);
-    }
+public class ApiSignRecordService extends BaseServiceImpl<SignRecordVo,ApiSignRecordMapper> {
 
     public SignRecordVo queryLatestSign(Long userId){
-        return signRecordDao.queryLatestSign(userId);
-    }
-
-    public List<SignRecordVo> queryList(Map<String, Object> map) {
-        return signRecordDao.queryList(map);
-    }
-
-    public int queryTotal(Map<String, Object> map) {
-        return signRecordDao.queryTotal(map);
-    }
-
-    public int save(SignRecordVo signRecord) {
-        return signRecordDao.save(signRecord);
-    }
-
-    public int update(SignRecordVo signRecord) {
-        return signRecordDao.update(signRecord);
-    }
-
-    public int delete(Long id) {
-        return signRecordDao.delete(id);
-    }
-
-    public int deleteBatch(Long[] ids) {
-        return signRecordDao.deleteBatch(ids);
+        return getDao().queryLatestSign(userId);
     }
 }

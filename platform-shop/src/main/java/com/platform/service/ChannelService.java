@@ -2,9 +2,6 @@ package com.platform.service;
 
 import com.platform.entity.ChannelEntity;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Service接口
  *

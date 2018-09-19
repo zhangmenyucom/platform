@@ -16,55 +16,16 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author taylor
  */
-@Service("smsLogService")
-public class SysSmsLogServiceImpl implements SysSmsLogService {
+@Service
+public class SysSmsLogServiceImpl extends  BaseServiceImpl<SysSmsLogEntity,SysSmsLogDao> implements SysSmsLogService {
 
-    @Autowired
-    private SysSmsLogDao smsLogDao;
 
     @Autowired
     private SysConfigService sysConfigService;
-
-    @Override
-    public SysSmsLogEntity queryObject(Long id) {
-        return smsLogDao.queryObject(id);
-    }
-
-    @Override
-    public List<SysSmsLogEntity> queryList(Map<String, Object> map) {
-        return smsLogDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return smsLogDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(SysSmsLogEntity smsLog) {
-        return smsLogDao.save(smsLog);
-    }
-
-    @Override
-    public int update(SysSmsLogEntity smsLog) {
-        return smsLogDao.update(smsLog);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return smsLogDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Long[] ids) {
-        return smsLogDao.deleteBatch(ids);
-    }
 
     @Override
     public SysSmsLogEntity sendSms(SysSmsLogEntity smsLog) {

@@ -2,51 +2,11 @@ package com.platform.service;
 
 import com.platform.dao.ApiGoodsSpecificationMapper;
 import com.platform.entity.GoodsSpecificationVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 
 @Service
-public class ApiGoodsSpecificationService {
-    @Autowired
-    private ApiGoodsSpecificationMapper goodsDao;
-
-
-    public GoodsSpecificationVo queryObject(Long id) {
-        return goodsDao.queryObject(id);
-    }
-
-
-    public List<GoodsSpecificationVo> queryList(Map<String, Object> map) {
-        return goodsDao.queryList(map);
-    }
-
-
-    public int queryTotal(Map<String, Object> map) {
-        return goodsDao.queryTotal(map);
-    }
-
-
-    public void save(GoodsSpecificationVo goods) {
-        goodsDao.save(goods);
-    }
-
-
-    public void update(GoodsSpecificationVo goods) {
-        goodsDao.update(goods);
-    }
-
-
-    public void delete(Long id) {
-        goodsDao.delete(id);
-    }
-
-
-    public void deleteBatch(Long[] ids) {
-        goodsDao.deleteBatch(ids);
-    }
+public class ApiGoodsSpecificationService extends BaseServiceImpl<GoodsSpecificationVo, ApiGoodsSpecificationMapper> {
 
 }

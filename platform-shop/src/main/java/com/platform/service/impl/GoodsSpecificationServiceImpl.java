@@ -3,11 +3,7 @@ package com.platform.service.impl;
 import com.platform.dao.GoodsSpecificationDao;
 import com.platform.entity.GoodsSpecificationEntity;
 import com.platform.service.GoodsSpecificationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * 商品对应规格表值表Service实现类

@@ -2,11 +2,8 @@ package com.platform.task;
 
 import com.platform.entity.SysUserEntity;
 import com.platform.service.SysUserService;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

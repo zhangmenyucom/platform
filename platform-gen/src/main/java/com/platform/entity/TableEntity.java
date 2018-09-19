@@ -1,7 +1,5 @@
 package com.platform.entity;
 
-import lombok.Data;
-
 import java.util.List;
 
 /**

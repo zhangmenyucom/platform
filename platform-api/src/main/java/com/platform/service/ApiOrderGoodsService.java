@@ -2,51 +2,11 @@ package com.platform.service;
 
 import com.platform.dao.ApiOrderGoodsMapper;
 import com.platform.entity.OrderGoodsVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 
 @Service
-public class ApiOrderGoodsService {
-    @Autowired
-    private ApiOrderGoodsMapper orderGoodsDao;
-
-
-    public OrderGoodsVo queryObject(Long id) {
-        return orderGoodsDao.queryObject(id);
-    }
-
-
-    public List<OrderGoodsVo> queryList(Map<String, Object> map) {
-        return orderGoodsDao.queryList(map);
-    }
-
-
-    public int queryTotal(Map<String, Object> map) {
-        return orderGoodsDao.queryTotal(map);
-    }
-
-
-    public void save(OrderGoodsVo order) {
-        orderGoodsDao.save(order);
-    }
-
-
-    public void update(OrderGoodsVo order) {
-        orderGoodsDao.update(order);
-    }
-
-
-    public void delete(Long id) {
-        orderGoodsDao.delete(id);
-    }
-
-
-    public void deleteBatch(Long[] ids) {
-        orderGoodsDao.deleteBatch(ids);
-    }
+public class ApiOrderGoodsService extends BaseServiceImpl<OrderGoodsVo, ApiOrderGoodsMapper> {
 
 }

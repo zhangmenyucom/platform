@@ -2,51 +2,10 @@ package com.platform.service;
 
 import com.platform.dao.ApiCategoryMapper;
 import com.platform.entity.CategoryVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 
 @Service
-public class ApiCategoryService {
-	@Autowired
-	private ApiCategoryMapper categoryDao;
-	
-	
-	public CategoryVo queryObject(Long id){
-		return categoryDao.queryObject(id);
-	}
-	
-	
-	public List<CategoryVo> queryList(Map<String, Object> map){
-		return categoryDao.queryList(map);
-	}
-	
-	
-	public int queryTotal(Map<String, Object> map){
-		return categoryDao.queryTotal(map);
-	}
-	
-	
-	public void save(CategoryVo category){
-		categoryDao.save(category);
-	}
-	
-	
-	public void update(CategoryVo category){
-		categoryDao.update(category);
-	}
-	
-	
-	public void delete(Long id){
-		categoryDao.delete(id);
-	}
-	
-	
-	public void deleteBatch(Long[] ids){
-		categoryDao.deleteBatch(ids);
-	}
-	
+public class ApiCategoryService extends BaseServiceImpl<CategoryVo,ApiCategoryMapper> {
 }

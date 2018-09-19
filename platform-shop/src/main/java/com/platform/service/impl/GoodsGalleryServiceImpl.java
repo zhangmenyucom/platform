@@ -2,13 +2,8 @@ package com.platform.service.impl;
 
 import com.platform.dao.GoodsGalleryDao;
 import com.platform.entity.GoodsGalleryEntity;
-import com.platform.service.BaseService;
 import com.platform.service.GoodsGalleryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Service实现类

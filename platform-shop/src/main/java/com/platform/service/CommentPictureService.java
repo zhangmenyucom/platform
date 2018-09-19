@@ -2,9 +2,6 @@ package com.platform.service;
 
 import com.platform.entity.CommentPictureEntity;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 评价图片Service接口
  *

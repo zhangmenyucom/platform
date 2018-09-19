@@ -4,16 +4,10 @@ import com.platform.common.vo.EncryptedDataBean;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.AlgorithmParameters;
-import java.security.SecureRandom;
 import java.security.Security;
-import java.security.spec.AlgorithmParameterSpec;
-import java.util.Arrays;
 
 /**
  * @author hgg

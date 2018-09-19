@@ -6,6 +6,7 @@ import com.platform.entity.SmsLogVo;
 import com.platform.entity.UserDetailVo;
 import com.platform.entity.UserLevelVo;
 import com.platform.entity.UserVo;
+import com.platform.service.impl.BaseServiceImpl;
 import com.platform.utils.RRException;
 import com.platform.validator.Assert;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -19,27 +20,22 @@ import java.util.Map;
 
 
 @Service
-public class ApiUserService {
-    @Autowired
-    private ApiUserMapper userDao;
+public class ApiUserService extends BaseServiceImpl<UserVo, ApiUserMapper> {
     @Autowired
     private ApiUserLevelMapper userLevelDao;
 
-    public UserVo queryObject(Long userId) {
-        return userDao.queryObject(userId);
-    }
 
     public UserDetailVo queryUserDetailInfo(Long userId) {
 
-        UserDetailVo userDetailVo = userDao.queryUserDetailInfo(userId);
+        UserDetailVo userDetailVo = getDao().queryUserDetailInfo(userId);
         if (userDetailVo != null) {
             Map<String, Object> map = new HashMap<>(16);
             map.put("parentId", userDetailVo.getUserId());
-            List<UserVo> userVos = userDao.queryList(map);
+            List<UserVo> userVos = getDao().queryList(map);
             userDetailVo.setSubUserList(userVos);
             userVos.forEach(uv -> {
                 map.put("parentId", uv.getUserId());
-                List<UserVo> subVos = userDao.queryList(map);
+                List<UserVo> subVos = getDao().queryList(map);
                 uv.setSubUserList(subVos);
             });
         }
@@ -47,16 +43,9 @@ public class ApiUserService {
     }
 
     public UserVo queryByOpenId(String openId) {
-        return userDao.queryByOpenId(openId);
+        return getDao().queryByOpenId(openId);
     }
 
-    public List<UserVo> queryList(Map<String, Object> map) {
-        return userDao.queryList(map);
-    }
-
-    public int queryTotal(Map<String, Object> map) {
-        return userDao.queryTotal(map);
-    }
 
     public void save(String mobile, String password) {
         UserVo user = new UserVo();
@@ -64,27 +53,12 @@ public class ApiUserService {
         user.setUsername(mobile);
         user.setPassword(DigestUtils.sha256Hex(password));
         user.setRegister_time(new Date());
-        userDao.save(user);
+        getDao().save(user);
     }
 
-    public void save(UserVo userVo) {
-        userDao.save(userVo);
-    }
-
-    public void update(UserVo user) {
-        userDao.update(user);
-    }
-
-    public void delete(Long userId) {
-        userDao.delete(userId);
-    }
-
-    public void deleteBatch(Long[] userIds) {
-        userDao.deleteBatch(userIds);
-    }
 
     public UserVo queryByMobile(String mobile) {
-        return userDao.queryByMobile(mobile);
+        return getDao().queryByMobile(mobile);
     }
 
     public long login(String mobile, String password) {
@@ -100,12 +74,12 @@ public class ApiUserService {
     }
 
     public SmsLogVo querySmsCodeByUserId(Long user_id) {
-        return userDao.querySmsCodeByUserId(user_id);
+        return getDao().querySmsCodeByUserId(user_id);
     }
 
 
     public int saveSmsCodeLog(SmsLogVo smsLogVo) {
-        return userDao.saveSmsCodeLog(smsLogVo);
+        return getDao().saveSmsCodeLog(smsLogVo);
     }
 
     public String getUserLevel(UserVo loginUser) {

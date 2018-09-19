@@ -1,14 +1,13 @@
 package com.platform.service.impl;
 
+import com.platform.dao.ArticleDao;
+import com.platform.entity.ArticleEntity;
+import com.platform.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
-import com.platform.dao.ArticleDao;
-import com.platform.entity.ArticleEntity;
-import com.platform.service.ArticleService;
 
 /**
  * Service实现类

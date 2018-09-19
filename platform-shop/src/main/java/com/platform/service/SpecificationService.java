@@ -2,9 +2,6 @@ package com.platform.service;
 
 import com.platform.entity.SpecificationEntity;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 规格表
  * 

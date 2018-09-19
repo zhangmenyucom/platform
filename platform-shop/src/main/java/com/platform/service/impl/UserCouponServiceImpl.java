@@ -3,11 +3,7 @@ package com.platform.service.impl;
 import com.platform.dao.UserCouponDao;
 import com.platform.entity.UserCouponEntity;
 import com.platform.service.UserCouponService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Service实现类

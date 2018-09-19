@@ -2,7 +2,7 @@ package com.platform.service;
 
 import com.platform.dao.ApiFootprintMapper;
 import com.platform.entity.FootprintVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,53 +10,17 @@ import java.util.Map;
 
 
 @Service
-public class ApiFootprintService {
+public class ApiFootprintService extends BaseServiceImpl<FootprintVo, ApiFootprintMapper> {
 
-    @Autowired
-    private ApiFootprintMapper footprintDao;
-
-
-    public FootprintVo queryObject(Long id) {
-        return footprintDao.queryObject(id);
-    }
-
-
-    public List<FootprintVo> queryList(Map<String, Object> map) {
-        return footprintDao.queryList(map);
-    }
     public List<FootprintVo> queryListFootprint(String userid) {
-    	return footprintDao.queryListFootprint(userid);
-    }
-
-    public List<FootprintVo> shareList(Map<String, Object> map) {
-        return footprintDao.shareList(map);
-    }
-
-    public int queryTotal(Map<String, Object> map) {
-        return footprintDao.queryTotal(map);
-    }
-
-
-    public void save(FootprintVo footprint) {
-        footprintDao.save(footprint);
-    }
-
-
-    public void update(FootprintVo footprint) {
-        footprintDao.update(footprint);
-    }
-
-
-    public void delete(Long id) {
-        footprintDao.delete(id);
+        return getDao().queryListFootprint(userid);
     }
 
     public void deleteByParam(Map<String, Object> map) {
-        footprintDao.deleteByParam(map);
+        getDao().deleteByParam(map);
     }
 
-    public void deleteBatch(Long[] ids) {
-        footprintDao.deleteBatch(ids);
+    public List<FootprintVo> shareList(Map<String, Object> map) {
+        return getDao().shareList(map);
     }
-
 }

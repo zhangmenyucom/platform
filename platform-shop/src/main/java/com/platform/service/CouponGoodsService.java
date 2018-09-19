@@ -2,9 +2,6 @@ package com.platform.service;
 
 import com.platform.entity.CouponGoodsEntity;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 优惠券关联商品Service接口
  *

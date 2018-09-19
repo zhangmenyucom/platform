@@ -3,11 +3,7 @@ package com.platform.service.impl;
 import com.platform.dao.ChannelDao;
 import com.platform.entity.ChannelEntity;
 import com.platform.service.ChannelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Service实现类

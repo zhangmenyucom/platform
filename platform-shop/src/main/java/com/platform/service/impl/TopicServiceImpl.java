@@ -3,11 +3,7 @@ package com.platform.service.impl;
 import com.platform.dao.TopicDao;
 import com.platform.entity.TopicEntity;
 import com.platform.service.TopicService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Service实现类

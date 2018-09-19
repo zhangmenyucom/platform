@@ -16,7 +16,6 @@ import com.platform.util.ApiBaseAction;
 import com.platform.util.wechat.WechatUtil;
 import com.platform.util.wechat.WeichatRefundApiResult;
 import com.platform.utils.*;
-import com.sun.org.apache.xerces.internal.dom.PSVIAttrNSImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

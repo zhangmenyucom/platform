@@ -2,11 +2,8 @@ package com.platform.service;
 
 import com.platform.dao.ApiWithdrawOrderMapper;
 import com.platform.entity.WithdrawOrderVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Service接口
@@ -16,36 +13,6 @@ import java.util.Map;
  * @date 2018-08-25 14:20:46
  */
 @Service
-public class ApiWithdrawOrderService {
+public class ApiWithdrawOrderService extends BaseServiceImpl<WithdrawOrderVo, ApiWithdrawOrderMapper> {
 
-    @Autowired
-    private ApiWithdrawOrderMapper withdrawOrderDao;
-
-    public WithdrawOrderVo queryObject(Long id) {
-        return withdrawOrderDao.queryObject(id);
-    }
-
-    public List<WithdrawOrderVo> queryList(Map<String, Object> map) {
-        return withdrawOrderDao.queryList(map);
-    }
-
-    public int queryTotal(Map<String, Object> map) {
-        return withdrawOrderDao.queryTotal(map);
-    }
-
-    public int save(WithdrawOrderVo withdrawOrder) {
-        return withdrawOrderDao.save(withdrawOrder);
-    }
-
-    public int update(WithdrawOrderVo withdrawOrder) {
-        return withdrawOrderDao.update(withdrawOrder);
-    }
-
-    public int delete(Long id) {
-        return withdrawOrderDao.delete(id);
-    }
-
-    public int deleteBatch(Long[] ids) {
-        return withdrawOrderDao.deleteBatch(ids);
-    }
 }

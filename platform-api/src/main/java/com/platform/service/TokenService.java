@@ -2,8 +2,8 @@ package com.platform.service;
 
 import com.platform.dao.ApiTokenMapper;
 import com.platform.entity.TokenEntity;
+import com.platform.service.impl.BaseServiceImpl;
 import com.platform.utils.CharUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,27 +12,18 @@ import java.util.Map;
 
 
 @Service
-public class TokenService {
-    @Autowired
-    private ApiTokenMapper tokenDao;
+public class TokenService  extends BaseServiceImpl<TokenEntity, ApiTokenMapper> {
     //12小时后过期
     private final static int EXPIRE = 3600 * 12;
 
     public TokenEntity queryByUserId(Long userId) {
-        return tokenDao.queryByUserId(userId);
+        return getDao().queryByUserId(userId);
     }
 
     public TokenEntity queryByToken(String token) {
-        return tokenDao.queryByToken(token);
+        return getDao().queryByToken(token);
     }
 
-    public void save(TokenEntity token) {
-        tokenDao.save(token);
-    }
-
-    public void update(TokenEntity token) {
-        tokenDao.update(token);
-    }
 
     public Map<String, Object> createToken(long userId) {
         //生成一个token

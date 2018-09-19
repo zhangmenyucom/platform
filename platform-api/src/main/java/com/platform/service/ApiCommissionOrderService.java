@@ -2,7 +2,7 @@ package com.platform.service;
 
 import com.platform.dao.ApiCommissionOrderMapper;
 import com.platform.entity.CommissionOrderVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,39 +16,9 @@ import java.util.Map;
  * @date 2018-08-25 14:20:46
  */
 @Service
-public class ApiCommissionOrderService {
-
-    @Autowired
-    private ApiCommissionOrderMapper commissionOrderDao;
-
-    public CommissionOrderVo queryObject(Long id) {
-        return commissionOrderDao.queryObject(id);
-    }
-
-    public List<CommissionOrderVo> queryList(Map<String, Object> map) {
-        return commissionOrderDao.queryList(map);
-    }
+public class ApiCommissionOrderService extends BaseServiceImpl<CommissionOrderVo, ApiCommissionOrderMapper> {
     public List<CommissionOrderVo> queryDetailList(Map<String, Object> map) {
-        return commissionOrderDao.queryDetailList(map);
+        return getDao().queryDetailList(map);
     }
 
-    public int queryTotal(Map<String, Object> map) {
-        return commissionOrderDao.queryTotal(map);
-    }
-
-    public int save(CommissionOrderVo commissionOrder) {
-        return commissionOrderDao.save(commissionOrder);
-    }
-
-    public int update(CommissionOrderVo commissionOrder) {
-        return commissionOrderDao.update(commissionOrder);
-    }
-
-    public int delete(Long id) {
-        return commissionOrderDao.delete(id);
-    }
-
-    public int deleteBatch(Long[] ids) {
-        return commissionOrderDao.deleteBatch(ids);
-    }
 }

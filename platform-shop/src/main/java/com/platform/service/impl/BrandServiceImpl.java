@@ -3,11 +3,7 @@ package com.platform.service.impl;
 import com.platform.dao.BrandDao;
 import com.platform.entity.BrandEntity;
 import com.platform.service.BrandService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Service实现类

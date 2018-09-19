@@ -2,9 +2,6 @@ package com.platform.service;
 
 import com.platform.entity.SysLogEntity;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 系统日志
  *
@@ -12,19 +9,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-03-08 10:40:56
  */
-public interface SysLogService {
+public interface SysLogService extends BaseService<SysLogEntity> {
 
-    SysLogEntity queryObject(Long id);
-
-    List<SysLogEntity> queryList(Map<String, Object> map);
-
-    int queryTotal(Map<String, Object> map);
-
-    void save(SysLogEntity sysLog);
-
-    void update(SysLogEntity sysLog);
-
-    void delete(Long id);
-
-    void deleteBatch(Long[] ids);
 }

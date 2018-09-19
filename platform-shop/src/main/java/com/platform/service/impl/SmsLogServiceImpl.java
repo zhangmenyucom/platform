@@ -1,14 +1,9 @@
 package com.platform.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
-
 import com.platform.dao.SmsLogDao;
 import com.platform.entity.SmsLogEntity;
 import com.platform.service.SmsLogService;
+import org.springframework.stereotype.Service;
 
 /**
  * Service实现类

@@ -4,10 +4,6 @@ import com.platform.service.SysConfigService;
 import com.platform.utils.Constant;
 import com.platform.utils.SpringContextUtils;
 
-import static com.platform.utils.Constant.CloudServiceEnum.ALIYUN;
-import static com.platform.utils.Constant.CloudServiceEnum.QCLOUD;
-import static com.platform.utils.Constant.CloudServiceEnum.QINIU;
-
 /**
  * 文件上传Factory
  *

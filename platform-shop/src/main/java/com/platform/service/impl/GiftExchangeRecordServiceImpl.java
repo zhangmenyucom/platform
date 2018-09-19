@@ -1,14 +1,13 @@
 package com.platform.service.impl;
 
+import com.platform.dao.GiftExchangeRecordDao;
+import com.platform.entity.GiftExchangeRecordEntity;
+import com.platform.service.GiftExchangeRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
-import com.platform.dao.GiftExchangeRecordDao;
-import com.platform.entity.GiftExchangeRecordEntity;
-import com.platform.service.GiftExchangeRecordService;
 
 /**
  * Service实现类

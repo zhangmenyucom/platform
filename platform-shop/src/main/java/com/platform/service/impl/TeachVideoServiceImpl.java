@@ -1,14 +1,13 @@
 package com.platform.service.impl;
 
+import com.platform.dao.TeachVideoDao;
+import com.platform.entity.TeachVideoEntity;
+import com.platform.service.TeachVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
-import com.platform.dao.TeachVideoDao;
-import com.platform.entity.TeachVideoEntity;
-import com.platform.service.TeachVideoService;
 
 /**
  * Service实现类

@@ -6,6 +6,7 @@ import com.platform.common.CouponStatusEnum;
 import com.platform.common.OrderTypeEnum;
 import com.platform.dao.*;
 import com.platform.entity.*;
+import com.platform.service.impl.BaseServiceImpl;
 import com.platform.util.CommonUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,7 @@ import java.util.*;
 
 
 @Service
-public class ApiOrderService {
-    @Autowired
-    private ApiOrderMapper orderDao;
+public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
     @Autowired
     private ApiAddressMapper apiAddressMapper;
     @Autowired
@@ -33,40 +32,6 @@ public class ApiOrderService {
     @Autowired
     private ApiProductService productService;
 
-
-    public OrderVo queryObject(Long id) {
-        return orderDao.queryObject(id);
-    }
-
-
-    public List<OrderVo> queryList(Map<String, Object> map) {
-        return orderDao.queryList(map);
-    }
-
-
-    public int queryTotal(Map<String, Object> map) {
-        return orderDao.queryTotal(map);
-    }
-
-
-    public void save(OrderVo order) {
-        orderDao.save(order);
-    }
-
-
-    public int update(OrderVo order) {
-        return orderDao.update(order);
-    }
-
-
-    public void delete(Long id) {
-        orderDao.delete(id);
-    }
-
-
-    public void deleteBatch(Long[] ids) {
-        orderDao.deleteBatch(ids);
-    }
 
 
     @Transactional

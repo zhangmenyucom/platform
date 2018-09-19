@@ -1,9 +1,6 @@
 package com.platform.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.platform.utils.JsonTimeSerializer;
 import lombok.Data;
-import org.aspectj.lang.annotation.DeclareAnnotation;
 
 import java.io.Serializable;
 

@@ -1,66 +1,33 @@
 package com.platform.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSONObject;
+import com.platform.dao.SysLogDao;
+import com.platform.entity.SysLogEntity;
+import com.platform.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.alibaba.fastjson.JSONObject;
-import com.platform.dao.SysLogDao;
-import com.platform.entity.SysLogEntity;
-import com.platform.service.SysLogService;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
-public class SysLogServiceImpl implements SysLogService {
-    @Autowired
-    private SysLogDao sysLogDao;
+public class SysLogServiceImpl extends BaseServiceImpl<SysLogEntity,SysLogDao> implements SysLogService {
+
     @Autowired
     private RestTemplate restTemplate;
 
     @Override
-    public SysLogEntity queryObject(Long id) {
-        return sysLogDao.queryObject(id);
-    }
-
-    @Override
     public List<SysLogEntity> queryList(Map<String, Object> map) {
-        List<SysLogEntity> list = sysLogDao.queryList(map);
+        List<SysLogEntity> list = getDao().queryList(map);
 
         for (SysLogEntity sysLogEntity : list) {
         	sysLogEntity.setIp(getIpDetails(sysLogEntity.getIp()));
         }
         return list;
     }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return sysLogDao.queryTotal(map);
-    }
-
-    @Override
-    public void save(SysLogEntity sysLog) {
-        sysLogDao.save(sysLog);
-    }
-
-    @Override
-    public void update(SysLogEntity sysLog) {
-        sysLogDao.update(sysLog);
-    }
-
-    @Override
-    public void delete(Long id) {
-        sysLogDao.delete(id);
-    }
-
-    @Override
-    public void deleteBatch(Long[] ids) {
-        sysLogDao.deleteBatch(ids);
-    }
-
     /**
      * 向指定URL发送GET方法的请求
      */
