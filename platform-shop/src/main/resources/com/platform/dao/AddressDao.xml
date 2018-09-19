@@ -74,6 +74,9 @@
     <select id="queryTotal" resultType="int">
         select count(*) from address
         WHERE 1=1
+        <if test="merchantId!=null">
+            AND address.merchant_id=#{merchantId}
+        </if>
         <if test="userName != null and userName != ''">
             AND address.user_name LIKE concat('%', #{userName},'%')
         </if>
@@ -108,14 +111,14 @@
     <update id="update" parameterType="com.platform.entity.AddressEntity">
         update address
         <set>
-            <if test="userId != null">`user_id` = #{userId}, </if>
-            <if test="userName != null">`user_name` = #{userName}, </if>
-            <if test="telNumber != null">`tel_number` = #{telNumber}, </if>
-            <if test="postalCode != null">`postal_Code` = #{postalCode}, </if>
-            <if test="nationalCode != null">`national_Code` = #{nationalCode}, </if>
-            <if test="provinceName != null">`province_Name` = #{provinceName}, </if>
-            <if test="cityName != null">`city_Name` = #{cityName}, </if>
-            <if test="countyName != null">`county_Name` = #{countyName}, </if>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="userName != null">`user_name` = #{userName},</if>
+            <if test="telNumber != null">`tel_number` = #{telNumber},</if>
+            <if test="postalCode != null">`postal_Code` = #{postalCode},</if>
+            <if test="nationalCode != null">`national_Code` = #{nationalCode},</if>
+            <if test="provinceName != null">`province_Name` = #{provinceName},</if>
+            <if test="cityName != null">`city_Name` = #{cityName},</if>
+            <if test="countyName != null">`county_Name` = #{countyName},</if>
             <if test="detailInfo != null">`detail_Info` = #{detailInfo}</if>
         </set>
         where id = #{id}

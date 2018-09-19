@@ -11,11 +11,9 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:40
  */
 @Data
-public class CommentPictureVo implements Serializable {
+public class CommentPictureVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Long id;
     //评价Id
     private Integer comment_id;
     //评价图片

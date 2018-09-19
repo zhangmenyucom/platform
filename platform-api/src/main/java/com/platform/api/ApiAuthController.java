@@ -6,7 +6,7 @@ import com.platform.annotation.IgnoreAuth;
 import com.platform.common.Constants;
 import com.platform.entity.FullUserInfo;
 import com.platform.entity.UserInfo;
-import com.platform.entity.UserLevelEnum;
+import com.platform.enums.UserLevelEnum;
 import com.platform.entity.UserVo;
 import com.platform.service.ApiUserService;
 import com.platform.service.TokenService;

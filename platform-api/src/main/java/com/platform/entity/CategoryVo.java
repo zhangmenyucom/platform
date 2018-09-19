@@ -12,11 +12,9 @@ import java.util.List;
  * @date 2017-08-15 08:03:39
  */
 @Data
-public class CategoryVo implements Serializable {
+public class CategoryVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Long id;
     //分类名称
     private String name;
     //关键字

@@ -11,11 +11,8 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:40
  */
 @Data
-public class AdPositionVo implements Serializable {
+public class AdPositionVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**主键**/
-    private Long id;
     /**位置名称**/
     private String name;
     /**宽度**/

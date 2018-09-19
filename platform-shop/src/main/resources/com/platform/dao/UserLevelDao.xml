@@ -5,59 +5,57 @@
 
     <resultMap type="com.platform.entity.UserLevelEntity" id="userLevelMap">
         <result property="id" column="id"/>
-		<result property="merchantId" column="merchant_id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
     </resultMap>
 
-	<select id="queryObject" resultType="com.platform.entity.UserLevelEntity">
+    <select id="queryObject" resultType="com.platform.entity.UserLevelEntity">
 		select
 			id,
+			merchant_id,
 			name,
 			description
 		from user_level
 		where id = #{id}
 	</select>
 
-	<select id="queryList" resultType="com.platform.entity.UserLevelEntity">
-		select
-			id,
-			name,
-			description
-		from user_level
-		WHERE 1=1
-		where 1=1
-		<if test="merchantId!=null">
-			and merchant_id=#{merchantId}
-		</if>
-		<if test="name != null and name.trim() != ''">
-			AND name like concat('%',#{name},'%')
-		</if>
+    <select id="queryList" resultType="com.platform.entity.UserLevelEntity">
+        select
+        id,merchant_id, name,description
+        from user_level
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND name like concat('%',#{name},'%')
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
             </when>
-			<otherwise>
+            <otherwise>
                 order by id desc
-			</otherwise>
+            </otherwise>
         </choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-	
- 	<select id="queryTotal" resultType="int">
-		select count(*) from user_level
-		where 1=1
-		<if test="merchantId!=null">
-			and merchant_id=#{merchantId}
-		</if>
-		<if test="name != null and name.trim() != ''">
-			AND name like concat('%',#{name},'%')
-		</if>
-	</select>
-	 
-	<insert id="save" parameterType="com.platform.entity.UserLevelEntity" useGeneratedKeys="true" keyProperty="id">
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from user_level
+        where 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND name like concat('%',#{name},'%')
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.platform.entity.UserLevelEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into user_level(
 			`name`,
 			`description`)
@@ -65,25 +63,25 @@
 			#{name},
 			#{description})
 	</insert>
-	 
-	<update id="update" parameterType="com.platform.entity.UserLevelEntity">
-		update user_level
-		<set>
-			<if test="name != null">`name` = #{name}, </if>
-			<if test="description != null">`description` = #{description}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="delete">
+
+    <update id="update" parameterType="com.platform.entity.UserLevelEntity">
+        update user_level
+        <set>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="description != null">`description` = #{description}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
 		delete from user_level where id = #{value}
 	</delete>
-	
-	<delete id="deleteBatch">
-		delete from user_level where id in
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+
+    <delete id="deleteBatch">
+        delete from user_level where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

@@ -15,11 +15,9 @@ import java.util.Date;
  * @date 2018-08-25 14:20:46
  */
 @Data
-public class WithdrawOrderVo implements Serializable {
+public class WithdrawOrderVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** 主键id **/
-    private Long id;
     /**订单号**/
     private String orderSn;
     /** 提现人id **/
@@ -34,8 +32,4 @@ public class WithdrawOrderVo implements Serializable {
     private Integer status;
     /** 备注 **/
     private String comment;
-    /** 创建时间 **/
-    private Date createTime;
-    /** 更新时间 **/
-    private Date updateTime;
 }

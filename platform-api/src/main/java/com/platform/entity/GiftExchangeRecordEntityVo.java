@@ -14,13 +14,9 @@ import java.util.Date;
  * @date 2018-09-13 15:20:44
  */
 @Data
-public class GiftExchangeRecordEntityVo implements Serializable {
+public class GiftExchangeRecordEntityVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     **/
-    private Long id;
     /**
      * 用户id
      **/
@@ -45,12 +41,4 @@ public class GiftExchangeRecordEntityVo implements Serializable {
      * 订单号
      **/
     private String orderSn;
-    /**
-     * 创建时间
-     **/
-    private Date createTime;
-    /**
-     * 更新时间
-     **/
-    private Date updateTime;
 }

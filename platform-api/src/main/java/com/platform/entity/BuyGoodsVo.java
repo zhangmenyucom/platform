@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Administrator
  */
 @Data
-public class BuyGoodsVo implements Serializable {
+public class BuyGoodsVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * 商品id

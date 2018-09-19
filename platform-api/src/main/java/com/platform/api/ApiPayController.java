@@ -8,6 +8,7 @@ import com.platform.common.PayStatusEnum;
 import com.platform.common.ShippingStatusEnum;
 import com.platform.config.CommissionRule;
 import com.platform.entity.*;
+import com.platform.enums.UserLevelEnum;
 import com.platform.service.ApiCommissionOrderService;
 import com.platform.service.ApiOrderGoodsService;
 import com.platform.service.ApiOrderService;
@@ -31,7 +32,7 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.platform.entity.UserLevelEnum.LEVEL_MAP;
+import static com.platform.enums.UserLevelEnum.LEVEL_MAP;
 import static com.platform.enums.SpecialGoodsEnum.SPECIAL_GOODS_ENUM_MAP;
 
 /**

@@ -14,11 +14,9 @@ import java.util.Date;
  * @date 2018-09-09 21:48:06
  */
 @Data
-public class SignRecordVo implements Serializable {
+public class SignRecordVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**  **/
-    private Long id;
     /** 用户id **/
     private Long userId;
     /** 获得积分 **/

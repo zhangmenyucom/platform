@@ -65,7 +65,6 @@
 		select c.*,u2.avatar,u2.nickname as nickname,u.avatar as source_avatar,u.user_level_id,u.nickname as source_user_name,
 		uo.actual_price,og.goods_name,og.list_pic_url as goods_pic_url,ul.name as level
 		from commission_order c,user u,user u2,user_order uo,order_goods og,user_level ul
-		where
 		WHERE 1=1
 		<if test="merchantId!=null">
 			and c.merchant_id=#{merchantId}

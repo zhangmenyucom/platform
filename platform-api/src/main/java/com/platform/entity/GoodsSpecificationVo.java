@@ -13,11 +13,9 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:40
  */
 @Data
-public class GoodsSpecificationVo implements Serializable {
+public class GoodsSpecificationVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Long id;
     //商品
     private Integer goods_id;
     //规范Id

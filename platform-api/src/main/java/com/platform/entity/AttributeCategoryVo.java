@@ -8,12 +8,9 @@ import java.io.Serializable;
  * @email 516195940@qq.com
  * @date 2017-08-15 08:03:41
  */
-public class AttributeCategoryVo implements Serializable {
+public class AttributeCategoryVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //
-    private Long id;
-    //
     private String name;
     //
     private Integer enabled;

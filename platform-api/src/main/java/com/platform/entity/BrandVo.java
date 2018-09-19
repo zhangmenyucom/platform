@@ -12,11 +12,9 @@ import java.math.BigDecimal;
  * @date 2017-08-15 08:03:39
  */
 @Data
-public class BrandVo implements Serializable {
+public class BrandVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**主键**/
-    private Long id;
     /**品牌名称**/
     private String name;
     /**图片**/

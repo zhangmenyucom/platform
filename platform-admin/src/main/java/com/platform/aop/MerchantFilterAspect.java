@@ -39,14 +39,17 @@ public class MerchantFilterAspect {
         Object params = point.getArgs()[0];
         if (params != null) {
             SysUserEntity user = ShiroUtils.getUserEntity();
-            if (user.getUserId() != Constant.SUPER_ADMIN) {
-                if (params instanceof BaseEntity) {
-                    BaseEntity baseEntity = (BaseEntity) params;
-                    baseEntity.setMerchantId(user.getUserId());
-                }
-                if (params instanceof Map) {
-                    Map map = (Map) params;
-                    map.put("merchantId", user.getUserId());
+            //在登录时没有user
+            if (user != null) {
+                if (user.getUserId() != Constant.SUPER_ADMIN) {
+                    if (params instanceof BaseEntity) {
+                        BaseEntity baseEntity = (BaseEntity) params;
+                        baseEntity.setMerchantId(user.getUserId());
+                    }
+                    if (params instanceof Map) {
+                        Map map = (Map) params;
+                        map.put("merchantId", user.getUserId());
+                    }
                 }
             }
             return;

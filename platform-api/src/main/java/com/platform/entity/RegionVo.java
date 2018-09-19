@@ -8,10 +8,8 @@ import lombok.Data;
  * @date 2017-08-15 08:03:41
  */
 @Data
-public class RegionVo {
+public class RegionVo extends BaseEntity {
 
-    /**主键**/
-    private Long id;
     /**父节点**/
     private Integer parent_id;
     /**区域名称**/

@@ -9,7 +9,7 @@ import java.util.Date;
  * @email 516195940@qq.com
  * @date 2017-08-15 08:03:40
  */
-public class FeedbackVo implements Serializable {
+public class FeedbackVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //主键

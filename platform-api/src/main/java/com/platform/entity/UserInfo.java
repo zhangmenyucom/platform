@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:41
  */
 @Data
-public class UserInfo implements Serializable {
+public class UserInfo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**

@@ -2,7 +2,7 @@ package com.platform.config;
 
 import com.platform.entity.CommissionOrderVo;
 import com.platform.entity.OrderVo;
-import com.platform.entity.UserLevelEnum;
+import com.platform.enums.UserLevelEnum;
 import com.platform.entity.UserVo;
 import com.platform.service.ApiUserService;
 import com.platform.utils.JsonUtil;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import static com.platform.entity.UserLevelEnum.LEVEL_MAP;
+import static com.platform.enums.UserLevelEnum.LEVEL_MAP;
 
 /**
  * @author xiaolu.zhang

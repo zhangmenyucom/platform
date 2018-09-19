@@ -12,13 +12,8 @@ import java.math.BigDecimal;
  * @date 2017-08-15 08:03:40
  */
 @Data
-public class OrderGoodsVo implements Serializable {
+public class OrderGoodsVo  extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     **/
-    private Long id;
     /**
      * 订单Id
      **/

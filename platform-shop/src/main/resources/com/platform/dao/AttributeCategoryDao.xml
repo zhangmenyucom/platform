@@ -50,7 +50,10 @@
 
     <select id="queryTotal" resultType="int">
 		select count(*) from attribute_category
-		WHERE 1=1
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
 	</select>
 
     <insert id="save" parameterType="com.platform.entity.AttributeCategoryEntity">

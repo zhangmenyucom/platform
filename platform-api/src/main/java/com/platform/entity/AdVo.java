@@ -12,11 +12,8 @@ import java.util.Date;
  * @date 2017-08-15 08:03:40
  */
 @Data
-public class AdVo implements Serializable {
+public class AdVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**主键**/
-    private Long id;
     /**广告位置Id*/
     private Integer ad_position_id;
     /**形式*/

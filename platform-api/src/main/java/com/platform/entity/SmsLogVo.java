@@ -14,10 +14,9 @@ import java.util.Date;
  * @date 2017-08-25 10:04:52
  */
 @Data
-public class SmsLogVo implements Serializable {
+public class SmsLogVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
     private Long user_id;
     private String phone;
     private Date log_date;

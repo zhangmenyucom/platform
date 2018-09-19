@@ -16,11 +16,9 @@ import java.util.Date;
  */
 @Data
 @Accessors(chain = true)
-public class CommissionOrderVo implements Serializable {
+public class CommissionOrderVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**  **/
-    private Long id;
     /**佣金所属人**/
     private Long userId;
     /**昵称**/

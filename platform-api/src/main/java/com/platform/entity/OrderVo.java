@@ -19,11 +19,9 @@ import static com.platform.common.OrderStatusEnum.*;
  * @email 516195940@qq.com
  * @date 2017-08-15 08:03:40
  */
-public class OrderVo implements Serializable {
+public class OrderVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //主键
-    private Long id;
     //订单序列号
     private String order_sn;
     //会员Id

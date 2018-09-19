@@ -14,11 +14,8 @@ import java.util.Date;
  * @date 2018-08-22 00:14:02
  */
 @Data
-public class ArticleVo implements Serializable {
+public class ArticleVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /** id **/
-    private Long id;
     /** 标题 **/
     private String title;
     /** 作者 **/

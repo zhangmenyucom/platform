@@ -11,11 +11,9 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:41
  */
 @Data
-public class SearchHistoryVo implements Serializable {
+public class SearchHistoryVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**主键**/
-    private Long id;
     /**关键字**/
     private String keyword;
     /**搜索来源，如PC、小程序、APP等**/

@@ -11,11 +11,9 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:41
  */
 @Data
-public class TopicCategoryVo implements Serializable {
+public class TopicCategoryVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**主键**/
-    private Long id;
     /**活动类别主题**/
     private String title;
     /**活动类别图片链接**/

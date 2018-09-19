@@ -14,11 +14,9 @@ import java.util.Date;
  * @date 2018-08-22 00:14:02
  */
 @Data
-public class ActivityVo implements Serializable {
+public class ActivityVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**  **/
-    private Long id;
     /** 活动标题 **/
     private String title;
     /** 作者 **/

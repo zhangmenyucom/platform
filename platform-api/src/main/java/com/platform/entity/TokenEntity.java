@@ -14,7 +14,7 @@ import java.util.Date;
  * @date 2017-03-23 15:22:07
  */
 @Data
-public class TokenEntity implements Serializable {
+public class TokenEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**用户ID**/

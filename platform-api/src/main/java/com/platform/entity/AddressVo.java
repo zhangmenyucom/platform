@@ -12,10 +12,9 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:39
  */
 @Data
-public class AddressVo implements Serializable {
+public class AddressVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
     /**
      * 会员ID
      **/

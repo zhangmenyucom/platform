@@ -9,11 +9,8 @@ import java.math.BigDecimal;
  * @email 516195940@qq.com
  * @date 2017-08-15 08:03:39
  */
-public class CartVo implements Serializable {
+public class CartVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    //主键
-    private Long id;
     //会员Id
     private Long user_id;
     //sessionId
@@ -45,14 +42,6 @@ public class CartVo implements Serializable {
 
     //商品图片
     private String list_pic_url;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getUser_id() {
         return user_id;

@@ -25,6 +25,7 @@
     <select id="queryObject" resultType="com.platform.entity.UserEntity">
 		select
 			id,
+			merchant_id,
 			username,
 			password,
 			gender,
@@ -45,6 +46,7 @@
     <select id="queryList" resultType="com.platform.entity.UserEntity">
         select
         user.id,
+        user.merchant_id,
         user.username,
         user.password,
         user.gender,
@@ -125,7 +127,6 @@
     <select id="queryTotal" resultType="int">
         select count(*) from user
         WHERE 1=1
-        where 1=1
         <if test="merchantId!=null">
             and user.merchant_id=#{merchantId}
         </if>

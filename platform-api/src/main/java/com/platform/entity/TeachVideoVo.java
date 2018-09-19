@@ -14,13 +14,9 @@ import java.util.Date;
  * @date 2018-08-26 18:25:17
  */
 @Data
-public class TeachVideoVo implements Serializable {
+public class TeachVideoVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     **/
-    private Long id;
     /**
      * 名称
      **/
