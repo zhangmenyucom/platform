@@ -1,5 +1,7 @@
 package com.platform.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ import java.util.Date;
  * @email 516195940@qq.com
  * @date 2017-08-15 08:03:40
  */
+@Data
 public class GoodsIssueVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -20,36 +23,4 @@ public class GoodsIssueVo implements Serializable {
     private String question;
     //回答
     private String answer;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getGoods_id() {
-        return goods_id;
-    }
-
-    public void setGoods_id(String goods_id) {
-        this.goods_id = goods_id;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
 }

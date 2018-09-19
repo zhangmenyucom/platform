@@ -83,7 +83,7 @@ public class CategoryController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("category:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         if (Arrays.stream(ids).anyMatch(e -> e == 0)) {
             return R.error("不能删除根类目");
         }
@@ -100,7 +100,7 @@ public class CategoryController {
         List<CategoryEntity> list = categoryService.queryList(params);
         //添加顶级菜单
         CategoryEntity root = new CategoryEntity();
-        root.setId(0);
+        root.setId(0L);
         root.setName("一级分类");
         root.setParentId(-1);
         root.setOpen(true);

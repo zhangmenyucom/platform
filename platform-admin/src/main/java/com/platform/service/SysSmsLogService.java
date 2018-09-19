@@ -20,7 +20,7 @@ public interface SysSmsLogService {
      * @param id 主键
      * @return 实体
      */
-    SysSmsLogEntity queryObject(String id);
+    SysSmsLogEntity queryObject(Long id);
 
     /**
      * 分页查询
@@ -60,7 +60,7 @@ public interface SysSmsLogService {
      * @param id
      * @return 删除条数
      */
-    int delete(String id);
+    int delete(Long id);
 
     /**
      * 根据主键批量删除
@@ -68,7 +68,7 @@ public interface SysSmsLogService {
      * @param ids
      * @return 删除条数
      */
-    int deleteBatch(String[] ids);
+    int deleteBatch(Long[] ids);
 
     /**
      * 发送短信

@@ -48,7 +48,7 @@ public class ApiRelatedGoodsService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         relatedGoodsDao.deleteBatch(ids);
     }
 

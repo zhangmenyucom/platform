@@ -1,15 +1,13 @@
 package com.platform.service.impl;
 
-import com.platform.vo.CommissionOrderVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
-
 import com.platform.dao.CommissionOrderDao;
 import com.platform.entity.CommissionOrderEntity;
 import com.platform.service.CommissionOrderService;
+import com.platform.utils.Query;
+import com.platform.vo.CommissionOrderVo;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Service实现类
@@ -19,47 +17,10 @@ import com.platform.service.CommissionOrderService;
  * @date 2018-08-24 22:02:34
  */
 @Service("commissionOrderService")
-public class CommissionOrderServiceImpl implements CommissionOrderService {
-    @Autowired
-    private CommissionOrderDao commissionOrderDao;
+public class CommissionOrderServiceImpl extends BaseServiceImpl<CommissionOrderEntity, CommissionOrderDao> implements CommissionOrderService {
 
     @Override
-    public CommissionOrderEntity queryObject(Long id) {
-        return commissionOrderDao.queryObject(id);
-    }
-
-    @Override
-    public List<CommissionOrderEntity> queryList(Map<String, Object> map) {
-        return commissionOrderDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return commissionOrderDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(CommissionOrderEntity commissionOrder) {
-        return commissionOrderDao.save(commissionOrder);
-    }
-
-    @Override
-    public int update(CommissionOrderEntity commissionOrder) {
-        return commissionOrderDao.update(commissionOrder);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return commissionOrderDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Long[] ids) {
-        return commissionOrderDao.deleteBatch(ids);
-    }
-
-    @Override
-    public List<CommissionOrderVo> queryDetailList(Map<String, Object> map) {
-        return commissionOrderDao.queryDetailList(map);
+    public List<CommissionOrderVo> queryDetailList(Query query) {
+        return getDao().queryDetailList(query);
     }
 }

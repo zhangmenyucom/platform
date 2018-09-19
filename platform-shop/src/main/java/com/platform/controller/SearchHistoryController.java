@@ -80,7 +80,7 @@ public class SearchHistoryController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("searchhistory:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         searchHistoryService.deleteBatch(ids);
 
         return R.ok();

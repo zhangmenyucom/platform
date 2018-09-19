@@ -12,19 +12,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:06
  */
-public interface CollectService {
-	
-	CollectEntity queryObject(Long id);
-	
-	List<CollectEntity> queryList(Map<String, Object> map);
-	
-	int queryTotal(Map<String, Object> map);
-	
-	void save(CollectEntity collect);
-	
-	void update(CollectEntity collect);
-	
-	void delete(Long id);
-	
-	void deleteBatch(Integer[] ids);
+public interface CollectService extends BaseService<CollectEntity> {
+
 }

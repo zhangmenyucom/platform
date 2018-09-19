@@ -64,7 +64,7 @@ public class ApiOrderService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         orderDao.deleteBatch(ids);
     }
 
@@ -73,11 +73,11 @@ public class ApiOrderService {
     public Map<String, Object> submit(JSONObject jsonParam, UserVo loginUser) {
 
         Map<String, Object> resultObj = new HashMap<>(0);
-        Integer couponId = jsonParam.getInteger("couponId");
-        Integer parentId = jsonParam.getInteger("parentId");
+        Long couponId = jsonParam.getLong("couponId");
+        Long parentId = jsonParam.getLong("parentId");
         String type = jsonParam.getString("type");
         String postscript = jsonParam.getString("postscript");
-        AddressVo addressVo = apiAddressMapper.queryObject(jsonParam.getInteger("addressId"));
+        AddressVo addressVo = apiAddressMapper.queryObject(jsonParam.getLong("addressId"));
 
         Integer freightPrice = 0;
         List<CartVo> checkedGoodsList = new ArrayList<>();

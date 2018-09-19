@@ -20,7 +20,7 @@ public class AttributeCategoryVo implements Serializable {
     private Integer enabled;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

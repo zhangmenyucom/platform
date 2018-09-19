@@ -45,7 +45,7 @@ public class ApiAdService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         adDao.deleteBatch(ids);
     }
 

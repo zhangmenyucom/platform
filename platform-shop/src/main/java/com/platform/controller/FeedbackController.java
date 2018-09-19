@@ -47,7 +47,7 @@ public class FeedbackController {
      */
     @RequestMapping("/info/{msgId}")
     @RequiresPermissions("feedback:info")
-    public R info(@PathVariable("msgId") Integer msgId) {
+    public R info(@PathVariable("msgId") Long msgId) {
         FeedbackEntity feedback = feedbackService.queryObject(msgId);
 
         return R.ok().put("feedback", feedback);
@@ -80,7 +80,7 @@ public class FeedbackController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("feedback:delete")
-    public R delete(@RequestBody Integer[]msgIds) {
+    public R delete(@RequestBody Long[]msgIds) {
         feedbackService.deleteBatch(msgIds);
 
         return R.ok();

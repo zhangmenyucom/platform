@@ -44,7 +44,7 @@ public class ApiAttributeService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         attributeMapper.deleteBatch(ids);
     }
 

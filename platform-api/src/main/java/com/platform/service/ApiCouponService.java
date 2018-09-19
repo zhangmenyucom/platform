@@ -16,7 +16,7 @@ public class ApiCouponService {
     @Autowired
     private ApiCouponMapper apiCouponMapper;
 
-    public CouponVo queryObject(Integer couponId) {
+    public CouponVo queryObject(Long couponId) {
         return apiCouponMapper.queryObject(couponId);
     }
 

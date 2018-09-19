@@ -17,42 +17,6 @@ import java.util.Map;
  * @date 2017-08-22 19:19:56
  */
 @Service("channelService")
-public class ChannelServiceImpl implements ChannelService {
-    @Autowired
-    private ChannelDao channelDao;
+public class ChannelServiceImpl extends BaseServiceImpl<ChannelEntity,ChannelDao> implements ChannelService {
 
-    @Override
-    public ChannelEntity queryObject(Long id) {
-        return channelDao.queryObject(id);
-    }
-
-    @Override
-    public List<ChannelEntity> queryList(Map<String, Object> map) {
-        return channelDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return channelDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(ChannelEntity channel) {
-        return channelDao.save(channel);
-    }
-
-    @Override
-    public int update(ChannelEntity channel) {
-        return channelDao.update(channel);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return channelDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return channelDao.deleteBatch(ids);
-    }
 }

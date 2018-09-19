@@ -87,10 +87,10 @@ public class ApiRegionController extends ApiBaseAction {
     @IgnoreAuth
     @GetMapping("regionIdsByNames")
     public Object regionIdsByNames(String provinceName, String cityName, String districtName) {
-        Map<String, Integer> resultObj = new HashMap<>(0);
-        Integer provinceId = 0;
-        Integer cityId = 0;
-        Integer districtId = 0;
+        Map<String, Long> resultObj = new HashMap<>(0);
+        Long provinceId = 0L;
+        Long cityId = 0L;
+        Long districtId = 0L;
         if (null != provinceName) {
             provinceId = RegionCacheUtil.getProvinceIdByName(provinceName);
         }

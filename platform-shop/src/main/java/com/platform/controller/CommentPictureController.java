@@ -80,7 +80,7 @@ public class CommentPictureController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("commentpicture:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         commentPictureService.deleteBatch(ids);
 
         return R.ok();

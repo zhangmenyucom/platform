@@ -23,8 +23,8 @@ public class ApiBuyController extends ApiBaseAction {
     @PostMapping("/add")
     public Object addBuy(@LoginUser UserVo loginUser) {
         JSONObject jsonParam = getJsonRequest();
-        Integer goodsId = jsonParam.getInteger("goodsId");
-        Integer productId = jsonParam.getInteger("productId");
+        Long goodsId = jsonParam.getLong("goodsId");
+        Long productId = jsonParam.getLong("productId");
         Integer number = jsonParam.getInteger("number");
         BuyGoodsVo goodsVo = new BuyGoodsVo();
         goodsVo.setGoodsId(goodsId);

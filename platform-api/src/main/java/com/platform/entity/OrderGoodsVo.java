@@ -23,11 +23,11 @@ public class OrderGoodsVo implements Serializable {
     /**
      * 订单Id
      **/
-    private Integer order_id;
+    private Long order_id;
     /**
      * 商品id
      **/
-    private Integer goods_id;
+    private Long goods_id;
     /**
      * 商品名称
      **/
@@ -39,7 +39,7 @@ public class OrderGoodsVo implements Serializable {
     /**
      * 产品Id
      **/
-    private Integer product_id;
+    private Long product_id;
     /**
      * 商品数量
      **/

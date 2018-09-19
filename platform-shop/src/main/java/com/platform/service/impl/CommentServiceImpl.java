@@ -20,20 +20,19 @@ import java.util.Map;
  * @date 2017-08-28 17:03:40
  */
 @Service
-public class CommentServiceImpl implements CommentService {
-    @Autowired
-    private CommentDao commentDao;
+public class CommentServiceImpl extends  BaseServiceImpl<CommentEntity,CommentDao> implements CommentService {
+
     @Autowired
     private CommentPictureDao commentPictureDao;
 
     @Override
     public CommentEntity queryObject(Long id) {
-        return commentDao.queryObject(id);
+        return getDao().queryObject(id);
     }
 
     @Override
     public List<CommentEntity> queryList(Map<String, Object> map) {
-        List<CommentEntity> commentEntities = commentDao.queryList(map);
+        List<CommentEntity> commentEntities = getDao().queryList(map);
         if (null != commentEntities && commentEntities.size() > 0) {
             for (CommentEntity commentEntity : commentEntities) {
                 commentEntity.setContent(Base64.decode(commentEntity.getContent()));
@@ -42,33 +41,16 @@ public class CommentServiceImpl implements CommentService {
         return commentEntities;
     }
 
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return commentDao.queryTotal(map);
-    }
 
-    @Override
-    public int save(CommentEntity comment) {
-        return commentDao.save(comment);
-    }
-
-    @Override
-    public int update(CommentEntity comment) {
-        return commentDao.update(comment);
-    }
 
     @Override
     @Transactional
     public int delete(Long id) {
         //删除评论同时删除评论的图片
         commentPictureDao.deleteByCommentId(id);
-        return commentDao.delete(id);
+        return getDao().delete(id);
     }
 
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return commentDao.deleteBatch(ids);
-    }
 
     @Override
     public int toggleStatus(CommentEntity comment) {
@@ -78,6 +60,6 @@ public class CommentServiceImpl implements CommentService {
         } else if (commentEntity.getStatus() == 0) {
             commentEntity.setStatus(1);
         }
-        return commentDao.update(commentEntity);
+        return getDao().update(commentEntity);
     }
 }

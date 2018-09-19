@@ -78,7 +78,7 @@ public class SmsLogController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("smslog:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         smsLogService.deleteBatch(ids);
         return R.ok();
     }

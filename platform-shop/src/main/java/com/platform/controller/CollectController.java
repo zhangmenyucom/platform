@@ -82,7 +82,7 @@ public class CollectController {
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("collect:delete")
-	public R delete(@RequestBody Integer[] ids){
+	public R delete(@RequestBody Long[] ids){
 		collectService.deleteBatch(ids);
 		
 		return R.ok();

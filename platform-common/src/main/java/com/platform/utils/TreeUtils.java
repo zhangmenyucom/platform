@@ -47,7 +47,7 @@ public class TreeUtils {
                     if (!pId.isAccessible()) {
                         pId.setAccessible(true);
                     }
-                    Long id = (Integer) pId.get(obj);
+                    Long id = (Long) pId.get(obj);
                     if (null == map.get(id)) {
                         t_list.add(obj);
                     } else {

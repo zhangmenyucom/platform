@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,9 +26,7 @@ import java.util.Map;
  * @date 2017-08-19 12:53:26
  */
 @Service("couponService")
-public class CouponServiceImpl implements CouponService {
-    @Autowired
-    private CouponDao couponDao;
+public class CouponServiceImpl extends BaseServiceImpl<CouponEntity,CouponDao> implements CouponService {
     @Autowired
     private UserCouponDao userCouponDao;
     @Autowired
@@ -38,45 +35,10 @@ public class CouponServiceImpl implements CouponService {
     private UserDao userDao;
 
     @Override
-    public CouponEntity queryObject(Long id) {
-        return couponDao.queryObject(id);
-    }
-
-    @Override
-    public List<CouponEntity> queryList(Map<String, Object> map) {
-        return couponDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return couponDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(CouponEntity coupon) {
-        return couponDao.save(coupon);
-    }
-
-    @Override
-    public int update(CouponEntity coupon) {
-        return couponDao.update(coupon);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return couponDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return couponDao.deleteBatch(ids);
-    }
-
-    @Override
     public R publish(Map<String, Object> params) {
         // 发放方式 0：按订单发放 1：按用户发放 2:商品转发送券 3：按商品发放 4:新用户注册  5：线下发放 6评价好评红包（固定或随机红包）
         Integer sendType = MapUtils.getInteger(params, "sendType");
-        Integer couponId = MapUtils.getInteger(params, "couponId");
+        Long couponId = MapUtils.getLong(params, "couponId");
         if (null == sendType) {
             return R.error("发放方式不能为空");
         }
@@ -84,7 +46,8 @@ public class CouponServiceImpl implements CouponService {
             return R.error("优惠券不能为空");
         }
         if (1 == sendType) {
-            String userIds = MapUtils.getString(params, "userIds"); // 下发用户逗号分割
+            String userIds = MapUtils.getString(params, "userIds");
+            // 下发用户逗号分割
             if (StringUtils.isEmpty(userIds)) {
                 return R.error("用户不能为空");
             }
@@ -94,7 +57,7 @@ public class CouponServiceImpl implements CouponService {
                 if (StringUtils.isEmpty(strUserId)) {
                     continue;
                 }
-                Integer userId = Integer.valueOf(strUserId);
+                Long userId = Long.valueOf(strUserId);
                 UserCouponEntity userCouponVo = new UserCouponEntity();
                 userCouponVo.setUserId(userId);
                 userCouponVo.setCouponId(couponId);
@@ -104,11 +67,11 @@ public class CouponServiceImpl implements CouponService {
                 if (sendSms) {
                     UserEntity userEntity = userDao.queryObject(userId);
                     // todo 发送短信
-
                 }
             }
         } else if (3 == sendType) {
-            String goodsIds = MapUtils.getString(params, "goodsIds"); // 下发商品逗号分割
+            String goodsIds = MapUtils.getString(params, "goodsIds");
+            // 下发商品逗号分割
             if (StringUtils.isEmpty(goodsIds)) {
                 return R.error("商品Id不能为空");
             }
@@ -118,7 +81,7 @@ public class CouponServiceImpl implements CouponService {
                 }
                 CouponGoodsEntity couponGoodsVo = new CouponGoodsEntity();
                 couponGoodsVo.setCouponId(couponId);
-                couponGoodsVo.setGoodsId(Integer.valueOf(goodsId));
+                couponGoodsVo.setGoodsId(Long.valueOf(goodsId));
                 couponGoodsDao.save(couponGoodsVo);
             }
         } else {

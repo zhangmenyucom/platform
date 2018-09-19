@@ -81,7 +81,7 @@ public class CouponController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("coupon:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         couponService.deleteBatch(ids);
 
         return R.ok();

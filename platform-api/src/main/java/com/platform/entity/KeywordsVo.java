@@ -79,7 +79,7 @@ public class KeywordsVo implements Serializable {
         this.scheme_url = scheme_url;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONException;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
+import com.platform.common.SMSTypeEnum;
 import com.platform.dao.SysSmsLogDao;
-import com.platform.entity.SMSTypeEnum;
 import com.platform.entity.SmsConfig;
 import com.platform.entity.SysSmsLogEntity;
 import com.platform.service.SysConfigService;
@@ -32,7 +32,7 @@ public class SysSmsLogServiceImpl implements SysSmsLogService {
     private SysConfigService sysConfigService;
 
     @Override
-    public SysSmsLogEntity queryObject(String id) {
+    public SysSmsLogEntity queryObject(Long id) {
         return smsLogDao.queryObject(id);
     }
 
@@ -57,12 +57,12 @@ public class SysSmsLogServiceImpl implements SysSmsLogService {
     }
 
     @Override
-    public int delete(String id) {
+    public int delete(Long id) {
         return smsLogDao.delete(id);
     }
 
     @Override
-    public int deleteBatch(String[] ids) {
+    public int deleteBatch(Long[] ids) {
         return smsLogDao.deleteBatch(ids);
     }
 

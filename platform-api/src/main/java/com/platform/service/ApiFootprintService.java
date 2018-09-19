@@ -55,7 +55,7 @@ public class ApiFootprintService {
         footprintDao.deleteByParam(map);
     }
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         footprintDao.deleteBatch(ids);
     }
 

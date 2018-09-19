@@ -48,7 +48,7 @@ public class ApiCommentService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         commentDao.deleteBatch(ids);
     }
 

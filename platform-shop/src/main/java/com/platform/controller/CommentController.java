@@ -80,7 +80,7 @@ public class CommentController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("comment:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         commentService.deleteBatch(ids);
 
         return R.ok();

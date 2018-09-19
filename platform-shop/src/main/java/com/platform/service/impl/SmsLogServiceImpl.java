@@ -18,42 +18,6 @@ import com.platform.service.SmsLogService;
  * @date 2018-09-09 04:53:06
  */
 @Service
-public class SmsLogServiceImpl implements SmsLogService {
-    @Autowired
-    private SmsLogDao smsLogDao;
+public class SmsLogServiceImpl extends BaseServiceImpl<SmsLogEntity,SmsLogDao> implements SmsLogService {
 
-    @Override
-    public SmsLogEntity queryObject(Long id) {
-        return smsLogDao.queryObject(id);
-    }
-
-    @Override
-    public List<SmsLogEntity> queryList(Map<String, Object> map) {
-        return smsLogDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return smsLogDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(SmsLogEntity smsLog) {
-        return smsLogDao.save(smsLog);
-    }
-
-    @Override
-    public int update(SmsLogEntity smsLog) {
-        return smsLogDao.update(smsLog);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return smsLogDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return smsLogDao.deleteBatch(ids);
-    }
 }

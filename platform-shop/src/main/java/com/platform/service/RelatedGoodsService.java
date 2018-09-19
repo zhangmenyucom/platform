@@ -2,9 +2,6 @@ package com.platform.service;
 
 import com.platform.entity.RelatedGoodsEntity;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 
  * 
@@ -12,19 +9,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:09
  */
-public interface RelatedGoodsService {
+public interface RelatedGoodsService extends BaseService<RelatedGoodsEntity> {
 	
-	RelatedGoodsEntity queryObject(Long id);
-	
-	List<RelatedGoodsEntity> queryList(Map<String, Object> map);
-	
-	int queryTotal(Map<String, Object> map);
-	
-	void save(RelatedGoodsEntity relatedGoods);
-	
-	void update(RelatedGoodsEntity relatedGoods);
-	
-	void delete(Long id);
-	
-	void deleteBatch(Integer[] ids);
 }

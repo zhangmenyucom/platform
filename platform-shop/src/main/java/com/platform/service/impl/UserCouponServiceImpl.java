@@ -17,42 +17,6 @@ import java.util.Map;
  * @date 2017-08-19 15:40:33
  */
 @Service("userCouponService")
-public class UserCouponServiceImpl implements UserCouponService {
-    @Autowired
-    private UserCouponDao userCouponDao;
+public class UserCouponServiceImpl extends BaseServiceImpl<UserCouponEntity,UserCouponDao> implements UserCouponService {
 
-    @Override
-    public UserCouponEntity queryObject(Long id) {
-        return userCouponDao.queryObject(id);
-    }
-
-    @Override
-    public List<UserCouponEntity> queryList(Map<String, Object> map) {
-        return userCouponDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return userCouponDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(UserCouponEntity userCoupon) {
-        return userCouponDao.save(userCoupon);
-    }
-
-    @Override
-    public int update(UserCouponEntity userCoupon) {
-        return userCouponDao.update(userCoupon);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return userCouponDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return userCouponDao.deleteBatch(ids);
-    }
 }

@@ -17,42 +17,6 @@ import java.util.Map;
  * @date 2017-09-04 21:42:24
  */
 @Service("shippingService")
-public class ShippingServiceImpl implements ShippingService {
-    @Autowired
-    private ShippingDao shippingDao;
+public class ShippingServiceImpl extends BaseServiceImpl<ShippingEntity,ShippingDao> implements ShippingService {
 
-    @Override
-    public ShippingEntity queryObject(Long id) {
-        return shippingDao.queryObject(id);
-    }
-
-    @Override
-    public List<ShippingEntity> queryList(Map<String, Object> map) {
-        return shippingDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return shippingDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(ShippingEntity shipping) {
-        return shippingDao.save(shipping);
-    }
-
-    @Override
-    public int update(ShippingEntity shipping) {
-        return shippingDao.update(shipping);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return shippingDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return shippingDao.deleteBatch(ids);
-    }
 }

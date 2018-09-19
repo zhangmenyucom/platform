@@ -298,7 +298,7 @@ public class ApiGoodsController extends ApiBaseAction {
             @ApiImplicitParam(name = "isHot", value = "热卖商品", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping(value = "list")
-    public Object list(@LoginUser UserVo loginUser, Integer categoryId,
+    public Object list(@LoginUser UserVo loginUser, Long categoryId,
                        Integer brandId, String keyword, Integer isNew, Integer isHot,
                        @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size,
                        String sort, String order) {
@@ -334,7 +334,7 @@ public class ApiGoodsController extends ApiBaseAction {
         //筛选的分类
         List<CategoryVo> filterCategory = new ArrayList();
         CategoryVo rootCategory = new CategoryVo();
-        rootCategory.setId(0);
+        rootCategory.setId(0L);
         rootCategory.setName("全部");
         rootCategory.setChecked(false);
         filterCategory.add(rootCategory);
@@ -343,7 +343,7 @@ public class ApiGoodsController extends ApiBaseAction {
         List<GoodsVo> categoryEntityList = goodsService.queryList(params);
         params.remove("fields");
         if (null != categoryEntityList && categoryEntityList.size() > 0) {
-            List<Integer> categoryIds = new ArrayList();
+            List<Long> categoryIds = new ArrayList();
             for (GoodsVo goodsVo : categoryEntityList) {
                 categoryIds.add(goodsVo.getCategory_id());
             }
@@ -353,7 +353,7 @@ public class ApiGoodsController extends ApiBaseAction {
             categoryParam.put("fields", "parent_id");
             List<CategoryVo> parentCategoryList = categoryService.queryList(categoryParam);
             //
-            List<Integer> parentIds = new ArrayList();
+            List<Long> parentIds = new ArrayList();
             for (CategoryVo categoryEntity : parentCategoryList) {
                 parentIds.add(categoryEntity.getParent_id());
             }
@@ -370,7 +370,7 @@ public class ApiGoodsController extends ApiBaseAction {
         }
         //加入分类条件
         if (null != categoryId && categoryId > 0) {
-            List<Integer> categoryIds = new ArrayList();
+            List<Long> categoryIds = new ArrayList();
             Map categoryParam = new HashMap(0);
             categoryParam.put("parent_id", categoryId);
             categoryParam.put("fields", "id");
@@ -389,7 +389,7 @@ public class ApiGoodsController extends ApiBaseAction {
         ApiPageUtils goodsData = new ApiPageUtils(new PageInfo(goodsList));
         //搜索到的商品
         for (CategoryVo categoryEntity : filterCategory) {
-            if (null != categoryId && categoryEntity.getId() == 0 || categoryEntity.getId() == categoryId) {
+            if (null != categoryId && categoryEntity.getId() == 0 || Objects.equals(categoryEntity.getId(), categoryId)) {
                 categoryEntity.setChecked(true);
             } else {
                 categoryEntity.setChecked(false);
@@ -419,7 +419,7 @@ public class ApiGoodsController extends ApiBaseAction {
             Map categoryParams = new HashMap(0);
             categoryParams.put("categoryId", categoryId);
             List<CategoryVo> categoryEntityList = categoryService.queryList(categoryParams);
-            List<Integer> category_ids = new ArrayList();
+            List<Long> category_ids = new ArrayList();
             for (CategoryVo categoryEntity : categoryEntityList) {
                 category_ids.add(categoryEntity.getId());
             }
@@ -428,12 +428,12 @@ public class ApiGoodsController extends ApiBaseAction {
         //筛选的分类
         List<CategoryVo> filterCategory = new ArrayList();
         CategoryVo rootCategory = new CategoryVo();
-        rootCategory.setId(0);
+        rootCategory.setId(0L);
         rootCategory.setName("全部");
         // 二级分类id
         List<GoodsVo> goodsEntityList = goodsService.queryList(params);
         if (null != goodsEntityList && goodsEntityList.size() > 0) {
-            List<Integer> categoryIds = new ArrayList();
+            List<Long> categoryIds = new ArrayList();
             for (GoodsVo goodsEntity : goodsEntityList) {
                 categoryIds.add(goodsEntity.getCategory_id());
             }
@@ -442,7 +442,7 @@ public class ApiGoodsController extends ApiBaseAction {
             categoryParam.put("categoryIds", categoryIds);
             List<CategoryVo> parentCategoryList = categoryService.queryList(categoryParam);
             //
-            List<Integer> parentIds = new ArrayList();
+            List<Long> parentIds = new ArrayList();
             for (CategoryVo categoryEntity : parentCategoryList) {
                 parentIds.add(categoryEntity.getId());
             }
@@ -547,7 +547,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "获取商品列表")
     @IgnoreAuth
     @GetMapping(value = "productlist")
-    public Object productlist(Integer categoryId,
+    public Object productlist(Long categoryId,
                               Integer isNew, Integer discount,
                               @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size,
                               String sort, String order) {
@@ -576,7 +576,7 @@ public class ApiGoodsController extends ApiBaseAction {
         }
         //加入分类条件
         if (null != categoryId && categoryId > 0) {
-            List<Integer> categoryIds = new ArrayList();
+            List<Long> categoryIds = new ArrayList();
             Map categoryParam = new HashMap(0);
             categoryParam.put("parent_id", categoryId);
             categoryParam.put("fields", "id");

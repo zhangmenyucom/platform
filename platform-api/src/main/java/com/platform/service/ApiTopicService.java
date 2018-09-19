@@ -45,7 +45,7 @@ public class ApiTopicService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         topicDao.deleteBatch(ids);
     }
 

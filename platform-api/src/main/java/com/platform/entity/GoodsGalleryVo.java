@@ -23,7 +23,7 @@ public class GoodsGalleryVo implements Serializable {
     //排序
     private Integer sort_order;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

@@ -119,7 +119,7 @@ public class ApiIndexController extends ApiBaseAction {
             param.remove("fields");
             param.put("parent_id", categoryItem.getId());
             List<CategoryVo> categoryEntityList = categoryService.queryList(param);
-            List<Integer> childCategoryIds = new ArrayList<>();
+            List<Long> childCategoryIds = new ArrayList<>();
             for (CategoryVo categoryEntity : categoryEntityList) {
                 childCategoryIds.add(categoryEntity.getId());
             }
@@ -230,7 +230,7 @@ public class ApiIndexController extends ApiBaseAction {
             param.remove("fields");
             param.put("parent_id", categoryItem.getId());
             List<CategoryVo> categoryEntityList = categoryService.queryList(param);
-            List<Integer> childCategoryIds = new ArrayList<>();
+            List<Long> childCategoryIds = new ArrayList<>();
             for (CategoryVo categoryEntity : categoryEntityList) {
                 childCategoryIds.add(categoryEntity.getId());
             }

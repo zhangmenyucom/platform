@@ -82,7 +82,7 @@ public class GoodsAttributeController {
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("goodsattribute:delete")
-	public R delete(@RequestBody Integer[] ids){
+	public R delete(@RequestBody Long[] ids){
 		goodsAttributeService.deleteBatch(ids);
 		
 		return R.ok();

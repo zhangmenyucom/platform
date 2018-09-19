@@ -15,20 +15,20 @@ import java.util.stream.Collectors;
 
 @Getter
 public enum SpecialGoodsEnum {
-    VIP(1181014, "会员",2),
-    CHUANGKE(1181013, "创客",3),
-    HEHUOREN(1181012, "合伙人",4);
-    private Integer goodsId;
+    VIP(1181014L, "会员",2L),
+    CHUANGKE(1181013L, "创客",3L),
+    HEHUOREN(1181012L, "合伙人",4L);
+    private Long goodsId;
     private String goodsName;
-    private Integer roleId;
+    private Long roleId;
 
-    public static final Map<Integer, SpecialGoodsEnum> SPECIAL_GOODS_ENUM_MAP = new HashMap<>();
+    public static final Map<Long, SpecialGoodsEnum> SPECIAL_GOODS_ENUM_MAP = new HashMap<>();
 
     static {
         Arrays.stream(SpecialGoodsEnum.values()).forEach(e -> SPECIAL_GOODS_ENUM_MAP.put(e.getGoodsId(), e));
     }
 
-    SpecialGoodsEnum(Integer goodsId, String goodsName,Integer roleId) {
+    SpecialGoodsEnum(Long goodsId, String goodsName,Long roleId) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.roleId=roleId;

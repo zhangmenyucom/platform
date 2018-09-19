@@ -80,7 +80,7 @@ public class GoodsGalleryController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("goodsgallery:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         goodsGalleryService.deleteBatch(ids);
 
         return R.ok();

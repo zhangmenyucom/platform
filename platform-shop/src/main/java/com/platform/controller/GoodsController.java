@@ -80,7 +80,7 @@ public class GoodsController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("goods:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         goodsService.deleteBatch(ids);
 
         return R.ok();
@@ -124,7 +124,7 @@ public class GoodsController {
      */
     @RequestMapping("/back")
     @RequiresPermissions("goods:back")
-    public R back(@RequestBody Integer[] ids) {
+    public R back(@RequestBody Long[] ids) {
         goodsService.back(ids);
 
         return R.ok();

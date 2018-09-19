@@ -72,7 +72,7 @@ public class ApiPayController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取支付的请求参数")
     @GetMapping("prepay")
-    public Object payPrepay(@LoginUser UserVo loginUser, Integer orderId) {
+    public Object payPrepay(@LoginUser UserVo loginUser, Long orderId) {
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
 
@@ -175,7 +175,7 @@ public class ApiPayController extends ApiBaseAction {
      */
     @ApiOperation(value = "查询订单状态")
     @GetMapping("query")
-    public Object orderQuery(@LoginUser UserVo loginUser, Integer orderId) {
+    public Object orderQuery(@LoginUser UserVo loginUser, Long orderId) {
         if (orderId == null) {
             return toResponsFail("订单不存在");
         }
@@ -282,7 +282,7 @@ public class ApiPayController extends ApiBaseAction {
                 String out_trade_no = result.getOut_trade_no();
                 logger.error("订单" + out_trade_no + "支付成功");
                 // 业务处理
-                OrderVo orderInfo = orderService.queryObject(Integer.valueOf(out_trade_no));
+                OrderVo orderInfo = orderService.queryObject(Long.valueOf(out_trade_no));
 
                 /**更改订单状态**/
                 orderInfo.setPay_status(PayStatusEnum.PAYED.getCode());
@@ -294,8 +294,8 @@ public class ApiPayController extends ApiBaseAction {
                 UserVo userSource = userService.queryObject(orderInfo.getUser_id());
                 Map<String, Object> queryMap = new HashMap<>(1);
                 queryMap.put("order_id", orderInfo.getId());
-                List<Integer> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
-                for (Integer goodsId : orderGoodsIdsList) {
+                List<Long> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
+                for (Long goodsId : orderGoodsIdsList) {
                     if (SPECIAL_GOODS_ENUM_MAP.get(goodsId) != null) {
                         /**购买角色，更新用户的角色**/
                         UserVo userVo = new UserVo();
@@ -363,7 +363,7 @@ public class ApiPayController extends ApiBaseAction {
      */
     @ApiOperation(value = "订单退款请求")
     @PostMapping("refund")
-    public Object refund(Integer orderId) {
+    public Object refund(Long orderId) {
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
 

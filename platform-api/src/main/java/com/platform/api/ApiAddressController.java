@@ -94,7 +94,7 @@ public class ApiAddressController extends ApiBaseAction {
     @PostMapping("delete")
     public Object delete(@LoginUser UserVo loginUser) {
         JSONObject jsonParam = this.getJsonRequest();
-        Long id = jsonParam.getIntValue("id");
+        Long id = jsonParam.getLongValue("id");
 
         AddressVo entity = addressService.queryObject(id);
         //判断越权行为

@@ -45,7 +45,7 @@ public class ApiAddressService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         addressDao.deleteBatch(ids);
     }
 

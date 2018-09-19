@@ -21,12 +21,12 @@
     <select id="queryList" resultMap="footprintMap">
         select a.* ,b.nickname as nickname,c.name as goods_name
         from footprint a
+        left join user b on a.user_id = b.id
+        left join goods c on a.goods_id = c.id
         where 1=1
         <if test="merchantId!=null">
             and a.merchant_id=#{merchantId}
         </if>
-        left join user b on a.user_id = b.id
-        left join goods c on a.goods_id = c.id
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}

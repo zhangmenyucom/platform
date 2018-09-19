@@ -17,42 +17,5 @@ import java.util.Map;
  * @date 2017-08-29 21:50:17
  */
 @Service("couponGoodsService")
-public class CouponGoodsServiceImpl implements CouponGoodsService {
-    @Autowired
-    private CouponGoodsDao couponGoodsDao;
-
-    @Override
-    public CouponGoodsEntity queryObject(Long id) {
-        return couponGoodsDao.queryObject(id);
-    }
-
-    @Override
-    public List<CouponGoodsEntity> queryList(Map<String, Object> map) {
-        return couponGoodsDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return couponGoodsDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(CouponGoodsEntity couponGoods) {
-        return couponGoodsDao.save(couponGoods);
-    }
-
-    @Override
-    public int update(CouponGoodsEntity couponGoods) {
-        return couponGoodsDao.update(couponGoods);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return couponGoodsDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[]ids) {
-        return couponGoodsDao.deleteBatch(ids);
-    }
+public class CouponGoodsServiceImpl extends BaseServiceImpl<CouponGoodsEntity,CouponGoodsDao> implements CouponGoodsService {
 }

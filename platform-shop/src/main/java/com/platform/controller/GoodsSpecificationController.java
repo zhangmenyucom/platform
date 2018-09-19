@@ -80,7 +80,7 @@ public class GoodsSpecificationController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("goodsspecification:delete")
-    public R delete(@RequestBody Integer[]ids) {
+    public R delete(@RequestBody Long[]ids) {
         goodsSpecificationService.deleteBatch(ids);
 
         return R.ok();

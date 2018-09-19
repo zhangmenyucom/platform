@@ -17,42 +17,6 @@ import java.util.Map;
  * @date 2017-08-20 14:10:08
  */
 @Service("topicService")
-public class TopicServiceImpl implements TopicService {
-    @Autowired
-    private TopicDao topicDao;
+public class TopicServiceImpl extends BaseServiceImpl<TopicEntity,TopicDao> implements TopicService {
 
-    @Override
-    public TopicEntity queryObject(Long id) {
-        return topicDao.queryObject(id);
-    }
-
-    @Override
-    public List<TopicEntity> queryList(Map<String, Object> map) {
-        return topicDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return topicDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(TopicEntity topic) {
-        return topicDao.save(topic);
-    }
-
-    @Override
-    public int update(TopicEntity topic) {
-        return topicDao.update(topic);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return topicDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return topicDao.deleteBatch(ids);
-    }
 }

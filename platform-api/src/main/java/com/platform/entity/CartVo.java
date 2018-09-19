@@ -20,11 +20,11 @@ public class CartVo implements Serializable {
     //sessionId
     private String session_id;
     //商品Id
-    private Integer goods_id;
+    private Long goods_id;
     //商品序列号
     private String goods_sn;
     //产品Id
-    private Integer product_id;
+    private Long product_id;
     //产品名称
     private String goods_name;
     //市场价
@@ -47,7 +47,7 @@ public class CartVo implements Serializable {
     //商品图片
     private String list_pic_url;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -71,11 +71,11 @@ public class CartVo implements Serializable {
         this.session_id = session_id;
     }
 
-    public Integer getGoods_id() {
+    public Long getGoods_id() {
         return goods_id;
     }
 
-    public void setGoods_id(Integer goods_id) {
+    public void setGoods_id(Long goods_id) {
         this.goods_id = goods_id;
     }
 
@@ -87,11 +87,11 @@ public class CartVo implements Serializable {
         this.goods_sn = goods_sn;
     }
 
-    public Integer getProduct_id() {
+    public Long getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(Integer product_id) {
+    public void setProduct_id(Long product_id) {
         this.product_id = product_id;
     }
 

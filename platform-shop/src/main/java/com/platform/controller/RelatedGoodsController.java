@@ -82,7 +82,7 @@ public class RelatedGoodsController {
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("relatedgoods:delete")
-	public R delete(@RequestBody Integer[] ids){
+	public R delete(@RequestBody Long[] ids){
 		relatedGoodsService.deleteBatch(ids);
 		
 		return R.ok();

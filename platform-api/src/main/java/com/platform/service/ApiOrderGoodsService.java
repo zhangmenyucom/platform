@@ -45,7 +45,7 @@ public class ApiOrderGoodsService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         orderGoodsDao.deleteBatch(ids);
     }
 

@@ -80,7 +80,7 @@ public class FootprintController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("footprint:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         footprintService.deleteBatch(ids);
 
         return R.ok();

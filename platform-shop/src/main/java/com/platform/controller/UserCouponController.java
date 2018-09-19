@@ -80,7 +80,7 @@ public class UserCouponController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("usercoupon:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         userCouponService.deleteBatch(ids);
 
         return R.ok();

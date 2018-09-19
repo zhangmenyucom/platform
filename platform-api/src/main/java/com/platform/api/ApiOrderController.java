@@ -85,7 +85,7 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取订单详情")
     @GetMapping("detail")
-    public Object detail(Integer orderId) {
+    public Object detail(Long orderId) {
         Map resultObj = new HashMap(0);
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
@@ -114,7 +114,7 @@ public class ApiOrderController extends ApiBaseAction {
 
     @ApiOperation(value = "修改订单")
     @PostMapping("updateSuccess")
-    public Object updateSuccess(Integer orderId) {
+    public Object updateSuccess(Long orderId) {
         OrderVo orderInfo = orderService.queryObject(orderId);
         if (orderInfo == null) {
             return toResponsFail("订单不存在");
@@ -158,7 +158,7 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "取消订单")
     @PostMapping("cancelOrder")
-    public Object cancelOrder(Integer orderId) {
+    public Object cancelOrder(Long orderId) {
         try {
             OrderVo orderVo = orderService.queryObject(orderId);
             if (Objects.equals(orderVo.getOrder_status(), OrderStatusEnum.SHIPPED.getCode())) {
@@ -197,7 +197,7 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "确认收货")
     @PostMapping("confirmOrder")
-    public Object confirmOrder(Integer orderId) {
+    public Object confirmOrder(Long orderId) {
         try {
             OrderVo orderVo = orderService.queryObject(orderId);
             orderVo.setOrder_status(OrderStatusEnum.CONFIRMED.getCode());

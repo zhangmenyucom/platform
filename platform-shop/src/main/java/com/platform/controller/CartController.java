@@ -82,7 +82,7 @@ public class CartController {
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("cart:delete")
-	public R delete(@RequestBody Integer[] ids){
+	public R delete(@RequestBody Long[] ids){
 		cartService.deleteBatch(ids);
 		
 		return R.ok();

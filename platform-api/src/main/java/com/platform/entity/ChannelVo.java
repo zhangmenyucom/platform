@@ -23,7 +23,7 @@ public class ChannelVo implements Serializable {
     //
     private Integer sort_order;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

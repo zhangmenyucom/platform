@@ -45,7 +45,7 @@ public class ApiCategoryService {
 	}
 	
 	
-	public void deleteBatch(Integer[] ids){
+	public void deleteBatch(Long[] ids){
 		categoryDao.deleteBatch(ids);
 	}
 	

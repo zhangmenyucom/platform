@@ -89,9 +89,9 @@ public class OrderVo implements Serializable {
     //配送费用
     private Integer freight_price;
     //使用的优惠券id
-    private Integer coupon_id;
+    private Long coupon_id;
     //
-    private Integer parent_id;
+    private Long parent_id;
     //优惠价格
     private BigDecimal coupon_price;
     //
@@ -139,7 +139,7 @@ public class OrderVo implements Serializable {
         this.full_region = full_region;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -366,19 +366,19 @@ public class OrderVo implements Serializable {
         this.freight_price = freight_price;
     }
 
-    public Integer getCoupon_id() {
+    public Long getCoupon_id() {
         return coupon_id;
     }
 
-    public void setCoupon_id(Integer coupon_id) {
+    public void setCoupon_id(Long coupon_id) {
         this.coupon_id = coupon_id;
     }
 
-    public Integer getParent_id() {
+    public Long getParent_id() {
         return parent_id;
     }
 
-    public void setParent_id(Integer parent_id) {
+    public void setParent_id(Long parent_id) {
         this.parent_id = parent_id;
     }
 

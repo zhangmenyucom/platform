@@ -13,11 +13,11 @@ public class BuyGoodsVo implements Serializable {
     /**
      * 商品id
      **/
-    private Integer goodsId;
+    private Long goodsId;
     /**
      * 产品id
      **/
-    private Integer productId;
+    private Long productId;
     /**
      * 数量
      **/

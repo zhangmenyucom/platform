@@ -65,7 +65,7 @@ public class SysSmsLogController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:smslog:info")
-    public R info(@PathVariable("id") String id) {
+    public R info(@PathVariable("id") Long id) {
         SysSmsLogEntity smsLog = smsLogService.queryObject(id);
 
         return R.ok().put("smsLog", smsLog);

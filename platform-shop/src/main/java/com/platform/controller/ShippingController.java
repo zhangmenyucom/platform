@@ -80,7 +80,7 @@ public class ShippingController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("shipping:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         shippingService.deleteBatch(ids);
 
         return R.ok();

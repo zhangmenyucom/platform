@@ -33,7 +33,7 @@ public class ApiUserService {
 
         UserDetailVo userDetailVo = userDao.queryUserDetailInfo(userId);
         if (userDetailVo != null) {
-            Map<String, Long> map = new HashMap<>(16);
+            Map<String, Object> map = new HashMap<>(16);
             map.put("parentId", userDetailVo.getUserId());
             List<UserVo> userVos = userDao.queryList(map);
             userDetailVo.setSubUserList(userVos);

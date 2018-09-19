@@ -254,8 +254,8 @@ public class RegionCacheUtil implements InitializingBean {
      *
      * @return
      */
-    public static Integer getProvinceIdByName(String areaName) {
-        Integer resultObj = null;
+    public static Long getProvinceIdByName(String areaName) {
+        Long resultObj = null;
         if (null == areaName) {
             return resultObj;
         }
@@ -275,8 +275,8 @@ public class RegionCacheUtil implements InitializingBean {
      *
      * @return
      */
-    public static Integer getCityIdByName(Integer provinceId, String areaName) {
-        Integer resultObj = null;
+    public static Long getCityIdByName(Long provinceId, String areaName) {
+        Long resultObj = null;
         if (null == areaName) {
             return resultObj;
         }
@@ -298,8 +298,8 @@ public class RegionCacheUtil implements InitializingBean {
      *
      * @return
      */
-    public static Integer getDistrictIdByName(Integer provinceId, Integer cityId, String areaName) {
-        Integer resultObj = null;
+    public static Long getDistrictIdByName(Long provinceId, Long cityId, String areaName) {
+        Long resultObj = null;
         if (null == areaName) {
             return resultObj;
         }

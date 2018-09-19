@@ -1,6 +1,7 @@
 package com.platform.service.impl;
 
 import com.platform.annotation.DataFilter;
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.GoodsAttributeDao;
 import com.platform.dao.GoodsDao;
 import com.platform.dao.GoodsGalleryDao;
@@ -39,6 +40,7 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
 
     @Override
     @DataFilter(userAlias = "goods.create_user_id", deptAlias = "goods.create_user_dept_id")
+    @MerchantFilter
     public List<GoodsEntity> queryList(Map<String, Object> map) {
         return getDao().queryList(map);
     }

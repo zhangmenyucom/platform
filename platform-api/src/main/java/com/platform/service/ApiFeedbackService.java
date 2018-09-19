@@ -45,7 +45,7 @@ public class ApiFeedbackService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         feedbackMapper.deleteBatch(ids);
     }
 

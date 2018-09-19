@@ -12,19 +12,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:09
  */
-public interface OrderGoodsService {
+public interface OrderGoodsService extends BaseService<OrderGoodsEntity> {
 	
-	OrderGoodsEntity queryObject(Long id);
-	
-	List<OrderGoodsEntity> queryList(Map<String, Object> map);
-	
-	int queryTotal(Map<String, Object> map);
-	
-	void save(OrderGoodsEntity orderGoods);
-	
-	void update(OrderGoodsEntity orderGoods);
-	
-	void delete(Long id);
-	
-	void deleteBatch(Integer[] ids);
 }

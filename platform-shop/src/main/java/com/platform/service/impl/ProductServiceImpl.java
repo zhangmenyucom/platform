@@ -6,7 +6,6 @@ import com.platform.dao.ProductDao;
 import com.platform.entity.GoodsEntity;
 import com.platform.entity.GoodsSpecificationEntity;
 import com.platform.entity.ProductEntity;
-import com.platform.service.GoodsService;
 import com.platform.service.ProductService;
 import com.platform.utils.BeanUtils;
 import com.platform.utils.StringUtils;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Service实现类
@@ -27,22 +25,16 @@ import java.util.Optional;
  * @date 2017-08-30 14:31:21
  */
 @Service("productService")
-public class ProductServiceImpl implements ProductService {
-    @Autowired
-    private ProductDao productDao;
+public class ProductServiceImpl extends BaseServiceImpl<ProductEntity,ProductDao> implements ProductService {
+
     @Autowired
     private GoodsSpecificationDao goodsSpecificationDao;
     @Autowired
     private GoodsDao goodsDao;
 
     @Override
-    public ProductEntity queryObject(Long id) {
-        return productDao.queryObject(id);
-    }
-
-    @Override
     public List<ProductEntity> queryList(Map<String, Object> map) {
-        List<ProductEntity> list = productDao.queryList(map);
+        List<ProductEntity> list = getDao().queryList(map);
 
         List<ProductEntity> result = new ArrayList<>();
         //翻译产品规格
@@ -54,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
                     String[] arr = specificationIds.split("_");
 
                     for (String goodsSpecificationId : arr) {
-                        GoodsSpecificationEntity entity = goodsSpecificationDao.queryObject(goodsSpecificationId);
+                        GoodsSpecificationEntity entity = goodsSpecificationDao.queryObject(Long.valueOf(goodsSpecificationId));
                         if (null != entity) {
                             specificationValue += entity.getValue() + "；";
                         }
@@ -65,11 +57,6 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return result;
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return productDao.queryTotal(map);
     }
 
     @Override
@@ -93,12 +80,12 @@ public class ProductServiceImpl implements ProductService {
                         }
                         strGoodsSpecificationIds = oneId[j] + "_" + twoId[k];
                         entity.setGoodsSpecificationIds(strGoodsSpecificationIds);
-                        result += productDao.save(entity);
+                        result += getDao().save(entity);
                     }
                 }
             }
         } else {
-            productDao.save(entity);
+            getDao().save(entity);
         }
         return result;
     }
@@ -117,16 +104,6 @@ public class ProductServiceImpl implements ProductService {
         goodsEntity.setGoodsSn(product.getGoodsSn());
         goodsEntity.setName(product.getGoodsName());
         goodsDao.update(goodsEntity);
-        return productDao.update(product);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return productDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return productDao.deleteBatch(ids);
+        return getDao().update(product);
     }
 }

@@ -80,7 +80,7 @@ public class KeywordsController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("keywords:delete")
-    public R delete(@RequestBody Integer[]ids) {
+    public R delete(@RequestBody Long[]ids) {
         keywordsService.deleteBatch(ids);
 
         return R.ok();

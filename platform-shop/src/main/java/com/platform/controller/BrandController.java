@@ -80,7 +80,7 @@ public class BrandController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("brand:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         brandService.deleteBatch(ids);
 
         return R.ok();

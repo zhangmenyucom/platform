@@ -45,7 +45,7 @@ public class ApiChannelService {
     }
 
 
-    public void deleteBatch(Integer[] ids) {
+    public void deleteBatch(Long[] ids) {
         channelDao.deleteBatch(ids);
     }
 

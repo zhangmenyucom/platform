@@ -80,7 +80,7 @@ public class ChannelController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("channel:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         channelService.deleteBatch(ids);
 
         return R.ok();

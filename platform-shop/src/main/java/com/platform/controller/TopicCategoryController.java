@@ -80,7 +80,7 @@ public class TopicCategoryController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("topiccategory:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         topicCategoryService.deleteBatch(ids);
 
         return R.ok();

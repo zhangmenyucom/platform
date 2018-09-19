@@ -17,8 +17,8 @@ import java.io.Serializable;
 public class CouponGoodsEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     //优惠券Id
-    private Integer couponId;
+    private Long couponId;
     //商品id
-    private Integer goodsId;
+    private Long goodsId;
 
 }
