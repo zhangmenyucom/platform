@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Api(tags = "活动咨询")
 @RestController
-@RequestMapping("/api/activity")
+@RequestMapping("/api/{merchantId}/activity")
 public class ApiActivityController {
 
     @Autowired
