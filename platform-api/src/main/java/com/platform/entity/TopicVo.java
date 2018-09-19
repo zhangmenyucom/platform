@@ -17,7 +17,7 @@ public class TopicVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**活动主题**/
     private String title;
     /**活动内容**/

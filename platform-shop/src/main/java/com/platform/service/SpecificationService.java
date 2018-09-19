@@ -12,19 +12,6 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:10
  */
-public interface SpecificationService {
-	
-	SpecificationEntity queryObject(Integer id);
-	
-	List<SpecificationEntity> queryList(Map<String, Object> map);
-	
-	int queryTotal(Map<String, Object> map);
-	
-	void save(SpecificationEntity specification);
-	
-	void update(SpecificationEntity specification);
-	
-	void delete(Integer id);
-	
-	void deleteBatch(Integer[] ids);
+public interface SpecificationService extends BaseService<SpecificationEntity> {
+
 }

@@ -16,7 +16,7 @@ public class SearchHistoryVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**关键字**/
     private String keyword;
     /**搜索来源，如PC、小程序、APP等**/

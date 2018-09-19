@@ -47,7 +47,7 @@ public class ChannelController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("channel:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         ChannelEntity channel = channelService.queryObject(id);
 
         return R.ok().put("channel", channel);

@@ -44,23 +44,23 @@ public abstract class  BaseServiceImpl<T ,Dao extends BaseDao<T>> implements Bas
 
     @Override
     @MerchantFilter
-    public void save(T t) {
-        this.dao.save(t);
+    public int save(T t) {
+        return  this.dao.save(t);
     }
 
     @Override
     @MerchantFilter
-    public void update(T t) {
-        this.dao.update(t);
+    public int update(T t) {
+        return this.dao.update(t);
     }
 
     @Override
-    public void delete(Long id) {
-        this.dao.delete(id);
+    public int delete(Long id) {
+        return this.dao.delete(id);
     }
 
     @Override
-    public void deleteBatch(Long[] ids) {
-        this.dao.deleteBatch(ids);
+    public int deleteBatch(Long[] ids) {
+       return  this.dao.deleteBatch(ids);
     }
 }

@@ -16,7 +16,7 @@ public class ApiCartService {
     @Autowired
     private ApiCartMapper cartDao;
 
-    public CartVo queryObject(Integer id) {
+    public CartVo queryObject(Long id) {
         return cartDao.queryObject(id);
     }
 
@@ -73,7 +73,7 @@ public class ApiCartService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         cartDao.delete(id);
     }
 

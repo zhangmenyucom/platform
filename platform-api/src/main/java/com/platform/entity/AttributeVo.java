@@ -13,7 +13,7 @@ public class AttributeVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //
-    private Integer id;
+    private Long id;
     //
     private Integer attribute_category_id;
     //
@@ -29,7 +29,7 @@ public class AttributeVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

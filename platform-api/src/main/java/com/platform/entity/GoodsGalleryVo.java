@@ -13,7 +13,7 @@ public class GoodsGalleryVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //主键
-    private Integer id;
+    private Long id;
     //商品id
     private Integer goods_id;
     //图片
@@ -27,7 +27,7 @@ public class GoodsGalleryVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

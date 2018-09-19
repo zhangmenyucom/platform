@@ -15,7 +15,7 @@ public class ApiChannelService {
     private ApiChannelMapper channelDao;
 
 
-    public ChannelVo queryObject(Integer id) {
+    public ChannelVo queryObject(Long id) {
         return channelDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiChannelService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         channelDao.delete(id);
     }
 

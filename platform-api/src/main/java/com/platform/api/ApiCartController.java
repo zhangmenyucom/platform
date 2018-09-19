@@ -251,7 +251,7 @@ public class ApiCartController extends ApiBaseAction {
         Integer goodsId = jsonParam.getInteger("goodsId");
         Integer productId = jsonParam.getInteger("productId");
         Integer number = jsonParam.getInteger("number");
-        Integer id = jsonParam.getInteger("id");
+        Long id = jsonParam.getInteger("id");
         //取得规格的信息,判断规格库存
         ProductVo productInfo = productService.queryObject(productId);
         if (null == productInfo || productInfo.getGoods_number() < number) {

@@ -16,7 +16,7 @@ public class FootprintServiceImpl implements FootprintService {
 	private FootprintDao footprintDao;
 	
 	@Override
-	public FootprintEntity queryObject(Integer id){
+	public FootprintEntity queryObject(Long id){
 		return footprintDao.queryObject(id);
 	}
 	
@@ -41,7 +41,7 @@ public class FootprintServiceImpl implements FootprintService {
 	}
 	
 	@Override
-	public void delete(Integer id){
+	public void delete(Long id){
 		footprintDao.delete(id);
 	}
 	

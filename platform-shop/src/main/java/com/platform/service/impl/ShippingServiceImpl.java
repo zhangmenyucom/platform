@@ -22,7 +22,7 @@ public class ShippingServiceImpl implements ShippingService {
     private ShippingDao shippingDao;
 
     @Override
-    public ShippingEntity queryObject(Integer id) {
+    public ShippingEntity queryObject(Long id) {
         return shippingDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class ShippingServiceImpl implements ShippingService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return shippingDao.delete(id);
     }
 

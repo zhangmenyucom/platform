@@ -47,7 +47,7 @@ public class KeywordsController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("keywords:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         KeywordsEntity keywords = keywordsService.queryObject(id);
 
         return R.ok().put("keywords", keywords);

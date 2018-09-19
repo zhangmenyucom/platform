@@ -15,7 +15,7 @@ public class ApiSearchHistoryService {
     private ApiSearchHistoryMapper searchHistoryDao;
 
 
-    public SearchHistoryVo queryObject(Integer id) {
+    public SearchHistoryVo queryObject(Long id) {
         return searchHistoryDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiSearchHistoryService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         searchHistoryDao.delete(id);
     }
 

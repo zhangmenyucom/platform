@@ -22,7 +22,7 @@ public class ChannelServiceImpl implements ChannelService {
     private ChannelDao channelDao;
 
     @Override
-    public ChannelEntity queryObject(Integer id) {
+    public ChannelEntity queryObject(Long id) {
         return channelDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return channelDao.delete(id);
     }
 

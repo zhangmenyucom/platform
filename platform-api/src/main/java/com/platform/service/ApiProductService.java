@@ -15,7 +15,7 @@ public class ApiProductService {
     private ApiProductMapper productDao;
 
 
-    public ProductVo queryObject(Integer id) {
+    public ProductVo queryObject(Long id) {
         return productDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiProductService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         productDao.delete(id);
     }
 

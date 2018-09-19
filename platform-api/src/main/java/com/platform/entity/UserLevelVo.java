@@ -19,7 +19,7 @@ public class UserLevelVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**主键**/
-	private Integer id;
+	private Long id;
 	/**名称**/
 	private String name;
 	/**描述**/

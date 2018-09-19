@@ -34,7 +34,7 @@ public class ApiOrderService {
     private ApiProductService productService;
 
 
-    public OrderVo queryObject(Integer id) {
+    public OrderVo queryObject(Long id) {
         return orderDao.queryObject(id);
     }
 
@@ -59,7 +59,7 @@ public class ApiOrderService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         orderDao.delete(id);
     }
 

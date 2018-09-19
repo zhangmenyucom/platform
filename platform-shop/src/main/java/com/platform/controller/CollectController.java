@@ -49,7 +49,7 @@ public class CollectController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("collect:info")
-	public R info(@PathVariable("id") Integer id){
+	public R info(@PathVariable("id") Long id){
 		CollectEntity collect = collectService.queryObject(id);
 		
 		return R.ok().put("collect", collect);

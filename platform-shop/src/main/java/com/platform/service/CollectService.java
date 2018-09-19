@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface CollectService {
 	
-	CollectEntity queryObject(Integer id);
+	CollectEntity queryObject(Long id);
 	
 	List<CollectEntity> queryList(Map<String, Object> map);
 	
@@ -24,7 +24,7 @@ public interface CollectService {
 	
 	void update(CollectEntity collect);
 	
-	void delete(Integer id);
+	void delete(Long id);
 	
 	void deleteBatch(Integer[] ids);
 }

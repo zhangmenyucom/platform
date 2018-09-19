@@ -23,7 +23,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
 
     @Override
-    public CategoryEntity queryObject(Integer id) {
+    public CategoryEntity queryObject(Long id) {
         return categoryDao.queryObject(id);
     }
 
@@ -54,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return categoryDao.delete(id);
     }
 

@@ -49,7 +49,7 @@ public class SpecificationController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("specification:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         SpecificationEntity specification = specificationService.queryObject(id);
 
         return R.ok().put("specification", specification);
@@ -82,7 +82,7 @@ public class SpecificationController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("specification:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         specificationService.deleteBatch(ids);
 
         return R.ok();

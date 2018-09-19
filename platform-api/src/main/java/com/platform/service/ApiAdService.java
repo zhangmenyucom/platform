@@ -15,7 +15,7 @@ public class ApiAdService {
     private ApiAdMapper adDao;
 
 
-    public AdVo queryObject(Integer id) {
+    public AdVo queryObject(Long id) {
         return adDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiAdService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         adDao.delete(id);
     }
 

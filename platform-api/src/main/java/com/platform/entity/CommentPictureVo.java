@@ -13,7 +13,7 @@ public class CommentPictureVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //主键
-    private Integer id;
+    private Long id;
     //评价Id
     private Integer comment_id;
     //评价图片
@@ -25,7 +25,7 @@ public class CommentPictureVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -47,7 +47,7 @@ public class TopicCategoryController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("topiccategory:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         TopicCategoryEntity topicCategory = topicCategoryService.queryObject(id);
 
         return R.ok().put("topicCategory", topicCategory);

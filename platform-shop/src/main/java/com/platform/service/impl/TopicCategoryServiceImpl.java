@@ -22,7 +22,7 @@ public class TopicCategoryServiceImpl implements TopicCategoryService {
     private TopicCategoryDao topicCategoryDao;
 
     @Override
-    public TopicCategoryEntity queryObject(Integer id) {
+    public TopicCategoryEntity queryObject(Long id) {
         return topicCategoryDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class TopicCategoryServiceImpl implements TopicCategoryService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return topicCategoryDao.delete(id);
     }
 

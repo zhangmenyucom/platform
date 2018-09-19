@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface RelatedGoodsService {
 	
-	RelatedGoodsEntity queryObject(Integer id);
+	RelatedGoodsEntity queryObject(Long id);
 	
 	List<RelatedGoodsEntity> queryList(Map<String, Object> map);
 	
@@ -24,7 +24,7 @@ public interface RelatedGoodsService {
 	
 	void update(RelatedGoodsEntity relatedGoods);
 	
-	void delete(Integer id);
+	void delete(Long id);
 	
 	void deleteBatch(Integer[] ids);
 }

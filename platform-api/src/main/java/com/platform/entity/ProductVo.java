@@ -17,7 +17,7 @@ public class ProductVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**商品Id**/
     private Integer goods_id;
     /**产品Id**/

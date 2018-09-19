@@ -53,7 +53,7 @@ public class UserController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("user:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         UserEntity user = userService.queryObject(id);
 
         return R.ok().put("user", user);
@@ -86,7 +86,7 @@ public class UserController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("user:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         userService.deleteBatch(ids);
 
         return R.ok();

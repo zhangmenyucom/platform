@@ -15,7 +15,7 @@ public class ApiCommentService {
     private ApiCommentMapper commentDao;
 
 
-    public CommentVo queryObject(Integer id) {
+    public CommentVo queryObject(Long id) {
         return commentDao.queryObject(id);
     }
 
@@ -43,7 +43,7 @@ public class ApiCommentService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         commentDao.delete(id);
     }
 

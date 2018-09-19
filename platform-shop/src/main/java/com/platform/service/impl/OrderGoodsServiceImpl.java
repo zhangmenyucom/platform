@@ -16,7 +16,7 @@ public class OrderGoodsServiceImpl implements OrderGoodsService {
 	private OrderGoodsDao orderGoodsDao;
 	
 	@Override
-	public OrderGoodsEntity queryObject(Integer id){
+	public OrderGoodsEntity queryObject(Long id){
 		return orderGoodsDao.queryObject(id);
 	}
 	
@@ -41,7 +41,7 @@ public class OrderGoodsServiceImpl implements OrderGoodsService {
 	}
 	
 	@Override
-	public void delete(Integer id){
+	public void delete(Long id){
 		orderGoodsDao.delete(id);
 	}
 	

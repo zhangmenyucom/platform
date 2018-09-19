@@ -22,7 +22,7 @@ public class KeywordsServiceImpl implements KeywordsService {
     private KeywordsDao keywordsDao;
 
     @Override
-    public KeywordsEntity queryObject(Integer id) {
+    public KeywordsEntity queryObject(Long id) {
         return keywordsDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class KeywordsServiceImpl implements KeywordsService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return keywordsDao.delete(id);
     }
 

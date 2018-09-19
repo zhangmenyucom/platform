@@ -16,7 +16,7 @@ public class SearchHistoryServiceImpl implements SearchHistoryService {
 	private SearchHistoryDao searchHistoryDao;
 	
 	@Override
-	public SearchHistoryEntity queryObject(Integer id){
+	public SearchHistoryEntity queryObject(Long id){
 		return searchHistoryDao.queryObject(id);
 	}
 	
@@ -41,7 +41,7 @@ public class SearchHistoryServiceImpl implements SearchHistoryService {
 	}
 	
 	@Override
-	public void delete(Integer id){
+	public void delete(Long id){
 		searchHistoryDao.delete(id);
 	}
 	

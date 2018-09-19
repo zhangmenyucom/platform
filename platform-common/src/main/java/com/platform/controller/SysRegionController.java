@@ -8,8 +8,6 @@ import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.platform.utils.TreeUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +57,7 @@ public class SysRegionController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:region:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         SysRegionEntity region = sysRegionService.queryObject(id);
 
         return R.ok().put("region", region);
@@ -104,7 +102,7 @@ public class SysRegionController {
     @SysLog("删除地址")
     @RequestMapping("/delete")
     @RequiresPermissions("sys:region:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         sysRegionService.deleteBatch(ids);
 
         return R.ok();

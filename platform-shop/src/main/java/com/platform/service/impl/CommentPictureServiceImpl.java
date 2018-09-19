@@ -22,7 +22,7 @@ public class CommentPictureServiceImpl implements CommentPictureService {
     private CommentPictureDao commentPictureDao;
 
     @Override
-    public CommentPictureEntity queryObject(Integer id) {
+    public CommentPictureEntity queryObject(Long id) {
         return commentPictureDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class CommentPictureServiceImpl implements CommentPictureService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return commentPictureDao.delete(id);
     }
 

@@ -48,7 +48,7 @@ public class AddressController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("address:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         AddressEntity address = addressService.queryObject(id);
 
         return R.ok().put("address", address);
@@ -81,7 +81,7 @@ public class AddressController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("address:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         addressService.deleteBatch(ids);
 
         return R.ok();

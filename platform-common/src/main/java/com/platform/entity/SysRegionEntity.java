@@ -8,7 +8,7 @@ package com.platform.entity;
 public class SysRegionEntity extends Tree<SysRegionEntity> {
 
     //主键
-    private Integer id;
+    private Long id;
     //父节点
     private Integer parentId;
     //区域名称
@@ -28,7 +28,7 @@ public class SysRegionEntity extends Tree<SysRegionEntity> {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

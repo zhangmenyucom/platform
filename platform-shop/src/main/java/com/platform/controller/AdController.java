@@ -45,7 +45,7 @@ public class AdController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("ad:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         AdEntity ad = adService.queryObject(id);
 
         return R.ok().put("ad", ad);
@@ -78,7 +78,7 @@ public class AdController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("ad:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         adService.deleteBatch(ids);
 
         return R.ok();

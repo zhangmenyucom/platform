@@ -59,7 +59,7 @@ public class ApiBrandController extends ApiBaseAction {
     @ApiOperation(value = "品牌详情")
     @IgnoreAuth
     @GetMapping("detail")
-    public Object detail(@RequestParam Integer id) {
+    public Object detail(@RequestParam Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         //查询列表数据
         BrandVo entity = brandService.queryObject(id);

@@ -26,9 +26,8 @@ import java.util.Map;
  * @date 2017-08-21 21:19:49
  */
 @Service("goodsService")
-public class GoodsServiceImpl implements GoodsService {
-    @Autowired
-    private GoodsDao goodsDao;
+public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> implements GoodsService {
+
     @Autowired
     private GoodsAttributeDao goodsAttributeDao;
     @Autowired
@@ -36,21 +35,18 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private GoodsGalleryDao goodsGalleryDao;
 
-    @Override
-    public GoodsEntity queryObject(Integer id) {
-        return goodsDao.queryObject(id);
-    }
+
 
     @Override
     @DataFilter(userAlias = "goods.create_user_id", deptAlias = "goods.create_user_dept_id")
     public List<GoodsEntity> queryList(Map<String, Object> map) {
-        return goodsDao.queryList(map);
+        return getDao().queryList(map);
     }
 
     @Override
     @DataFilter(userAlias = "goods.create_user_id", deptAlias = "goods.create_user_dept_id")
     public int queryTotal(Map<String, Object> map) {
-        return goodsDao.queryTotal(map);
+        return getDao().queryTotal(map);
     }
 
     @Override
@@ -63,7 +59,7 @@ public class GoodsServiceImpl implements GoodsService {
         if (null != list && list.size() != 0) {
             throw new RRException("商品名称已存在！");
         }
-        Long id = goodsDao.queryMaxId() + 1;
+        Long id = getDao().queryMaxId() + 1;
         goods.setId(id);
 
         //保存产品信息
@@ -102,7 +98,7 @@ public class GoodsServiceImpl implements GoodsService {
         goods.setCreateUserId(user.getUserId());
         goods.setUpdateUserId(user.getUserId());
         goods.setUpdateTime(new Date());
-        return goodsDao.save(goods);
+        return getDao().save(goods);
     }
 
     @Override
@@ -143,48 +139,28 @@ public class GoodsServiceImpl implements GoodsService {
                 goodsGalleryDao.save(galleryEntity);
             }
         }
-        return goodsDao.update(goods);
+        return getDao().update(goods);
     }
 
-    @Override
-    public int delete(Integer id) {
-        SysUserEntity user = ShiroUtils.getUserEntity();
-        GoodsEntity goodsEntity = queryObject(id);
-        goodsEntity.setIsDelete(1);
-        goodsEntity.setIsOnSale(0);
-        goodsEntity.setUpdateUserId(user.getUserId());
-        goodsEntity.setUpdateTime(new Date());
-        return goodsDao.update(goodsEntity);
-    }
 
     @Override
     @Transactional
-    public int deleteBatch(Integer[] ids) {
-        int result = 0;
-        for (Integer id : ids) {
-            result += delete(id);
-        }
-        return result;
-    }
-
-    @Override
-    @Transactional
-    public int back(Integer[] ids) {
+    public int back(Long[] ids) {
         SysUserEntity user = ShiroUtils.getUserEntity();
         int result = 0;
-        for (Integer id : ids) {
+        for (Long id : ids) {
             GoodsEntity goodsEntity = queryObject(id);
             goodsEntity.setIsDelete(0);
             goodsEntity.setIsOnSale(1);
             goodsEntity.setUpdateUserId(user.getUserId());
             goodsEntity.setUpdateTime(new Date());
-            result += goodsDao.update(goodsEntity);
+            result += getDao().update(goodsEntity);
         }
         return result;
     }
 
     @Override
-    public int enSale(Integer id) {
+    public int enSale(Long id) {
         SysUserEntity user = ShiroUtils.getUserEntity();
         GoodsEntity goodsEntity = queryObject(id);
         if (1 == goodsEntity.getIsOnSale()) {
@@ -193,11 +169,11 @@ public class GoodsServiceImpl implements GoodsService {
         goodsEntity.setIsOnSale(1);
         goodsEntity.setUpdateUserId(user.getUserId());
         goodsEntity.setUpdateTime(new Date());
-        return goodsDao.update(goodsEntity);
+        return getDao().update(goodsEntity);
     }
 
     @Override
-    public int unSale(Integer id) {
+    public int unSale(Long id) {
         SysUserEntity user = ShiroUtils.getUserEntity();
         GoodsEntity goodsEntity = queryObject(id);
         if (0 == goodsEntity.getIsOnSale()) {
@@ -206,6 +182,6 @@ public class GoodsServiceImpl implements GoodsService {
         goodsEntity.setIsOnSale(0);
         goodsEntity.setUpdateUserId(user.getUserId());
         goodsEntity.setUpdateTime(new Date());
-        return goodsDao.update(goodsEntity);
+        return getDao().update(goodsEntity);
     }
 }

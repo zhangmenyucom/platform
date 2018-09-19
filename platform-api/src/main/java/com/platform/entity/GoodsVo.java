@@ -14,7 +14,7 @@ public class GoodsVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //主键
-    private Integer id;
+    private Long id;
     //商品类型Id
     private Integer category_id;
     //商品序列号
@@ -85,7 +85,7 @@ public class GoodsVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

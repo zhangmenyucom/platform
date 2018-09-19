@@ -60,7 +60,7 @@ public interface CommentService {
      * @param id
      * @return 删除条数
      */
-    int delete(Integer id);
+    int delete(Long id);
 
     /**
      * 根据主键批量删除

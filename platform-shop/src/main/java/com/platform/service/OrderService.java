@@ -10,29 +10,14 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-13 10:41:09
  */
-public interface OrderService {
-
-    OrderEntity queryObject(Integer id);
-
-    List<OrderEntity> queryList(Map<String, Object> map);
-
-    int queryTotal(Map<String, Object> map);
-
-    int save(OrderEntity order);
-
-    int update(OrderEntity order);
-
-    int delete(Integer id);
-
-    int deleteBatch(Integer[] ids);
-
+public interface OrderService  extends  BaseService<OrderEntity>{
     /**
      * 确定收货
      *
      * @param id
      * @return
      */
-    int confirm(Integer id);
+    int confirm(Long id);
 
     int sendGoods(OrderEntity order);
 }

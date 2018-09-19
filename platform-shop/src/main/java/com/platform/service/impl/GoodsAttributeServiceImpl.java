@@ -16,7 +16,7 @@ public class GoodsAttributeServiceImpl implements GoodsAttributeService {
 	private GoodsAttributeDao goodsAttributeDao;
 	
 	@Override
-	public GoodsAttributeEntity queryObject(Integer id){
+	public GoodsAttributeEntity queryObject(Long id){
 		return goodsAttributeDao.queryObject(id);
 	}
 	
@@ -41,7 +41,7 @@ public class GoodsAttributeServiceImpl implements GoodsAttributeService {
 	}
 	
 	@Override
-	public void delete(Integer id){
+	public void delete(Long id){
 		goodsAttributeDao.delete(id);
 	}
 	

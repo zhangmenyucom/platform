@@ -47,7 +47,7 @@ public class CommentPictureController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("commentpicture:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         CommentPictureEntity commentPicture = commentPictureService.queryObject(id);
 
         return R.ok().put("commentPicture", commentPicture);

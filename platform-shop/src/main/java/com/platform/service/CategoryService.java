@@ -20,7 +20,7 @@ public interface CategoryService {
      * @param id 主键
      * @return 实体
      */
-    CategoryEntity queryObject(Integer id);
+    CategoryEntity queryObject(Long id);
 
     /**
      * 分页查询
@@ -60,7 +60,7 @@ public interface CategoryService {
      * @param id
      * @return 删除条数
      */
-    int delete(Integer id);
+    int delete(Long id);
 
     /**
      * 根据主键批量删除

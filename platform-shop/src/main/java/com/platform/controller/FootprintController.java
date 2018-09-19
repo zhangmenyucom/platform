@@ -47,7 +47,7 @@ public class FootprintController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("footprint:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         FootprintEntity footprint = footprintService.queryObject(id);
 
         return R.ok().put("footprint", footprint);

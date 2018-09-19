@@ -16,7 +16,7 @@ public class AdVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**广告位置Id*/
     private Integer ad_position_id;
     /**形式*/

@@ -48,7 +48,7 @@ public class ApiAddressController extends ApiBaseAction {
     @ApiOperation(value = "获取收货地址的详情", response = Map.class)
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "收获地址ID", required = true, dataType = "Integer")})
     @GetMapping("detail")
-    public Object detail(Integer id, @LoginUser UserVo loginUser) {
+    public Object detail(Long id, @LoginUser UserVo loginUser) {
         AddressVo entity = addressService.queryObject(id);
         //判断越权行为
         if (!entity.getUserId().equals(loginUser.getUserId())) {
@@ -94,7 +94,7 @@ public class ApiAddressController extends ApiBaseAction {
     @PostMapping("delete")
     public Object delete(@LoginUser UserVo loginUser) {
         JSONObject jsonParam = this.getJsonRequest();
-        Integer id = jsonParam.getIntValue("id");
+        Long id = jsonParam.getIntValue("id");
 
         AddressVo entity = addressService.queryObject(id);
         //判断越权行为

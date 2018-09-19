@@ -20,7 +20,7 @@ public interface ChannelService {
      * @param id 主键
      * @return 实体
      */
-    ChannelEntity queryObject(Integer id);
+    ChannelEntity queryObject(Long id);
 
     /**
      * 分页查询
@@ -60,7 +60,7 @@ public interface ChannelService {
      * @param id
      * @return 删除条数
      */
-    int delete(Integer id);
+    int delete(Long id);
 
     /**
      * 根据主键批量删除

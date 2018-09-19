@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface FootprintService {
 	
-	FootprintEntity queryObject(Integer id);
+	FootprintEntity queryObject(Long id);
 	
 	List<FootprintEntity> queryList(Map<String, Object> map);
 	
@@ -24,7 +24,7 @@ public interface FootprintService {
 	
 	void update(FootprintEntity footprint);
 	
-	void delete(Integer id);
+	void delete(Long id);
 	
 	void deleteBatch(Integer[] ids);
 }

@@ -16,7 +16,7 @@ public class ApiFootprintService {
     private ApiFootprintMapper footprintDao;
 
 
-    public FootprintVo queryObject(Integer id) {
+    public FootprintVo queryObject(Long id) {
         return footprintDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class ApiFootprintService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         footprintDao.delete(id);
     }
 

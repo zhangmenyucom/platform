@@ -22,7 +22,7 @@ public class UserCouponServiceImpl implements UserCouponService {
     private UserCouponDao userCouponDao;
 
     @Override
-    public UserCouponEntity queryObject(Integer id) {
+    public UserCouponEntity queryObject(Long id) {
         return userCouponDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class UserCouponServiceImpl implements UserCouponService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return userCouponDao.delete(id);
     }
 

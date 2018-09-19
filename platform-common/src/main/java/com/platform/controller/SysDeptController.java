@@ -5,8 +5,6 @@ import com.platform.entity.SysDeptEntity;
 import com.platform.service.SysDeptService;
 import com.platform.utils.Constant;
 import com.platform.utils.R;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

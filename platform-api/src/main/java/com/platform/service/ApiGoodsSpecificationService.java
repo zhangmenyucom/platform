@@ -15,7 +15,7 @@ public class ApiGoodsSpecificationService {
     private ApiGoodsSpecificationMapper goodsDao;
 
 
-    public GoodsSpecificationVo queryObject(Integer id) {
+    public GoodsSpecificationVo queryObject(Long id) {
         return goodsDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiGoodsSpecificationService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         goodsDao.delete(id);
     }
 

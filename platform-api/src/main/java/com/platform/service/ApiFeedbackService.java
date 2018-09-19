@@ -15,7 +15,7 @@ public class ApiFeedbackService {
     private ApiFeedbackMapper feedbackMapper;
 
 
-    public FeedbackVo queryObject(Integer id) {
+    public FeedbackVo queryObject(Long id) {
         return feedbackMapper.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiFeedbackService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         feedbackMapper.delete(id);
     }
 

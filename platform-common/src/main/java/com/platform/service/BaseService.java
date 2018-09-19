@@ -17,11 +17,11 @@ public interface BaseService<T> {
 
     int queryTotal(Map<String, Object> map);
 
-    void save(T t);
+    int save(T t);
 
-    void update(T t);
+    int update(T t);
 
-    void delete(Long id);
+    int delete(Long id);
 
-    void deleteBatch(Long[] ids);
+    int deleteBatch(Long[] ids);
 }

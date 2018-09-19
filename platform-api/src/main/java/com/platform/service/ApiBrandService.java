@@ -15,7 +15,7 @@ public class ApiBrandService {
 	private ApiBrandMapper brandDao;
 	
 	
-	public BrandVo queryObject(Integer id){
+	public BrandVo queryObject(Long id){
 		return brandDao.queryObject(id);
 	}
 	
@@ -40,7 +40,7 @@ public class ApiBrandService {
 	}
 	
 	
-	public void delete(Integer id){
+	public void delete(Long id){
 		brandDao.delete(id);
 	}
 	

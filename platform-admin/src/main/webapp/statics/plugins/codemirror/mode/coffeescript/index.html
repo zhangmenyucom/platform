@@ -623,7 +623,7 @@ _.mixin = (obj) ->
     addToWrapper name, _[name] = obj[name]
 
 
-# Generate a unique integer id (unique within the entire client session).
+# Generate a unique Long id (unique within the entire client session).
 # Useful for temporary DOM ids.
 idCounter = 0
 _.uniqueId = (prefix) ->

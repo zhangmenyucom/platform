@@ -14,7 +14,7 @@ public class CartVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //主键
-    private Integer id;
+    private Long id;
     //会员Id
     private Long user_id;
     //sessionId
@@ -51,7 +51,7 @@ public class CartVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

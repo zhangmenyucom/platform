@@ -16,7 +16,7 @@ public class RelatedGoodsServiceImpl implements RelatedGoodsService {
 	private RelatedGoodsDao relatedGoodsDao;
 	
 	@Override
-	public RelatedGoodsEntity queryObject(Integer id){
+	public RelatedGoodsEntity queryObject(Long id){
 		return relatedGoodsDao.queryObject(id);
 	}
 	
@@ -41,7 +41,7 @@ public class RelatedGoodsServiceImpl implements RelatedGoodsService {
 	}
 	
 	@Override
-	public void delete(Integer id){
+	public void delete(Long id){
 		relatedGoodsDao.delete(id);
 	}
 	

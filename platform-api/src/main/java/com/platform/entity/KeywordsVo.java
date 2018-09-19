@@ -27,7 +27,7 @@ public class KeywordsVo implements Serializable {
     //关键词的跳转链接
     private String scheme_url;
     //主键
-    private Integer id;
+    private Long id;
     //类型
     private Integer type;
 
@@ -83,7 +83,7 @@ public class KeywordsVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

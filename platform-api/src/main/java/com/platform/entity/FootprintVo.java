@@ -16,7 +16,7 @@ import java.util.Date;
 public class FootprintVo implements Serializable {
     private static final long serialVersionUID = 1L;
     /**主键**/
-    private Integer id;
+    private Long id;
     /**会员Id**/
     private Long user_id;
     /**商品id**/

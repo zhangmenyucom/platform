@@ -23,7 +23,7 @@ public class CouponVo implements Serializable {
     /**
      * 优惠券主键
      **/
-    private Integer id;
+    private Long id;
     /**
      * 用户优惠券主键
      **/

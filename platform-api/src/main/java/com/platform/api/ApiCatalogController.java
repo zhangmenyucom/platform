@@ -39,7 +39,7 @@ public class ApiCatalogController extends ApiBaseAction {
             @ApiImplicitParam(name = "size", value = "size", paramType = "query", required = false)})
     @IgnoreAuth
     @GetMapping(value = "index")
-    public Object index(Integer id,
+    public Object index(Long id,
                         @RequestParam(value = "page", defaultValue = "1") Integer page,
                         @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Map<String, Object> resultObj = new HashMap(0);
@@ -79,7 +79,7 @@ public class ApiCatalogController extends ApiBaseAction {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "id", paramType = "query", required = false)})
     @IgnoreAuth
     @GetMapping(value = "current")
-    public Object current(Integer id) {
+    public Object current(Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         Map params = new HashMap(0);
         params.put("parent_id", 0);

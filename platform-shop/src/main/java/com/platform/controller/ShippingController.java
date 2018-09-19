@@ -47,7 +47,7 @@ public class ShippingController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("shipping:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         ShippingEntity shipping = shippingService.queryObject(id);
 
         return R.ok().put("shipping", shipping);

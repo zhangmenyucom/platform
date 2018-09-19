@@ -15,7 +15,7 @@ public class ApiCategoryService {
 	private ApiCategoryMapper categoryDao;
 	
 	
-	public CategoryVo queryObject(Integer id){
+	public CategoryVo queryObject(Long id){
 		return categoryDao.queryObject(id);
 	}
 	
@@ -40,7 +40,7 @@ public class ApiCategoryService {
 	}
 	
 	
-	public void delete(Integer id){
+	public void delete(Long id){
 		categoryDao.delete(id);
 	}
 	

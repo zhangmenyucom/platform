@@ -48,7 +48,7 @@ public class ProductController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("product:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         ProductEntity product = productService.queryObject(id);
 
         return R.ok().put("product", product);

@@ -21,7 +21,7 @@ public interface CouponService {
      * @param id 主键
      * @return 实体
      */
-    CouponEntity queryObject(Integer id);
+    CouponEntity queryObject(Long id);
 
     /**
      * 分页查询
@@ -61,7 +61,7 @@ public interface CouponService {
      * @param id
      * @return 删除条数
      */
-    int delete(Integer id);
+    int delete(Long id);
 
     /**
      * 根据主键批量删除

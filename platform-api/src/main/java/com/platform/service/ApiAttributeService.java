@@ -15,7 +15,7 @@ public class ApiAttributeService {
     private ApiAttributeMapper attributeMapper;
 
 
-    public AttributeVo queryObject(Integer id) {
+    public AttributeVo queryObject(Long id) {
         return attributeMapper.queryObject(id);
     }
 
@@ -39,7 +39,7 @@ public class ApiAttributeService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         attributeMapper.delete(id);
     }
 

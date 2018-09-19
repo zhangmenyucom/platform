@@ -15,7 +15,7 @@ public class ApiGoodsGalleryService {
     private ApiGoodsGalleryMapper goodsGalleryDao;
 
 
-    public GoodsGalleryVo queryObject(Integer id) {
+    public GoodsGalleryVo queryObject(Long id) {
         return goodsGalleryDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiGoodsGalleryService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         goodsGalleryDao.delete(id);
     }
 

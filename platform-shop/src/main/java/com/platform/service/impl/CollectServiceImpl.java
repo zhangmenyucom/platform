@@ -16,7 +16,7 @@ public class CollectServiceImpl implements CollectService {
 	private CollectDao collectDao;
 	
 	@Override
-	public CollectEntity queryObject(Integer id){
+	public CollectEntity queryObject(Long id){
 		return collectDao.queryObject(id);
 	}
 	
@@ -41,7 +41,7 @@ public class CollectServiceImpl implements CollectService {
 	}
 	
 	@Override
-	public void delete(Integer id){
+	public void delete(Long id){
 		collectDao.delete(id);
 	}
 	

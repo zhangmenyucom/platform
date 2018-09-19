@@ -47,7 +47,7 @@ public class SearchHistoryController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("searchhistory:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         SearchHistoryEntity searchHistory = searchHistoryService.queryObject(id);
 
         return R.ok().put("searchHistory", searchHistory);

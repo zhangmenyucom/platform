@@ -16,43 +16,7 @@ import java.util.Map;
  * @email 516195940@qq.com
  * @date 2017-08-23 14:12:34
  */
-@Service("goodsIssueService")
-public class GoodsIssueServiceImpl implements GoodsIssueService {
-    @Autowired
-    private GoodsIssueDao goodsIssueDao;
+@Service
+public class GoodsIssueServiceImpl extends BaseServiceImpl<GoodsIssueEntity,GoodsIssueDao> implements GoodsIssueService {
 
-    @Override
-    public GoodsIssueEntity queryObject(Integer id) {
-        return goodsIssueDao.queryObject(id);
-    }
-
-    @Override
-    public List<GoodsIssueEntity> queryList(Map<String, Object> map) {
-        return goodsIssueDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return goodsIssueDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(GoodsIssueEntity goodsIssue) {
-        return goodsIssueDao.save(goodsIssue);
-    }
-
-    @Override
-    public int update(GoodsIssueEntity goodsIssue) {
-        return goodsIssueDao.update(goodsIssue);
-    }
-
-    @Override
-    public int delete(Integer id) {
-        return goodsIssueDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return goodsIssueDao.deleteBatch(ids);
-    }
 }

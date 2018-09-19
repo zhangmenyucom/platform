@@ -11,7 +11,7 @@ import lombok.Data;
 public class RegionVo {
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**父节点**/
     private Integer parent_id;
     /**区域名称**/

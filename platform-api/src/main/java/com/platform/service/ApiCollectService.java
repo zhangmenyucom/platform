@@ -15,7 +15,7 @@ public class ApiCollectService {
     private ApiCollectMapper collectDao;
 
 
-    public CollectVo queryObject(Integer id) {
+    public CollectVo queryObject(Long id) {
         return collectDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiCollectService {
     }
 
 
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return collectDao.delete(id);
     }
 

@@ -15,7 +15,7 @@ public class ApiCommentPictureService {
     private ApiCommentPictureMapper commentPictureDao;
 
 
-    public CommentPictureVo queryObject(Integer id) {
+    public CommentPictureVo queryObject(Long id) {
         return commentPictureDao.queryObject(id);
     }
 
@@ -39,7 +39,7 @@ public class ApiCommentPictureService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         commentPictureDao.delete(id);
     }
 

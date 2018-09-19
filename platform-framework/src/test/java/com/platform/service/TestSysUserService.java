@@ -19,7 +19,7 @@ public interface TestSysUserService {
      * @param id 主键
      * @return 实体
      */
-    SysUserEntity queryObject(Integer id);
+    SysUserEntity queryObject(Long id);
 
     /**
      * 分页查询

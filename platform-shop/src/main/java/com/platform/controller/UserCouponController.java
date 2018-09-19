@@ -47,7 +47,7 @@ public class UserCouponController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("usercoupon:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         UserCouponEntity userCoupon = userCouponService.queryObject(id);
 
         return R.ok().put("userCoupon", userCoupon);

@@ -48,7 +48,7 @@ public class AttributeCategoryController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("attributecategory:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         AttributeCategoryEntity attributeCategory = attributeCategoryService.queryObject(id);
 
         return R.ok().put("attributeCategory", attributeCategory);
@@ -81,7 +81,7 @@ public class AttributeCategoryController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("attributecategory:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         attributeCategoryService.deleteBatch(ids);
 
         return R.ok();

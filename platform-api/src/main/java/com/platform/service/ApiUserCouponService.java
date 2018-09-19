@@ -15,7 +15,7 @@ public class ApiUserCouponService {
     private ApiUserCouponMapper userCouponDao;
 
 
-    public UserCouponVo queryObject(Integer id) {
+    public UserCouponVo queryObject(Long id) {
         return userCouponDao.queryObject(id);
     }
 
@@ -43,7 +43,7 @@ public class ApiUserCouponService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         userCouponDao.delete(id);
     }
 

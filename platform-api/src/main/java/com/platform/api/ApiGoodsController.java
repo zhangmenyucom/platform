@@ -93,7 +93,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "商品id", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping(value = "sku")
-    public Object sku(Integer id) {
+    public Object sku(Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         //
         Map param = new HashMap(0);
@@ -113,7 +113,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = " 商品详情页数据")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "商品id", paramType = "path", required = true), @ApiImplicitParam(name = "referrer", value = "商品referrer", paramType = "path", required = false)})
     @GetMapping(value = "detail")
-    public Object detail(Integer id, Long referrer) {
+    public Object detail(Long id, Long referrer) {
         Map<String, Object> resultObj = new HashMap(0);
         //
         Long userId = getUserId();
@@ -273,7 +273,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "分类id", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping(value = "category")
-    public Object category(Integer id) {
+    public Object category(Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         CategoryVo currentCategory = categoryService.queryObject(id);
         CategoryVo parentCategory = categoryService.queryObject(currentCategory.getParent_id());
@@ -494,7 +494,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "商品详情页")
     @IgnoreAuth
     @GetMapping(value = "related")
-    public Object related(Integer id) {
+    public Object related(Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         Map param = new HashMap(0);
         param.put("goods_id", id);

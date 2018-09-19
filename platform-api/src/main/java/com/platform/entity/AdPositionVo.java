@@ -16,7 +16,7 @@ public class AdPositionVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**位置名称**/
     private String name;
     /**宽度**/

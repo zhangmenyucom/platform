@@ -15,7 +15,7 @@ public class ApiTopicService {
     private ApiTopicMapper topicDao;
 
 
-    public TopicVo queryObject(Integer id) {
+    public TopicVo queryObject(Long id) {
         return topicDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiTopicService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         topicDao.delete(id);
     }
 

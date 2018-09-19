@@ -48,7 +48,7 @@ public class UserLevelController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("userlevel:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         UserLevelEntity userLevel = userLevelService.queryObject(id);
 
         return R.ok().put("userLevel", userLevel);
@@ -81,7 +81,7 @@ public class UserLevelController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("userlevel:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         userLevelService.deleteBatch(ids);
 
         return R.ok();

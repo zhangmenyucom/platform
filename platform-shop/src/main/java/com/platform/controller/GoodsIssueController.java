@@ -47,7 +47,7 @@ public class GoodsIssueController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("goodsissue:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         GoodsIssueEntity goodsIssue = goodsIssueService.queryObject(id);
 
         return R.ok().put("goodsIssue", goodsIssue);
@@ -80,7 +80,7 @@ public class GoodsIssueController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("goodsissue:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         goodsIssueService.deleteBatch(ids);
 
         return R.ok();

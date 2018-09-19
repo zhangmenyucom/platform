@@ -17,57 +17,14 @@ import java.util.Map;
 /**
  * @author Taylor
  */
-@Service("orderService")
-public class OrderServiceImpl implements OrderService {
-
-    @Autowired
-    private OrderDao orderDao;
+@Service
+public class OrderServiceImpl extends  BaseServiceImpl<OrderEntity,OrderDao> implements OrderService {
 
     @Autowired
     private ShippingDao shippingDao;
 
     @Override
-    public OrderEntity queryObject(Integer id) {
-        return orderDao.queryObject(id);
-    }
-
-    @MerchantFilter
-    @Override
-    public List<OrderEntity> queryList(Map<String, Object> map) {
-        return orderDao.queryList(map);
-    }
-
-    @MerchantFilter
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return orderDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(OrderEntity order) {
-        return orderDao.save(order);
-    }
-
-    @MerchantFilter
-    @Override
-    public int update(OrderEntity order) {
-        return orderDao.update(order);
-    }
-
-    @MerchantFilter
-    @Override
-    public int delete(Integer id) {
-        return orderDao.delete(id);
-    }
-
-    @MerchantFilter
-    @Override
-    public int deleteBatch(Integer[] ids) {
-        return orderDao.deleteBatch(ids);
-    }
-
-    @Override
-    public int confirm(Integer id) {
+    public int confirm(Long id) {
         OrderEntity orderEntity = queryObject(id);
         //发货状态
         Integer shippingStatus = orderEntity.getShippingStatus();
@@ -84,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
         }
         orderEntity.setOrderStatus(301);
         orderEntity.setShippingStatus(2);
-        return orderDao.update(orderEntity);
+        return getDao().update(orderEntity);
     }
 
     @Override
@@ -104,6 +61,6 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderStatus(300);
         //已发货
         order.setShippingStatus(1);
-        return orderDao.update(order);
+        return getDao().update(order);
     }
 }

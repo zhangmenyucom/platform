@@ -50,7 +50,7 @@ public class CategoryController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("category:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         CategoryEntity category = categoryService.queryObject(id);
 
         return R.ok().put("category", category);

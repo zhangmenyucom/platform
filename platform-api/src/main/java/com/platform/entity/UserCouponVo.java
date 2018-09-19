@@ -16,7 +16,7 @@ public class UserCouponVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**主键**/
-    private Integer id;
+    private Long id;
     /**优惠券Id**/
     private Integer coupon_id;
     /**优惠券数量**/

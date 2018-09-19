@@ -22,7 +22,7 @@ public class GoodsSpecificationServiceImpl implements GoodsSpecificationService 
     private GoodsSpecificationDao goodsSpecificationDao;
 
     @Override
-    public GoodsSpecificationEntity queryObject(Integer id) {
+    public GoodsSpecificationEntity queryObject(Long id) {
         return goodsSpecificationDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class GoodsSpecificationServiceImpl implements GoodsSpecificationService 
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return goodsSpecificationDao.delete(id);
     }
 

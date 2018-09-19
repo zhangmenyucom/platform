@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface SearchHistoryService {
 	
-	SearchHistoryEntity queryObject(Integer id);
+	SearchHistoryEntity queryObject(Long id);
 	
 	List<SearchHistoryEntity> queryList(Map<String, Object> map);
 	
@@ -24,7 +24,7 @@ public interface SearchHistoryService {
 	
 	void update(SearchHistoryEntity searchHistory);
 	
-	void delete(Integer id);
+	void delete(Long id);
 	
 	void deleteBatch(Integer[] ids);
 }

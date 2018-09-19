@@ -48,7 +48,7 @@ public class GoodsController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("goods:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         GoodsEntity goods = goodsService.queryObject(id);
 
         return R.ok().put("goods", goods);
@@ -145,7 +145,7 @@ public class GoodsController {
      * 上架
      */
     @RequestMapping("/enSale")
-    public R enSale(@RequestBody Integer id) {
+    public R enSale(@RequestBody Long id) {
         goodsService.enSale(id);
 
         return R.ok();
@@ -155,7 +155,7 @@ public class GoodsController {
      * 下架
      */
     @RequestMapping("/unSale")
-    public R unSale(@RequestBody Integer id) {
+    public R unSale(@RequestBody Long id) {
         goodsService.unSale(id);
 
         return R.ok();

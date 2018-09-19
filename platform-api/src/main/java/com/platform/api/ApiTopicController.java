@@ -53,7 +53,7 @@ public class ApiTopicController extends ApiBaseAction {
      */
     @IgnoreAuth
     @GetMapping("detail")
-    public Object detail(Integer id) {
+    public Object detail(Long id) {
         TopicVo topicEntity = topicService.queryObject(id);
         return toResponsSuccess(topicEntity);
     }

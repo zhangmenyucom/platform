@@ -23,7 +23,7 @@ public class SmsLogServiceImpl implements SmsLogService {
     private SmsLogDao smsLogDao;
 
     @Override
-    public SmsLogEntity queryObject(Integer id) {
+    public SmsLogEntity queryObject(Long id) {
         return smsLogDao.queryObject(id);
     }
 
@@ -48,7 +48,7 @@ public class SmsLogServiceImpl implements SmsLogService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return smsLogDao.delete(id);
     }
 

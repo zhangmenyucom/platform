@@ -49,7 +49,7 @@ public class GoodsAttributeController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("goodsattribute:info")
-	public R info(@PathVariable("id") Integer id){
+	public R info(@PathVariable("id") Long id){
 		GoodsAttributeEntity goodsAttribute = goodsAttributeService.queryObject(id);
 		
 		return R.ok().put("goodsAttribute", goodsAttribute);

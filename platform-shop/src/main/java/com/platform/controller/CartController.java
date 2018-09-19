@@ -49,7 +49,7 @@ public class CartController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("cart:info")
-	public R info(@PathVariable("id") Integer id){
+	public R info(@PathVariable("id") Long id){
 		CartEntity cart = cartService.queryObject(id);
 		
 		return R.ok().put("cart", cart);

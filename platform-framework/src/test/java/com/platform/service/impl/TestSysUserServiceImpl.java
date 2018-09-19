@@ -22,7 +22,7 @@ public class TestSysUserServiceImpl implements TestSysUserService {
     private TestSysUserDao testSysUserDao;
 
     @Override
-    public SysUserEntity queryObject(Integer id) {
+    public SysUserEntity queryObject(Long id) {
         return testSysUserDao.queryObject(id);
     }
 

@@ -15,7 +15,7 @@ public class ApiKeywordsService {
     private ApiKeywordsMapper keywordsDao;
 
 
-    public KeywordsVo queryObject(Integer id) {
+    public KeywordsVo queryObject(Long id) {
         return keywordsDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiKeywordsService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         keywordsDao.delete(id);
     }
 

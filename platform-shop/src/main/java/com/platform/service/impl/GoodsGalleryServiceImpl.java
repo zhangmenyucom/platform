@@ -22,7 +22,7 @@ public class GoodsGalleryServiceImpl implements GoodsGalleryService {
     private GoodsGalleryDao goodsGalleryDao;
 
     @Override
-    public GoodsGalleryEntity queryObject(Integer id) {
+    public GoodsGalleryEntity queryObject(Long id) {
         return goodsGalleryDao.queryObject(id);
     }
 
@@ -47,7 +47,7 @@ public class GoodsGalleryServiceImpl implements GoodsGalleryService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return goodsGalleryDao.delete(id);
     }
 

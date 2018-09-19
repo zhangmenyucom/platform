@@ -13,7 +13,7 @@ public class CategoryVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //主键
-    private Integer id;
+    private Long id;
     //分类名称
     private String name;
     //关键字
@@ -52,7 +52,7 @@ public class CategoryVo implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

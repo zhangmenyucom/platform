@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     private GoodsDao goodsDao;
 
     @Override
-    public ProductEntity queryObject(Integer id) {
+    public ProductEntity queryObject(Long id) {
         return productDao.queryObject(id);
     }
 
@@ -121,7 +121,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return productDao.delete(id);
     }
 

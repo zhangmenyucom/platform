@@ -47,7 +47,7 @@ public class OrderController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("order:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         OrderEntity order = orderService.queryObject(id);
 
         return R.ok().put("order", order);
@@ -79,7 +79,7 @@ public class OrderController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("order:delete")
-    public R delete(@RequestBody Integer[] ids) {
+    public R delete(@RequestBody Long[] ids) {
         orderService.deleteBatch(ids);
 
         return R.ok();
@@ -114,7 +114,7 @@ public class OrderController {
      */
     @RequestMapping("/confirm")
     @RequiresPermissions("order:confirm")
-    public R confirm(@RequestBody Integer id) {
+    public R confirm(@RequestBody Long id) {
         orderService.confirm(id);
         return R.ok();
     }

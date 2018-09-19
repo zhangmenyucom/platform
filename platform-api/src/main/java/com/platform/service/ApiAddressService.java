@@ -15,7 +15,7 @@ public class ApiAddressService {
     private ApiAddressMapper addressDao;
 
 
-    public AddressVo queryObject(Integer id) {
+    public AddressVo queryObject(Long id) {
         return addressDao.queryObject(id);
     }
 
@@ -40,7 +40,7 @@ public class ApiAddressService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         addressDao.delete(id);
     }
 

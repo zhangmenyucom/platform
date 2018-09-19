@@ -47,7 +47,7 @@ public class BrandController {
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("brand:info")
-    public R info(@PathVariable("id") Integer id) {
+    public R info(@PathVariable("id") Long id) {
         BrandEntity brand = brandService.queryObject(id);
 
         return R.ok().put("brand", brand);

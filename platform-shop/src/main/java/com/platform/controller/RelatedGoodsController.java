@@ -49,7 +49,7 @@ public class RelatedGoodsController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("relatedgoods:info")
-	public R info(@PathVariable("id") Integer id){
+	public R info(@PathVariable("id") Long id){
 		RelatedGoodsEntity relatedGoods = relatedGoodsService.queryObject(id);
 		
 		return R.ok().put("relatedGoods", relatedGoods);
