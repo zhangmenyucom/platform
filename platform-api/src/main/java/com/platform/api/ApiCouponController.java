@@ -25,7 +25,7 @@ import java.util.*;
  */
 @Api(tags = "优惠券")
 @RestController
-@RequestMapping("/api/coupon")
+@RequestMapping("/api/{merchantId}/coupon")
 public class ApiCouponController extends ApiBaseAction {
     @Autowired
     private ApiUserService apiUserService;

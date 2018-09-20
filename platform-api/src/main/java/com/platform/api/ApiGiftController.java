@@ -23,7 +23,7 @@ import java.util.Map;
  * @date 2018-09-13 15:20:44
  */
 @RestController
-@RequestMapping("/api/gift")
+@RequestMapping("/api/{merchantId}/gift")
 public class ApiGiftController {
     @Autowired
     private ApiGiftService giftService;

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "首页接口文档")
 @RestController
-@RequestMapping("/api/index")
+@RequestMapping("/api/{merchantId}/index")
 public class ApiIndexController extends ApiBaseAction {
     @Autowired
     private ApiAdService adService;

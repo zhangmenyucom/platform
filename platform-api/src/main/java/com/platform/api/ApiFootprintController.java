@@ -23,7 +23,7 @@ import java.util.*;
  */
 @Api(tags = "足迹")
 @RestController
-@RequestMapping("/api/footprint")
+@RequestMapping("/api/{merchantId}/footprint")
 public class ApiFootprintController extends ApiBaseAction {
     @Autowired
     private ApiFootprintService footprintService;

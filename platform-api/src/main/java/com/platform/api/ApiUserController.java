@@ -31,7 +31,7 @@ import java.util.Date;
  */
 @Api(tags = "会员验证")
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/{merchantId}/user")
 public class ApiUserController extends ApiBaseAction {
     @Autowired
     private ApiUserService userService;

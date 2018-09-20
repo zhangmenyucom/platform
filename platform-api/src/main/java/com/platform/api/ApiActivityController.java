@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,9 @@ public class ApiActivityController {
     @IgnoreAuth
     @ApiOperation(value = "获取活动列表", response = Map.class)
     @GetMapping("list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId, @RequestParam Map<String, Object> params) {
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params, merchantId);
         List<ActivityVo> activityList = apiActivityService.queryList(query);
         int total = apiActivityService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(activityList, total, query.getLimit(), query.getPage());
@@ -61,7 +62,8 @@ public class ApiActivityController {
     @IgnoreAuth
     @ApiOperation(value = "获取所有活动", response = Map.class)
     @GetMapping("/queryAll")
-    public R queryAll(@RequestParam Map<String, Object> params) {
+    public R queryAll(@PathVariable("merchantId") Long merchantId, @RequestParam Map<String, Object> params) {
+        params.put("merchantId", merchantId);
         List<ActivityVo> list = apiActivityService.queryList(params);
         return R.ok().put("list", list);
     }

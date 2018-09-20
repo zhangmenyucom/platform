@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Api(tags = "购物车")
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/api/{merchantId}/cart")
 public class ApiCartController extends ApiBaseAction {
     @Autowired
     private ApiCartService cartService;

@@ -22,7 +22,7 @@ import java.util.Date;
  */
 @Api(tags = "反馈")
 @RestController
-@RequestMapping("/api/feedback")
+@RequestMapping("/api/{merchantId}/feedback")
 public class ApiFeedbackController extends ApiBaseAction {
     @Autowired
     private ApiFeedbackService feedbackService;

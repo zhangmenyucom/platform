@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Api(tags = "用户收藏")
 @RestController
-@RequestMapping("/api/collect")
+@RequestMapping("/api/{merchantId}/collect")
 public class ApiCollectController extends ApiBaseAction {
     @Autowired
     private ApiCollectService collectService;

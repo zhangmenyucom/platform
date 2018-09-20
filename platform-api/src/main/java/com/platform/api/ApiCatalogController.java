@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Api(tags = "栏目")
 @RestController
-@RequestMapping("/api/catalog")
+@RequestMapping("/api/{merchantId}/catalog")
 public class ApiCatalogController extends ApiBaseAction {
     @Autowired
     private ApiCategoryService categoryService;

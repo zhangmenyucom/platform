@@ -3,7 +3,6 @@ package com.platform.aop;
 import com.platform.entity.BaseEntity;
 import com.platform.entity.SysUserEntity;
 import com.platform.utils.Constant;
-import com.platform.utils.RRException;
 import com.platform.utils.ShiroUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -35,12 +34,9 @@ public class MerchantFilterAspect {
      */
     @Before("merchantFilterCut()")
     public void dataFilter(JoinPoint point) {
-        //获取参数
-        Object params = point.getArgs()[0];
-        if (params != null) {
-            SysUserEntity user = ShiroUtils.getUserEntity();
-            //在登录时没有user
-            if (user != null) {
+        SysUserEntity user = ShiroUtils.getUserEntity();
+        if (user != null) {
+            for (Object params : point.getArgs()) {
                 if (user.getUserId() != Constant.SUPER_ADMIN) {
                     if (params instanceof BaseEntity) {
                         BaseEntity baseEntity = (BaseEntity) params;
@@ -52,8 +48,6 @@ public class MerchantFilterAspect {
                     }
                 }
             }
-            return;
         }
-        throw new RRException("数据权限接口的参数必须为Map或BaseEntity类型，且不能为NULL");
     }
 }

@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Api(tags = "导师视频")
 @RestController
-@RequestMapping("/api/teachvideo")
+@RequestMapping("/api/{merchantId}/teachvideo")
 public class ApiTeachVideoController {
     @Autowired
     private ApiTeachVideoService teachVideoService;

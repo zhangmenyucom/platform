@@ -21,7 +21,7 @@ import java.util.Map;
  * @date 2018-09-13 15:20:44
  */
 @RestController
-@RequestMapping("/api/giftexchangerecord")
+@RequestMapping("/api/{merchantId}/giftexchangerecord")
 public class ApiGiftExchangeRecordController {
     @Autowired
     private ApiGiftExchangeRecordService giftExchangeRecordService;

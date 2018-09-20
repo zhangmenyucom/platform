@@ -32,7 +32,7 @@ import java.util.*;
  */
 @Api(tags = "商品管理")
 @RestController
-@RequestMapping("/api/goods")
+@RequestMapping("/api/{merchantId}/goods")
 public class ApiGoodsController extends ApiBaseAction {
     @Autowired
     private ApiGoodsService goodsService;

@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Api(tags = "媒体文章")
 @RestController
-@RequestMapping("/api/article")
+@RequestMapping("/api/{merchantId}/article")
 public class ApiArticleController {
     @Autowired
     private ApiArticleService apiArticleService;

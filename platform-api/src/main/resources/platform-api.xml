@@ -15,11 +15,15 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
-   <mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/api/**"/>
             <mvc:exclude-mapping path="/api/detailInfo"/>
             <ref bean="authorizationInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/api/**"/>
+            <ref bean="merchantInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

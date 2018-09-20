@@ -22,7 +22,7 @@ import java.util.Map;
  * 描述: ApiIndexController <br>
  */
 @RestController
-@RequestMapping("/api/topic")
+@RequestMapping("/api/{merchantId}/topic")
 public class ApiTopicController extends ApiBaseAction {
     @Autowired
     private ApiTopicService topicService;

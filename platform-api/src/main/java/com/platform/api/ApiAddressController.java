@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "收货地址")
 @RestController
-@RequestMapping("/api/address")
+@RequestMapping("/api/{merchantId}/address")
 public class ApiAddressController extends ApiBaseAction {
     @Autowired
     private ApiAddressService addressService;

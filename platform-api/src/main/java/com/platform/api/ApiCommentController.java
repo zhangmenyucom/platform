@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @Api(tags = "评论")
 @RestController
-@RequestMapping("/api/comment")
+@RequestMapping("/api/{merchantId}/comment")
 public class ApiCommentController extends ApiBaseAction {
     @Autowired
     private ApiCommentService commentService;

@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Api(tags = "上传")
 @RestController
-@RequestMapping("/api/upload")
+@RequestMapping("/api/{merchantId}/upload")
 public class ApiUploadController extends ApiBaseAction {
 
     /**

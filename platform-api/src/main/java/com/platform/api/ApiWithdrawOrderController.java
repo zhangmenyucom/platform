@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Api(tags = "提现")
 @RestController
-@RequestMapping("/api/withdraworder")
+@RequestMapping("/api/{merchantId}/withdraworder")
 public class ApiWithdrawOrderController {
     @Autowired
     private ApiWithdrawOrderService withdrawOrderService;

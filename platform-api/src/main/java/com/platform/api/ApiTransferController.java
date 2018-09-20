@@ -28,7 +28,7 @@ import static com.platform.config.Constants.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/transfer")
+@RequestMapping("/api/{merchantId}/transfer")
 public class ApiTransferController extends ApiBaseAction {
     /**
      * 企业向个人支付转账

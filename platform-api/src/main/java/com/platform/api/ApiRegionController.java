@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Api(tags = "区域")
 @RestController
-@RequestMapping("/api/region")
+@RequestMapping("/api/{merchantId}/region")
 public class ApiRegionController extends ApiBaseAction {
 
 	@ApiOperation(value = "地区列表")

@@ -32,7 +32,7 @@ import java.util.*;
  */
 @Api(tags = "订单相关")
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/api/{merchantId}/order")
 public class ApiOrderController extends ApiBaseAction {
     @Autowired
     private ApiOrderService orderService;

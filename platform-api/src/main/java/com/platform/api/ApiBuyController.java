@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "商品购买")
 @RestController
-@RequestMapping("/api/buy")
+@RequestMapping("/api/{merchantId}/buy")
 public class ApiBuyController extends ApiBaseAction {
     @ApiOperation(value = "商品添加")
     @PostMapping("/add")

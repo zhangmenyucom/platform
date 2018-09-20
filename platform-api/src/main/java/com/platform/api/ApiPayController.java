@@ -42,7 +42,7 @@ import static com.platform.enums.SpecialGoodsEnum.SPECIAL_GOODS_ENUM_MAP;
  */
 @Api(tags = "商户支付")
 @RestController
-@RequestMapping("/api/pay")
+@RequestMapping("/api/{merchantId}/pay")
 @Slf4j
 public class ApiPayController extends ApiBaseAction {
     private Logger logger = Logger.getLogger(getClass());

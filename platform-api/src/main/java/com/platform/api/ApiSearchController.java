@@ -32,7 +32,7 @@ import java.util.Map;
  */
 @Api(tags = "商品搜索")
 @RestController
-@RequestMapping("/api/search")
+@RequestMapping("/api/{merchantId}/search")
 public class ApiSearchController extends ApiBaseAction {
     @Autowired
     private ApiKeywordsService keywordsService;

@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Api(tags = "品牌")
 @RestController
-@RequestMapping("/api/brand")
+@RequestMapping("/api//{merchantId}/brand")
 public class ApiBrandController extends ApiBaseAction {
     @Autowired
     private ApiBrandService brandService;

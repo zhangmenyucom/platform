@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Api(tags = "佣金")
 @RestController
-@RequestMapping("/api/commissionorder")
+@RequestMapping("/api/{merchantId}/commissionorder")
 public class ApiCommissionOrderController {
     @Autowired
     private ApiCommissionOrderService commissionOrderService;

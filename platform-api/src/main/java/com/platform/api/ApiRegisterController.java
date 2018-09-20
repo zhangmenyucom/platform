@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "注册")
 @RestController
-@RequestMapping("/api/register")
+@RequestMapping("/api/{merchantId}/register")
 public class ApiRegisterController {
     @Autowired
     private ApiUserService userService;

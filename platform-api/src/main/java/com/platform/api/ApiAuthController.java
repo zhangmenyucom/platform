@@ -39,7 +39,7 @@ import java.util.Map;
  */
 @Api(tags = "API登录授权接口")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api//{merchantId}/auth")
 public class ApiAuthController extends ApiBaseAction {
     private Logger logger = Logger.getLogger(getClass());
     @Autowired
