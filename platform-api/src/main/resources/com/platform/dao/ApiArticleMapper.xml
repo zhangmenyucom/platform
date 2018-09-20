@@ -48,7 +48,7 @@
     		`create_time`,
     		`update_time`
 		from article
-		WHERE 1=1
+		WHERE 1=1 and status=1
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
 		</if>
