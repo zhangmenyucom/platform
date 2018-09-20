@@ -34,9 +34,9 @@ public class ApiCommissionOrderController {
     @IgnoreAuth
     @ApiOperation(value = "获取列表")
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<CommissionOrderVo> commissionOrderList = commissionOrderService.queryDetailList(query);
         int total = commissionOrderService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(commissionOrderList, total, query.getLimit(), query.getPage());
@@ -60,7 +60,8 @@ public class ApiCommissionOrderController {
     @IgnoreAuth
     @ApiOperation(value = "保存")
     @RequestMapping("/save")
-    public R save(@RequestBody CommissionOrderVo commissionOrder) {
+    public R save(@PathVariable("merchantId") Long merchantId,@RequestBody CommissionOrderVo commissionOrder) {
+        commissionOrder.setMerchantId(merchantId);
         commissionOrderService.save(commissionOrder);
         return R.ok();
     }
@@ -93,8 +94,8 @@ public class ApiCommissionOrderController {
     @IgnoreAuth
     @ApiOperation(value = "查看所有列表")
     @RequestMapping("/queryAll")
-    public R queryAll(@RequestParam Map<String, Object> params) {
-        List<CommissionOrderVo> list = commissionOrderService.queryList(params);
+    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+        List<CommissionOrderVo> list = commissionOrderService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }

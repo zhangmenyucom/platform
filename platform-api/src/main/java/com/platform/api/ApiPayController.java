@@ -72,7 +72,7 @@ public class ApiPayController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取支付的请求参数")
     @GetMapping("prepay")
-    public Object payPrepay(@LoginUser UserVo loginUser, Long orderId) {
+    public Object payPrepay(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, Long orderId) {
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
 
@@ -106,7 +106,7 @@ public class ApiPayController extends ApiBaseAction {
             // 商品描述
             parameters.put("body", "商城-支付");
             //订单的商品
-            List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
+            List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam,merchantId);
             if (null != orderGoods) {
                 String body = "商城-";
                 for (OrderGoodsVo goodsVo : orderGoods) {

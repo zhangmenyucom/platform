@@ -63,8 +63,7 @@ public class ApiActivityController {
     @ApiOperation(value = "获取所有活动", response = Map.class)
     @GetMapping("/queryAll")
     public R queryAll(@PathVariable("merchantId") Long merchantId, @RequestParam Map<String, Object> params) {
-        params.put("merchantId", merchantId);
-        List<ActivityVo> list = apiActivityService.queryList(params);
+        List<ActivityVo> list = apiActivityService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }

@@ -47,7 +47,7 @@ public class ApiCommentController extends ApiBaseAction {
      */
     @ApiOperation(value = "发表评论")
     @PostMapping("post")
-    public Object post(@LoginUser UserVo loginUser) {
+    public Object post(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
         Map resultObj = new HashMap(0);
         //
         JSONObject jsonParam = getJsonRequest();
@@ -60,6 +60,7 @@ public class ApiCommentController extends ApiBaseAction {
         commentEntity.setValue_id(valueId);
         commentEntity.setContent(content);
         commentEntity.setStatus(0);
+        commentEntity.setMerchantId(merchantId);
         //
         commentEntity.setAdd_time(System.currentTimeMillis() / 1000);
         commentEntity.setUser_id(loginUser.getUserId());
@@ -96,6 +97,7 @@ public class ApiCommentController extends ApiBaseAction {
                 if (null != newCouponConfig && newCouponConfig.getMin_transmit_num() >= commentVos.size()) {
                     UserCouponVo userCouponVo = new UserCouponVo();
                     userCouponVo.setAdd_time(new Date());
+                    userCouponVo.setMerchantId(merchantId);
                     userCouponVo.setCoupon_id(newCouponConfig.getId());
                     userCouponVo.setCoupon_number(CharUtil.getRandomString(12));
                     userCouponVo.setUser_id(loginUser.getUserId());
@@ -115,14 +117,14 @@ public class ApiCommentController extends ApiBaseAction {
      */
     @ApiOperation(value = "评论数量")
     @GetMapping("count")
-    public Object count(Integer typeId, Integer valueId) {
+    public Object count(@PathVariable("merchantId") Long merchantId,Integer typeId, Integer valueId) {
         Map<String, Object> resultObj = new HashMap(0);
         //
         Map param = new HashMap(0);
         param.put("type_id", typeId);
         param.put("value_id", valueId);
-        Integer allCount = commentService.queryTotal(param);
-        Integer hasPicCount = commentService.queryhasPicTotal(param);
+        Integer allCount = commentService.queryTotal(param,merchantId);
+        Integer hasPicCount = commentService.queryhasPicTotal(param,merchantId);
         //
         resultObj.put("allCount", allCount);
         resultObj.put("hasPicCount", hasPicCount);
@@ -140,7 +142,7 @@ public class ApiCommentController extends ApiBaseAction {
     @ApiOperation(value = "选择评论类型")
     @IgnoreAuth
     @GetMapping("list")
-    public Object list(Integer typeId, Integer valueId, Integer showType,
+    public Object list(@PathVariable("merchantId") Long merchantId,Integer typeId, Integer valueId, Integer showType,
                        @RequestParam(value = "page", defaultValue = "1") Integer page,
                        @RequestParam(value = "size", defaultValue = "10") Integer size,
                        String sort, String order) {
@@ -164,7 +166,7 @@ public class ApiCommentController extends ApiBaseAction {
             param.put("hasPic", 1);
         }
         //查询列表数据
-        Query query = new Query(param);
+        Query query = new Query(param,merchantId);
         commentList = commentService.queryList(query);
         int total = commentService.queryTotal(query);
         ApiPageUtils pageUtil = new ApiPageUtils(commentList, total, query.getLimit(), query.getPage());
@@ -175,7 +177,7 @@ public class ApiCommentController extends ApiBaseAction {
 
             Map paramPicture = new HashMap(0);
             paramPicture.put("comment_id", commentItem.getId());
-            List<CommentPictureVo> commentPictureEntities = commentPictureService.queryList(paramPicture);
+            List<CommentPictureVo> commentPictureEntities = commentPictureService.queryList(paramPicture,merchantId);
             commentItem.setPic_list(commentPictureEntities);
         }
         return toResponsSuccess(pageUtil);

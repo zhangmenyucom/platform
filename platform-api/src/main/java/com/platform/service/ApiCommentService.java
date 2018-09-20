@@ -10,7 +10,8 @@ import java.util.Map;
 
 @Service
 public class ApiCommentService extends BaseServiceImpl<CommentVo,ApiCommentMapper> {
-    public int queryhasPicTotal(Map<String, Object> map) {
+    public int queryhasPicTotal(Map<String, Object> map,Long merchantId) {
+        map.put("merchantId",merchantId);
         return getDao().queryhasPicTotal(map);
     }
 

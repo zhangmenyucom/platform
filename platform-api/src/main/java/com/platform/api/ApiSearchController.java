@@ -14,10 +14,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +41,7 @@ public class ApiSearchController extends ApiBaseAction {
      */
     @ApiOperation(value = "搜索商品列表")
     @GetMapping("index")
-    public Object index(@LoginUser UserVo loginUser) {
+    public Object index(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser) {
         Map<String, Object> resultObj = new HashMap(0);
         Map param = new HashMap(0);
         param.put("is_default", 1);
@@ -52,7 +49,7 @@ public class ApiSearchController extends ApiBaseAction {
         param.put("limit", 1);
         param.put("sidx", "id");
         param.put("order", "asc");
-        List<KeywordsVo> keywordsEntityList = keywordsService.queryList(param);
+        List<KeywordsVo> keywordsEntityList = keywordsService.queryList(param,merchantId);
         //取出输入框默认的关键词
         KeywordsVo defaultKeyword = null != keywordsEntityList && keywordsEntityList.size() > 0 ? keywordsEntityList.get(0) : null;
         //取出热闹关键词
@@ -62,7 +59,7 @@ public class ApiSearchController extends ApiBaseAction {
         param.put("limit", 10);
         param.put("sidx", "id");
         param.put("order", "asc");
-        Query query = new Query(param);
+        Query query = new Query(param,merchantId);
         List<Map> hotKeywordList = keywordsService.hotKeywordList(query);
         //
         param = new HashMap(0);
@@ -72,7 +69,7 @@ public class ApiSearchController extends ApiBaseAction {
         param.put("limit", 10);
         param.put("sidx", "id");
         param.put("order", "asc");
-        List<SearchHistoryVo> historyVoList = searchHistoryService.queryList(param);
+        List<SearchHistoryVo> historyVoList = searchHistoryService.queryList(param,merchantId);
         String[] historyKeywordList = new String[historyVoList.size()];
         if (null != historyVoList) {
             int i = 0;
@@ -95,13 +92,13 @@ public class ApiSearchController extends ApiBaseAction {
     @ApiImplicitParams({@ApiImplicitParam(name = "keyword", value = "关键字", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping("helper")
-    public Object helper(String keyword) {
+    public Object helper(@PathVariable("merchantId") Long merchantId,String keyword) {
         Map param = new HashMap(0);
         param.put("fields", "distinct keyword");
         param.put("keyword", keyword);
         param.put("limit", 10);
         param.put("offset", 0);
-        List<KeywordsVo> keywords = keywordsService.queryList(param);
+        List<KeywordsVo> keywords = keywordsService.queryList(param,merchantId);
         String[] keys = new String[keywords.size()];
         if (null != keywords) {
             int i = 0;

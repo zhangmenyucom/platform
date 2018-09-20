@@ -33,7 +33,7 @@ public class ApiFootprintController extends ApiBaseAction {
     @ApiOperation(value = "删除足迹")
     @ApiImplicitParams({@ApiImplicitParam(name = "footprintId", value = "足迹id", paramType = "path", required = true)})
     @GetMapping("delete")
-    public Object delete(@LoginUser UserVo loginUser, Long footprintId) {
+    public Object delete(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, Long footprintId) {
         if (footprintId == null) {
             return toResponsFail("删除出错");
         }
@@ -44,9 +44,10 @@ public class ApiFootprintController extends ApiBaseAction {
             return toResponsFail("删除出错");
         }
 
-        Map<String, Object> param = new HashMap<String, Object>();
+        Map<String, Object> param = new HashMap<>();
         param.put("userId", loginUser.getUserId());
         param.put("goodsId", footprintEntity.getGoods_id());
+        param.put("merchantId",merchantId);
         footprintService.deleteByParam(param);
 
         return toResponsMsgSuccess("删除成功");
@@ -101,7 +102,7 @@ public class ApiFootprintController extends ApiBaseAction {
      */
     @ApiOperation(value = "分享足迹")
     @PostMapping("sharelist")
-    public Object sharelist(@LoginUser UserVo loginUser,
+    public Object sharelist(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser,
                             @RequestParam(value = "page", defaultValue = "1") Integer page,
                             @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Map<String, List<FootprintVo>> resultObj = new HashMap<>(1);
@@ -111,6 +112,7 @@ public class ApiFootprintController extends ApiBaseAction {
         params.put("sidx", "f.id");
         params.put("order", "desc");
         params.put("referrer", loginUser.getUserId());
+        params.put("merchantId",merchantId);
         List<FootprintVo> footprintVos = footprintService.shareList(params);
         //
         resultObj.put("data", footprintVos);

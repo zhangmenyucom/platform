@@ -4,6 +4,7 @@ import com.platform.entity.BaseEntity;
 import com.platform.entity.SysUserEntity;
 import com.platform.utils.Constant;
 import com.platform.utils.ShiroUtils;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -33,7 +34,7 @@ public class MerchantFilterAspect {
      * @param point 连接点
      */
     @Before("merchantFilterCut()")
-    public void dataFilter(JoinPoint point) {
+    public void dataFilter(JoinPoint point) throws Exception {
         SysUserEntity user = ShiroUtils.getUserEntity();
         if (user != null) {
             for (Object params : point.getArgs()) {
@@ -45,6 +46,23 @@ public class MerchantFilterAspect {
                     if (params instanceof Map) {
                         Map map = (Map) params;
                         map.put("merchantId", user.getUserId());
+                    }
+                }
+            }
+        } else {
+            for (Object params : point.getArgs()) {
+                if (user.getUserId() != Constant.SUPER_ADMIN) {
+                    if (params instanceof BaseEntity) {
+                        BaseEntity baseEntity = (BaseEntity) params;
+                        if (baseEntity.getMerchantId() == null) {
+                            throw new Exception(point.getSignature() + ":merchantId不能为空");
+                        }
+                    }
+                    if (params instanceof Map) {
+                        Map map = (Map) params;
+                        if (map.get("merchantId") == null) {
+                            throw new Exception(point.getSignature() + ":merchantId不能为空");
+                        }
                     }
                 }
             }

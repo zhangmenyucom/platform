@@ -9,10 +9,7 @@ import com.platform.util.ApiBaseAction;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,16 +32,13 @@ public class ApiCollectController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取用户收藏")
     @GetMapping("list")
-    public Object list(@LoginUser UserVo loginUser, Integer typeId) {
+    public Object list(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser, Integer typeId) {
 
         Map param = new HashMap(0);
         param.put("user_id", loginUser.getUserId());
         param.put("type_id", typeId);
-        List<CollectVo> collectEntities = collectService.queryList(param);
+        List<CollectVo> collectEntities = collectService.queryList(param,merchantId);
 
-//        Query query = new Query(param);
-//        int total = collectService.queryTotal(query);
-//        ApiPageUtils pageUtil = new ApiPageUtils(collectEntities, total, query.getLimit(), query.getPage());
         return toResponsSuccess(collectEntities);
     }
 
@@ -53,7 +47,7 @@ public class ApiCollectController extends ApiBaseAction {
      */
     @ApiOperation(value = "添加取消收藏")
     @PostMapping("addordelete")
-    public Object addordelete(@LoginUser UserVo loginUser) {
+    public Object addordelete(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
         JSONObject jsonParam = getJsonRequest();
         Integer typeId = jsonParam.getInteger("typeId");
         Integer valueId = jsonParam.getInteger("valueId");
@@ -62,7 +56,7 @@ public class ApiCollectController extends ApiBaseAction {
         param.put("user_id", loginUser.getUserId());
         param.put("type_id", typeId);
         param.put("value_id", valueId);
-        List<CollectVo> collectEntities = collectService.queryList(param);
+        List<CollectVo> collectEntities = collectService.queryList(param,merchantId);
         //
         Integer collectRes = null;
         String handleType = "add";

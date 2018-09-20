@@ -17,42 +17,6 @@ import java.util.Map;
  * @date 2017-11-04 11:19:31
  */
 @Service("regionService")
-public class SysRegionServiceImpl implements SysRegionService {
-    @Autowired
-    private SysRegionDao sysRegionDao;
+public class SysRegionServiceImpl  extends  BaseServiceImpl<SysRegionEntity,SysRegionDao> implements SysRegionService {
 
-    @Override
-    public SysRegionEntity queryObject(Long id) {
-        return sysRegionDao.queryObject(id);
-    }
-
-    @Override
-    public List<SysRegionEntity> queryList(Map<String, Object> map) {
-        return sysRegionDao.queryList(map);
-    }
-
-    @Override
-    public int queryTotal(Map<String, Object> map) {
-        return sysRegionDao.queryTotal(map);
-    }
-
-    @Override
-    public int save(SysRegionEntity region) {
-        return sysRegionDao.save(region);
-    }
-
-    @Override
-    public int update(SysRegionEntity region) {
-        return sysRegionDao.update(region);
-    }
-
-    @Override
-    public int delete(Long id) {
-        return sysRegionDao.delete(id);
-    }
-
-    @Override
-    public int deleteBatch(Long[] ids) {
-        return sysRegionDao.deleteBatch(ids);
-    }
 }

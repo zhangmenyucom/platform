@@ -9,10 +9,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,9 +36,7 @@ public class ApiCatalogController extends ApiBaseAction {
             @ApiImplicitParam(name = "size", value = "size", paramType = "query", required = false)})
     @IgnoreAuth
     @GetMapping(value = "index")
-    public Object index(Long id,
-                        @RequestParam(value = "page", defaultValue = "1") Integer page,
-                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
+    public Object index(@PathVariable("merchantId") Long merchantId, Long id, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Map<String, Object> resultObj = new HashMap(0);
         Map params = new HashMap(0);
         params.put("page", page);
@@ -50,7 +45,7 @@ public class ApiCatalogController extends ApiBaseAction {
         params.put("order", "asc");
         params.put("parent_id", 0);
         //查询列表数据
-        List<CategoryVo> data = categoryService.queryList(params);
+        List<CategoryVo> data = categoryService.queryList(params, merchantId);
         //
         CategoryVo currentCategory = null;
         if (null != id) {

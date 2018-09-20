@@ -9,6 +9,7 @@ import com.platform.util.ApiBaseAction;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class ApiFeedbackController extends ApiBaseAction {
      */
     @ApiOperation(value = "添加反馈")
     @PostMapping("save")
-    public Object save(@LoginUser UserVo loginUser) {
+    public Object save(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser) {
         JSONObject feedbackJson = super.getJsonRequest();
         if (null != feedbackJson) {
             FeedbackVo feedbackVo = new FeedbackVo();
@@ -41,6 +42,7 @@ public class ApiFeedbackController extends ApiBaseAction {
             feedbackVo.setMobile(feedbackJson.getString("mobile"));
             feedbackVo.setFeedType(feedbackJson.getInteger("index"));
             feedbackVo.setStatus(1);
+            feedbackVo.setMerchantId(merchantId);
             feedbackVo.setContent(feedbackJson.getString("content"));
             feedbackVo.setAddTime(new Date());
             feedbackService.save(feedbackVo);

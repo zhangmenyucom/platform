@@ -18,10 +18,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -93,14 +90,14 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "商品id", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping(value = "sku")
-    public Object sku(Long id) {
+    public Object sku(@PathVariable("merchantId") Long merchantId, Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         //
         Map param = new HashMap(0);
         param.put("goods_id", id);
-        List<GoodsSpecificationVo> goodsSpecificationEntityList = goodsSpecificationService.queryList(param);
+        List<GoodsSpecificationVo> goodsSpecificationEntityList = goodsSpecificationService.queryList(param, merchantId);
         //
-        List<ProductVo> productEntityList = productService.queryList(param);
+        List<ProductVo> productEntityList = productService.queryList(param, merchantId);
         //
         resultObj.put("specificationList", goodsSpecificationEntityList);
         resultObj.put("productList", productEntityList);
@@ -113,7 +110,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = " 商品详情页数据")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "商品id", paramType = "path", required = true), @ApiImplicitParam(name = "referrer", value = "商品referrer", paramType = "path", required = false)})
     @GetMapping(value = "detail")
-    public Object detail(Long id, Long referrer) {
+    public Object detail(@PathVariable("merchantId") Long merchantId, Long id, Long referrer) {
         Map<String, Object> resultObj = new HashMap(0);
         //
         Long userId = getUserId();
@@ -127,7 +124,7 @@ public class ApiGoodsController extends ApiBaseAction {
         specificationParam.put("specification", true);
         specificationParam.put("sidx", "s.sort_order");
         specificationParam.put("order", "asc");
-        List<GoodsSpecificationVo> goodsSpecificationEntityList = goodsSpecificationService.queryList(specificationParam);
+        List<GoodsSpecificationVo> goodsSpecificationEntityList = goodsSpecificationService.queryList(specificationParam, merchantId);
 
         List<Map> specificationList = new ArrayList();
         //按规格名称分组
@@ -160,24 +157,24 @@ public class ApiGoodsController extends ApiBaseAction {
                 }
             }
         }
-        List<ProductVo> productEntityList = productService.queryList(param);
-        List<GoodsGalleryVo> gallery = goodsGalleryService.queryList(param);
+        List<ProductVo> productEntityList = productService.queryList(param, merchantId);
+        List<GoodsGalleryVo> gallery = goodsGalleryService.queryList(param, merchantId);
         Map ngaParam = new HashMap(0);
         ngaParam.put("fields", "nga.value, na.name");
         ngaParam.put("sidx", "nga.id");
         ngaParam.put("order", "asc");
         ngaParam.put("goods_id", id);
-        List<AttributeVo> attribute = attributeService.queryList(ngaParam);
+        List<AttributeVo> attribute = attributeService.queryList(ngaParam, merchantId);
         //
         Map issueParam = new HashMap(0);
-        List<GoodsIssueVo> issue = goodsIssueService.queryList(issueParam);
+        List<GoodsIssueVo> issue = goodsIssueService.queryList(issueParam, merchantId);
         //
         BrandVo brand = brandService.queryObject(info.getBrand_id());
         //
         param.put("value_id", id);
         param.put("type_id", 0);
-        Integer commentCount = commentService.queryTotal(param);
-        List<CommentVo> hotComment = commentService.queryList(param);
+        Integer commentCount = commentService.queryTotal(param, merchantId);
+        List<CommentVo> hotComment = commentService.queryList(param, merchantId);
         Map commentInfo = new HashMap(0);
         if (null != hotComment && hotComment.size() > 0) {
             UserVo commentUser = userService.queryObject(hotComment.get(0).getUser_id());
@@ -187,7 +184,7 @@ public class ApiGoodsController extends ApiBaseAction {
             commentInfo.put("avatar", commentUser.getAvatar());
             Map paramPicture = new HashMap(0);
             paramPicture.put("comment_id", hotComment.get(0).getId());
-            List<CommentPictureVo> commentPictureEntities = commentPictureService.queryList(paramPicture);
+            List<CommentPictureVo> commentPictureEntities = commentPictureService.queryList(paramPicture, merchantId);
             commentInfo.put("pic_list", commentPictureEntities);
         }
         Map comment = new HashMap(0);
@@ -198,7 +195,7 @@ public class ApiGoodsController extends ApiBaseAction {
         collectParam.put("user_id", getUserId());
         collectParam.put("value_id", id);
         collectParam.put("type_id", 0);
-        Integer userHasCollect = collectService.queryTotal(collectParam);
+        Integer userHasCollect = collectService.queryTotal(collectParam, merchantId);
         if (userHasCollect > 0) {
             userHasCollect = 1;
         }
@@ -233,6 +230,7 @@ public class ApiGoodsController extends ApiBaseAction {
             params.put("user_id", userId);
             params.put("send_type", 2);
             params.put("unUsed", true);
+            params.put("merchantId", merchantId);
             List<CouponVo> enabledCouponVos = apiCouponService.queryUserCoupons(params);
             if (null != userId) {
                 if ((null == enabledCouponVos || enabledCouponVos.size() == 0) && null != referrer) {
@@ -241,13 +239,13 @@ public class ApiGoodsController extends ApiBaseAction {
                     couponParam.put("enabled", true);
                     Integer[] send_types = new Integer[]{2};
                     couponParam.put("send_types", send_types);
-                    List<CouponVo> couponVos = apiCouponService.queryList(couponParam);
+                    List<CouponVo> couponVos = apiCouponService.queryList(couponParam, merchantId);
                     if (null != couponVos && couponVos.size() > 0) {
                         CouponVo couponVo = couponVos.get(0);
                         Map footprintParam = new HashMap(0);
                         footprintParam.put("goods_id", id);
                         footprintParam.put("referrer", referrer);
-                        Integer footprintNum = footprintService.queryTotal(footprintParam);
+                        Integer footprintNum = footprintService.queryTotal(footprintParam, merchantId);
                         if (null != footprintNum && null != couponVo.getMin_transmit_num() && footprintNum > couponVo.getMin_transmit_num()) {
                             UserCouponVo userCouponVo = new UserCouponVo();
                             userCouponVo.setAdd_time(new Date());
@@ -273,13 +271,13 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "分类id", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping(value = "category")
-    public Object category(Long id) {
+    public Object category(@PathVariable("merchantId") Long merchantId, Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         CategoryVo currentCategory = categoryService.queryObject(id);
         CategoryVo parentCategory = categoryService.queryObject(currentCategory.getParent_id());
         Map params = new HashMap(0);
         params.put("parent_id", currentCategory.getParent_id());
-        List<CategoryVo> brotherCategory = categoryService.queryList(params);
+        List<CategoryVo> brotherCategory = categoryService.queryList(params, merchantId);
         //
         resultObj.put("currentCategory", currentCategory);
         resultObj.put("parentCategory", parentCategory);
@@ -293,12 +291,12 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "获取商品列表")
     @ApiImplicitParams(
             {@ApiImplicitParam(name = "categoryId", value = "分类id", paramType = "path", required = true),
-            @ApiImplicitParam(name = "brandId", value = "品牌Id", paramType = "path", required = true),
-            @ApiImplicitParam(name = "isNew", value = "新商品", paramType = "path", required = true),
-            @ApiImplicitParam(name = "isHot", value = "热卖商品", paramType = "path", required = true)})
+                    @ApiImplicitParam(name = "brandId", value = "品牌Id", paramType = "path", required = true),
+                    @ApiImplicitParam(name = "isNew", value = "新商品", paramType = "path", required = true),
+                    @ApiImplicitParam(name = "isHot", value = "热卖商品", paramType = "path", required = true)})
     @IgnoreAuth
     @GetMapping(value = "list")
-    public Object list(@LoginUser UserVo loginUser, Long categoryId,
+    public Object list(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser, Long categoryId,
                        Integer brandId, String keyword, Integer isNew, Integer isHot,
                        @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size,
                        String sort, String order) {
@@ -340,7 +338,7 @@ public class ApiGoodsController extends ApiBaseAction {
         filterCategory.add(rootCategory);
         //
         params.put("fields", "category_id");
-        List<GoodsVo> categoryEntityList = goodsService.queryList(params);
+        List<GoodsVo> categoryEntityList = goodsService.queryList(params,merchantId);
         params.remove("fields");
         if (null != categoryEntityList && categoryEntityList.size() > 0) {
             List<Long> categoryIds = new ArrayList();
@@ -351,7 +349,7 @@ public class ApiGoodsController extends ApiBaseAction {
             Map categoryParam = new HashMap(0);
             categoryParam.put("ids", categoryIds);
             categoryParam.put("fields", "parent_id");
-            List<CategoryVo> parentCategoryList = categoryService.queryList(categoryParam);
+            List<CategoryVo> parentCategoryList = categoryService.queryList(categoryParam,merchantId);
             //
             List<Long> parentIds = new ArrayList();
             for (CategoryVo categoryEntity : parentCategoryList) {
@@ -363,7 +361,7 @@ public class ApiGoodsController extends ApiBaseAction {
             categoryParam.put("order", "asc");
             categoryParam.put("sidx", "sort_order");
             categoryParam.put("ids", parentIds);
-            List<CategoryVo> parentCategory = categoryService.queryList(categoryParam);
+            List<CategoryVo> parentCategory = categoryService.queryList(categoryParam,merchantId);
             if (null != parentCategory) {
                 filterCategory.addAll(parentCategory);
             }
@@ -374,7 +372,7 @@ public class ApiGoodsController extends ApiBaseAction {
             Map categoryParam = new HashMap(0);
             categoryParam.put("parent_id", categoryId);
             categoryParam.put("fields", "id");
-            List<CategoryVo> childIds = categoryService.queryList(categoryParam);
+            List<CategoryVo> childIds = categoryService.queryList(categoryParam,merchantId);
             for (CategoryVo categoryEntity : childIds) {
                 categoryIds.add(categoryEntity.getId());
             }
@@ -406,7 +404,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "商品列表筛选的分类列表")
     @IgnoreAuth
     @GetMapping(value = "filter")
-    public Object filter(Integer categoryId,
+    public Object filter(@PathVariable("merchantId") Long merchantId,Integer categoryId,
                          String keyword, Integer isNew, Integer isHot) {
         Map params = new HashMap(0);
         params.put("is_delete", 0);
@@ -418,7 +416,7 @@ public class ApiGoodsController extends ApiBaseAction {
         if (null != categoryId) {
             Map categoryParams = new HashMap(0);
             categoryParams.put("categoryId", categoryId);
-            List<CategoryVo> categoryEntityList = categoryService.queryList(categoryParams);
+            List<CategoryVo> categoryEntityList = categoryService.queryList(categoryParams,merchantId);
             List<Long> category_ids = new ArrayList();
             for (CategoryVo categoryEntity : categoryEntityList) {
                 category_ids.add(categoryEntity.getId());
@@ -431,7 +429,7 @@ public class ApiGoodsController extends ApiBaseAction {
         rootCategory.setId(0L);
         rootCategory.setName("全部");
         // 二级分类id
-        List<GoodsVo> goodsEntityList = goodsService.queryList(params);
+        List<GoodsVo> goodsEntityList = goodsService.queryList(params,merchantId);
         if (null != goodsEntityList && goodsEntityList.size() > 0) {
             List<Long> categoryIds = new ArrayList();
             for (GoodsVo goodsEntity : goodsEntityList) {
@@ -440,7 +438,7 @@ public class ApiGoodsController extends ApiBaseAction {
             //查找二级分类的parent_id
             Map categoryParam = new HashMap(0);
             categoryParam.put("categoryIds", categoryIds);
-            List<CategoryVo> parentCategoryList = categoryService.queryList(categoryParam);
+            List<CategoryVo> parentCategoryList = categoryService.queryList(categoryParam,merchantId);
             //
             List<Long> parentIds = new ArrayList();
             for (CategoryVo categoryEntity : parentCategoryList) {
@@ -448,7 +446,7 @@ public class ApiGoodsController extends ApiBaseAction {
             }
             //一级分类
             categoryParam.put("categoryIds", parentIds);
-            List<CategoryVo> parentCategory = categoryService.queryList(categoryParam);
+            List<CategoryVo> parentCategory = categoryService.queryList(categoryParam,merchantId);
             if (null != parentCategory) {
                 filterCategory.addAll(parentCategory);
             }
@@ -494,12 +492,12 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "商品详情页")
     @IgnoreAuth
     @GetMapping(value = "related")
-    public Object related(Long id) {
+    public Object related(@PathVariable("merchantId") Long merchantId,Long id) {
         Map<String, Object> resultObj = new HashMap(0);
         Map param = new HashMap(0);
         param.put("goods_id", id);
         param.put("fields", "related_goods_id");
-        List<RelatedGoodsVo> relatedGoodsEntityList = relatedGoodsService.queryList(param);
+        List<RelatedGoodsVo> relatedGoodsEntityList = relatedGoodsService.queryList(param,merchantId);
 
         List<Integer> relatedGoodsIds = new ArrayList();
         for (RelatedGoodsVo relatedGoodsEntity : relatedGoodsEntityList) {
@@ -531,12 +529,12 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "在售的商品总数")
     @IgnoreAuth
     @GetMapping(value = "count")
-    public Object count() {
+    public Object count(@PathVariable("merchantId") Long merchantId) {
         Map<String, Object> resultObj = new HashMap(0);
         Map param = new HashMap(0);
         param.put("is_delete", 0);
         param.put("is_on_sale", 1);
-        Integer goodsCount = goodsService.queryTotal(param);
+        Integer goodsCount = goodsService.queryTotal(param,merchantId);
         resultObj.put("goodsCount", goodsCount);
         return toResponsSuccess(resultObj);
     }
@@ -547,7 +545,7 @@ public class ApiGoodsController extends ApiBaseAction {
     @ApiOperation(value = "获取商品列表")
     @IgnoreAuth
     @GetMapping(value = "productlist")
-    public Object productlist(Long categoryId,
+    public Object productlist(@PathVariable("merchantId") Long merchantId,Long categoryId,
                               Integer isNew, Integer discount,
                               @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size,
                               String sort, String order) {
@@ -580,7 +578,7 @@ public class ApiGoodsController extends ApiBaseAction {
             Map categoryParam = new HashMap(0);
             categoryParam.put("parent_id", categoryId);
             categoryParam.put("fields", "id");
-            List<CategoryVo> childIds = categoryService.queryList(categoryParam);
+            List<CategoryVo> childIds = categoryService.queryList(categoryParam,merchantId);
             for (CategoryVo categoryEntity : childIds) {
                 categoryIds.add(categoryEntity.getId());
             }
@@ -588,7 +586,7 @@ public class ApiGoodsController extends ApiBaseAction {
             params.put("categoryIds", categoryIds);
         }
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<GoodsVo> goodsList = goodsService.queryCatalogProductList(query);
         int total = goodsService.queryTotal(query);
 
@@ -598,7 +596,7 @@ public class ApiGoodsController extends ApiBaseAction {
             //查询列表数据
             Map cartParam = new HashMap(0);
             cartParam.put("user_id", getUserId());
-            cartList = cartService.queryList(cartParam);
+            cartList = cartService.queryList(cartParam,merchantId);
         }
         if (null != cartList && cartList.size() > 0 && null != goodsList && goodsList.size() > 0) {
             for (GoodsVo goodsVo : goodsList) {

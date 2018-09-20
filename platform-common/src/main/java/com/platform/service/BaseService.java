@@ -15,7 +15,11 @@ public interface BaseService<T> {
 
     List<T> queryList(Map<String, Object> map);
 
+    List<T> queryList(Map<String, Object> map,Long merchantId);
+
     int queryTotal(Map<String, Object> map);
+
+    int queryTotal(Map<String, Object> map,Long merchantId);
 
     int save(T t);
 

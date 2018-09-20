@@ -16,7 +16,7 @@ import java.util.Map;
  * @描述
  * @since 2018/9/19 11:42
  */
-public abstract class  BaseServiceImpl<T ,Dao extends BaseDao<T>> implements BaseService<T> {
+public abstract class BaseServiceImpl<T, Dao extends BaseDao<T>> implements BaseService<T> {
 
     @Autowired
     private Dao dao;
@@ -38,14 +38,27 @@ public abstract class  BaseServiceImpl<T ,Dao extends BaseDao<T>> implements Bas
 
     @Override
     @MerchantFilter
+    public List<T> queryList(Map<String, Object> map, Long merchantId) {
+        map.put("merchantId", merchantId);
+        return this.dao.queryList(map);
+    }
+
+    @Override
+    @MerchantFilter
     public int queryTotal(Map<String, Object> map) {
+        return this.dao.queryTotal(map);
+    }
+    @Override
+    @MerchantFilter
+    public int queryTotal(Map<String, Object> map,Long merchantId) {
+        map.put("merchantId",merchantId);
         return this.dao.queryTotal(map);
     }
 
     @Override
     @MerchantFilter
     public int save(T t) {
-        return  this.dao.save(t);
+        return this.dao.save(t);
     }
 
     @Override
@@ -61,6 +74,6 @@ public abstract class  BaseServiceImpl<T ,Dao extends BaseDao<T>> implements Bas
 
     @Override
     public int deleteBatch(Long[] ids) {
-       return  this.dao.deleteBatch(ids);
+        return this.dao.deleteBatch(ids);
     }
 }

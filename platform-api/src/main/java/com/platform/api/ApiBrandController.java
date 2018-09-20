@@ -9,10 +9,7 @@ import com.platform.utils.Query;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +33,7 @@ public class ApiBrandController extends ApiBaseAction {
     @ApiOperation(value = "分页获取品牌")
     @IgnoreAuth
     @GetMapping("list")
-    public Object list(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
+    public Object list(@PathVariable("merchantId") Long merchantId, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
         //查询列表数据
         Map params = new HashMap(0);
         params.put("fields", "id, name, floor_price, app_list_pic_url");
@@ -46,7 +43,7 @@ public class ApiBrandController extends ApiBaseAction {
         params.put("order", "asc");
 
         Query query = new Query(params);
-        List<BrandVo> brandEntityList = brandService.queryList(query);
+        List<BrandVo> brandEntityList = brandService.queryList(query,merchantId);
         int total = brandService.queryTotal(query);
         ApiPageUtils pageUtil = new ApiPageUtils(brandEntityList, total, query.getLimit(), query.getPage());
         //

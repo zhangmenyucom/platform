@@ -53,7 +53,7 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取订单列表")
     @GetMapping("list")
-    public Object list(@LoginUser UserVo loginUser, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
+    public Object list(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Map params = new HashMap(0);
         params.put("user_id", loginUser.getUserId());
         params.put("page", page);
@@ -61,7 +61,7 @@ public class ApiOrderController extends ApiBaseAction {
         params.put("sidx", "id");
         params.put("order", "asc");
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<OrderVo> orderEntityList = orderService.queryList(query);
         int total = orderService.queryTotal(query);
         ApiPageUtils pageUtil = new ApiPageUtils(orderEntityList, total, query.getLimit(), query.getPage());
@@ -69,7 +69,7 @@ public class ApiOrderController extends ApiBaseAction {
             Map orderGoodsParam = new HashMap(1);
             orderGoodsParam.put("order_id", item.getId());
             //订单的商品
-            List<OrderGoodsVo> goodsList = orderGoodsService.queryList(orderGoodsParam);
+            List<OrderGoodsVo> goodsList = orderGoodsService.queryList(orderGoodsParam,merchantId);
             Integer goodsCount = 0;
             for (OrderGoodsVo orderGoodsEntity : goodsList) {
                 goodsCount += orderGoodsEntity.getNumber();
@@ -84,7 +84,7 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取订单详情")
     @GetMapping("detail")
-    public Object detail(Long orderId) {
+    public Object detail(@PathVariable("merchantId") Long merchantId,Long orderId) {
         Map resultObj = new HashMap(0);
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
@@ -94,7 +94,7 @@ public class ApiOrderController extends ApiBaseAction {
         Map orderGoodsParam = new HashMap(0);
         orderGoodsParam.put("order_id", orderId);
         //订单的商品
-        List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
+        List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam,merchantId);
         //订单最后支付时间
         if (orderInfo.getOrder_status() == 0) {
 

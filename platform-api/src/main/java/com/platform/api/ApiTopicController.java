@@ -7,10 +7,7 @@ import com.platform.util.ApiBaseAction;
 import com.platform.util.ApiPageUtils;
 import com.platform.utils.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +28,7 @@ public class ApiTopicController extends ApiBaseAction {
      */
     @IgnoreAuth
     @GetMapping("list")
-    public Object list(@RequestParam(value = "page", defaultValue = "1") Integer page,
+    public Object list(@PathVariable("merchantId") Long merchantId, @RequestParam(value = "page", defaultValue = "1") Integer page,
                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Map param = new HashMap(0);
         param.put("page", page);
@@ -40,7 +37,7 @@ public class ApiTopicController extends ApiBaseAction {
         param.put("order", "desc");
         param.put("fields", "id, title, price_info, scene_pic_url,subtitle");
         //查询列表数据
-        Query query = new Query(param);
+        Query query = new Query(param,merchantId);
         List<TopicVo> topicEntities = topicService.queryList(query);
         int total = topicService.queryTotal(query);
         ApiPageUtils pageUtil = new ApiPageUtils(topicEntities, total, query.getLimit(), query.getPage());
@@ -60,10 +57,10 @@ public class ApiTopicController extends ApiBaseAction {
      */
     @IgnoreAuth
     @GetMapping("related")
-    public Object related() {
+    public Object related(@PathVariable("merchantId") Long merchantId) {
         Map param = new HashMap(0);
         param.put("limit", 4);
-        List<TopicVo> topicEntities = topicService.queryList(param);
+        List<TopicVo> topicEntities = topicService.queryList(param,merchantId);
         return toResponsSuccess(topicEntities);
     }
 }

@@ -8,10 +8,7 @@ import com.platform.service.ApiAddressService;
 import com.platform.util.ApiBaseAction;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,10 +31,10 @@ public class ApiAddressController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取用户的收货地址接口", response = Map.class)
     @GetMapping("list")
-    public Object list(@LoginUser @ApiParam("请求体") UserVo loginUser) {
+    public Object list(@PathVariable("merchantId") Long merchantId, @LoginUser @ApiParam("请求体") UserVo loginUser) {
         Map<String, Object> param = new HashMap<>(0);
         param.put("user_id", loginUser.getUserId());
-        List<AddressVo> addressEntities = addressService.queryList(param);
+        List<AddressVo> addressEntities = addressService.queryList(param,merchantId);
         return toResponsSuccess(addressEntities);
     }
 
@@ -61,12 +58,13 @@ public class ApiAddressController extends ApiBaseAction {
      */
     @ApiOperation(value = "添加或更新收货地址", response = Map.class)
     @PostMapping("save")
-    public Object save(@LoginUser UserVo loginUser) {
+    public Object save(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
         JSONObject addressJson = this.getJsonRequest();
         AddressVo entity = new AddressVo();
         if (null != addressJson) {
             entity.setId(addressJson.getLong("id"));
             entity.setUserId(loginUser.getUserId());
+            entity.setMerchantId(merchantId);
             entity.setUserName(addressJson.getString("userName"));
             entity.setPostalCode(addressJson.getString("postalCode"));
             entity.setProvinceName(addressJson.getString("provinceName"));

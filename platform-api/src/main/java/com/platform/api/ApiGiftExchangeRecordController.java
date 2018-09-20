@@ -30,10 +30,10 @@ public class ApiGiftExchangeRecordController {
      * 查看列表
      */
     @RequestMapping("/list")
-    public R list(@LoginUser UserVo loginUser, @RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, @RequestParam Map<String, Object> params) {
         //查询列表数据
         params.put("userId", loginUser.getUserId());
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<GiftExchangeRecordEntityVo> giftExchangeRecordList = giftExchangeRecordService.queryList(query);
         int total = giftExchangeRecordService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(giftExchangeRecordList, total, query.getLimit(), query.getPage());
@@ -64,8 +64,8 @@ public class ApiGiftExchangeRecordController {
      * 查看所有列表
      */
     @RequestMapping("/queryAll")
-    public R queryAll(@RequestParam Map<String, Object> params) {
-        List<GiftExchangeRecordEntityVo> list = giftExchangeRecordService.queryList(params);
+    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+        List<GiftExchangeRecordEntityVo> list = giftExchangeRecordService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }

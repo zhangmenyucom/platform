@@ -33,9 +33,9 @@ public class ApiGiftController {
      */
     @IgnoreAuth
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<GiftEntityVo> giftList = giftService.queryList(query);
         int total = giftService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(giftList, total, query.getLimit(), query.getPage());
@@ -57,8 +57,8 @@ public class ApiGiftController {
      * 查看所有列表
      */
     @RequestMapping("/queryAll")
-    public R queryAll(@RequestParam Map<String, Object> params) {
-        List<GiftEntityVo> list = giftService.queryList(params);
+    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+        List<GiftEntityVo> list = giftService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }

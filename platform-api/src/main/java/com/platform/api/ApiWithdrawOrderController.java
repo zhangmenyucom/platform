@@ -34,9 +34,9 @@ public class ApiWithdrawOrderController {
     @IgnoreAuth
     @ApiOperation(value = "查看列表")
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
         /**查询列表数据**/
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<WithdrawOrderVo> withdrawOrderList = withdrawOrderService.queryList(query);
         int total = withdrawOrderService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(withdrawOrderList, total, query.getLimit(), query.getPage());
@@ -59,7 +59,8 @@ public class ApiWithdrawOrderController {
      */
     @IgnoreAuth
     @RequestMapping("/save")
-    public R save(@RequestBody WithdrawOrderVo withdrawOrder) {
+    public R save(@PathVariable("merchantId") Long merchantId,@RequestBody WithdrawOrderVo withdrawOrder) {
+        withdrawOrder.setMerchantId(merchantId);
         withdrawOrderService.save(withdrawOrder);
         return R.ok();
     }
@@ -92,8 +93,8 @@ public class ApiWithdrawOrderController {
     @IgnoreAuth
     @ApiOperation(value = "查看所有列表")
     @RequestMapping("/queryAll")
-    public R queryAll(@RequestParam Map<String, Object> params) {
-        List<WithdrawOrderVo> list = withdrawOrderService.queryList(params);
+    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+        List<WithdrawOrderVo> list = withdrawOrderService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }

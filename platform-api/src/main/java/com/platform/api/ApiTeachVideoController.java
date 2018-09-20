@@ -37,9 +37,9 @@ public class ApiTeachVideoController {
     @IgnoreAuth
     @RequestMapping("/list")
     @ApiOperation(value = "导师视频列表")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<TeachVideoVo> teachVideoList = teachVideoService.queryList(query);
         int total = teachVideoService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(teachVideoList, total, query.getLimit(), query.getPage());
@@ -62,8 +62,8 @@ public class ApiTeachVideoController {
      */
     @RequestMapping("/queryAll")
     @ApiOperation(value = "导师视频列表所有")
-    public R queryAll(@RequestParam Map<String, Object> params) {
-        List<TeachVideoVo> list = teachVideoService.queryList(params);
+    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+        List<TeachVideoVo> list = teachVideoService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }

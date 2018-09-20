@@ -34,11 +34,11 @@ public class ApiArticleController {
     @IgnoreAuth
     @ApiOperation(value = "获取文章列表", response = Map.class)
     @GetMapping("list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
         //查询列表数据
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         List<ArticleVo> articleList = apiArticleService.queryList(query);
-        int total = apiArticleService.queryTotal(query);
+        int total = apiArticleService.queryTotal(query,merchantId);
         PageUtils pageUtil = new PageUtils(articleList, total, query.getLimit(), query.getPage());
         return R.ok().put("page", pageUtil);
     }
@@ -60,8 +60,8 @@ public class ApiArticleController {
     @IgnoreAuth
     @ApiOperation(value = "获取所有文章列表", response = Map.class)
     @GetMapping("/queryAll")
-    public R queryAll(@RequestParam Map<String, Object> params) {
-        List<ArticleVo> list = apiArticleService.queryList(params);
+    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+        List<ArticleVo> list = apiArticleService.queryList(params,merchantId);
         return R.ok().put("list", list);
     }
 }
