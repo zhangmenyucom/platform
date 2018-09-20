@@ -27,10 +27,8 @@
         expire_time,
         update_time
         from tb_token
-        where WHERE 1=1
-        <if test="merchantId!=null">
-            and merchant_id=#{merchantId}
-        </if>token = #{token}
+         WHERE 1=1
+        and token = #{token}
     </select>
 
     <select id="queryByUserId" resultType="com.platform.entity.TokenEntity">
@@ -68,12 +66,12 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from tb_token
+        select count(*) from tb_token
         WHERE 1=1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
-	</select>
+    </select>
 
     <insert id="save" parameterType="com.platform.entity.TokenEntity">
 		insert into tb_token(

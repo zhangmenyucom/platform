@@ -37,7 +37,6 @@ public abstract class BaseServiceImpl<T, Dao extends BaseDao<T>> implements Base
     }
 
     @Override
-    @MerchantFilter
     public List<T> queryList(Map<String, Object> map, Long merchantId) {
         map.put("merchantId", merchantId);
         return this.dao.queryList(map);
@@ -48,8 +47,8 @@ public abstract class BaseServiceImpl<T, Dao extends BaseDao<T>> implements Base
     public int queryTotal(Map<String, Object> map) {
         return this.dao.queryTotal(map);
     }
+
     @Override
-    @MerchantFilter
     public int queryTotal(Map<String, Object> map,Long merchantId) {
         map.put("merchantId",merchantId);
         return this.dao.queryTotal(map);
@@ -62,7 +61,6 @@ public abstract class BaseServiceImpl<T, Dao extends BaseDao<T>> implements Base
     }
 
     @Override
-    @MerchantFilter
     public int update(T t) {
         return this.dao.update(t);
     }
