@@ -207,6 +207,7 @@ public class ApiGoodsController extends ApiBaseAction {
         footprintEntity.setName(info.getName());
         footprintEntity.setRetail_price(info.getRetail_price());
         footprintEntity.setUser_id(userId);
+        footprintEntity.setMerchantId(merchantId);
         if (null != referrer) {
             footprintEntity.setReferrer(referrer);
         } else {
@@ -381,7 +382,7 @@ public class ApiGoodsController extends ApiBaseAction {
         }
         //查询列表数据
         params.put("fields", "id, name, list_pic_url, market_price, retail_price, goods_brief");
-        Query query = new Query(params);
+        Query query = new Query(params,merchantId);
         PageHelper.startPage(query.getPage(), query.getLimit());
         List<GoodsVo> goodsList = goodsService.queryList(query);
         ApiPageUtils goodsData = new ApiPageUtils(new PageInfo(goodsList));
@@ -504,7 +505,7 @@ public class ApiGoodsController extends ApiBaseAction {
             relatedGoodsIds.add(relatedGoodsEntity.getRelated_goods_id());
         }
 
-        List<GoodsVo> relatedGoods = new ArrayList<GoodsVo>();
+        List<GoodsVo> relatedGoods = new ArrayList<>();
 
         if (null == relatedGoodsIds || relatedGoods.size() < 1) {
             //查找同分类下的商品
@@ -512,7 +513,7 @@ public class ApiGoodsController extends ApiBaseAction {
             Map paramRelated = new HashMap(0);
             paramRelated.put("fields", "id, name, list_pic_url, retail_price");
             paramRelated.put("category_id", goodsCategory.getCategory_id());
-            relatedGoods = goodsService.queryList(paramRelated);
+            relatedGoods = goodsService.queryList(paramRelated,merchantId);
         } else {
             Map paramRelated = new HashMap(0);
             paramRelated.put("goods_ids", relatedGoodsIds);

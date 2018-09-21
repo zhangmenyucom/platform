@@ -194,25 +194,19 @@ Page({
       })
     } else {
       //微信绑定手机
-      wx.request({
-        url: 'https://whcmhlkj.com/api/user/bindMobileWx',
-        data: { 'iv': e.detail.iv, 'encryptedData': e.detail.encryptedData },
-        method: 'get',
-        success: res => {
-          if (res.data.errno == 0){
-            console.log('res-'+JSON.stringify(res))
-          }else{
-            wx.showModal({
-              title: '提示',
-              content: res.data.errmsg,
-            })
+      var data = { 'iv': e.detail.iv, 'encryptedData': e.detail.encryptedData }
+      util.request(api.Wxbindphone,data).then((res)=>{
+        if (res.data.errno == 0) {
+          console.log('res-' + JSON.stringify(res))
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.errmsg,
+          })
 
-            return
-          }
+          return
         }
       })
-
-
       wx.showModal({
         title: '提示',
         showCancel: false,

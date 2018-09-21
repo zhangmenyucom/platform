@@ -35,7 +35,7 @@
         left join product c on c.goods_id = a.goods_id and c.id = a.product_id
         WHERE 1=1
         <if test="merchantId!=null">
-            and merchant_id=#{merchantId}
+            and a.merchant_id=#{merchantId}
         </if>
         <if test="user_id != null">
             AND a.user_id = #{user_id}
@@ -66,7 +66,7 @@
         select count(*) from cart a
         WHERE 1=1
         <if test="merchantId!=null">
-            and merchant_id=#{merchantId}
+            and a.merchant_id=#{merchantId}
         </if>
         <if test="user_id != null">
             AND a.user_id = #{user_id}

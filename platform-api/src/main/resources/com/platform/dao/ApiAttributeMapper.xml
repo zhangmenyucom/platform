@@ -29,7 +29,7 @@
         left join goods_attribute nga ON nga.attribute_id=na.id
         <where>
             <if test="merchantId!=null">
-                and merchant_id=#{merchantId}
+                and na.merchant_id=#{merchantId}
             </if>
             <if test="goods_id != null">
                 and nga.goods_id = #{goods_id}

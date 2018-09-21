@@ -33,7 +33,6 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
     private ApiProductService productService;
 
 
-
     @Transactional
     public Map<String, Object> submit(JSONObject jsonParam, UserVo loginUser) {
 
@@ -75,6 +74,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             CartVo cartVo = new CartVo();
             BeanUtils.copyProperties(productInfo, cartVo);
             cartVo.setNumber(goodsVo.getNumber());
+            cartVo.setGoods_id(goodsVo.getGoodsId());
             cartVo.setProduct_id(goodsVo.getProductId());
             checkedGoodsList.add(cartVo);
         }

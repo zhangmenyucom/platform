@@ -31,7 +31,7 @@
         </if>
         <where>
             <if test="merchantId!=null">
-                and merchant_id=#{merchantId}
+                and gs.merchant_id=#{merchantId}
             </if>
             <if test="goods_id != null">
                 and gs.goods_id = #{goods_id}

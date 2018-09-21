@@ -1,6 +1,6 @@
 // var NewApiRootUrl = 'http://fly2you.cn/platform/api/';
-var NewApiRootUrl = 'https://www.whcmhlkj.com/api/';
-var ApiRootUrl = 'https://www.whcmhlkj.com/';
+var NewApiRootUrl = 'http://localhost/api/1/';
+var ApiRootUrl = 'http://localhost/';
 module.exports = {
   IndexUrlNewGoods: NewApiRootUrl + 'index/newGoods', //
   IndexUrlHotGoods: NewApiRootUrl + 'index/hotGoods', //首页数据接口
@@ -86,5 +86,6 @@ module.exports = {
     GoodsCouponList: NewApiRootUrl + 'coupon/listByGoods', // 商品优惠券列表   
     OrderQuery: NewApiRootUrl + 'pay/query',
     OrderSuccess: NewApiRootUrl + 'order/updateSuccess',
+    Wxbindphone: NewApiRootUrl +'user/bindMobileWx',//微信绑手机
     
 };

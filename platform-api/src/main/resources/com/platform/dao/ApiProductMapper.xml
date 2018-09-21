@@ -30,7 +30,7 @@
         left join goods b on a.goods_id = b.id
         <where>
             <if test="merchantId!=null">
-                and merchant_id=#{merchantId}
+                and a.merchant_id=#{merchantId}
             </if>
             <if test="goods_id != null">
                 and a.goods_id = #{goods_id}

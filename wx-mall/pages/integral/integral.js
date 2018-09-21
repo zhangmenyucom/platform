@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    limits:10,
+    limit:10,
     page:1,
     integral:''
   },
@@ -26,7 +26,7 @@ Page({
   onReady: function () {
 
 
-    var data = {limits:this.data.limits,page:this.data.page}
+    var data = {limit:this.data.limit,page:this.data.page}
     util.request(api.Integral,data).then((res)=>{
       console.log(res)
     })
