@@ -17,6 +17,7 @@
     <select id="queryObject" resultType="com.platform.entity.GiftExchangeRecordEntityVo">
 		select
 			`id`,
+            `merchant_id`,
 			`user_id`,
 			`gift_id`,
 			`use_point`,
@@ -31,6 +32,7 @@
         select
         r.`id`,
         r.`user_id`,
+        r.`merchant_id`,
         r.`user_id`,
         u.nickname as nickName,
         g.name as giftName,
@@ -83,6 +85,7 @@
 
     <insert id="save" parameterType="com.platform.entity.GiftExchangeRecordEntityVo" useGeneratedKeys="true" keyProperty="id">
 		insert into gift_exchange_record(
+		    `merchant_id`,
 			`user_id`,
 			`gift_id`,
 			`use_point`,
@@ -90,6 +93,7 @@
 			`create_time`,
 			`update_time`)
 		values(
+		    #{merchantId},
 			#{userId},
 			#{giftId},
 			#{usePoint},

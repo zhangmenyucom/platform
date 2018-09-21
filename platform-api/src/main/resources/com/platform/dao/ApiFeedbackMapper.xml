@@ -49,6 +49,7 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.FeedbackVo" useGeneratedKeys="true" keyProperty="msgId">
 		insert into feedback(
+            `merchant_id`,
 			`user_id`,
 			`user_name`,
 			`mobile`,
@@ -57,6 +58,7 @@
 			`add_time`,
 			`status` )
 		values(
+		    #{merchantId},
 			#{userId},
 			#{userName},
 			#{mobile},

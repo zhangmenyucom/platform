@@ -60,6 +60,7 @@
         SELECT
         MAX(f.id) id,
         f.user_id,
+        f.merchant_id,
         f.goods_id,
         f.add_time add_time,
         f.referrer,
@@ -100,6 +101,7 @@
     <insert id="save" parameterType="com.platform.entity.FootprintVo" useGeneratedKeys="true" keyProperty="id">
 		insert into footprint
 		(
+			`merchant_id`,
 			`user_id`, 
 			`goods_id`, 
 			`add_time`,
@@ -107,6 +109,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{user_id},
 			#{goods_id},
 			NOW(),

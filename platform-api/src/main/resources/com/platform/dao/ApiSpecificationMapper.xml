@@ -35,21 +35,23 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from specification
+        select count(*) from specification
         WHERE 1=1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
-	</select>
+    </select>
 
     <insert id="save" parameterType="com.platform.entity.SpecificationVo" useGeneratedKeys="true" keyProperty="id">
 		insert into specification
 		(
+		    `merchant_id`,
 			`name`, 
 			`sort_order`
 		)
 		values
 		(
+		    #{merchantId},
 			#{name}, 
 			#{sort_order}
 		)

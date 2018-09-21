@@ -59,6 +59,7 @@
     <insert id="save" parameterType="com.platform.entity.OrderGoodsVo" useGeneratedKeys="true" keyProperty="id">
 		insert into order_goods
 		(
+			`merchant_id`,
 			`order_id`, 
 			`goods_id`, 
 			`goods_name`, 
@@ -74,7 +75,8 @@
 		)
 		values
 		(
-		#{order_id},
+		    #{merchantId},
+		    #{order_id},
 			#{goods_id},
 			#{goods_name},
 			#{goods_sn},

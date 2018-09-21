@@ -61,6 +61,7 @@
     <insert id="save" parameterType="com.platform.entity.KeywordsVo">
 		insert into keywords
 		(
+			`merchant_id`,
 			`keyword`, 
 			`is_hot`, 
 			`is_default`, 
@@ -72,6 +73,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{keyword}, 
 			#{is_hot},
 			#{is_default},

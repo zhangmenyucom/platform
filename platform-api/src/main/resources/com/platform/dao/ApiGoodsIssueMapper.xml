@@ -57,12 +57,14 @@
     <insert id="save" parameterType="com.platform.entity.GoodsIssueVo" useGeneratedKeys="true" keyProperty="id">
 		insert into goods_issue
 		(
+		    `merchant_id`,
 			`goods_id`, 
 			`question`, 
 			`answer`
 		)
 		values
 		(
+		    #{merchantId},
 			#{goods_id},
 			#{question}, 
 			#{answer}

@@ -84,6 +84,7 @@
     <insert id="save" parameterType="com.platform.entity.OrderVo" useGeneratedKeys="true" keyProperty="id">
 		insert into user_order
 		(
+		    `merchant_id`,
 			`order_sn`,
 			`user_id`,
 			`order_status`,
@@ -120,6 +121,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{order_sn},
 			#{user_id},
 			#{order_status},

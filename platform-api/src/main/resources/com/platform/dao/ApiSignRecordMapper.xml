@@ -14,6 +14,7 @@
     <select id="queryObject" resultType="com.platform.entity.SignRecordVo">
 		select
 			`id`,
+			`merchant_id`,
 			`user_id`,
 			`gain_point`,
 			`sign_date`
@@ -23,6 +24,7 @@
     <select id="queryLatestSign" resultType="com.platform.entity.SignRecordVo">
 		select
 			`id`,
+            `merchant_id`,
 			`user_id`,
 			`gain_point`,
 			`sign_date`
@@ -38,6 +40,7 @@
     <select id="queryList" resultType="com.platform.entity.SignRecordVo">
         select
         `id`,
+        `merchant_id`,
         `user_id`,
         `gain_point`,
         `sign_date`
@@ -75,10 +78,12 @@
 
     <insert id="save" parameterType="com.platform.entity.SignRecordVo" useGeneratedKeys="true" keyProperty="id">
 		insert into sign_record(
+		    `merchant_id`,
 			`user_id`,
 			`gain_point`,
 			`sign_date`)
 		values(
+		    #{merchantId},
 			#{userId},
 			#{gainPoint},
 			#{signDate})
