@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.GoodsSpecificationVo" id="goodsSpecificationMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="goods_id" column="goods_id"/>
         <result property="specification_id" column="specification_id"/>
         <result property="value" column="value"/>

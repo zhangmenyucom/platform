@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.UserVo" id="userMap">
         <result property="userId" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="parentId" column="parent_id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>

@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.AttributeCategoryVo" id="attributeCategoryMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="enabled" column="enabled"/>
     </resultMap>
@@ -44,13 +45,15 @@
     <insert id="save" parameterType="com.platform.entity.AttributeCategoryVo">
 		insert into attribute_category
 		(
-			`id`, 
+			`id`,
+			`merchant_id`,
 			`name`, 
 			`enabled`
 		)
 		values
 		(
-			#{id}, 
+			#{id},
+			#{merchantId},
 			#{name}, 
 			#{enabled}
 		)

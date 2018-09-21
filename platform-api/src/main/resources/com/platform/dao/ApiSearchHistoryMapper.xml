@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.SearchHistoryVo" id="searchHistoryMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="keyword" column="keyword"/>
         <result property="from" column="from"/>
         <result property="add_time" column="add_time"/>

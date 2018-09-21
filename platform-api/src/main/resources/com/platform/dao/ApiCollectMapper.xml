@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.CollectVo" id="collectMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="user_id" column="user_id"/>
         <result property="value_id" column="value_id"/>
         <result property="add_time" column="add_time"/>
@@ -72,6 +73,7 @@
     <insert id="save" parameterType="com.platform.entity.CollectVo" useGeneratedKeys="true" keyProperty="id">
 		insert into collect
 		(
+			`merchant_id`,
 			`user_id`, 
 			`value_id`, 
 			`add_time`, 
@@ -80,6 +82,7 @@
 		)
 		values
 		(
+		    #{merchantId},
             #{user_id},
 			#{value_id},
 			#{add_time},

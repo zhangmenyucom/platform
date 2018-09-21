@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.ActivityVo" id="activityMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="title" column="title"/>
         <result property="author" column="author"/>
         <result property="content" column="content"/>
@@ -19,6 +20,7 @@
 			`id`,
 			`title`,
 			`author`,
+			`merchant_id`,
 			`content`,
 			`banner`,
 			`start_date`,
@@ -73,6 +75,7 @@
     <insert id="save" parameterType="com.platform.entity.ActivityVo">
 		insert into activity(
 			`id`,
+			`merchant_id`,
 			`title`,
 			`author`,
 			`content`,
@@ -82,6 +85,7 @@
 			`position`)
 		values(
 			#{id},
+			#{merchantId},
 			#{title},
 			#{author},
 			#{content},

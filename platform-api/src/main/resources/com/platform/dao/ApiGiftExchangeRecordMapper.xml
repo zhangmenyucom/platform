@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.GiftExchangeRecordEntityVo" id="giftExchangeRecordMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="giftId" column="gift_id"/>
         <result property="usePoint" column="use_point"/>

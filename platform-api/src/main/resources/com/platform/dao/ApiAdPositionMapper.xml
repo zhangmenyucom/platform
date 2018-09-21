@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.AdPositionVo" id="adPositionMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="width" column="width"/>
         <result property="height" column="height"/>
@@ -46,13 +47,15 @@
     <insert id="save" parameterType="com.platform.entity.AdPositionVo" useGeneratedKeys="true" keyProperty="id">
 		insert into ad_position
 		(
-			`name`, 
+			`merchant_id`,
+			`name`,
 			`width`, 
 			`height`, 
 			`desc`
 		)
 		values
 		(
+		    #{merchantId},
 			#{name}, 
 			#{width}, 
 			#{height}, 

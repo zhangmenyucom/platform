@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.TeachVideoVo" id="teachVideoMap">
         <result property="id" column="id"/>
+		<result property="merchantId" column="merchant_id"/>
         <result property="title" column="title"/>
         <result property="brief" column="brief"/>
         <result property="wrapper" column="wrapper"/>

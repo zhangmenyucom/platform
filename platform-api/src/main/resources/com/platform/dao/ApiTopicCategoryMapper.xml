@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.TopicCategoryVo" id="topicCategoryMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="title" column="title"/>
         <result property="pic_url" column="pic_url"/>
     </resultMap>

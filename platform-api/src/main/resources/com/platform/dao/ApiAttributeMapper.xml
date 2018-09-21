@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.AttributeVo" id="attributeMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="attribute_category_id" column="attribute_category_id"/>
         <result property="name" column="name"/>
         <result property="input_type" column="input_type"/>
@@ -49,16 +50,17 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from attribute
+        select count(*) from attribute
         WHERE 1=1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
-	</select>
+    </select>
 
     <insert id="save" parameterType="com.platform.entity.AttributeVo" useGeneratedKeys="true" keyProperty="id">
 		insert into attribute
 		(
+			`merchant_id`,
 			`attribute_category_id`, 
 			`name`, 
 			`input_type`, 
@@ -67,6 +69,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{attribute_category_id},
 			#{name}, 
 			#{input_type},

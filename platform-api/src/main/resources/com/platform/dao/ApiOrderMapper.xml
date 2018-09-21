@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.OrderVo" id="orderMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="order_sn" column="order_sn"/>
         <result property="user_id" column="user_id"/>
         <result property="order_status" column="order_status"/>

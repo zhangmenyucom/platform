@@ -6,6 +6,7 @@
     <resultMap type="com.platform.entity.ArticleVo" id="articleMap">
         <result property="id" column="id"/>
         <result property="title" column="title"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="author" column="author"/>
         <result property="bannerPic" column="banner_pic"/>
         <result property="content" column="content"/>
@@ -17,9 +18,10 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="com.platform.entity.ArticleVo">
+    <select id="queryObject" resultType="com.platform.entity.ArticleVo">
 		select
 			`id`,
+			`merchant_id`,
 			`title`,
 			`author`,
 			`banner_pic`,
@@ -34,53 +36,55 @@
 		where id = #{id}
 	</select>
 
-	<select id="queryList" resultType="com.platform.entity.ArticleVo">
-		select
-    		`id`,
-    		`title`,
-    		`author`,
-    		`banner_pic`,
-    		`content`,
-    		`source_url`,
-    		`view_times`,
-    		`sort_order`,
-    		`status`,
-    		`create_time`,
-    		`update_time`
-		from article
-		WHERE 1=1
-		<if test="merchantId!=null">
-			and merchant_id=#{merchantId}
-		</if>
-		<if test="name != null and name.trim() != ''">
-			AND name LIKE concat('%',#{name},'%')
-		</if>
+    <select id="queryList" resultType="com.platform.entity.ArticleVo">
+        select
+        `id`,
+        `merchant_id`,
+        `title`,
+        `author`,
+        `banner_pic`,
+        `content`,
+        `source_url`,
+        `view_times`,
+        `sort_order`,
+        `status`,
+        `create_time`,
+        `update_time`
+        from article
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
             </when>
-			<otherwise>
+            <otherwise>
                 order by sort_order ASC ,id desc
-			</otherwise>
+            </otherwise>
         </choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-	
- 	<select id="queryTotal" resultType="int">
-		select count(*) from article
-		WHERE 1=1
-		<if test="merchantId!=null">
-			and merchant_id=#{merchantId}
-		</if>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from article
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
         </if>
-	</select>
-	 
-	<insert id="save" parameterType="com.platform.entity.ArticleVo" useGeneratedKeys="true" keyProperty="id">
+    </select>
+
+    <insert id="save" parameterType="com.platform.entity.ArticleVo" useGeneratedKeys="true" keyProperty="id">
 		insert into article(
+			`merchant_id`,
 			`title`,
 			`author`,
 			`banner_pic`,
@@ -92,6 +96,7 @@
 			`create_time`,
 			`update_time`)
 		values(
+		    #{merchantId},
 			#{title},
 			#{author},
 			#{banner_pic},
@@ -103,33 +108,33 @@
 			#{createTime},
 			#{updateTime})
 	</insert>
-	 
-	<update id="update" parameterType="com.platform.entity.ArticleVo">
-		update article 
-		<set>
-			<if test="title != null">`title` = #{title}, </if>
-			<if test="author != null">`author` = #{author}, </if>
-			<if test="bannerPic != null">`banner_pic` = #{bannerPic}, </if>
-			<if test="content != null">`content` = #{content}, </if>
-			<if test="sourceUrl != null">`source_url` = #{sourceUrl}, </if>
-			<if test="viewTimes != null">`view_times` = #{viewTimes}, </if>
-			<if test="sortOrder != null">`sort_order` = #{sortOrder}, </if>
-			<if test="status != null">`status` = #{status}, </if>
-			<if test="createTime != null">`create_time` = #{createTime}, </if>
-			<if test="updateTime != null">`update_time` = #{updateTime}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="delete">
+
+    <update id="update" parameterType="com.platform.entity.ArticleVo">
+        update article
+        <set>
+            <if test="title != null">`title` = #{title},</if>
+            <if test="author != null">`author` = #{author},</if>
+            <if test="bannerPic != null">`banner_pic` = #{bannerPic},</if>
+            <if test="content != null">`content` = #{content},</if>
+            <if test="sourceUrl != null">`source_url` = #{sourceUrl},</if>
+            <if test="viewTimes != null">`view_times` = #{viewTimes},</if>
+            <if test="sortOrder != null">`sort_order` = #{sortOrder},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
 		delete from article where id = #{value}
 	</delete>
-	
-	<delete id="deleteBatch">
-		delete from article where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+
+    <delete id="deleteBatch">
+        delete from article where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

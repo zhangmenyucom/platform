@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.AdVo" id="adMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="ad_position_id" column="ad_position_id"/>
         <result property="media_type" column="media_type"/>
         <result property="name" column="name"/>
@@ -53,7 +54,8 @@
     <insert id="save" parameterType="com.platform.entity.AdVo" useGeneratedKeys="true" keyProperty="id">
 		insert into ad
 		(
-			`ad_position_id`, 
+			`ad_position_id`,
+			`merchant_id`,
 			`media_type`, 
 			`name`, 
 			`link`, 
@@ -65,6 +67,7 @@
 		values
 		(
 			#{ad_position_id},
+			#{merchantId},
 			#{media_type},
 			#{name}, 
 			#{link}, 

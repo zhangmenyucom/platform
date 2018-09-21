@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.UserCouponVo" id="userCouponMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="coupon_id" column="coupon_id"/>
         <result property="coupon_number" column="coupon_number"/>
         <result property="user_id" column="user_id"/>

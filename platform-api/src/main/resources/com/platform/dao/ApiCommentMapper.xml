@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.CommentVo" id="commentMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="type_id" column="type_id"/>
         <result property="value_id" column="value_id"/>
         <result property="content" column="content"/>
@@ -87,6 +88,7 @@
     <insert id="save" parameterType="com.platform.entity.CommentVo" useGeneratedKeys="true" keyProperty="id">
 		insert into comment
 		(
+			`merchant_id`,
 			`type_id`, 
 			`value_id`, 
 			`content`, 
@@ -95,7 +97,7 @@
 			`user_id`
 		)
 		values
-		(
+		(   #{merchantId},
 			#{type_id},
 			#{value_id},
 			#{content},

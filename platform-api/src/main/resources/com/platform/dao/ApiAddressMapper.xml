@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.AddressVo" id="addressMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
         <result property="telNumber" column="tel_number"/>
@@ -56,6 +57,7 @@
     <insert id="save" parameterType="com.platform.entity.AddressVo" useGeneratedKeys="true" keyProperty="id">
 		insert into address(
 			`user_id`,
+			`merchant_id`,
 			`user_name`,
 			`tel_number`,
 			`postal_Code`,
@@ -67,6 +69,7 @@
 			`is_default`)
 		values(
 			#{userId},
+			#{merchantId},
 			#{userName},
 			#{telNumber},
 			#{postalCode},

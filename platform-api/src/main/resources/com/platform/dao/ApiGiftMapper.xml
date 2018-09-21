@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.GiftEntityVo" id="giftMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="type" column="type"/>
         <result property="picUrl" column="pic_url"/>
         <result property="name" column="name"/>

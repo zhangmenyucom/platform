@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.CartVo" id="cartMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="user_id" column="user_id"/>
         <result property="session_id" column="session_id"/>
         <result property="goods_id" column="goods_id"/>
@@ -85,6 +86,7 @@
     <insert id="save" parameterType="com.platform.entity.CartVo" useGeneratedKeys="true" keyProperty="id">
 		insert into cart
 		(
+			`merchant_id`,
 			`user_id`, 
 			`session_id`, 
 			`goods_id`, 
@@ -101,6 +103,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{user_id}, 
 			#{session_id}, 
 			#{goods_id}, 

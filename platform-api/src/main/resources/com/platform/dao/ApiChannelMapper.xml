@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.ChannelVo" id="channelMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="url" column="url"/>
         <result property="icon_url" column="icon_url"/>
@@ -39,16 +40,17 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from channel
+        select count(*) from channel
         WHERE 1=1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
-	</select>
+    </select>
 
     <insert id="save" parameterType="com.platform.entity.ChannelVo" useGeneratedKeys="true" keyProperty="id">
 		insert into channel
 		(
+			`merchant_id`,
 			`name`, 
 			`url`, 
 			`icon_url`, 
@@ -56,6 +58,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{name}, 
 			#{url}, 
 			#{icon_url}, 

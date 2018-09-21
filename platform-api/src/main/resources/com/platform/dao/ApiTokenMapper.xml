@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.TokenEntity" id="tbTokenMap">
         <result property="userId" column="user_id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="token" column="token"/>
         <result property="expireTime" column="expire_time"/>
         <result property="updateTime" column="update_time"/>

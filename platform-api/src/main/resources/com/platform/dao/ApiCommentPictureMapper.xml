@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.CommentPictureVo" id="commentPictureMap">
         <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="comment_id" column="comment_id"/>
         <result property="pic_url" column="pic_url"/>
         <result property="sort_order" column="sort_order"/>
@@ -48,12 +49,14 @@
     <insert id="save" parameterType="com.platform.entity.CommentPictureVo" useGeneratedKeys="true" keyProperty="id">
 		insert into comment_picture
 		(
+			`merchant_id`,
 			`comment_id`, 
 			`pic_url`, 
 			`sort_order`
 		)
 		values
 		(
+		    #{merchantId},
 			#{comment_id},
 			#{pic_url},
 			#{sort_order}

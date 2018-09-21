@@ -24,12 +24,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-
     var data = {limit:this.data.limit,page:this.data.page}
     util.request(api.Integral,data).then((res)=>{
-      console.log(res)
-    })
+      console.log(res);
+    });
   },
 
   /**

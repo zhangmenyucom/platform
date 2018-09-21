@@ -6,6 +6,7 @@
     <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.platform.entity.KeywordsVo" id="keywordsMap">
         <result property="keyword" column="keyword"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="is_hot" column="is_hot"/>
         <result property="is_default" column="is_default"/>
         <result property="is_show" column="is_show"/>
