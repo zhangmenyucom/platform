@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.CommissionOrderDao;
 import com.platform.entity.CommissionOrderEntity;
 import com.platform.service.CommissionOrderService;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CommissionOrderServiceImpl extends BaseServiceImpl<CommissionOrderEntity, CommissionOrderDao> implements CommissionOrderService {
 
     @Override
+    @MerchantFilter
     public List<CommissionOrderVo> queryDetailList(Query query) {
         return getDao().queryDetailList(query);
     }

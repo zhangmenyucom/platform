@@ -1,5 +1,6 @@
 package com.platform.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.platform.common.OrderStatusEnum;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
@@ -23,10 +24,6 @@ import static com.platform.common.OrderStatusEnum.*;
 public class OrderVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     **/
-    private Integer id;
     /**
      * 订单序列号
      **/
@@ -148,9 +145,9 @@ public class OrderVo extends BaseEntity  implements Serializable {
     /**
      * 使用的优惠券id
      **/
-    private Integer coupon_id;
+    private Long  coupon_id;
     /****/
-    private Integer parent_id;
+    private Long parent_id;
     /**
      * 优惠价格
      **/

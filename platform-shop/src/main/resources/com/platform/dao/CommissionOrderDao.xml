@@ -33,7 +33,7 @@
 	<select id="queryList" resultType="com.platform.entity.CommissionOrderEntity">
 		select
     		`id`,
-		     `merchant_id`,
+		    `merchant_id`,
 		    `user_id`,
     		`order_sn`,
     		`gain_balance`,
