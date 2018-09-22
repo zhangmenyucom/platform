@@ -20,6 +20,7 @@
     <select id="queryObject" resultType="com.platform.entity.ActivityEntity">
 		select
 			`id`,
+		    `merchant_id`,
 			`title`,
 			`author`,
 			`content`,
@@ -36,6 +37,7 @@
     <select id="queryList" resultType="com.platform.entity.ActivityEntity">
         select
         `id`,
+        `merchant_id`,
         `title`,
         `author`,
         `content`,

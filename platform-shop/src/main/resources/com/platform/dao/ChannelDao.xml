@@ -15,6 +15,7 @@
     <select id="queryObject" resultType="com.platform.entity.ChannelEntity">
 		select
 			`id`,
+		    `merchant_id`,
 			`name`,
 			`url`,
 			`icon_url`,
@@ -26,6 +27,7 @@
     <select id="queryList" resultType="com.platform.entity.ChannelEntity">
         select
         `id`,
+        `merchant_id`,
         `name`,
         `url`,
         `icon_url`,
@@ -64,11 +66,13 @@
 
     <insert id="save" parameterType="com.platform.entity.ChannelEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into channel(
+			`merchant_id`,
 			`name`,
 			`url`,
 			`icon_url`,
 			`sort_order`)
 		values(
+		   #{merchantId},
 			#{name},
 			#{url},
 			#{iconUrl},

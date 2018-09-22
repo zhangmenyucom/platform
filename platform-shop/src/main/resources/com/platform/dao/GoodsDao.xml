@@ -49,6 +49,7 @@
     <select id="queryList" resultType="com.platform.entity.GoodsEntity">
         select
         goods.id,
+        goods.merchant_id,
         goods.category_id,
         goods.goods_sn,
         goods.name,
@@ -132,6 +133,7 @@
         insert into goods
         (
         `id`,
+        `merchant_id`,
         `category_id`,
         `goods_sn`,
         `name`,
@@ -170,6 +172,7 @@
         values
         (
         #{id},
+        #{merchantId},
         #{categoryId},
         #{goodsSn},
         #{name},

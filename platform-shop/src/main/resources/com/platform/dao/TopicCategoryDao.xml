@@ -13,6 +13,7 @@
     <select id="queryObject" resultType="com.platform.entity.TopicCategoryEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`title`,
 			`pic_url`
 		from topic_category
@@ -22,6 +23,7 @@
     <select id="queryList" resultType="com.platform.entity.TopicCategoryEntity">
         select
         `id`,
+        `merchant_id`,
         `title`,
         `pic_url`
         from topic_category
@@ -58,9 +60,11 @@
 
     <insert id="save" parameterType="com.platform.entity.TopicCategoryEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into topic_category(
+			`merchant_id`,
 			`title`,
 			`pic_url`)
 		values(
+		    #{merchantId},
 			#{title},
 			#{picUrl})
 	</insert>

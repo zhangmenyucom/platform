@@ -18,6 +18,7 @@
 	<select id="queryObject" resultType="com.platform.entity.CommissionOrderEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`user_id`,
 			`order_sn`,
 			`gain_balance`,
@@ -32,6 +33,7 @@
 	<select id="queryList" resultType="com.platform.entity.CommissionOrderEntity">
 		select
     		`id`,
+		     `merchant_id`,
 		    `user_id`,
     		`order_sn`,
     		`gain_balance`,
@@ -104,6 +106,7 @@
 	<insert id="save" parameterType="com.platform.entity.CommissionOrderEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into commission_order(
 			`user_id`,
+			`merchant_id`,
 			`order_sn`,
 			`gain_balance`,
 			`source_user_id`,
@@ -112,6 +115,7 @@
 			`update_time`)
 		values(
 		    #{userId},
+		    #{merchantId},
 			#{orderSn},
 			#{gainBalance},
 			#{sourceUserId},

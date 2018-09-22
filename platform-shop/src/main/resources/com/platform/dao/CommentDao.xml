@@ -17,6 +17,7 @@
     <select id="queryObject" resultType="com.platform.entity.CommentEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`type_id`,
 			`value_id`,
 			`content`,
@@ -30,6 +31,7 @@
     <select id="queryList" resultType="com.platform.entity.CommentEntity">
         select
         comment.id,
+        comment.`merchant_id`,
         comment.type_id,
         comment.value_id,
         comment.content,
@@ -92,6 +94,7 @@
 
     <insert id="save" parameterType="com.platform.entity.CommentEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into comment(
+		    `merchant_id`,
 			`type_id`,
 			`value_id`,
 			`content`,
@@ -99,6 +102,7 @@
 			`status`,
 			`user_id`)
 		values(
+		    #{merchanId},
 			#{typeId},
 			#{valueId},
 			#{content},

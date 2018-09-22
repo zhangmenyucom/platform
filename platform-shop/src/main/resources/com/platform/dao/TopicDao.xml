@@ -22,6 +22,7 @@
     <select id="queryObject" resultType="com.platform.entity.TopicEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`title`,
 			`content`,
 			`avatar`,
@@ -40,6 +41,7 @@
     <select id="queryList" resultType="com.platform.entity.TopicEntity">
         select
         `id`,
+        `merchant_id`,
         `title`,
         `content`,
         `avatar`,
@@ -85,6 +87,7 @@
 
     <insert id="save" parameterType="com.platform.entity.TopicEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into topic(
+			`merchant_id`,
 			`title`,
 			`content`,
 			`avatar`,
@@ -97,6 +100,7 @@
 			`topic_template_id`,
 			`topic_tag_id`)
 		values(
+		    #{merchantId},
 			#{title},
 			#{content},
 			#{avatar},

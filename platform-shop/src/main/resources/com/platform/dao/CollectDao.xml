@@ -52,6 +52,7 @@
     <insert id="save" parameterType="com.platform.entity.CollectEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into collect
 		(
+			`merchant_id`,
 			`user_id`, 
 			`value_id`, 
 			`add_time`, 
@@ -60,6 +61,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{userId}, 
 			#{valueId}, 
 			#{addTime}, 

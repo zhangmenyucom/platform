@@ -13,6 +13,7 @@
     <select id="queryObject" resultType="com.platform.entity.AttributeCategoryEntity">
 		select
 			id,
+			merchant_id,
 			name,
 			enabled
 		from attribute_category
@@ -22,6 +23,7 @@
     <select id="queryList" resultType="com.platform.entity.AttributeCategoryEntity">
         select
         id,
+        merchant_id,
         name,
         enabled
         from attribute_category
@@ -59,10 +61,12 @@
     <insert id="save" parameterType="com.platform.entity.AttributeCategoryEntity">
 		insert into attribute_category(
 			`id`,
+			`merchant_id`,
 			`name`,
 			`enabled`)
 		values(
 			#{id},
+			#{merchantId},
 			#{name},
 			#{enabled})
 	</insert>

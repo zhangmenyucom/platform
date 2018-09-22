@@ -18,6 +18,7 @@
 	<select id="queryObject" resultType="com.platform.entity.TeachVideoEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`title`,
 			`brief`,
 			`wrapper`,
@@ -32,6 +33,7 @@
 	<select id="queryList" resultType="com.platform.entity.TeachVideoEntity">
 		select
     		`id`,
+		    `merchant_id`,
     		`title`,
     		`brief`,
     		`wrapper`,
@@ -73,6 +75,7 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.TeachVideoEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into teach_video(
+			`merchant_id`,
 			`title`,
 			`brief`,
 			`wrapper`,
@@ -81,6 +84,7 @@
 			`create_time`,
 			`update_time`)
 		values(
+		    #{merchantId},
 			#{title},
 			#{brief},
 			#{wrapper},

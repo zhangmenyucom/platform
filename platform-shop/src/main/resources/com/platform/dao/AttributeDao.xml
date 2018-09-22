@@ -16,6 +16,7 @@
     <select id="queryObject" resultType="com.platform.entity.AttributeEntity">
 		select
 			id,
+			merchant_id,
 			attribute_category_id,
 			name,
 			input_type,
@@ -28,6 +29,7 @@
     <select id="queryList" resultType="com.platform.entity.AttributeEntity">
         select
         a.id,
+        a.merchant_id,
         a.attribute_category_id,
         a.name,
         a.input_type,
@@ -72,12 +74,14 @@
 
     <insert id="save" parameterType="com.platform.entity.AttributeEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into attribute(
+			`merchant_id`,
 			`attribute_category_id`,
 			`name`,
 			`input_type`,
 			`value`,
 			`sort_order`)
 		values(
+		    #{merchantId},
 			#{attributeCategoryId},
 			#{name},
 			#{inputType},

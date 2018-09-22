@@ -15,6 +15,7 @@
     <select id="queryObject" resultType="com.platform.entity.GoodsSpecificationEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`goods_id`,
 			`specification_id`,
 			`value`,
@@ -26,6 +27,7 @@
     <select id="queryList" resultType="com.platform.entity.GoodsSpecificationEntity">
         select
         goods_specification.id,
+        goods_specification.`merchant_id`,
         goods_specification.goods_id,
         goods_specification.specification_id,
         goods_specification.value,
@@ -81,11 +83,13 @@
 
     <insert id="save" parameterType="com.platform.entity.GoodsSpecificationEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into goods_specification(
+			`merchant_id`,
 			`goods_id`,
 			`specification_id`,
 			`value`,
 			`pic_url`)
 		values(
+		    #{merchantId},
 			#{goodsId},
 			#{specificationId},
 			#{value},

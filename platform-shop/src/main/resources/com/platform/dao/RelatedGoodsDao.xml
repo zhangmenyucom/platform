@@ -45,11 +45,13 @@
 	<insert id="save" parameterType="com.platform.entity.RelatedGoodsEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into related_goods
 		(
+		    `merchant_id`,
 			`goods_id`, 
 			`related_goods_id`
 		)
 		values
 		(
+		    #{merchantId},
 			#{goodsId}, 
 			#{relatedGoodsId}
 		)

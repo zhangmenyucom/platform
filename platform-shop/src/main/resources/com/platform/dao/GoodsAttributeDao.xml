@@ -46,12 +46,14 @@
     <insert id="save" parameterType="com.platform.entity.GoodsAttributeEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into goods_attribute
 		(
+			`merchant_id`,
 			`goods_id`, 
 			`attribute_id`, 
 			`value`
 		)
 		values
 		(
+		    #{merchantId},
 			#{goodsId}, 
 			#{attributeId}, 
 			#{value}

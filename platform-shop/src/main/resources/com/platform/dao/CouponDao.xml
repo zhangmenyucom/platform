@@ -21,6 +21,7 @@
     <select id="queryObject" resultType="com.platform.entity.CouponEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`name`,
 			`type_money`,
 			`send_type`,
@@ -38,6 +39,7 @@
     <select id="queryList" resultType="com.platform.entity.CouponEntity">
         select
         `id`,
+        `merchant_id`,
         `name`,
         `type_money`,
         `send_type`,
@@ -78,6 +80,7 @@
 
     <insert id="save" parameterType="com.platform.entity.CouponEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into coupon(
+			`merchant_id`,
 			`name`,
 			`type_money`,
 			`send_type`,
@@ -89,6 +92,7 @@
 			`use_end_date`,
 			`min_goods_amount`)
 		values(
+		    #{merchantId},
 			#{name},
 			#{typeMoney},
 			#{sendType},

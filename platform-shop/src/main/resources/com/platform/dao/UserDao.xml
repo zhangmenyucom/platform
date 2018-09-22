@@ -137,6 +137,7 @@
 
     <insert id="save" parameterType="com.platform.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into user(
+			`merchant_id`,
 			`username`,
 			`password`,
 			`gender`,
@@ -151,6 +152,7 @@
 			`avatar`,
 			`weixin_openid`)
 		values(
+		    #{merchantId},
 			#{username},
 			#{password},
 			#{gender},

@@ -21,6 +21,7 @@
 	<select id="queryObject" resultType="com.platform.entity.GiftEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`type`,
 			`pic_url`,
 			`name`,
@@ -38,6 +39,7 @@
 	<select id="queryList" resultType="com.platform.entity.GiftEntity">
 		select
     		`id`,
+		    `merchant_id`,
     		`type`,
     		`pic_url`,
     		`name`,
@@ -82,6 +84,7 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.GiftEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into gift(
+			`merchant_id`,
 			`type`,
 			`pic_url`,
 			`name`,
@@ -93,6 +96,7 @@
 			`create_time`,
 			`update_time`)
 		values(
+		    #{merchantId},
 			#{type},
 			#{picUrl},
 			#{name},

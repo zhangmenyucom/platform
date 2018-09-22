@@ -15,6 +15,7 @@
     <select id="queryObject" resultType="com.platform.entity.AdPositionEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`name`,
 			`width`,
 			`height`,
@@ -26,6 +27,7 @@
     <select id="queryList" resultType="com.platform.entity.AdPositionEntity">
         select
         `id`,
+        `merchant_id`,
         `name`,
         `width`,
         `height`,
@@ -64,11 +66,13 @@
 
     <insert id="save" parameterType="com.platform.entity.AdPositionEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into ad_position(
+		    `merchant_id`,
 			`name`,
 			`width`,
 			`height`,
 			`desc`)
 		values(
+		    #{merchantId},
 			#{name},
 			#{width},
 			#{height},
