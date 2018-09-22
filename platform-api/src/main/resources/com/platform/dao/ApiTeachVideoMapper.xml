@@ -45,6 +45,7 @@
 		<if test="merchantId!=null">
 			and merchant_id=#{merchantId}
 		</if>
+		WHERE 1=1 and status=1
 		<if test="name != null and name.trim() != ''">
 			AND name LIKE concat('%',#{name},'%')
 		</if>

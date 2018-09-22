@@ -86,22 +86,23 @@ public class ApiOrderController extends ApiBaseAction {
     @GetMapping("detail")
     public Object detail(@PathVariable("merchantId") Long merchantId,Long orderId) {
         Map resultObj = new HashMap(0);
-        //
+        /****/
         OrderVo orderInfo = orderService.queryObject(orderId);
         if (null == orderInfo) {
             return toResponsObject(400, "订单不存在", "");
         }
         Map orderGoodsParam = new HashMap(0);
         orderGoodsParam.put("order_id", orderId);
-        //订单的商品
-        List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam,merchantId);
+        /**订单的商品**/
+        List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
+        /**订单最后支付时间**/
         //订单最后支付时间
         if (orderInfo.getOrder_status() == 0) {
 
         }
-        //订单可操作的选择,删除，支付，收货，评论，退换货
+        /**订单可操作的选择,删除，支付，收货，评论，退换货**/
         Map handleOption = orderInfo.getHandleOption();
-        //
+        /****/
         resultObj.put("orderInfo", orderInfo);
         resultObj.put("orderGoods", orderGoods);
         resultObj.put("handleOption", handleOption);
@@ -165,7 +166,7 @@ public class ApiOrderController extends ApiBaseAction {
             } else if (Objects.equals(orderVo.getOrder_status(), OrderStatusEnum.CONFIRMED.getCode())) {
                 return toResponsFail("已收货，不能取消");
             }
-            // 需要退款
+            /** 需要退款**/
             if (Objects.equals(orderVo.getPay_status(), PayStatusEnum.PAYED.getCode())) {
                 WeichatRefundApiResult result = WechatUtil.wxRefund(orderVo.getId().toString(), 0.01, 0.01);
                 if ("SUCCESS".equals(result.getResult_code())) {
