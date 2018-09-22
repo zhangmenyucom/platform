@@ -23,4 +23,8 @@ import com.platform.service.SysUserConfigService;
 @Service
 public class ApiUserConfigService extends BaseServiceImpl<SysUserConfigVo, ApiSysUserConfigMapper> {
 
+    public SysUserConfigVo queryByMerchantId(Long merchantId){
+        return getDao().queryByMerchantId(merchantId);
+    }
+
 }

@@ -86,14 +86,7 @@ public class ApiPayController extends ApiBaseAction {
         if (Objects.equals(orderInfo.getPay_status(), PayStatusEnum.REFUND.getCode())) {
             return toResponsObject(400, "订单已退款", "");
         }
-        Map<String, Object> map = new HashMap<>(1);
-        map.put("merchantId", merchantId);
-        List<SysUserConfigVo> sysUserConfigVos = apiUserConfigService.queryList(map);
-        if (sysUserConfigVos.isEmpty()) {
-            return toResponsObject(400, "商户配置不完整", "");
-        }
-        SysUserConfigVo sysUserConfigVo = sysUserConfigVos.get(0);
-
+        SysUserConfigVo sysUserConfigVo = apiUserConfigService.queryByMerchantId(merchantId);
         String nonceStr = CharUtil.getRandomString(32);
 
         Map<Object, Object> resultObj = new TreeMap();
@@ -187,14 +180,7 @@ public class ApiPayController extends ApiBaseAction {
         if (orderId == null) {
             return toResponsFail("订单不存在");
         }
-        Map<String, Object> map = new HashMap<>(1);
-        map.put("merchantId", merchantId);
-        List<SysUserConfigVo> sysUserConfigVos = apiUserConfigService.queryList(map);
-        if (sysUserConfigVos.isEmpty()) {
-            return toResponsObject(400, "商户配置不完整", "");
-        }
-        SysUserConfigVo sysUserConfigVo = sysUserConfigVos.get(0);
-
+        SysUserConfigVo sysUserConfigVo = apiUserConfigService.queryByMerchantId(merchantId);
         Map<Object, Object> parame = new TreeMap<>();
         parame.put("appid", sysUserConfigVo.getAppId());
         // 商家账号。
