@@ -15,7 +15,7 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.SysUserConfigVo">
+    <select id="queryObject" resultMap="sysUserConfigMap">
 		select
 			`id`,
 			`merchant_id`,
@@ -30,7 +30,7 @@
 		where id = #{id}
 	</select>
 
-    <select id="queryByMerchantId" resultType="com.platform.entity.SysUserConfigVo">
+    <select id="queryByMerchantId" resultMap="sysUserConfigMap">
 		select
 			`id`,
 			`merchant_id`,
@@ -45,7 +45,7 @@
 		where merchant_id=#{merchant_id}
 	</select>
 
-    <select id="queryList" resultType="com.platform.entity.SysUserConfigVo">
+    <select id="queryList" resultMap="sysUserConfigMap">
         select
         `id`,
         `merchant_id`,
