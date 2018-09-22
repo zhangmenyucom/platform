@@ -45,11 +45,13 @@
 	<insert id="save" parameterType="com.platform.entity.UserLevelVo" useGeneratedKeys="true" keyProperty="id">
 		insert into user_level
 		(
+		    `merchant_id`,
 			`name`, 
 			`description`
 		)
 		values
 		(
+		    #{merchantId},
 			#{name}, 
 			#{description}
 		)

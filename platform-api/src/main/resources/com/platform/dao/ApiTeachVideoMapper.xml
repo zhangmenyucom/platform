@@ -73,6 +73,7 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.TeachVideoVo" useGeneratedKeys="true" keyProperty="id">
 		insert into teach_video(
+		    `merchant_id`,
 			`title`,
 			`brief`,
 			`wrapper`,
@@ -81,6 +82,7 @@
 			`create_time`,
 			`update_time`)
 		values(
+		    #{merchantId},
 			#{title},
 			#{brief},
 			#{wrapper},

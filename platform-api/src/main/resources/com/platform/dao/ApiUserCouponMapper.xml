@@ -76,6 +76,7 @@
     <insert id="save" parameterType="com.platform.entity.UserCouponVo" useGeneratedKeys="true" keyProperty="id">
 		insert into user_coupon
 		(
+			`merchant_id`,
 			`coupon_id`, 
 			`coupon_number`, 
 			`user_id`, 
@@ -87,6 +88,7 @@
 		)
 		values
 		(
+		    #{merchantId},
             #{coupon_id},
 			#{coupon_number},
 			#{user_id},

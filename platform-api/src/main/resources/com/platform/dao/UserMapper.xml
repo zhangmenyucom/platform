@@ -6,6 +6,7 @@
     <insert id="save" parameterType="com.platform.entity.UserVo" useGeneratedKeys="true" keyProperty="userId">
 		insert into tb_user
 		(
+		    `merchant_id`,
 			`username`,
 			`mobile`,
 			`password`,
@@ -13,6 +14,7 @@
 		)
 		values
 			(
+			    #{merchantId},
 				#{username},
 				#{mobile},
 				#{password},
