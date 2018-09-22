@@ -30,11 +30,13 @@
 	<insert id="save" parameterType="com.platform.entity.SysOssEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into sys_oss
 		(
+			`merchant_id`,
 			`url`, 
 			`create_date`
 		)
 		values
 		(
+		    #{merchantId},
 			#{url}, 
 			#{createDate}
 		)

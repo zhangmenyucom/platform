@@ -23,6 +23,7 @@
 	<select id="queryObject" resultType="com.platform.entity.SysSmsLogEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`user_id`,
 			`content`,
 			`mobile`,
@@ -43,6 +44,7 @@
 	<select id="queryList" resultType="com.platform.entity.SysSmsLogEntity">
 		select
 		sys_sms_log.id,
+		sys_sms_log.merchant_id,
 		sys_sms_log.user_id,
 		sys_sms_log.content,
 		sys_sms_log.mobile,
@@ -93,6 +95,7 @@
 	<insert id="save" parameterType="com.platform.entity.SysSmsLogEntity">
 		insert into sys_sms_log(
 			`user_id`,
+			`merchant_id`,
 			`content`,
 			`mobile`,
 			`stime`,
@@ -106,6 +109,7 @@
 			`black_num`,
 			`return_msg`)
 		values(
+		    #{merchantId},
 			#{userId},
 			#{content},
 			#{mobile},

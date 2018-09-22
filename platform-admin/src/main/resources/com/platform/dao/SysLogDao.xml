@@ -44,6 +44,7 @@
 	<insert id="save" parameterType="com.platform.entity.SysLogEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into sys_log
 		(
+			`merchant_id`,
 			`username`, 
 			`operation`, 
 			`method`, 
@@ -53,6 +54,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{username}, 
 			#{operation}, 
 			#{method}, 
