@@ -12,10 +12,4 @@ public class Constants {
     public  static final String TRANSFERS_PAY = ResourceUtil.getConfigByName("wx.transfers_pay");
     // 企业付款查询
     public  static final String TRANSFERS_PAY_QUERY =ResourceUtil.getConfigByName("wx.transfers_pay_query");
-
-    public  static final String APP_ID = ResourceUtil.getConfigByName("wx.appId");
-
-    public static final String MCH_ID = ResourceUtil.getConfigByName("wx.mchId");
-
-    public static final String API_SECRET =ResourceUtil.getConfigByName("wx.secret");
 }

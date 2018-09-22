@@ -7,12 +7,10 @@ import com.platform.common.OrderStatusEnum;
 import com.platform.common.PayStatusEnum;
 import com.platform.common.ShippingStatusEnum;
 import com.platform.config.CommissionRule;
+import com.platform.dao.ApiSysUserConfigMapper;
 import com.platform.entity.*;
 import com.platform.enums.UserLevelEnum;
-import com.platform.service.ApiCommissionOrderService;
-import com.platform.service.ApiOrderGoodsService;
-import com.platform.service.ApiOrderService;
-import com.platform.service.ApiUserService;
+import com.platform.service.*;
 import com.platform.util.ApiBaseAction;
 import com.platform.util.wechat.WechatUtil;
 import com.platform.util.wechat.WeichatRefundApiResult;
@@ -56,6 +54,8 @@ public class ApiPayController extends ApiBaseAction {
     private ApiCommissionOrderService commissionOrderService;
     @Autowired
     private CommissionRule commissionRule;
+    @Autowired
+    private ApiUserConfigService apiUserConfigService;
 
 
     /**
@@ -72,7 +72,7 @@ public class ApiPayController extends ApiBaseAction {
      */
     @ApiOperation(value = "获取支付的请求参数")
     @GetMapping("prepay")
-    public Object payPrepay(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, Long orderId) {
+    public Object payPrepay(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser, Long orderId) {
         //
         OrderVo orderInfo = orderService.queryObject(orderId);
 
@@ -86,6 +86,13 @@ public class ApiPayController extends ApiBaseAction {
         if (Objects.equals(orderInfo.getPay_status(), PayStatusEnum.REFUND.getCode())) {
             return toResponsObject(400, "订单已退款", "");
         }
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("merchantId", merchantId);
+        List<SysUserConfigVo> sysUserConfigVos = apiUserConfigService.queryList(map);
+        if (sysUserConfigVos.isEmpty()) {
+            return toResponsObject(400, "商户配置不完整", "");
+        }
+        SysUserConfigVo sysUserConfigVo = sysUserConfigVos.get(0);
 
         String nonceStr = CharUtil.getRandomString(32);
 
@@ -93,9 +100,9 @@ public class ApiPayController extends ApiBaseAction {
 
         try {
             Map<Object, Object> parameters = new TreeMap<>();
-            parameters.put("appid", ResourceUtil.getConfigByName("wx.appId"));
+            parameters.put("appid", sysUserConfigVo.getAppId());
             // 商家账号。
-            parameters.put("mch_id", ResourceUtil.getConfigByName("wx.mchId"));
+            parameters.put("mch_id", sysUserConfigVo.getMchId());
             String randomStr = CharUtil.getRandomNum(18).toUpperCase();
             // 随机字符串
             parameters.put("nonce_str", randomStr);
@@ -106,7 +113,7 @@ public class ApiPayController extends ApiBaseAction {
             // 商品描述
             parameters.put("body", "商城-支付");
             //订单的商品
-            List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam,merchantId);
+            List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam, merchantId);
             if (null != orderGoods) {
                 String body = "商城-";
                 for (OrderGoodsVo goodsVo : orderGoods) {
@@ -121,12 +128,13 @@ public class ApiPayController extends ApiBaseAction {
             //支付金额
             parameters.put("total_fee", orderInfo.getActual_price().multiply(new BigDecimal(100)).intValue());
             // 回调地址
-            parameters.put("notify_url", ResourceUtil.getConfigByName("wx.notifyUrl"));
+            parameters.put("notify_url", String.format(ResourceUtil.getConfigByName("wx.notifyUrl"), merchantId));
+
             // 交易类型APP
             parameters.put("trade_type", ResourceUtil.getConfigByName("wx.tradeType"));
             parameters.put("spbill_create_ip", getClientIp());
             parameters.put("openid", loginUser.getWeixin_openid());
-            String sign = WechatUtil.arraySign(parameters, ResourceUtil.getConfigByName("wx.paySignKey"));
+            String sign = WechatUtil.arraySign(parameters, sysUserConfigVo.getPaySignKey());
             // 数字签证
             parameters.put("sign", sign);
 
@@ -148,13 +156,13 @@ public class ApiPayController extends ApiBaseAction {
                 } else if (result_code.equalsIgnoreCase("SUCCESS")) {
                     String prepay_id = MapUtils.getString("prepay_id", resultUn);
                     // 先生成paySign 参考https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_7&index=5
-                    resultObj.put("appId", ResourceUtil.getConfigByName("wx.appId"));
+                    resultObj.put("appId", sysUserConfigVo.getAppId());
                     resultObj.put("timeStamp", DateUtils.timeToStr(System.currentTimeMillis() / 1000, DateUtils.DATE_TIME_PATTERN));
                     resultObj.put("nonceStr", nonceStr);
                     resultObj.put("package", "prepay_id=" + prepay_id);
                     resultObj.put("signType", "MD5");
-                    String paySign = WechatUtil.arraySign(resultObj, ResourceUtil.getConfigByName("wx.paySignKey"));
-                    resultObj.put("paySign", paySign);
+                    String paySign = WechatUtil.arraySign(resultObj, sysUserConfigVo.getPaySignKey());
+                    resultObj.put("paySign",paySign);
                     // 业务处理
                     orderInfo.setPay_id(prepay_id);
                     // 付款中
@@ -175,22 +183,29 @@ public class ApiPayController extends ApiBaseAction {
      */
     @ApiOperation(value = "查询订单状态")
     @GetMapping("query")
-    public Object orderQuery(@LoginUser UserVo loginUser, Long orderId) {
+    public Object orderQuery(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser, Long orderId) {
         if (orderId == null) {
             return toResponsFail("订单不存在");
         }
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("merchantId", merchantId);
+        List<SysUserConfigVo> sysUserConfigVos = apiUserConfigService.queryList(map);
+        if (sysUserConfigVos.isEmpty()) {
+            return toResponsObject(400, "商户配置不完整", "");
+        }
+        SysUserConfigVo sysUserConfigVo = sysUserConfigVos.get(0);
 
         Map<Object, Object> parame = new TreeMap<>();
-        parame.put("appid", ResourceUtil.getConfigByName("wx.appId"));
+        parame.put("appid", sysUserConfigVo.getAppId());
         // 商家账号。
-        parame.put("mch_id", ResourceUtil.getConfigByName("wx.mchId"));
+        parame.put("mch_id", sysUserConfigVo.getMchId());
         String randomStr = CharUtil.getRandomNum(18).toUpperCase();
         // 随机字符串
         parame.put("nonce_str", randomStr);
         // 商户订单编号
         parame.put("out_trade_no", orderId);
 
-        String sign = WechatUtil.arraySign(parame, ResourceUtil.getConfigByName("wx.paySignKey"));
+        String sign = WechatUtil.arraySign(parame, sysUserConfigVo.getPaySignKey());
         // 数字签证
         parame.put("sign", sign);
 
@@ -225,10 +240,10 @@ public class ApiPayController extends ApiBaseAction {
                 Integer num = (Integer) J2CacheUtils.get(J2CacheUtils.SHOP_CACHE_NAME, "queryRepeatNum" + orderId + "");
                 if (num == null) {
                     J2CacheUtils.put(J2CacheUtils.SHOP_CACHE_NAME, "queryRepeatNum" + orderId + "", 1);
-                    this.orderQuery(loginUser, orderId);
+                    this.orderQuery(merchantId,loginUser, orderId);
                 } else if (num <= 3) {
                     J2CacheUtils.remove(J2CacheUtils.SHOP_CACHE_NAME, "queryRepeatNum" + orderId);
-                    this.orderQuery(loginUser, orderId);
+                    this.orderQuery(merchantId,loginUser, orderId);
                 } else {
                     return toResponsFail("查询失败,error=" + trade_state);
                 }

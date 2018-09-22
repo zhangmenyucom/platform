@@ -44,7 +44,7 @@
         ad.content,
         ad.end_time,
         ad.enabled,
-        ad_position.name ad_Position_Name
+        ad_position.name as ad_Position_Name
         from ad LEFT JOIN ad_position on ad.ad_position_id = ad_position.id
         WHERE 1=1
         <if test="merchantId!=null">

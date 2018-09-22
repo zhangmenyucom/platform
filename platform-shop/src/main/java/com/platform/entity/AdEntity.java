@@ -20,6 +20,8 @@ public class AdEntity extends BaseEntity implements Serializable {
 
     /**广告位置Id**/
     private Integer adPositionId;
+    /**广告位置**/
+    private String adPositionName;
     /**形式**/
     private Integer mediaType;
     /**广告名称**/
