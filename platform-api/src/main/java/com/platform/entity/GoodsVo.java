@@ -80,6 +80,6 @@ public class GoodsVo extends BaseEntity  implements Serializable {
     private Integer cart_num = 0;
     // 冗余
     // 产品Id
-    private Integer product_id;
+    private Long product_id;
 
 }

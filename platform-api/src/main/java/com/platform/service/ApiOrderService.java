@@ -223,10 +223,10 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
 
             OrderGoodsVo orderGoodsVo = new OrderGoodsVo();
 
-            GoodsVo goodsVo = apiGoodsService.queryObject(giftEntityVo.getGoodsId().intValue());
+            GoodsVo goodsVo = apiGoodsService.queryObject(giftEntityVo.getGoodsId());
             ProductVo productVo = productService.queryObject(goodsVo.getProduct_id());
             orderGoodsVo.setOrder_id(orderInfo.getId());
-            orderGoodsVo.setGoods_id(giftEntityVo.getGoodsId().intValue());
+            orderGoodsVo.setGoods_id(giftEntityVo.getGoodsId());
             orderGoodsVo.setGoods_sn(productVo.getGoods_sn());
             orderGoodsVo.setProduct_id(productVo.getProduct_id());
             orderGoodsVo.setGoods_name(goodsVo.getName());
@@ -234,15 +234,16 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             orderGoodsVo.setMarket_price(goodsVo.getMarket_price());
             orderGoodsVo.setRetail_price(goodsVo.getMarket_price());
             orderGoodsVo.setNumber(pointExchangeDto.getGiftNumber());
+            orderGoodsVo.setMerchantId(userVo.getMerchantId());
             apiOrderGoodsMapper.save(orderGoodsVo);
         }
         /**记录兑换记录**/
         GiftExchangeRecordEntityVo giftExchangeRecordEntityVo = new GiftExchangeRecordEntityVo();
-        giftExchangeRecordEntityVo.setCreateTime(new Date())
+        giftExchangeRecordEntityVo
                 .setGiftId(giftEntityVo.getId())
                 .setUsePoint(giftEntityVo.getPointValue())
                 .setUserId(userVo.getUserId())
-                .setOrderSn(orderSn);
+                .setOrderSn(orderSn).setCreateTime(new Date());
         apiGiftExchangeRecordService.save(giftExchangeRecordEntityVo);
         /**更新积分**/
         apiUserService.update(new UserVo().setPoint(userVo.getPoint() - giftEntityVo.getPointValue()).setUserId(userVo.getUserId()));
