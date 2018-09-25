@@ -137,7 +137,7 @@ public class ApiUserController extends ApiBaseAction {
      */
     @ApiOperation(value = "签到")
     @GetMapping("/sign")
-    public Object sign(@LoginUser UserVo loginUser) {
+    public Object sign(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
         SignRecordVo signRecordVo = apiSignRecordService.queryLatestSign(loginUser.getUserId());
         if (signRecordVo != null) {
             SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
@@ -154,6 +154,7 @@ public class ApiUserController extends ApiBaseAction {
         signRecord.setGainPoint(10L);
         signRecord.setSignDate(new Date());
         signRecord.setUserId(loginUser.getUserId());
+        signRecord.setMerchantId(merchantId);
         apiSignRecordService.save(signRecord);
         return toResponsObject(ResponseCodeEnum.SUCCESS.getCode(), "签到成功,获取10积分", "签到成功");
     }
