@@ -31,8 +31,8 @@ public class BrandEntity extends BaseEntity  implements Serializable {
     /**显示**/
     private Integer isShow;
     /****/
-    private BigDecimal floorPrice;
-    /**app显示图片**/
+    private BigDecimal floorPrice=BigDecimal.ZERO;
+    //app显示图片
     private String appListPicUrl;
     /**新品牌**/
     private Integer isNew;
