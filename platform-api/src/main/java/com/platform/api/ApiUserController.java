@@ -136,7 +136,7 @@ public class ApiUserController extends ApiBaseAction {
      * 签到
      */
     @ApiOperation(value = "签到")
-    @PostMapping("/sign")
+    @GetMapping("/sign")
     public Object sign(@LoginUser UserVo loginUser) {
         SignRecordVo signRecordVo = apiSignRecordService.queryLatestSign(loginUser.getUserId());
         if (signRecordVo != null) {

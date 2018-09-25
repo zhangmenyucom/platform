@@ -30,7 +30,7 @@ public class BrandEntity implements Serializable {
     //显示
     private Integer isShow;
     //
-    private BigDecimal floorPrice;
+    private BigDecimal floorPrice=BigDecimal.ZERO;
     //app显示图片
     private String appListPicUrl;
     //新品牌
