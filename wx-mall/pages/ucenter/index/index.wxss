@@ -43,6 +43,7 @@ page{
   font-size: 28rpx;
 }
 .name-text .bindPhone_text{
+  display: block;
   width:200rpx;
   line-height:40rpx;
   background:none;

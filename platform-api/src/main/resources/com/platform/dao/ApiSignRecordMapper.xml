@@ -29,11 +29,7 @@
 			`gain_point`,
 			`sign_date`
 		from sign_record
-		where
         WHERE 1=1
-        <if test="merchantId!=null">
-            and merchant_id=#{merchantId}
-        </if>
         and user_id = #{userId} order by sign_date desc limit 1
 	</select>
 

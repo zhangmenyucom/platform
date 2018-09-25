@@ -1,6 +1,6 @@
 // var NewApiRootUrl = 'http://fly2you.cn/platform/api/';
-var NewApiRootUrl = 'https://www.whcmhlkj.com/api/2/';
-var ApiRootUrl = 'https://www.whcmhlkj.com/';
+var NewApiRootUrl = 'http://localhost:8080/api/2/';
+var ApiRootUrl = 'http://localhost:8080/';
 module.exports = {
   IndexUrlNewGoods: NewApiRootUrl + 'index/newGoods', //
   IndexUrlHotGoods: NewApiRootUrl + 'index/hotGoods', //首页数据接口

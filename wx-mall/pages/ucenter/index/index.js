@@ -50,12 +50,11 @@ Page({
         
         
 
-        // this.setData({
-        //     userInfo: app.globalData.userInfo,
-        // });
+        this.setData({
+            userInfo: app.globalData.userInfo,
+        });
 
         
-
     },
     onHide: function () {
         // 页面隐藏
@@ -64,32 +63,47 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
-    
-    singin(){
-      var token = wx.getStorageSync('token')
-      wx.request({
-        url: 'https://whcmhlkj.com/api/user/sign',
-        method:'POST',
-        header: {
-          'Content-Type': 'application/json',
-          'X-Nideshop-Token': token
-        },
-        success:res=>{
-          console.log('res=='+JSON.stringify(res))
-          if(res.data.errno == 0){
-            wx.showModal({
-              title: '提示',
-              content: res.data.errmsg,
-            })
-            
-          }else{
-            wx.showModal({
-              title: '提示',
-              content: res.data.errmsg,
-            })
-          }
+    //签到
+  SignIn(){
+      util.request(api.SignIn).then((res)=>{
+        if (res.errno == 0) {
+          wx.showModal({
+            title: '提示',
+            content: res.errmsg,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/ucenter/index/index'
+                });
+              }
+              if (res.cancel) {
+                wx.switchTab({
+                  url: '/pages/ucenter/index/index'
+                });
+              }
+            }
+          })
+
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.errmsg,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/ucenter/index/index'
+                });
+              }
+              if (res.cancel) {
+                wx.switchTab({
+                  url: '/pages/ucenter/index/index'
+                });
+              }
+            }
+          })
         }
       })
+      
     },
     bindGetUserInfo(e) {
       let userInfo = wx.getStorageSync('userInfo');
@@ -196,12 +210,13 @@ Page({
       //微信绑定手机
       var data = { 'iv': e.detail.iv, 'encryptedData': e.detail.encryptedData }
       util.request(api.Wxbindphone,data).then((res)=>{
-        if (res.data.errno == 0) {
-          console.log('res-' + JSON.stringify(res))
+        if (res.errno == 0) {
+          this.data.userInfo.mobile = res.data.phoneNumber
+          console.log(this.data.userInfo)
         } else {
           wx.showModal({
             title: '提示',
-            content: res.data.errmsg,
+            content: res.errmsg,
           })
 
           return
