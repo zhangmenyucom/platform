@@ -2,6 +2,7 @@ package com.platform.entity;
 
 import com.platform.common.OrderStatusEnum;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
@@ -20,6 +21,7 @@ import static com.platform.common.OrderStatusEnum.*;
  * @date 2017-08-15 08:03:40
  */
 @Data
+@Accessors(chain=true)
 public class OrderVo implements Serializable {
     private static final long serialVersionUID = 1L;
 

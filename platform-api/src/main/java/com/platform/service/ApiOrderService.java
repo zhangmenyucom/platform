@@ -2,8 +2,7 @@ package com.platform.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.platform.cache.J2CacheUtils;
-import com.platform.common.CouponStatusEnum;
-import com.platform.common.OrderTypeEnum;
+import com.platform.common.*;
 import com.platform.dao.*;
 import com.platform.entity.*;
 import com.platform.util.CommonUtil;
@@ -32,6 +31,14 @@ public class ApiOrderService {
     private ApiOrderGoodsMapper apiOrderGoodsMapper;
     @Autowired
     private ApiProductService productService;
+    @Autowired
+    private ApiGiftService apiGiftService;
+    @Autowired
+    private ApiUserService apiUserService;
+    @Autowired
+    private ApiGiftExchangeRecordService apiGiftExchangeRecordService;
+    @Autowired
+    private ApiGoodsService apiGoodsService;
 
 
     public OrderVo queryObject(Integer id) {
@@ -219,4 +226,60 @@ public class ApiOrderService {
         return resultObj;
     }
 
+    public void exchangePoint(PointExchangeDto pointExchangeDto, UserVo loginUser) throws Exception {
+        UserVo userVo = apiUserService.queryObject(loginUser.getUserId());
+        GiftEntityVo giftEntityVo = apiGiftService.queryObject(pointExchangeDto.getGiftId());
+        if (userVo.getPoint() < giftEntityVo.getPointValue() * pointExchangeDto.getGiftNumber()) {
+            throw new Exception("积分不足");
+        }
+        String orderSn = CommonUtil.generateOrderNumber();
+        if (giftEntityVo.getGoodsId() != null && pointExchangeDto.getAddressId() != null) {
+            AddressVo addressVo = apiAddressMapper.queryObject(pointExchangeDto.getAddressId());
+            OrderVo orderInfo = new OrderVo();
+            orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode())
+                    .setActual_price(BigDecimal.ZERO)
+                    .setAdd_time(new Date())
+                    .setOrder_sn(orderSn)
+                    .setOrder_price(BigDecimal.ZERO)
+                    .setOrder_type(OrderTypeEnum.POINT.getCode())
+                    .setPay_status(PayStatusEnum.PAYED.getCode())
+                    .setShipping_status(ShippingStatusEnum.NOT_SHIPPED.getCode())
+                    //收货地址和运费
+                    .setConsignee(addressVo.getUserName())
+                    .setMobile(addressVo.getTelNumber())
+                    .setProvince(addressVo.getProvinceName())
+                    .setCity(addressVo.getCityName())
+                    .setDistrict(addressVo.getCountyName())
+                    .setAddress(addressVo.getDetailInfo())
+                    .setIntegral(0)
+                    .setIntegral_money(BigDecimal.ZERO)
+                    .setGoodsCount(pointExchangeDto.getGiftNumber());
+            apiOrderMapper.save(orderInfo);
+
+            OrderGoodsVo orderGoodsVo = new OrderGoodsVo();
+
+            GoodsVo goodsVo = apiGoodsService.queryObject(giftEntityVo.getGoodsId().intValue());
+            ProductVo productVo = productService.queryObject(goodsVo.getProduct_id());
+            orderGoodsVo.setOrder_id(orderInfo.getId());
+            orderGoodsVo.setGoods_id(giftEntityVo.getGoodsId().intValue());
+            orderGoodsVo.setGoods_sn(productVo.getGoods_sn());
+            orderGoodsVo.setProduct_id(productVo.getProduct_id());
+            orderGoodsVo.setGoods_name(goodsVo.getName());
+            orderGoodsVo.setList_pic_url(goodsVo.getList_pic_url());
+            orderGoodsVo.setMarket_price(goodsVo.getMarket_price());
+            orderGoodsVo.setRetail_price(goodsVo.getMarket_price());
+            orderGoodsVo.setNumber(pointExchangeDto.getGiftNumber());
+            apiOrderGoodsMapper.save(orderGoodsVo);
+        }
+        /**记录兑换记录**/
+        GiftExchangeRecordEntityVo giftExchangeRecordEntityVo = new GiftExchangeRecordEntityVo();
+        giftExchangeRecordEntityVo.setCreateTime(new Date())
+                .setGiftId(giftEntityVo.getId())
+                .setUsePoint(giftEntityVo.getPointValue())
+                .setUserId(userVo.getUserId())
+                .setOrderSn(orderSn);
+        apiGiftExchangeRecordService.save(giftExchangeRecordEntityVo);
+        /**更新积分**/
+        apiUserService.update(new UserVo().setPoint(userVo.getPoint() - giftEntityVo.getPointValue()).setUserId(userVo.getUserId()));
+    }
 }

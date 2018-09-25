@@ -14,6 +14,7 @@ import java.util.Map;
 @Getter
 public enum OrderTypeEnum {
     CART("1", "购物车"),
+    POINT("2", "积分兑换"),
     DIRECT_BUY("4", "立即购买");
 
 
