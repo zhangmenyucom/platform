@@ -1,8 +1,8 @@
 package com.platform.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.platform.common.OrderStatusEnum;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
@@ -21,7 +21,8 @@ import static com.platform.common.OrderStatusEnum.*;
  * @date 2017-08-15 08:03:40
  */
 @Data
-public class OrderVo extends BaseEntity  implements Serializable {
+@Accessors(chain=true)
+public class OrderVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //订单序列号

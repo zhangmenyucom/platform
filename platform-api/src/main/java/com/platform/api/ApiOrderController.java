@@ -7,6 +7,7 @@ import com.platform.common.PayStatusEnum;
 import com.platform.common.ShippingStatusEnum;
 import com.platform.entity.OrderGoodsVo;
 import com.platform.entity.OrderVo;
+import com.platform.entity.PointExchangeDto;
 import com.platform.entity.UserVo;
 import com.platform.service.ApiOrderGoodsService;
 import com.platform.service.ApiOrderService;
@@ -151,6 +152,21 @@ public class ApiOrderController extends ApiBaseAction {
             e.printStackTrace();
         }
         return toResponsFail("提交失败");
+    }
+
+    /**
+     * 积分兑换
+     */
+    @ApiOperation(value = "积分兑换")
+    @PostMapping("/pointExchange")
+    public Object pointExchange(@LoginUser UserVo loginUser, @RequestBody PointExchangeDto pointExchangeDto) {
+       try {
+           orderService.exchangePoint(pointExchangeDto,loginUser);
+           return toResponsFail("兑换成功");
+       }catch (Exception e){
+           System.out.println(e.getMessage());
+           return toResponsFail("兑换失败");
+       }
     }
 
     /**

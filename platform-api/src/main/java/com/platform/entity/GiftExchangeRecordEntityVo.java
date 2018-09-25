@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
  * @date 2018-09-13 15:20:44
  */
 @Data
+@Accessors(chain = true)
 public class GiftExchangeRecordEntityVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 

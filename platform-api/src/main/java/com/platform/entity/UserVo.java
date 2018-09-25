@@ -2,6 +2,7 @@ package com.platform.entity;
 
 import com.platform.utils.JsonUtil;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +16,9 @@ import java.util.List;
  * @date 2017-08-15 08:03:41
  */
 @Data
+@Accessors(chain = true)
 public class UserVo extends BaseEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**主键**/
