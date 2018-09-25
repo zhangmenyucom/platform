@@ -141,7 +141,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
 
         /**添加引荐人id(特殊商品)**/
         orderInfo.setParent_id(parentId);
-
+        orderInfo.setMerchantId(loginUser.getMerchantId());
         //开启事务，插入订单信息和订单商品
         apiOrderMapper.save(orderInfo);
         if (null == orderInfo.getId()) {
@@ -164,6 +164,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             orderGoodsVo.setNumber(goodsItem.getNumber());
             orderGoodsVo.setGoods_specifition_name_value(goodsItem.getGoods_specifition_name_value());
             orderGoodsVo.setGoods_specifition_ids(goodsItem.getGoods_specifition_ids());
+            orderGoodsVo.setMerchantId(loginUser.getMerchantId());
             orderGoodsData.add(orderGoodsVo);
             apiOrderGoodsMapper.save(orderGoodsVo);
         }

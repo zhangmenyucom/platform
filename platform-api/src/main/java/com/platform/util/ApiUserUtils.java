@@ -15,8 +15,8 @@ public class ApiUserUtils {
     }
 
     /**替换字符串**/
-    public static String getWebAccess(String CODE) {
-        return String.format(ResourceUtil.getConfigByName("wx.webAccessTokenhttps"), ResourceUtil.getConfigByName("wx.appId"), ResourceUtil.getConfigByName("wx.secret"),CODE);
+    public static String getWebAccess(String code,String appId,String secret) {
+        return String.format(ResourceUtil.getConfigByName("wx.webAccessTokenhttps"), appId,secret,code);
     }
 
     /**替换字符串**/

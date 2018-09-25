@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.common.Constants;
+import com.platform.dao.ApiSysUserConfigMapper;
 import com.platform.entity.FullUserInfo;
+import com.platform.entity.SysUserConfigVo;
 import com.platform.entity.UserInfo;
 import com.platform.enums.UserLevelEnum;
 import com.platform.entity.UserVo;
+import com.platform.service.ApiUserConfigService;
 import com.platform.service.ApiUserService;
 import com.platform.service.TokenService;
 import com.platform.util.ApiBaseAction;
@@ -21,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections.MapUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,11 +43,14 @@ import java.util.Map;
  */
 @Api(tags = "API登录授权接口")
 @RestController
-@RequestMapping("/api//{merchantId}/auth")
+@RequestMapping("/api/{merchantId}/auth")
 public class ApiAuthController extends ApiBaseAction {
     private Logger logger = Logger.getLogger(getClass());
     @Autowired
     private ApiUserService userService;
+
+    @Autowired
+    private ApiUserConfigService apiUserConfigService;
 
     /**
      * 登录
@@ -51,7 +58,7 @@ public class ApiAuthController extends ApiBaseAction {
     @IgnoreAuth
     @ApiOperation(value = "登录")
     @PostMapping("login_by_weixin")
-    public Object loginByWeixin() {
+    public Object loginByWeixin(@PathVariable("merchantId") Long merchantId) {
         JSONObject jsonParam = this.getJsonRequest();
         FullUserInfo fullUserInfo = null;
         String code = "";
@@ -67,7 +74,8 @@ public class ApiAuthController extends ApiBaseAction {
 
         /**获取openid**/
         /**通过自定义工具类组合出小程序需要的登录凭证 code**/
-        String requestUrl = ApiUserUtils.getWebAccess(code);
+        SysUserConfigVo sysUserConfigVo = apiUserConfigService.queryObject(merchantId);
+        String requestUrl = ApiUserUtils.getWebAccess(code,sysUserConfigVo.getAppId(),sysUserConfigVo.getSecret());
         logger.info("》》》组合token为：" + requestUrl);
         String res = restTemplate.getForObject(requestUrl, String.class);
         System.out.println("res:" + res);
