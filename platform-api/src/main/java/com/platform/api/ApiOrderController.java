@@ -62,8 +62,6 @@ public class ApiOrderController extends ApiBaseAction {
         params.put("order", "asc");
         //查询列表数据
         Query query = new Query(params,merchantId);
-        /**查询列表数据**/
-        Query query = new Query(params);
         List<OrderVo> orderEntityList = orderService.queryList(query);
         int total = orderService.queryTotal(query);
         ApiPageUtils pageUtil = new ApiPageUtils(orderEntityList, total, query.getLimit(), query.getPage());
@@ -97,9 +95,6 @@ public class ApiOrderController extends ApiBaseAction {
         orderGoodsParam.put("order_id", orderId);
         //订单的商品
         List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam,merchantId);
-        //订单最后支付时间
-        /**订单的商品**/
-        List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
         /**订单最后支付时间**/
         //订单最后支付时间
         if (orderInfo.getOrder_status() == 0) {
