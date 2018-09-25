@@ -101,6 +101,7 @@ public class ApiOrderController extends ApiBaseAction {
         /**订单的商品**/
         List<OrderGoodsVo> orderGoods = orderGoodsService.queryList(orderGoodsParam);
         /**订单最后支付时间**/
+        //订单最后支付时间
         if (orderInfo.getOrder_status() == 0) {
 
         }

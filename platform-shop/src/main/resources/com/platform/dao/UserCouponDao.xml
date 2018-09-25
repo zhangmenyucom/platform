@@ -17,6 +17,7 @@
     <select id="queryObject" resultType="com.platform.entity.UserCouponEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`coupon_id`,
 			`coupon_number`,
 			`user_sn`,
@@ -30,6 +31,7 @@
     <select id="queryList" resultType="com.platform.entity.UserCouponEntity">
         select
         user_coupon.id,
+        user_coupon.merchant_id,
         user_coupon.coupon_id,
         user_coupon.coupon_number,
         user_coupon.user_id,
@@ -83,6 +85,7 @@
 
     <insert id="save" parameterType="com.platform.entity.UserCouponEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into user_coupon(
+			`merchant_id`,
 			`coupon_id`,
 			`coupon_number`,
 			`user_id`,
@@ -90,6 +93,7 @@
 			`add_time`,
 			`order_sn`)
 		values(
+		    #{merchantId},
 			#{couponId},
 			#{couponNumber},
 			#{userId},

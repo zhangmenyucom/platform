@@ -22,6 +22,7 @@
     <select id="queryObject" resultType="com.platform.entity.BrandEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`name`,
 			`list_pic_url`,
 			`simple_desc`,
@@ -40,6 +41,7 @@
     <select id="queryList" resultType="com.platform.entity.BrandEntity">
         select
         `id`,
+        `merchant_id`,
         `name`,
         `list_pic_url`,
         `simple_desc`,
@@ -86,6 +88,7 @@
     <insert id="save" parameterType="com.platform.entity.BrandEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into brand(
 			`name`,
+			`merchant_id`,
 			`list_pic_url`,
 			`simple_desc`,
 			`pic_url`,
@@ -97,6 +100,7 @@
 			`new_pic_url`,
 			`new_sort_order`)
 		values(
+		    #{merchantId},
 			#{name},
 			#{listPicUrl},
 			#{simpleDesc},

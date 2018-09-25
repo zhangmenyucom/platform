@@ -10,9 +10,6 @@
 	<select id="queryList" resultType="com.platform.entity.SysLogEntity">
 		select * from sys_log
 		<where>
-			<if test="merchantId!=null">
-				and merchant_id=#{merchantId}
-			</if>
 			<if test="key != null and key.trim() != ''">
 				and `username` like concat('%',#{key},'%') or `operation` like concat('%',#{key},'%')
 			</if>
@@ -29,9 +26,6 @@
  	<select id="queryTotal" resultType="int">
 		select count(*) from sys_log
 		<where>
-			<if test="merchantId!=null">
-				and merchant_id=#{merchantId}
-			</if>
 			<if test="key != null and key.trim() != ''">
                 `username` like concat('%',#{key},'%') or `operation` like concat('%',#{key},'%')
 			</if>
@@ -44,7 +38,7 @@
 	<insert id="save" parameterType="com.platform.entity.SysLogEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into sys_log
 		(
-			`username`, 
+			`username`,
 			`operation`, 
 			`method`, 
 			`params`, 
@@ -53,7 +47,7 @@
 		)
 		values
 		(
-			#{username}, 
+			#{username},
 			#{operation}, 
 			#{method}, 
 			#{params}, 

@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.UserDao;
 import com.platform.entity.UserEntity;
 import com.platform.service.UserService;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class UserServiceImpl extends BaseServiceImpl<UserEntity, UserDao> implements UserService {
 
     @Override
+    @MerchantFilter
     public List<UserVo> queryDetailInfoList(Map<String, Object> map) {
         return getDao().queryDetailInfoList(map);
     }

@@ -66,7 +66,7 @@
 		)
 		values
 		(
-		    #{merchantId,
+		    #{merchantId},
 			#{goods_id},
 			#{img_url},
 			#{img_desc},

@@ -45,11 +45,13 @@
 	<insert id="save" parameterType="com.platform.entity.SpecificationEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into specification
 		(
+			`merchant_id`,
 			`name`, 
 			`sort_order`
 		)
 		values
 		(
+		    #{merchantId},
 			#{name}, 
 			#{sortOrder}
 		)

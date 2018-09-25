@@ -15,6 +15,7 @@
 	<insert id="save" parameterType="com.platform.entity.TokenEntity">
 		insert into tb_token
 		(
+			`merchant_id`,
 			`user_id`, 
 			`token`, 
 			`expire_time`, 
@@ -22,6 +23,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{userId}, 
 			#{token}, 
 			#{expireTime}, 

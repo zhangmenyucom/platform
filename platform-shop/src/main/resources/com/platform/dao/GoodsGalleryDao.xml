@@ -15,6 +15,7 @@
     <select id="queryObject" resultType="com.platform.entity.GoodsGalleryEntity">
         select
         `id`,
+        `merchant_id`,
         `goods_id`,
         `img_url`,
         `img_desc`,
@@ -70,11 +71,13 @@
 
     <insert id="save" parameterType="com.platform.entity.GoodsGalleryEntity" useGeneratedKeys="true" keyProperty="id">
         insert into goods_gallery(
+        `merchant_id`,
         `goods_id`,
         `img_url`,
         `img_desc`,
         `sort_order`)
         values(
+        #{merchantId},
         #{goodsId},
         #{imgUrl},
         #{imgDesc},

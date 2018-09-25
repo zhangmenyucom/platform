@@ -141,9 +141,9 @@ public class OrderVo extends BaseEntity  implements Serializable {
     /**
      * 使用的优惠券id
      **/
-    private Integer coupon_id;
+    private Long  coupon_id;
     /****/
-    private Integer parent_id;
+    private Long parent_id;
     /**
      * 优惠价格
      **/

@@ -17,6 +17,7 @@
 
 	<select id="queryObject" resultType="com.platform.entity.FeedbackEntity">
 		select
+			`merchant_id`,
 			`msg_id`,
 			`user_id`,
 			`user_name`,
@@ -31,6 +32,7 @@
 
 	<select id="queryList" resultType="com.platform.entity.FeedbackEntity">
 		select
+		`merchant_id`,
 		`msg_id`,
 		`user_id`,
 		`user_name`,
@@ -73,6 +75,7 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.FeedbackEntity" useGeneratedKeys="true" keyProperty="msgId">
 		insert into feedback(
+			`merchant_id`,
 			`user_id`,
 			`user_name`,
 			`mobile`,
@@ -81,6 +84,7 @@
 			`add_time`,
 			`status` )
 		values(
+		    #{merchantId},
 			#{userId},
 			#{userName},
 			#{mobile},

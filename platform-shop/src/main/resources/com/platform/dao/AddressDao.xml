@@ -20,6 +20,7 @@
     <select id="queryObject" resultType="com.platform.entity.AddressEntity">
 		select
         address.id,
+		address.merchant_id,
 		address.user_id,
 		address.user_name,
 		address.tel_number,
@@ -37,6 +38,7 @@
     <select id="queryList" resultType="com.platform.entity.AddressEntity">
         select
         address.id,
+        address.merchant_id,
         address.user_id,
         address.user_name,
         address.tel_number,
@@ -88,6 +90,7 @@
     <insert id="save" parameterType="com.platform.entity.AddressEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into address(
 			`user_id`,
+			`merchant_id`,
 			`user_name`,
 			`tel_number`,
 			`postal_Code`,
@@ -98,6 +101,7 @@
 			`detail_Info`)
 		values(
 			#{userId},
+			#{merchantId},
 			#{userName},
 			#{telNumber},
 			#{postalCode},

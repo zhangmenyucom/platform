@@ -51,12 +51,14 @@
     <insert id="save" parameterType="com.platform.entity.FootprintEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into footprint
 		(
+			`merchant_id`,
 			`user_id`, 
 			`goods_id`, 
 			`add_time`
 		)
 		values
 		(
+		    #{merchantId},
 			#{userId}, 
 			#{goodsId}, 
 			NOW()

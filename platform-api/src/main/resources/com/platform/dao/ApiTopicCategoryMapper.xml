@@ -45,11 +45,13 @@
     <insert id="save" parameterType="com.platform.entity.TopicCategoryVo" useGeneratedKeys="true" keyProperty="id">
 		insert into topic_category
 		(
+			`merchant_id`,
 			`title`, 
 			`pic_url`
 		)
 		values
 		(
+		    #{merchantId},
 			#{title}, 
 			#{pic_url}
 		)

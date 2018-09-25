@@ -14,6 +14,7 @@
     <select id="queryObject" resultType="com.platform.entity.CommentPictureEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`comment_id`,
 			`pic_url`,
 			`sort_order`
@@ -24,6 +25,7 @@
     <select id="queryList" resultType="com.platform.entity.CommentPictureEntity">
         select
         `id`,
+        `merchant_id`,
         `comment_id`,
         `pic_url`,
         `sort_order`
@@ -61,10 +63,12 @@
 
     <insert id="save" parameterType="com.platform.entity.CommentPictureEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into comment_picture(
+			`merchant_id`,
 			`comment_id`,
 			`pic_url`,
 			`sort_order`)
 		values(
+		    #{merchantId},
 			#{commentId},
 			#{picUrl},
 			#{sortOrder})

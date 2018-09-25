@@ -19,6 +19,7 @@
 	<select id="queryObject" resultType="com.platform.entity.WithdrawOrderVo">
 		select
 			`id`,
+			`merchant_id`,
 			`user_id`,
 			`withdraw_amount`,
 			`withdraw_account`,
@@ -34,6 +35,7 @@
 	<select id="queryList" resultType="com.platform.entity.WithdrawOrderVo">
 		select
     		`id`,
+		    `merchant_id`,
     		`user_id`,
     		`withdraw_amount`,
     		`withdraw_account`,
@@ -77,6 +79,7 @@
 	<insert id="save" parameterType="com.platform.entity.WithdrawOrderVo" useGeneratedKeys="true" keyProperty="id">
 		insert into withdraw_order(
 			`user_id`,
+		    `merchant_id`,
 			`withdraw_amount`,
 			`withdraw_account`,
 			`account_type`,
@@ -86,6 +89,7 @@
 			`update_time`)
 		values(
 			#{userId},
+			#{merchantId},
 			#{withdrawAmount},
 			#{withdrawAccount},
 			#{accountType},

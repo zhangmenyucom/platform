@@ -18,7 +18,7 @@ import java.math.BigDecimal;
  * @date ${datetime}
  */
 @Data
-public class ${className}Entity implements Serializable {
+public class ${className}Entity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
 #foreach ($column in $columns)

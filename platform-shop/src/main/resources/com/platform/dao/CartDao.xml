@@ -59,6 +59,7 @@
     <insert id="save" parameterType="com.platform.entity.CartEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into cart
 		(
+			`merchant_id`,
 			`user_id`, 
 			`session_id`, 
 			`goods_id`, 
@@ -75,6 +76,7 @@
 		)
 		values
 		(
+		    #{merchantId},
 			#{userId}, 
 			#{sessionId}, 
 			#{goodsId}, 

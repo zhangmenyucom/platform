@@ -13,6 +13,7 @@
     <select id="queryObject" resultType="com.platform.entity.ShippingEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`code`,
 			`name`
 		from shipping
@@ -22,6 +23,7 @@
     <select id="queryList" resultType="com.platform.entity.ShippingEntity">
         select
         `id`,
+        `merchant_id`,
         `code`,
         `name`
         from shipping
@@ -60,9 +62,11 @@
 
     <insert id="save" parameterType="com.platform.entity.ShippingEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into shipping(
+			`merchant_id`,
 			`code`,
 			`name`)
 		values(
+		    #{merchantId},
 			#{code},
 			#{name})
 	</insert>

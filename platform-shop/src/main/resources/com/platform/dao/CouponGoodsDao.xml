@@ -13,6 +13,7 @@
 	<select id="queryObject" resultType="com.platform.entity.CouponGoodsEntity">
 		select
 			`id`,
+			`merchant_id`,
 			`coupon_id`,
 			`goods_id`
 		from coupon_goods
@@ -22,6 +23,7 @@
 	<select id="queryList" resultType="com.platform.entity.CouponGoodsEntity">
 		select
     		`id`,
+		    `merchant_id`,
     		`coupon_id`,
     		`goods_id`
 		from coupon_goods
@@ -58,9 +60,11 @@
 	 
 	<insert id="save" parameterType="com.platform.entity.CouponGoodsEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into coupon_goods(
+			`merchant_id`,
 			`coupon_id`,
 			`goods_id`)
 		values(
+		    #{merchantId},
 			#{couponId},
 			#{goodsId})
 	</insert>
