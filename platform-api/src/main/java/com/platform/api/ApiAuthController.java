@@ -111,6 +111,7 @@ public class ApiAuthController extends ApiBaseAction {
             userVo.setMobile(userInfo.getMobile());
             userVo.setUser_level_id(UserLevelEnum.NORMAL.getLevelId());
             userVo.setPoint(0L);
+            userVo.setMerchantId(merchantId);
             userService.save(userVo);
         } else {
             userVo.setLast_login_ip(this.getClientIp());
