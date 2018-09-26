@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author Taylor
  */
-@Service
+@Service("sysConfigService")
 public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigEntity, SysConfigDao> implements SysConfigService {
 
     @Override
