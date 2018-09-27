@@ -13,6 +13,7 @@ import lombok.Data;
 @Data
 public class CategoryEntity extends Tree<CategoryEntity> {
 
+    private Long merchantId;
     //主键
     private Long id;
     //分类名称

@@ -1,6 +1,7 @@
 package com.platform.aop;
 
 import com.platform.entity.BaseEntity;
+import com.platform.entity.CategoryEntity;
 import com.platform.entity.SysUserEntity;
 import com.platform.utils.Constant;
 import com.platform.utils.ShiroUtils;
@@ -46,6 +47,10 @@ public class MerchantFilterAspect {
                         Map map = (Map) params;
                         map.put("merchantId", user.getUserId());
                     }
+                    if (params instanceof CategoryEntity) {
+                        CategoryEntity categoryEntity = (CategoryEntity) params;
+                        categoryEntity.setMerchantId(user.getUserId());
+                    }
                 }
             }
         } else {
@@ -59,6 +64,12 @@ public class MerchantFilterAspect {
                 if (params instanceof Map) {
                     Map map = (Map) params;
                     if (map.get("merchantId") == null) {
+                        throw new Exception(point.getSignature() + ":merchantId不能为空");
+                    }
+                }
+                if (params instanceof CategoryEntity) {
+                    CategoryEntity categoryEntity = (CategoryEntity) params;
+                    if (categoryEntity.getMerchantId() == null) {
                         throw new Exception(point.getSignature() + ":merchantId不能为空");
                     }
                 }
