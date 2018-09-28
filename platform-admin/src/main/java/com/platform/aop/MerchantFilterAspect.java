@@ -46,10 +46,6 @@ public class MerchantFilterAspect {
                         Map map = (Map) params;
                         map.put("merchantId", user.getUserId());
                     }
-                    if (params instanceof CategoryEntity) {
-                        CategoryEntity categoryEntity = (CategoryEntity) params;
-                        categoryEntity.setMerchantId(user.getUserId());
-                    }
                 }
             }
         } else {
