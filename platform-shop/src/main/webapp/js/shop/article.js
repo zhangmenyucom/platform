@@ -41,7 +41,13 @@ var vm = new Vue({
     data: {
         showList: true,
         title: null,
-        article: {},
+        article: {
+            title:"",
+            author:"",
+            bannerPic:"",
+            content:"",
+            sourceUrl:""
+        },
         ruleValidate: {
             name: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
@@ -58,7 +64,13 @@ var vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.article = {};
+            vm.article = {
+                title:"",
+                author:"",
+                bannerPic:"",
+                content:"",
+                sourceUrl:""
+            };
             $('#content').editable('setHTML', '');
         },
         update: function (event) {
