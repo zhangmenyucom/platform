@@ -185,7 +185,7 @@
     <select id="querySmsCodeByUserId" resultMap="smslogMap">
         select
         a.id,
-        a.merchantId,
+        a.merchant_id,
         a.user_id,
         a.phone,
         a.log_date,
