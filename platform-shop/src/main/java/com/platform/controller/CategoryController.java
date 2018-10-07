@@ -63,7 +63,6 @@ public class CategoryController {
     @RequiresPermissions("category:save")
     public R save(@RequestBody CategoryEntity category) {
         categoryService.save(category);
-
         return R.ok();
     }
 

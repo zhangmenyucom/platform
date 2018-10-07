@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.CategoryDao;
 import com.platform.entity.CategoryEntity;
 import com.platform.service.CategoryService;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CategoryServiceImpl extends BaseServiceImpl<CategoryEntity,CategoryDao> implements CategoryService {
 
     @Override
+    @MerchantFilter
     public int save(CategoryEntity category) {
         if ("L1".equals(category.getLevel())) {
             category.setParentId(0);
