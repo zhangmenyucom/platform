@@ -10,5 +10,5 @@ import com.platform.entity.SysUserConfigEntity;
  * @date 2018-09-22 17:58:46
  */
 public interface SysUserConfigDao extends BaseDao<SysUserConfigEntity> {
-
+    SysUserConfigEntity queryByMerchantId(Long merchantId);
 }

@@ -16,7 +16,7 @@
                 <i-button @click="reloadSearch">重置</i-button>
             </div>
             <div class="buttons-group">
-                #if($shiro.hasPermission("commissionorder:save"))
+              <!--  #if($shiro.hasPermission("commissionorder:save"))
                 <i-button type="info" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</i-button>
                 #end
                 #if($shiro.hasPermission("commissionorder:update"))
@@ -24,7 +24,7 @@
                 #end
                 #if($shiro.hasPermission("commissionorder:delete"))
                 <i-button type="error" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</i-button>
-                #end
+                #end-->
             </div>
         </Row>
 	    <table id="jqGrid"></table>

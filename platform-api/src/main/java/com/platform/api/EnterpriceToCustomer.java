@@ -1,12 +1,15 @@
 package com.platform.api;
-import com.platform.config.Config;
+import com.platform.utils.wechat.Config;
 import com.platform.entity.EnterpriceToCustomerEntity;
-import com.platform.util.wechat.*;
+import com.platform.utils.wechat.ClientCustomSSL;
+import com.platform.utils.wechat.RandCharsUtils;
+import com.platform.utils.wechat.SignUtils;
+import com.platform.utils.wechat.WXPayUtil;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import static com.platform.util.wechat.EnterpricePayXmlToBeanUtils.parseXmlToMapEnterpriceToCustomer;
+import static com.platform.utils.wechat.EnterpricePayXmlToBeanUtils.parseXmlToMapEnterpriceToCustomer;
 
 
 /**
@@ -86,13 +89,10 @@ public class EnterpriceToCustomer {
                 //TODO 调用service的方法 ，存储失败提现的记录咯
                 //failToPayMoneyToCustom(enterpriceToCustomerByCard,applyId);
             }
-
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-
     }
 
     public static void main(String[] args) {
