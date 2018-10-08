@@ -1,10 +1,13 @@
 package com.platform.controller;
 
 import com.platform.entity.GiftEntity;
+import com.platform.entity.GoodsEntity;
 import com.platform.service.GiftService;
+import com.platform.service.GoodsService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
+import lombok.experimental.Accessors;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +27,9 @@ import java.util.Map;
 public class GiftController {
     @Autowired
     private GiftService giftService;
+
+    @Autowired
+    private GoodsService goodsService;
 
     /**
      * 查看列表
@@ -55,6 +61,11 @@ public class GiftController {
     @RequestMapping("/save")
     @RequiresPermissions("gift:save")
     public R save(@RequestBody GiftEntity gift) {
+        if(gift.getGoodsId()!=null){
+            GoodsEntity goodsEntity = goodsService.queryObject(gift.getGoodsId());
+            gift.setPicUrl(goodsEntity.getPrimaryPicUrl());
+            gift.setName(goodsEntity.getName());
+        }
         giftService.save(gift);
         return R.ok();
     }

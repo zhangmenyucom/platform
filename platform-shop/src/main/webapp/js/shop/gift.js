@@ -55,13 +55,11 @@ let vm = new Vue({
             picUrl:""
         },
         ruleValidate: {
-            name: [
-                {required: true, message: '名称不能为空', trigger: 'blur'}
-            ]
         },
         q: {
             name: ''
-        }
+        },
+        goodss: []
     },
     methods: {
         query: function () {
@@ -70,8 +68,11 @@ let vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
+            vm.getGoodss();
             vm.gift = {
-                picUrl:""
+                picUrl:"",
+                type:1,
+                status:1
             };
         },
         update: function (event) {
@@ -145,6 +146,15 @@ let vm = new Vue({
         handleSubmit: function (name) {
             handleSubmitValidate(this, name, function () {
                 vm.saveOrUpdate()
+            });
+        },
+        getGoodss: function () {
+            Ajax.request({
+                url: "../goods/queryAll/",
+                async: true,
+                successCallback: function (r) {
+                    vm.goodss = r.list;
+                }
             });
         },
         handleFormatError: function (file) {
