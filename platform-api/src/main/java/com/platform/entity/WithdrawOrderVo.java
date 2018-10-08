@@ -22,6 +22,8 @@ public class WithdrawOrderVo extends BaseEntity  implements Serializable {
     private String orderSn;
     /** 提现人id **/
     private Long userId;
+    /** 提现人真实姓名 **/
+    private String realName;
     /** 提现金额 **/
     private BigDecimal withdrawAmount;
     /** 提现账户 **/
