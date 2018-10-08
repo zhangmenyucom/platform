@@ -29,7 +29,20 @@
 		from sys_user_config
 		where id = #{id}
 	</select>
-
+	<select id="queryByMerchantId" resultMap="sysUserConfigMap">
+		select
+		`id`,
+		`merchant_id`,
+		`app_id`,
+		`secret`,
+		`mch_id`,
+		`pay_sign_key`,
+		`cert_address`,
+		`create_time`,
+		`update_time`
+		from sys_user_config
+		where merchant_id=#{merchant_id}
+	</select>
 	<select id="queryList" resultType="com.platform.entity.SysUserConfigEntity">
 		select
     		`id`,
