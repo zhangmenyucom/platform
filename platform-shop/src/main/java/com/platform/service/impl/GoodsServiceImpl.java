@@ -53,6 +53,7 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
 
     @Override
     @Transactional
+    @MerchantFilter
     public int save(GoodsEntity goods) {
         SysUserEntity user = ShiroUtils.getUserEntity();
         Map<String, Object> map = new HashMap<>(1);
@@ -61,7 +62,7 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         if (null != list && list.size() != 0) {
             throw new RRException("商品名称已存在！");
         }
-        Long id = getDao().queryMaxId() + 1;
+        Long id = getDao().queryMaxId() + 1L;
         goods.setId(id);
 
         //保存产品信息
@@ -71,6 +72,7 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         productEntity.setGoodsNumber(goods.getGoodsNumber());
         productEntity.setRetailPrice(goods.getRetailPrice());
         productEntity.setMarketPrice(goods.getMarketPrice());
+        productEntity.setMerchantId(goods.getMerchantId());
         productEntity.setGoodsSpecificationIds("");
         productDao.save(productEntity);
 
@@ -82,6 +84,7 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         if (null != attributeEntityList && attributeEntityList.size() > 0) {
             for (GoodsAttributeEntity item : attributeEntityList) {
                 item.setGoodsId(id);
+                item.setMerchantId(goods.getMerchantId());
                 goodsAttributeDao.save(item);
             }
         }
@@ -91,6 +94,7 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         if (null != galleryEntityList && galleryEntityList.size() > 0) {
             for (GoodsGalleryEntity galleryEntity : galleryEntityList) {
                 galleryEntity.setGoodsId(id);
+                galleryEntity.setMerchantId(goods.getMerchantId());
                 goodsGalleryDao.save(galleryEntity);
             }
         }

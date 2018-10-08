@@ -77,7 +77,10 @@ var vm = new Vue({
             isAppExclusive: 0,
             isLimited: 0,
             isHot: 0,
-            categoryName: ''
+            categoryName: '',
+            marketPrice:0,
+            retailPrice:0,
+            goodsNumber:0
         },
         ruleValidate: {
             name: [

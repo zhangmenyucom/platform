@@ -262,7 +262,7 @@
         </foreach>
     </delete>
 
-    <select id="queryMaxId" resultType="java.lang.Integer" parameterType="map">
+    <select id="queryMaxId" resultType="java.lang.Long" parameterType="map">
         SELECT MAX(id) FROM goods
     </select>
 </mapper>
