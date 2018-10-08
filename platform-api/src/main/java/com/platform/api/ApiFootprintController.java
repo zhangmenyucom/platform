@@ -78,7 +78,7 @@ public class ApiFootprintController extends ApiBaseAction {
         if (null != footprintVos && footprintVos.size() > 0) {
             for (FootprintVo footprintVo : footprintVos) {
                 List<FootprintVo> tmpList = footPrintMap.get(footprintVo.getAdd_time().getTime()+"");
-                if (null == footPrintMap.get(footprintVo.getAdd_time())) {
+                if (null == footPrintMap.get(footprintVo.getAdd_time()+"")) {
                     tmpList = new ArrayList<>();
                 }
                 tmpList.add(footprintVo);
