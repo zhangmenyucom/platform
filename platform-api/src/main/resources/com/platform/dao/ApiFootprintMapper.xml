@@ -71,11 +71,7 @@
         FROM
         footprint f
         LEFT JOIN goods g ON f.goods_id = g.id
-        WHERE
         WHERE 1=1
-        <if test="merchantId!=null">
-            and f.merchant_id=#{merchantId}
-        </if>
         and f.user_id = #{0} GROUP BY goods_id
         ORDER BY id DESC
     </select>
