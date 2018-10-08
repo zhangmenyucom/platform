@@ -18,7 +18,7 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.WithdrawOrderEntity">
+    <select id="queryObject" resultMap="withdrawOrderMap">
 		select
 			`id`,
 			`user_id`,

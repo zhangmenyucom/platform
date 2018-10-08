@@ -31,9 +31,9 @@ public class EnterpriceToCustomer {
         // 支付给用户openid
         String openid = Config.openid;
         //是否验证真实姓名
-        String check_name = "NO_CHECK";
+        String check_name = "FORCE_CHECK";
         //收款用户姓名
-        String re_user_name = "小明";
+        String re_user_name = "张晓路";
         //企业付款金额，单位为分
         String amount = "100";
         //企业付款操作说明信息。必填。
