@@ -37,8 +37,7 @@
                 <i-input v-model="specification.name" placeholder="规范名称"/>
             </Form-item>
             <Form-item label="排序" prop="sortOrder">
-                <Input-number :min="0" :step="1" v-model="specification.sortOrder" placeholder="排序"
-                              style="width: 188px;"/>
+                <Input-number :min="0" :step="1" v-model="specification.sortOrder" placeholder="排序" style="width: 188px;"/>
             </Form-item>
             <Form-item>
                 <i-button type="primary" @click="handleSubmit('formValidate')">提交</i-button>

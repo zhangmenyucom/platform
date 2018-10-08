@@ -5,7 +5,6 @@
 
     <resultMap type="com.platform.entity.UserLevelEntity" id="userLevelMap">
         <result property="id" column="id"/>
-        <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
     </resultMap>
@@ -13,7 +12,6 @@
     <select id="queryObject" resultType="com.platform.entity.UserLevelEntity">
 		select
 			id,
-			merchant_id,
 			name,
 			description
 		from user_level
@@ -22,12 +20,9 @@
 
     <select id="queryList" resultType="com.platform.entity.UserLevelEntity">
         select
-        id,merchant_id, name,description
+        id,name,description
         from user_level
         WHERE 1=1
-        <if test="merchantId!=null">
-            and merchant_id=#{merchantId}
-        </if>
         <if test="name != null and name.trim() != ''">
             AND name like concat('%',#{name},'%')
         </if>
@@ -47,9 +42,6 @@
     <select id="queryTotal" resultType="int">
         select count(*) from user_level
         where 1=1
-        <if test="merchantId!=null">
-            and merchant_id=#{merchantId}
-        </if>
         <if test="name != null and name.trim() != ''">
             AND name like concat('%',#{name},'%')
         </if>
@@ -57,11 +49,9 @@
 
     <insert id="save" parameterType="com.platform.entity.UserLevelEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into user_level(
-			`merchant_id`,
 			`name`,
 			`description`)
 		values(
-		    #{merchantId},
 			#{name},
 			#{description})
 	</insert>

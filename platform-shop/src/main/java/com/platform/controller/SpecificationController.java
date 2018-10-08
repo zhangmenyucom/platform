@@ -62,7 +62,6 @@ public class SpecificationController {
     @RequiresPermissions("specification:save")
     public R save(@RequestBody SpecificationEntity specification) {
         specificationService.save(specification);
-
         return R.ok();
     }
 

@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.CouponDao;
 import com.platform.dao.CouponGoodsDao;
 import com.platform.dao.UserCouponDao;
@@ -35,6 +36,7 @@ public class CouponServiceImpl extends BaseServiceImpl<CouponEntity,CouponDao> i
     private UserDao userDao;
 
     @Override
+    @MerchantFilter
     public R publish(Map<String, Object> params) {
         // 发放方式 0：按订单发放 1：按用户发放 2:商品转发送券 3：按商品发放 4:新用户注册  5：线下发放 6评价好评红包（固定或随机红包）
         Integer sendType = MapUtils.getInteger(params, "sendType");
@@ -63,6 +65,7 @@ public class CouponServiceImpl extends BaseServiceImpl<CouponEntity,CouponDao> i
                 userCouponVo.setCouponId(couponId);
                 userCouponVo.setCouponNumber("1");
                 userCouponVo.setAddTime(new Date());
+                userCouponVo.setMerchantId(MapUtils.getLong(params, "merchantId"));
                 userCouponDao.save(userCouponVo);
                 if (sendSms) {
                     UserEntity userEntity = userDao.queryObject(userId);

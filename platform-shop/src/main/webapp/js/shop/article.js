@@ -47,6 +47,7 @@ var vm = new Vue({
             bannerPic:"",
             content:"",
             sourceUrl:""
+
         },
         ruleValidate: {
             name: [
@@ -69,7 +70,8 @@ var vm = new Vue({
                 author:"",
                 bannerPic:"",
                 content:"",
-                sourceUrl:""
+                sourceUrl:"",
+                status:1
             };
             $('#content').editable('setHTML', '');
         },
