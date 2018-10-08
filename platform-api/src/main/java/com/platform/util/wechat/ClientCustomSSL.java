@@ -31,9 +31,11 @@ public class ClientCustomSSL {
 		 */
 
 		KeyStore keyStore = KeyStore.getInstance("PKCS12");
-		FileInputStream instream = new FileInputStream(new File(Config.cert_path));// P12文件目录
+		// P12文件目录
+		FileInputStream instream = new FileInputStream(new File(Config.cert_path));
 		try {
-			keyStore.load(instream, Config.mch_id.toCharArray());// 这里写密码..默认是你的MCHID
+			// 这里写密码..默认是你的MCHID
+			keyStore.load(instream, Config.mch_id.toCharArray());
 		} finally {
 			instream.close();
 		}
@@ -45,7 +47,8 @@ public class ClientCustomSSL {
 				SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 		CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
 		try {
-			HttpPost httpost = new HttpPost(url); // 设置响应头信息
+			// 设置响应头信息
+			HttpPost httpost = new HttpPost(url);
 			httpost.addHeader("Connection", "keep-alive");
 			httpost.addHeader("Accept", "*/*");
 			httpost.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
