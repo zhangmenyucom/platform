@@ -46,7 +46,7 @@ public class TransferService {
         //收款用户姓名
         packageParams.put("re_user_name", transferReqBean.getRealName());
         //企业付款金额，单位为分
-        packageParams.put("amount", transferReqBean.getAmount());
+        packageParams.put("amount", transferReqBean.getAmount()+"");
         //企业付款操作说明信息。必填。
         packageParams.put("desc", transferReqBean.getDesc());
         //调用接口的机器Ip地址
