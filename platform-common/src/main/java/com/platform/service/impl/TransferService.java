@@ -65,10 +65,8 @@ public class TransferService {
         String wxUrl = Config.enterprice_url;
         try {
             String weixinPost = ClientCustomSSL.doRefund(wxUrl,sysUserConfigVo.getCertAddress(),sysUserConfigVo.getMchId(), reuqestXml).toString();
-            EnterpriceToCustomerEntity etoc = EnterpricePayXmlToBeanUtils.parseXmlToMapEnterpriceToCustomer(weixinPost);
-            return etoc;
+            return EnterpricePayXmlToBeanUtils.parseXmlToMapEnterpriceToCustomer(weixinPost);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
