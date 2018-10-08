@@ -22,14 +22,16 @@ public class WithdrawOrderEntity extends BaseEntity implements Serializable {
     private Long userId;
     /**昵称**/
     private String nickname;
+    /**提现人姓名**/
+    private String realName;
     /** 提现金额 **/
     private BigDecimal withdrawAmount;
     /** 提现账户 **/
     private String withdrawAccount;
     /** 账户类型 0:微信 1：支付宝 3：银行卡 **/
     private Integer accountType;
-    /** 提现状态 0:提交审核 1：审核通过 2：审核不通过 3：提现成功 **/
-    private Integer status;
+    /** 提现状态 0:提交审核 1：审核通过 2：审核不通过 3：提现成功 4:提现失败**/
+    private Integer  status;
     /** 备注 **/
     private String comment;
 }

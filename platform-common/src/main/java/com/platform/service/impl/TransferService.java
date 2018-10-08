@@ -1,4 +1,5 @@
-package com.platform.service.impl;/**
+package com.platform.service.impl;
+/**
  * ${author} on 2018/10/8.
  */
 
@@ -25,7 +26,7 @@ public class TransferService {
     @Autowired
     private SysUserConfigDao sysUserConfigDao;
 
-    public void PayToCustom(TransferReqBean transferReqBean) {
+    public EnterpriceToCustomerEntity payToCustom(TransferReqBean transferReqBean) {
         SysUserConfigEntity sysUserConfigVo = sysUserConfigDao.queryByMerchantId(transferReqBean.getMerchantId());
         String spbill_create_ip = "192.168.1.250";
 
@@ -41,13 +42,13 @@ public class TransferService {
         // 支付给用户openid
         packageParams.put("openid", transferReqBean.getOpenId());
         //是否验证真实姓名呢
-        packageParams.put("check_name", "NO_CHECK");
+        packageParams.put("check_name", "FORCE_CHECK");
         //收款用户姓名
         packageParams.put("re_user_name", transferReqBean.getRealName());
         //企业付款金额，单位为分
         packageParams.put("amount", transferReqBean.getAmount());
         //企业付款操作说明信息。必填。
-        packageParams.put("desc", "测试企业付款到零钱");
+        packageParams.put("desc", transferReqBean.getDesc());
         //调用接口的机器Ip地址
         packageParams.put("spbill_create_ip", spbill_create_ip);
 
@@ -63,13 +64,9 @@ public class TransferService {
         //获取退款的api接口
         String wxUrl = Config.enterprice_url;
         try {
-            String weixinPost = ClientCustomSSL.doRefund(wxUrl, reuqestXml).toString();
+            String weixinPost = ClientCustomSSL.doRefund(wxUrl,sysUserConfigVo.getCertAddress(),sysUserConfigVo.getMchId(), reuqestXml).toString();
             EnterpriceToCustomerEntity etoc = EnterpricePayXmlToBeanUtils.parseXmlToMapEnterpriceToCustomer(weixinPost);
-            if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {
-                //TODO 执行成功付款后的业务逻辑
-            } else {
-                //TODO 调用service的方法 ，存储失败提现的记录咯
-            }
+            return etoc;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

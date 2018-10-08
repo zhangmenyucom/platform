@@ -30,6 +30,8 @@ $(function () {
                     return '审核不通过';
                 } else if (value == 3) {
                     return '提现成功';
+                } else if (value == 4) {
+                    return '提现失败';
                 }
                 return value;
             }

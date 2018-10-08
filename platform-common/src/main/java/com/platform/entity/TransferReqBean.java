@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class TransferReqBean {
+    private Long withdrawOrderId;
     private Long merchantId;
     private String openId;
     private String realName;

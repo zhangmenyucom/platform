@@ -1,11 +1,5 @@
 package com.platform.utils.wechat;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.security.KeyStore;
-
-import javax.net.ssl.SSLContext;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -16,6 +10,12 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 
+import javax.net.ssl.SSLContext;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.security.KeyStore;
+
 
 /**
  * This example demonstrates how to create secure connections with a
@@ -24,26 +24,26 @@ import org.apache.http.util.EntityUtils;
 public class ClientCustomSSL {
 
 	@SuppressWarnings("deprecation")
-	public static String doRefund(String url, String data) throws Exception {
+	public static String doRefund(String url,String certPath,String mchId, String data) throws Exception {
 		/**
 		 * 注意PKCS12证书 是从微信商户平台-》账户设置-》 API安全 中下载的
 		 */
-
 		KeyStore keyStore = KeyStore.getInstance("PKCS12");
 		// P12文件目录
-		FileInputStream instream = new FileInputStream(new File(Config.cert_path));
+		URL urlP12 = new URL(certPath);
+		URLConnection urlConnection = urlP12.openConnection();
+		urlConnection.setDoInput(true);
+		InputStream instream = urlConnection.getInputStream();
 		try {
 			// 这里写密码..默认是你的MCHID
-			keyStore.load(instream, Config.mch_id.toCharArray());
+			keyStore.load(instream, mchId.toCharArray());
 		} finally {
 			instream.close();
 		}
 		// Trust own CA and all self-signed certs
-		SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, Config.mch_id.toCharArray())// 这里也是写密码的
-				.build();
+		SSLContext sslcontext = SSLContexts.custom().loadKeyMaterial(keyStore, mchId.toCharArray()).build();
 		// Allow TLSv1 protocol only
-		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" }, null,
-				SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" }, null, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 		CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
 		try {
 			// 设置响应头信息
@@ -59,7 +59,6 @@ public class ClientCustomSSL {
 			CloseableHttpResponse response = httpclient.execute(httpost);
 			try {
 				HttpEntity entity = response.getEntity();
-
 				String jsonStr = EntityUtils.toString(response.getEntity(), "UTF-8");
 				EntityUtils.consume(entity);
 				return jsonStr;

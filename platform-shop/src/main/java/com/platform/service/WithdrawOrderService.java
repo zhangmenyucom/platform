@@ -14,4 +14,6 @@ import java.util.Map;
  */
 public interface WithdrawOrderService extends BaseService<WithdrawOrderEntity> {
 
+    void auditingWithdrawOrder(WithdrawOrderEntity withdrawOrder);
+
 }

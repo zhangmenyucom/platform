@@ -1,7 +1,10 @@
 package com.platform.controller;
 
+import com.platform.entity.TransferReqBean;
 import com.platform.entity.WithdrawOrderEntity;
+import com.platform.service.UserService;
 import com.platform.service.WithdrawOrderService;
+import com.platform.service.impl.TransferService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
@@ -60,12 +63,12 @@ public class WithdrawOrderController {
     }
 
     /**
-     * 修改
+     * 审核提现
      */
     @RequestMapping("/update")
     @RequiresPermissions("withdraworder:update")
     public R update(@RequestBody WithdrawOrderEntity withdrawOrder) {
-        withdrawOrderService.update(withdrawOrder);
+        withdrawOrderService.auditingWithdrawOrder(withdrawOrder);
         return R.ok();
     }
 

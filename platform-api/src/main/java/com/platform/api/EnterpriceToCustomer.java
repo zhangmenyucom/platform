@@ -77,7 +77,7 @@ public class EnterpriceToCustomer {
         //获取退款的api接口
         String wxUrl = Config.enterprice_url;
         try {
-            String weixinPost = ClientCustomSSL.doRefund(wxUrl, reuqestXml).toString();
+            String weixinPost = ClientCustomSSL.doRefund(wxUrl, Config.cert_path, Config.mch_id, reuqestXml).toString();
             //7   解析返回的xml数据
             EnterpriceToCustomerEntity etoc = parseXmlToMapEnterpriceToCustomer(weixinPost);
             if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code()) && "SUCCESS".equalsIgnoreCase(etoc.getReturn_code())) {
