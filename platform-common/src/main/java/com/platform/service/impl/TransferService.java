@@ -64,10 +64,11 @@ public class TransferService {
         //获取退款的api接口
         String wxUrl = Config.enterprice_url;
         try {
-            String weixinPost = ClientCustomSSL.doRefund(wxUrl,sysUserConfigVo.getCertAddress(),sysUserConfigVo.getMchId(), reuqestXml).toString();
+            String weixinPost = ClientCustomSSL.doRefund(wxUrl, sysUserConfigVo.getCertAddress(), sysUserConfigVo.getMchId(), reuqestXml).toString();
             return EnterpricePayXmlToBeanUtils.parseXmlToMapEnterpriceToCustomer(weixinPost);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
