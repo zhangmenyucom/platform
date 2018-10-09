@@ -25,4 +25,10 @@ public class SysUserConfigEntity extends BaseEntity implements Serializable {
     private String paySignKey;
     /** 证书地址 **/
     private String certAddress;
+    /**店铺名称**/
+    private String storeName;
+    /**店铺地址**/
+    private String storeAddress;
+    /**联系电话**/
+    private String phone;
 }
