@@ -3,7 +3,7 @@ $(function () {
         url: '../sys/userconfig/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '商户id', name: 'merchantId', index: 'merchant_id', width: 80},
+            {label: '商户id', name: 'merchantId', index: 'merchant_id', width: 40},
             {label: '小程序id', name: 'appId', index: 'app_id', width: 80},
             {label: '密钥', name: 'secret', index: 'secret', width: 80},
             {label: '支付商户号', name: 'mchId', index: 'mch_id', width: 80},
@@ -21,7 +21,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -46,7 +46,7 @@ let vm = new Vue({
             vm.sysUserConfig = {};
         },
         update: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }

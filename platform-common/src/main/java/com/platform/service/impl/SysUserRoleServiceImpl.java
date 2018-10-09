@@ -32,7 +32,7 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
         sysUserRoleDao.delete(userId);
 
         //保存用户与角色关系
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
         map.put("userId", userId);
         map.put("roleIdList", roleIdList);
         sysUserRoleDao.save(map);
