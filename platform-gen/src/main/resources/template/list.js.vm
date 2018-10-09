@@ -12,7 +12,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
 	el: '#rrapp',
 	data: {
         showList: true,
@@ -37,7 +37,7 @@ let vm = new Vue({
 			vm.${classname} = {};
 		},
 		update: function (event) {
-            let $pk.attrname = getSelectedRow("#jqGrid");
+            var $pk.attrname = getSelectedRow("#jqGrid");
 			if ($pk.attrname == null) {
 				return;
 			}
@@ -47,7 +47,7 @@ let vm = new Vue({
             vm.getInfo(${pk.attrname})
 		},
 		saveOrUpdate: function (event) {
-            let url = vm.${classname}.${pk.attrname} == null ? "../${pathName}/save" : "../${pathName}/update";
+            var url = vm.${classname}.${pk.attrname} == null ? "../${pathName}/save" : "../${pathName}/update";
             Ajax.request({
 			    url: url,
                 params: JSON.stringify(vm.${classname}),
@@ -61,7 +61,7 @@ let vm = new Vue({
 			});
 		},
 		del: function (event) {
-            let ${pk.attrname}s = getSelectedRows("#jqGrid");
+            var ${pk.attrname}s = getSelectedRows("#jqGrid");
 			if (${pk.attrname}s == null){
 				return;
 			}
@@ -91,7 +91,7 @@ let vm = new Vue({
 		},
 		reload: function (event) {
 			vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
 			$("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page
