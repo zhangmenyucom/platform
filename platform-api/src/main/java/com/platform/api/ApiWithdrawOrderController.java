@@ -3,6 +3,7 @@ package com.platform.api;
 import com.platform.annotation.LoginUser;
 import com.platform.entity.UserVo;
 import com.platform.entity.WithdrawOrderVo;
+import com.platform.service.ApiUserService;
 import com.platform.service.ApiWithdrawOrderService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
@@ -28,6 +29,9 @@ import java.util.Map;
 public class ApiWithdrawOrderController {
     @Autowired
     private ApiWithdrawOrderService withdrawOrderService;
+
+    @Autowired
+    private ApiUserService apiUserService;
 
     /**
      * 查看列表
@@ -59,6 +63,11 @@ public class ApiWithdrawOrderController {
      */
     @PostMapping("/save")
     public R save(@PathVariable("merchantId") Long merchantId, @RequestBody WithdrawOrderVo withdrawOrder, @LoginUser UserVo loginUser) {
+
+        UserVo userVo = apiUserService.queryObject(withdrawOrder.getUserId());
+        if (userVo.getAvilableBalance().compareTo(withdrawOrder.getWithdrawAmount()) < 0) {
+            return R.ok("超出可提金额");
+        }
         withdrawOrder.setMerchantId(merchantId);
         withdrawOrder.setUserId(loginUser.getUserId());
         withdrawOrder.setAccountType(0);
