@@ -91,7 +91,7 @@ var vm = new Vue({
         },
         getInfo: function (id) {
             Ajax.request({
-                url: "../sysuserconfig/info/" + id,
+                url: "../sys/userconfig/info/" + id,
                 async: true,
                 successCallback: function (r) {
                     vm.sysUserConfig = r.sysUserConfig;
