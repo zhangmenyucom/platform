@@ -52,10 +52,11 @@ public class ApiSysUserConfigController extends ApiBaseAction {
         sysUserEntity.setMobile(sysUserConfigEntity.getPhone());
         sysUserEntity.setStatus(1);
         sysUserEntity.setCreateUserId(1L);
-        sysUserService.save(sysUserEntity);
         /**关联角色**/
         List<Long> roleIdList = new ArrayList<>(1);
         roleIdList.add(5L);
+        sysUserEntity.setRoleIdList(roleIdList);
+        sysUserService.save(sysUserEntity);
         sysUserRoleService.saveOrUpdate(sysUserEntity.getUserId(), roleIdList);
         /**保存配置**/
         sysUserConfigEntity.setMerchantId(sysUserEntity.getUserId());
