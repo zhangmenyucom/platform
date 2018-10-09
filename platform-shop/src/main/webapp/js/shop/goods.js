@@ -350,6 +350,7 @@ var vm = new Vue({
         },
         handleSuccess: function (res, file) {
             // 因为上传过程为实例，这里模拟添加 url
+            this.$Message.success('上传成功');
             file.imgUrl = res.url;
             file.name = res.url;
             vm.uploadList.add(file);
@@ -384,9 +385,11 @@ var vm = new Vue({
             handleResetForm(this, name);
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.success('上传成功');
             vm.goods.primaryPicUrl = file.response.url;
         },
         handleSuccessListPicUrl: function (res, file) {
+            this.$Message.success('上传成功');
             vm.goods.listPicUrl = file.response.url;
         },
         eyeImagePicUrl: function () {
