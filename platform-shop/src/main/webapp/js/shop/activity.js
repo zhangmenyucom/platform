@@ -153,6 +153,12 @@ var vm = new Vue({
                 desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
             });
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessPicUrl: function (res, file) {
             this.$Message.success('上传成功');
             vm.activity.banner = file.response.url;
