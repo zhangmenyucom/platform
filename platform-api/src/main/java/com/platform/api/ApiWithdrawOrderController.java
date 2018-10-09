@@ -34,9 +34,10 @@ public class ApiWithdrawOrderController {
      */
     @ApiOperation(value = "查看列表")
     @RequestMapping("/list")
-    public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
+    public R list(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser,@RequestParam Map<String, Object> params) {
         /**查询列表数据**/
-        Query query = new Query(params,merchantId);
+        params.put("userId",loginUser.getUserId());
+        Query query = new Query(params, merchantId);
         List<WithdrawOrderVo> withdrawOrderList = withdrawOrderService.queryList(query);
         int total = withdrawOrderService.queryTotal(query);
         PageUtils pageUtil = new PageUtils(withdrawOrderList, total, query.getLimit(), query.getPage());
@@ -57,7 +58,7 @@ public class ApiWithdrawOrderController {
      * 保存
      */
     @PostMapping("/save")
-    public R save(@PathVariable("merchantId") Long merchantId,@RequestBody WithdrawOrderVo withdrawOrder,@LoginUser UserVo loginUser) {
+    public R save(@PathVariable("merchantId") Long merchantId, @RequestBody WithdrawOrderVo withdrawOrder, @LoginUser UserVo loginUser) {
         withdrawOrder.setMerchantId(merchantId);
         withdrawOrder.setUserId(loginUser.getUserId());
         withdrawOrder.setAccountType(0);
@@ -76,25 +77,5 @@ public class ApiWithdrawOrderController {
     public R update(@RequestBody WithdrawOrderVo withdrawOrder) {
         withdrawOrderService.update(withdrawOrder);
         return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @ApiOperation(value = "删除")
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        withdrawOrderService.deleteBatch(ids);
-        return R.ok();
-    }
-
-    /**
-     * 查看所有列表
-     */
-    @ApiOperation(value = "查看所有列表")
-    @RequestMapping("/queryAll")
-    public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
-        List<WithdrawOrderVo> list = withdrawOrderService.queryList(params,merchantId);
-        return R.ok().put("list", list);
     }
 }
