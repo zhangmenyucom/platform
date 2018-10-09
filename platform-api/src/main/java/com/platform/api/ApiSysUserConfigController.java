@@ -47,6 +47,7 @@ public class ApiSysUserConfigController extends ApiBaseAction {
         /**创建用户**/
         SysUserEntity sysUserEntity = new SysUserEntity();
         sysUserEntity.setDeptId(1L);
+        sysUserEntity.setUsername(sysUserConfigEntity.getPhone());
         sysUserEntity.setMobile(sysUserConfigEntity.getPhone());
         sysUserEntity.setStatus(1);
         sysUserService.save(sysUserEntity);

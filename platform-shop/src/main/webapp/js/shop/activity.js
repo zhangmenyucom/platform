@@ -160,6 +160,7 @@ var vm = new Vue({
             });
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.activity.banner = file.response.url;
         },
