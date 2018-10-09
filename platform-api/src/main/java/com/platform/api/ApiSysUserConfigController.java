@@ -50,6 +50,7 @@ public class ApiSysUserConfigController extends ApiBaseAction {
         sysUserEntity.setUsername(sysUserConfigEntity.getPhone());
         sysUserEntity.setMobile(sysUserConfigEntity.getPhone());
         sysUserEntity.setStatus(1);
+        sysUserEntity.setCreateUserId(1L);
         sysUserService.save(sysUserEntity);
         /**关联角色**/
         List<Long> roleIdList = new ArrayList<>(1);
