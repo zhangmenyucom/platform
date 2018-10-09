@@ -46,6 +46,8 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
             EnterpriceToCustomerEntity etoc = transferService.payToCustom(transferReqBean);
             if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {
                 withdrawOrderEntity.setStatus(3);
+                withdrawOrderEntity.setOrderSn(etoc.getPayment_no());
+                withdrawOrder.setComment(withdrawOrder.getComment() + "\n" + etoc.getReturn_msg());
             } else {
                 withdrawOrderEntity.setStatus(4);
                 withdrawOrderEntity.setComment(withdrawOrderEntity.getComment() + "\n" + etoc.getErr_code_des());

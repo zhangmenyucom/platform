@@ -1,6 +1,7 @@
 package com.platform.api;
 
-import com.platform.annotation.IgnoreAuth;
+import com.platform.annotation.LoginUser;
+import com.platform.entity.UserVo;
 import com.platform.entity.WithdrawOrderVo;
 import com.platform.service.ApiWithdrawOrderService;
 import com.platform.utils.PageUtils;
@@ -31,7 +32,6 @@ public class ApiWithdrawOrderController {
     /**
      * 查看列表
      */
-    @IgnoreAuth
     @ApiOperation(value = "查看列表")
     @RequestMapping("/list")
     public R list(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {
@@ -46,7 +46,6 @@ public class ApiWithdrawOrderController {
     /**
      * 查看信息
      */
-    @IgnoreAuth
     @ApiOperation(value = "查看")
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
@@ -57,18 +56,21 @@ public class ApiWithdrawOrderController {
     /**
      * 保存
      */
-    @IgnoreAuth
-    @RequestMapping("/save")
-    public R save(@PathVariable("merchantId") Long merchantId,@RequestBody WithdrawOrderVo withdrawOrder) {
+    @PostMapping("/save")
+    public R save(@PathVariable("merchantId") Long merchantId,@RequestBody WithdrawOrderVo withdrawOrder,@LoginUser UserVo loginUser) {
         withdrawOrder.setMerchantId(merchantId);
+        withdrawOrder.setUserId(loginUser.getUserId());
+        withdrawOrder.setAccountType(0);
+        withdrawOrder.setWithdrawAccount("微信");
+        withdrawOrder.setStatus(0);
+        withdrawOrder.setComment("提交审核");
         withdrawOrderService.save(withdrawOrder);
-        return R.ok();
+        return R.ok("已提交,待审核");
     }
 
     /**
      * 修改
      */
-    @IgnoreAuth
     @ApiOperation(value = "修改")
     @RequestMapping("/update")
     public R update(@RequestBody WithdrawOrderVo withdrawOrder) {
@@ -79,7 +81,6 @@ public class ApiWithdrawOrderController {
     /**
      * 删除
      */
-    @IgnoreAuth
     @ApiOperation(value = "删除")
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids) {
@@ -90,7 +91,6 @@ public class ApiWithdrawOrderController {
     /**
      * 查看所有列表
      */
-    @IgnoreAuth
     @ApiOperation(value = "查看所有列表")
     @RequestMapping("/queryAll")
     public R queryAll(@PathVariable("merchantId") Long merchantId,@RequestParam Map<String, Object> params) {

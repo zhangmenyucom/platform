@@ -6,6 +6,7 @@ $(function () {
             {label: '流水号', name: 'orderSn', index: 'order_sn', width: 80},
             {label: '提现人id', name: 'userId', index: 'user_id', width: 40},
             {label: '昵称', name: 'nickname', index: 'nickname', width: 80},
+            {label: '真实姓名', name: 'realName', index: 'real_name', width: 80},
             {label: '提现金额', name: 'withdrawAmount', index: 'withdraw_amount', width: 80},
             {label: '提现账户', name: 'withdrawAccount', index: 'withdraw_account', width: 80},
             {
@@ -39,11 +40,6 @@ $(function () {
             {label: '备注', name: 'comment', index: 'comment', width: 80},
             {
                 label: '创建时间', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
-                return transDate(value);
-            }
-            },
-            {
-                label: '更新时间', name: 'updateTime', index: 'update_time', width: 80, formatter: function (value) {
                 return transDate(value);
             }
             }]
