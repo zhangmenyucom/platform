@@ -1,9 +1,9 @@
 $(function () {
-    let shippingStatus = getQueryString("shippingStatus");
-    let payStatus = getQueryString("payStatus");
-    let orderStatus = getQueryString("orderStatus");
-    let orderType = getQueryString("orderType");
-    let url = '../order/list';
+   varshippingStatus = getQueryString("shippingStatus");
+   varpayStatus = getQueryString("payStatus");
+    var orderStatus = getQueryString("orderStatus");
+    var orderType = getQueryString("orderType");
+    var url = '../order/list';
     if (shippingStatus) {
         url += '?shippingStatus=' + shippingStatus;
     }
@@ -111,7 +111,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -130,7 +130,7 @@ let vm = new Vue({
             vm.reload();
         },
         sendGoods: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -145,7 +145,7 @@ let vm = new Vue({
             });
         },
         confirm: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -175,7 +175,7 @@ let vm = new Vue({
         reload: function (event) {
             vm.showList = true;
             vm.detail = false;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {
                     'orderSn': vm.q.orderSn,
@@ -205,7 +205,7 @@ let vm = new Vue({
         }
     },
     created: function () {
-        let vue = this;
+        var vue = this;
         Ajax.request({
             url: "../shipping/queryAll",
             async: true,

@@ -167,6 +167,7 @@ var vm = new Vue({
             });
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.success('上传成功');
             vm.article.bannerPic = file.response.url;
         },
         eyeImagePicUrl: function () {

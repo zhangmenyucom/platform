@@ -17,7 +17,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -42,7 +42,7 @@ let vm = new Vue({
             vm.giftExchangeRecord = {};
         },
         update: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -52,7 +52,7 @@ let vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            let url = vm.giftExchangeRecord.id == null ? "../giftexchangerecord/save" : "../giftexchangerecord/update";
+            var url = vm.giftExchangeRecord.id == null ? "../giftexchangerecord/save" : "../giftexchangerecord/update";
             Ajax.request({
                 url: url,
                 params: JSON.stringify(vm.giftExchangeRecord),
@@ -66,7 +66,7 @@ let vm = new Vue({
             });
         },
         del: function (event) {
-            let ids = getSelectedRows("#jqGrid");
+            var ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }
@@ -96,7 +96,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page

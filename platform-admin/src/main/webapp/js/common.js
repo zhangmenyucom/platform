@@ -42,7 +42,7 @@ window.confirm = function (msg, callback) {
  * @param options
  */
 window.openWindow = function (options) {
-    let globalParams = {
+    var globalParams = {
         skin: 'layui-layer-molv',//皮肤
         title: '标题',//标题
         type: 1,//打开窗口的类型 1：html里的div内容 2：iframe方式，页面的路径

@@ -19,7 +19,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -50,7 +50,7 @@ let vm = new Vue({
             };
         },
         update: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -60,7 +60,7 @@ let vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            let url = vm.teachVideo.id == null ? "../teachvideo/save" : "../teachvideo/update";
+            var url = vm.teachVideo.id == null ? "../teachvideo/save" : "../teachvideo/update";
             Ajax.request({
                 url: url,
                 params: JSON.stringify(vm.teachVideo),
@@ -74,7 +74,7 @@ let vm = new Vue({
             });
         },
         del: function (event) {
-            let ids = getSelectedRows("#jqGrid");
+            var ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }
@@ -104,7 +104,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page
@@ -167,6 +167,7 @@ let vm = new Vue({
             });
         },
         handleSuccessVideoUrl: function (res, file) {
+            this.$Message.success('上传成功');
             vm.teachVideo.videoUrl = file.response.url;
         },
         eyeVideoUrl: function () {
@@ -177,6 +178,7 @@ let vm = new Vue({
             eyeVideo($(e.target).attr('src'));
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.success('上传成功');
             vm.teachVideo.wrapper = file.response.url;
         },
         eyeImagePicUrl: function () {

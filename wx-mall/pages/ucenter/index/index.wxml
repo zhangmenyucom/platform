@@ -1,13 +1,13 @@
 <view class="container">
   <button class="userinfo" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
 		<image wx:if="{{userInfo && userInfo.avatarUrl}}"  class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
-    <image wx:else class="userinfo-avatar" src="https://www.whcmhlkj.com/statics/img/150547696d798c.png" background-size="cover"></image>
+    <image wx:else class="userinfo-avatar" src="/static/images/images/login.jpg" background-size="cover"></image>
 
 		<view class='name-text'>
       <text class="userinfo-nickname" wx:if="{{userInfo && userInfo.nickName}}">{{ userInfo.nickName }}</text>
       <text class="userinfo-nickname" wx:else>Hi,游客~!</text>
       <!-- <navigator url="/pages/auth/mobile/mobile" class='bindPhone'>绑定手机</navigator> -->
-      <text wx:if="{{userInfo.mobile}}" open-type="getPhoneNumber" class='bindPhone_text' >{{userInfo.mobile}}</text>
+      <button wx:if="{{userInfo.mobile}}" open-type="getPhoneNumber" class='bindPhone_text'  bindgetphonenumber="getPhoneNumber">{{userInfo.mobile}}</button>
       <button wx:else open-type="getPhoneNumber" class='bindPhone'  bindgetphonenumber="getPhoneNumber">绑定手机</button>
       
     </view>
@@ -66,8 +66,8 @@
         <text class="txt">地址管理</text>
       </navigator>
     </view>
-    <view class="item" bindtap='SignIn'>
-      <view  class="a">
+    <view class="item">
+      <view bindtap='singin' class="a">
         <text class="icon security"></text>
         <text class="txt">签到</text>
       </view>

@@ -128,6 +128,7 @@ var vm = new Vue({
             vm.handleReset('formValidate');
         },
         handleSuccess: function (res, file) {
+            this.$Message.success('上传成功');
             vm.ad.imageUrl = file.response.url;
         },
         handleFormatError: function (file) {

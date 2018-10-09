@@ -1,6 +1,6 @@
 $(function () {
-    let status = getQueryString("status");
-    let url = '../comment/list';
+    var status = getQueryString("status");
+    var url = '../comment/list';
     if (status) {
         url += '?status=' + status;
     }

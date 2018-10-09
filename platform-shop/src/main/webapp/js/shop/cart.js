@@ -1,6 +1,6 @@
 $(function () {
-    let userId = getQueryString("userId");
-    let url = '../cart/list';
+    var userId = getQueryString("userId");
+    var url = '../cart/list';
     if (userId) {
         url += '?userId=' + userId;
     }

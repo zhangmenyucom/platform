@@ -27,7 +27,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -52,7 +52,7 @@ let vm = new Vue({
             vm.commissionOrder = {};
         },
         update: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -62,7 +62,7 @@ let vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            let url = vm.commissionOrder.id == null ? "../commissionorder/save" : "../commissionorder/update";
+            var url = vm.commissionOrder.id == null ? "../commissionorder/save" : "../commissionorder/update";
             Ajax.request({
                 url: url,
                 params: JSON.stringify(vm.commissionOrder),
@@ -76,7 +76,7 @@ let vm = new Vue({
             });
         },
         del: function (event) {
-            let ids = getSelectedRows("#jqGrid");
+            var ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }
@@ -106,7 +106,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page

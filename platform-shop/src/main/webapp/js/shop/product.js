@@ -1,6 +1,6 @@
 $(function () {
-    let goodsId = getQueryString("goodsId");
-    let url = '../product/list';
+    var goodsId = getQueryString("goodsId");
+    var url = '../product/list';
     if (goodsId) {
         url += '?goodsId=' + goodsId;
     }
@@ -25,7 +25,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -59,7 +59,7 @@ let vm = new Vue({
             vm.type = 'add';
         },
         update: function (event) {
-            let id = getSelectedRow("#jqGrid");
+            var id = getSelectedRow("#jqGrid");
             if (id == null) {
                 return;
             }
@@ -70,7 +70,7 @@ let vm = new Vue({
             vm.getInfo(id)
         },
         changeGoods: function (opt) {
-            let goodsId = opt.value;
+            var goodsId = opt.value;
             Ajax.request({
                 url: "../goods/info/" + goodsId,
                 async: true,
@@ -106,7 +106,7 @@ let vm = new Vue({
             });
         },
         saveOrUpdate: function (event) {
-            let url = vm.product.id == null ? "../product/save" : "../product/update";
+            var url = vm.product.id == null ? "../product/save" : "../product/update";
             vm.product.goodsSpecificationIds = vm.color + '_' + vm.guige + '_' + vm.weight;
 
             Ajax.request({
@@ -124,7 +124,7 @@ let vm = new Vue({
 
         },
         del: function (event) {
-            let ids = getSelectedRows("#jqGrid");
+            var ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }
@@ -157,7 +157,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'goodsName': vm.q.goodsName},
                 page: page

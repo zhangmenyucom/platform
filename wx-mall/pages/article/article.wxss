@@ -20,13 +20,10 @@
   display: block;
   float: right
 }
-.content-box{
+.content{
   font-size: 32rpx;
   letter-spacing: 4rpx;
   line-height: 1.5;
   text-align: justify;
   text-indent: 2em
-}
-.content-box image{
-  width: 100% !important
 }

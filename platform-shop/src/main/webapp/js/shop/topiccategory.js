@@ -102,6 +102,7 @@ var vm = new Vue({
             vm.handleReset('formValidate');
         },
         handleSuccess: function (res, file) {
+            this.$Message.success('上传成功');
             vm.topicCategory.picUrl = file.response.url;
         },
         handleFormatError: function (file) {

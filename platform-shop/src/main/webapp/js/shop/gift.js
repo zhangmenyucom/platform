@@ -173,6 +173,7 @@ var vm = new Vue({
             handleResetForm(this, name);
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.success('上传成功');
             vm.gift.picUrl = file.response.url;
         },
         eyeImagePicUrl: function () {

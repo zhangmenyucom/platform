@@ -14,8 +14,8 @@ $(function () {
             },
             {
                 label: '录入日期', name: 'addTime', index: 'add_time', width: 80, formatter: function (value) {
-                    return transDate(value, 'yyyy-MM-dd');
-                }
+                return transDate(value, 'yyyy-MM-dd');
+            }
             },
             {label: '属性类别', name: 'attributeCategoryName', index: 'attribute_category', width: 80},
             {label: '零售价格', name: 'retailPrice', index: 'retail_price', width: 80},
@@ -24,8 +24,8 @@ $(function () {
             {label: '市场价', name: 'marketPrice', index: 'market_price', width: 80},
             {
                 label: '热销', name: 'isHot', index: 'is_hot', width: 80, formatter: function (value) {
-                    return transIsNot(value);
-                }
+                return transIsNot(value);
+            }
             }]
     });
     $('#goodsDesc').editable({
@@ -78,9 +78,9 @@ var vm = new Vue({
             isLimited: 0,
             isHot: 0,
             categoryName: '',
-            marketPrice:0,
-            retailPrice:0,
-            goodsNumber:0
+            marketPrice: 0,
+            retailPrice: 0,
+            goodsNumber: 0
         },
         ruleValidate: {
             name: [
@@ -111,7 +111,10 @@ var vm = new Vue({
                 isAppExclusive: 0,
                 isLimited: 0,
                 isHot: 0,
-                categoryName: ''
+                categoryName: '',
+                marketPrice: 0,
+                retailPrice: 0,
+                goodsNumber: 0
             };
             $('#goodsDesc').editable('setHTML', '');
             vm.getCategory();
@@ -336,22 +339,22 @@ var vm = new Vue({
                 }
             });
         },
-        handleView:function(name) {
+        handleView: function (name) {
             this.imgName = name;
             this.visible = true;
         },
-        handleRemove:function(file) {
+        handleRemove: function (file) {
             // 从 upload 实例删除数据
             const fileList = this.uploadList;
             this.uploadList.splice(fileList.indexOf(file), 1);
         },
-        handleSuccess:function(res, file) {
+        handleSuccess: function (res, file) {
             // 因为上传过程为实例，这里模拟添加 url
             file.imgUrl = res.url;
             file.name = res.url;
             vm.uploadList.add(file);
         },
-        handleBeforeUpload:function() {
+        handleBeforeUpload: function () {
             const check = this.uploadList.length < 5;
             if (!check) {
                 this.$Notice.warning({
@@ -398,7 +401,7 @@ var vm = new Vue({
             eyeImage($(e.target).attr('src'));
         }
     },
-    mounted:function() {
+    mounted: function () {
         this.uploadList = this.$refs.upload.fileList;
     }
 });

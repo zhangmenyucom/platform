@@ -34,7 +34,7 @@ $(function () {
     });
 });
 
-let vm = new Vue({
+var vm = new Vue({
     el: '#rrapp',
     data: {
         showList: true,
@@ -59,7 +59,7 @@ let vm = new Vue({
             vm.feedback = {};
         },
         update: function (event) {
-            let msgId = getSelectedRow("#jqGrid");
+            var msgId = getSelectedRow("#jqGrid");
             if (msgId == null) {
                 return;
             }
@@ -69,7 +69,7 @@ let vm = new Vue({
             vm.getInfo(msgId)
         },
         saveOrUpdate: function (event) {
-            let url = vm.feedback.msgId == null ? "../feedback/save" : "../feedback/update";
+            var url = vm.feedback.msgId == null ? "../feedback/save" : "../feedback/update";
 
             Ajax.request({
                 type: "POST",
@@ -84,7 +84,7 @@ let vm = new Vue({
             });
         },
         del: function (event) {
-            let msgIds = getSelectedRows("#jqGrid");
+            var msgIds = getSelectedRows("#jqGrid");
             if (msgIds == null) {
                 return;
             }
@@ -115,7 +115,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.userName},
                 page: page

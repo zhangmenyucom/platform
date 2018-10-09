@@ -1,6 +1,6 @@
 $(function () {
-    let goodsId = getQueryString("goodsId");
-    let url = '../goodsspecification/list';
+    var goodsId = getQueryString("goodsId");
+    var url = '../goodsspecification/list';
     if (goodsId) {
         url += '?goodsId=' + goodsId;
     }

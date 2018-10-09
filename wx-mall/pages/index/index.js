@@ -1,7 +1,6 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 const user = require('../../services/user.js');
-var WxParse = require('../../lib/wxParse/wxParse.js');
 
 
 //获取应用实例
@@ -126,13 +125,11 @@ Page({
         for (var i = 0; i < res.page.list.length; i++) {
           var item = res.page.list[i]
           var st = item.createTime
-          item.content = item.content.substring(3)
+          // var et = item.endDate
           item.createTime = util.formatTime(new Date(st))
-          // WxParse.wxParse('article', 'html', item.content, that);
           arr.push(item)
         }
         that.setData({ news: arr })
-        
       }
     })
 
