@@ -9,6 +9,9 @@ $(function () {
             {label: '支付商户号', name: 'mchId', index: 'mch_id', width: 80},
             {label: '支付密钥', name: 'paySignKey', index: 'pay_sign_key', width: 80},
             {label: '证书地址', name: 'certAddress', index: 'cert_address', width: 80},
+            {label: '门店名称', name: 'storeName', index: 'store_name', width: 80},
+            {label: '门店地址', name: 'storeAddress', index: 'store_address', width: 120},
+            {label: '电话', name: 'phone', index: 'cert_address', width: 80},
             {
                 label: '', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
                 return transDate(value);
@@ -53,7 +56,7 @@ let vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            let url = vm.sysUserConfig.id == null ? "../sysuserconfig/save" : "../sysuserconfig/update";
+            var url = vm.sysUserConfig.id == null ? "../sysuserconfig/save" : "../sysuserconfig/update";
             Ajax.request({
                 url: url,
                 params: JSON.stringify(vm.sysUserConfig),
@@ -67,7 +70,7 @@ let vm = new Vue({
             });
         },
         del: function (event) {
-            let ids = getSelectedRows("#jqGrid");
+            var ids = getSelectedRows("#jqGrid");
             if (ids == null) {
                 return;
             }
@@ -97,7 +100,7 @@ let vm = new Vue({
         },
         reload: function (event) {
             vm.showList = true;
-            let page = $("#jqGrid").jqGrid('getGridParam', 'page');
+            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
                 postData: {'name': vm.q.name},
                 page: page
