@@ -26,7 +26,12 @@ var vm = new Vue({
     data: {
         showList: true,
         title: null,
-        sysUserConfig: {},
+        sysUserConfig: {
+            certAddress:"",
+            storeAddress:"",
+            storeName:"",
+            phone:""
+        },
         ruleValidate: {
             name: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
@@ -43,7 +48,12 @@ var vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.sysUserConfig = {};
+            vm.sysUserConfig = {
+                certAddress:"",
+                storeAddress:"",
+                storeName:"",
+                phone:""
+            };
         },
         update: function (event) {
             var id = getSelectedRow("#jqGrid");
@@ -56,7 +66,7 @@ var vm = new Vue({
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
-            var url = vm.sysUserConfig.id == null ? "../sysuserconfig/save" : "../sysuserconfig/update";
+            var url = vm.sysUserConfig.id == null ? "../sys/userconfig/save" : "../sys/userconfig/update";
             Ajax.request({
                 url: url,
                 params: JSON.stringify(vm.sysUserConfig),
@@ -77,7 +87,7 @@ var vm = new Vue({
 
             confirm('确定要删除选中的记录？', function () {
                 Ajax.request({
-                    url: "../sysuserconfig/delete",
+                    url: "../sys/userconfig/delete",
                     params: JSON.stringify(ids),
                     type: "POST",
                     contentType: "application/json",
@@ -120,6 +130,21 @@ var vm = new Vue({
         },
         handleReset: function (name) {
             handleResetForm(this, name);
+        },
+        handleFormatError: function (file) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: '文件 ' + file.name + ' 格式不正确，请上传p12格式的证书。'
+            });
+        },
+        handleMaxSize: function (file) {
+            this.$Notice.warning({
+                title: '超出文件大小限制',
+                desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            });
+        },
+        handleSuccessPicUrl: function (res, file) {
+            vm.sysUserConfig.certAddress = file.response.url;
         }
     }
 });

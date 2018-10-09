@@ -153,9 +153,6 @@ let vm = new Vue({
                 desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
             });
         },
-        handleReset: function (name) {
-            handleResetForm(this, name);
-        },
         handleSuccessPicUrl: function (res, file) {
             vm.activity.banner = file.response.url;
         },

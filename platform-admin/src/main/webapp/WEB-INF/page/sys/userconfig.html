@@ -49,9 +49,24 @@
             <Form-item label="支付密钥" prop="paySignKey">
                 <i-input v-model="sysUserConfig.paySignKey" placeholder="支付密钥"/>
             </Form-item>
-            <Form-item label="证书地址" prop="certAddress">
-                <i-input v-model="sysUserConfig.certAddress" placeholder="证书地址"/>
-            </Form-item>
+            <Row>
+                <i-col span="16">
+                    <Form-item label="证书地址" prop="certAddress">
+                        <i-input v-model="sysUserConfig.certAddress" placeholder="证书地址" readonly/>
+                    </Form-item>
+                </i-col>
+                <i-col span="3">
+                    <Form-item :label-width="1">
+                        <Upload style="width: 300px;" action="../sys/oss/upload" :format="['p12']"
+                                max-size="20480"
+                                :on-success="handleSuccessPicUrl" :on-format-error="handleFormatError"
+                                :show-upload-list="false"
+                                :on-exceeded-size="handleMaxSize">
+                            <i-button icon="ios-cloud-upload-outline">上传证书</i-button>
+                        </Upload>
+                    </Form-item>
+                </i-col>
+            </Row>
             <Form-item label="门店名称" prop="storeName">
                 <i-input v-model="sysUserConfig.storeName" placeholder="门店名称"/>
             </Form-item>
