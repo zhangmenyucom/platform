@@ -3,21 +3,20 @@ package com.platform.api;/**
  */
 
 import com.platform.annotation.IgnoreAuth;
-import com.platform.annotation.LoginUser;
 import com.platform.entity.SysUserConfigEntity;
 import com.platform.entity.SysUserEntity;
-import com.platform.entity.UserVo;
-import com.platform.entity.WithdrawOrderVo;
 import com.platform.service.SysUserConfigService;
 import com.platform.service.SysUserRoleService;
 import com.platform.service.SysUserService;
 import com.platform.util.ApiBaseAction;
+import com.platform.utils.JsonUtil;
 import com.platform.utils.R;
+import com.qiniu.util.Json;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,6 +24,7 @@ import java.util.List;
  * @描述
  * @since 2018/10/9 11:01
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/{merchantId}/sysuserconfig")
 public class ApiSysUserConfigController extends ApiBaseAction {
@@ -44,6 +44,7 @@ public class ApiSysUserConfigController extends ApiBaseAction {
     @IgnoreAuth
     @PostMapping("/save")
     public R save(@PathVariable("merchantId") Long merchantId, @RequestBody SysUserConfigEntity sysUserConfigEntity) {
+        log.info("sysUserConfigEntity", JsonUtil.getJsonByObj(sysUserConfigEntity));
         /**创建用户**/
         SysUserEntity sysUserEntity = new SysUserEntity();
         sysUserEntity.setDeptId(1L);
