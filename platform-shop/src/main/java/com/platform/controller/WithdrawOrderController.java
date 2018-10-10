@@ -69,7 +69,6 @@ public class WithdrawOrderController {
     @RequiresPermissions("withdraworder:update")
     public R update(@RequestBody WithdrawOrderEntity withdrawOrder) {
         withdrawOrderService.auditingWithdrawOrder(withdrawOrder);
-
         return R.ok();
     }
 

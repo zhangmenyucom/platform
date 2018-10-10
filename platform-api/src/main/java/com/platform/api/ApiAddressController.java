@@ -77,6 +77,9 @@ public class ApiAddressController extends ApiBaseAction {
         }
         if (null == entity.getId() || entity.getId() == 0) {
             entity.setId(null);
+            if (entity.getIs_default().intValue() == 1) {
+                addressService.resetDefaultAdress(entity);
+            }
             addressService.save(entity);
         } else {
             if (entity.getIs_default().intValue() == 1) {
