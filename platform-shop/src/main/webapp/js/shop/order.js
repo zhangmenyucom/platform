@@ -1,6 +1,6 @@
 $(function () {
-   varshippingStatus = getQueryString("shippingStatus");
-   varpayStatus = getQueryString("payStatus");
+    var shippingStatus = getQueryString("shippingStatus");
+    var payStatus = getQueryString("payStatus");
     var orderStatus = getQueryString("orderStatus");
     var orderType = getQueryString("orderType");
     var url = '../order/list';
@@ -25,39 +25,39 @@ $(function () {
             {label: '会员', name: 'nickName', index: 'nickName', width: 100},
             {
                 label: '订单类型', name: 'orderType', index: 'order_type', width: 80, formatter: function (value) {
-                    if (value == '1') {
-                        return '普通订单';
-                    } else if (value == '2') {
-                        return '团购订单';
-                    } else if (value == '3') {
-                        return '砍价订单';
-                    } else if (value == '4') {
-                        return '立即购买';
-                    }
-                    return '-';
+                if (value == '1') {
+                    return '普通订单';
+                } else if (value == '2') {
+                    return '团购订单';
+                } else if (value == '3') {
+                    return '砍价订单';
+                } else if (value == '4') {
+                    return '立即购买';
                 }
+                return '-';
+            }
             },
             {
                 label: '订单状态', name: 'orderStatus', index: 'order_status', width: 80, formatter: function (value) {
-                    if (value == '0') {
-                        return '待付款';
-                    } else if (value == '101') {
-                        return '订单已取消';
-                    } else if (value == '102') {
-                        return '订单已删除';
-                    } else if (value == '201') {
-                        return '订单已付款';
-                    } else if (value == '300') {
-                        return '订单已发货';
-                    } else if (value == '301') {
-                        return '用户确认收货';
-                    } else if (value == '401') {
-                        return '退款';
-                    } else if (value == '402') {
-                        return '完成';
-                    }
-                    return value;
+                if (value == '0') {
+                    return '待付款';
+                } else if (value == '101') {
+                    return '订单已取消';
+                } else if (value == '102') {
+                    return '订单已删除';
+                } else if (value == '201') {
+                    return '订单已付款';
+                } else if (value == '300') {
+                    return '订单已发货';
+                } else if (value == '301') {
+                    return '用户确认收货';
+                } else if (value == '401') {
+                    return '退款';
+                } else if (value == '402') {
+                    return '完成';
                 }
+                return value;
+            }
             },
             {
                 label: '发货状态',
@@ -103,9 +103,9 @@ $(function () {
             },
             {
                 label: '操作', width: 160, align: 'center', sortable: false, formatter: function (value, col, row) {
-                    return '<button class="btn btn-outline btn-info" onclick="vm.lookDetail(' + row.id + ')"><i class="fa fa-info-circle"></i>&nbsp;详情</button>' +
-                        '<button class="btn btn-outline btn-primary" style="margin-top: 10px;" onclick="vm.printDetail(' + row.id + ')"><i class="fa fa-print"></i>&nbsp;打印</button>';
-                }
+                return '<button class="btn btn-outline btn-info" onclick="vm.lookDetail(' + row.id + ')"><i class="fa fa-info-circle"></i>&nbsp;详情</button>' +
+                    '<button class="btn btn-outline btn-primary" style="margin-top: 10px;" onclick="vm.printDetail(' + row.id + ')"><i class="fa fa-print"></i>&nbsp;打印</button>';
+            }
             }
         ]
     });
