@@ -12,14 +12,26 @@ $(function () {
             {label: '优惠券', name: 'couponName', index: 'coupon_id', width: 80},
             {label: '优惠券序号', name: 'couponNumber', index: 'coupon_number', width: 80},
             {
-                label: '下发时间', name: 'addTime', index: 'add_time', width: 80, formatter: function (value) {
-                    return transDate(value);
+                label: '状态', name: 'couponStatus', index: 'coupon_status', width: 80, formatter: function (value) {
+                if (value == 1) {
+                    return '正常';
+                } else if (value == 2) {
+                    return '已使用';
+                } else if (value == 3) {
+                    return '过期';
                 }
+                return '-';
+            }
+            },
+            {
+                label: '下发时间', name: 'addTime', index: 'add_time', width: 80, formatter: function (value) {
+                return transDate(value);
+            }
             },
             {
                 label: '使用时间', name: 'usedTime', index: 'used_time', width: 80, formatter: function (value) {
-                    return transDate(value);
-                }
+                return transDate(value);
+            }
             },
             {label: '订单号', name: 'orderSn', index: 'order_sn', width: 80}]
     });
