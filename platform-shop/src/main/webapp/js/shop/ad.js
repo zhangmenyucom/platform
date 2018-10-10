@@ -127,7 +127,14 @@ var vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccess: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.ad.imageUrl = file.response.url;
         },

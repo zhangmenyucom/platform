@@ -1,8 +1,9 @@
-package com.platform.util;
+package com.platform.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.platform.utils.CharUtil;
 import com.platform.utils.DateUtils;
+import com.platform.utils.wechat.MyX509TrustManager;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.HttpsURLConnection;

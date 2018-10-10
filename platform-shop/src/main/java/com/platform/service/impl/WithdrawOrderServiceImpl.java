@@ -49,7 +49,7 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
             if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {
                 withdrawOrderEntity.setStatus(3);
                 withdrawOrderEntity.setOrderSn(etoc.getPayment_no());
-                withdrawOrder.setComment(withdrawOrder.getComment() + "\n" + etoc.getReturn_msg());
+                withdrawOrderEntity.setComment(withdrawOrder.getComment() + "\n" + etoc.getReturn_msg());
                 //减去锁定金额
                 userEntity.setLockBalance(userEntity.getLockBalance().subtract(withdrawOrderEntity.getWithdrawAmount()));
                 userService.update(userEntity);

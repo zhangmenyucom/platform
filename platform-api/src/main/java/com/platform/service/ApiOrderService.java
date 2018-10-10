@@ -6,7 +6,7 @@ import com.platform.common.*;
 import com.platform.dao.*;
 import com.platform.entity.*;
 import com.platform.service.impl.BaseServiceImpl;
-import com.platform.util.CommonUtil;
+import com.platform.utils.CommonUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

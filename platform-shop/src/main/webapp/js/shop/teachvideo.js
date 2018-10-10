@@ -135,6 +135,8 @@ var vm = new Vue({
             this.uploadList.splice(fileList.indexOf(file), 1);
         },
         handleSuccess: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             // 因为上传过程为实例，这里模拟添加 url
             file.imgUrl = res.url;
             file.name = res.url;
@@ -183,12 +185,6 @@ var vm = new Vue({
         },
         eyeVideo: function (e) {
             eyeVideo($(e.target).attr('src'));
-        },
-        handleProgress: function () {
-            this.$Message.loading({
-                content: '上传中....',
-                duration: 0
-            });
         },
         handleSuccessPicUrl: function (res, file) {
             this.$Message.destroy();

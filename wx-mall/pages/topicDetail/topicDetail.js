@@ -50,7 +50,7 @@ Page({
       }
     });
   },
-  postComment (){
+    postComment: function () {
     wx.navigateTo({
       url: '/pages/commentPost/commentPost?valueId='+this.data.id + '&typeId=1',
     })

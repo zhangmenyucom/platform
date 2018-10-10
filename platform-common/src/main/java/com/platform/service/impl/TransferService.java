@@ -38,7 +38,7 @@ public class TransferService {
         //随机生成后数字，保证安全性
         packageParams.put("nonce_str", RandCharsUtils.getRandomString(32));
         //生成商户订单号
-        packageParams.put("partner_trade_no", RandCharsUtils.getRandomString(32));
+        packageParams.put("partner_trade_no", CommonUtil.generateOrderNumber());
         // 支付给用户openid
         packageParams.put("openid", transferReqBean.getOpenId());
         //是否验证真实姓名呢

@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -14,6 +15,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
+import com.platform.utils.CharUtil;
+import com.platform.utils.DateUtils;
 import net.sf.json.JSONObject;
 
 public class CommonUtil {
@@ -99,6 +102,16 @@ public class CommonUtil {
 			return randomOrderNum();
 		}
     	return result;
+    }
+
+    /**
+     * 生成订单的编号order_sn
+     */
+    public static String generateOrderNumber() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        String timeStr = DateUtils.format(cal.getTime(), DateUtils.DATE_TIME_PATTERN_YYYY_MM_DD_HH_MM_SS_SSS);
+        return timeStr + CharUtil.getRandomNum(6);
     }
     
     //从0开始截取到指定位置的字符串
