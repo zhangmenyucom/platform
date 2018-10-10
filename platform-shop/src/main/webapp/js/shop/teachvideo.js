@@ -170,7 +170,7 @@ var vm = new Vue({
         },
         handleProgress: function () {
             this.$Message.loading({
-                content: '上传中....',
+                content: '图片上传中....',
                 duration: 0
             });
         },
