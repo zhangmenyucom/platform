@@ -38,7 +38,7 @@
                 order by ${sidx} ${order}
             </when>
             <otherwise>
-                order by id desc
+                order by is_default desc,id desc
             </otherwise>
         </choose>
         <if test="offset != null and limit != null">
@@ -96,6 +96,11 @@
             <if test="is_default != null">`is_default` = #{is_default}</if>
         </set>
         where id = #{id}
+    </update>
+    <update id="resetDefaultAddress" parameterType="com.platform.entity.AddressVo">
+        update address
+        set is_default=0
+        where user_id = #{userId} and merchant_id=#{merchantId}
     </update>
 
     <delete id="delete">

@@ -68,6 +68,11 @@ public class ApiWithdrawOrderController {
         if (userVo.getAvilableBalance().compareTo(withdrawOrder.getWithdrawAmount()) < 0) {
             return R.ok("超出可提金额");
         }
+        /**可用金额减少,锁定金额增加**/
+        userVo.setLockBalance(userVo.getLockBalance().add(withdrawOrder.getWithdrawAmount()));
+        userVo.setAvilableBalance(userVo.getAvilableBalance().subtract(withdrawOrder.getWithdrawAmount()));
+        apiUserService.update(userVo);
+
         withdrawOrder.setMerchantId(merchantId);
         withdrawOrder.setUserId(loginUser.getUserId());
         withdrawOrder.setAccountType(0);

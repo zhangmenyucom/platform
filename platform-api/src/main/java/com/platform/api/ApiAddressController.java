@@ -79,6 +79,9 @@ public class ApiAddressController extends ApiBaseAction {
             entity.setId(null);
             addressService.save(entity);
         } else {
+            if (entity.getIs_default().intValue() == 1) {
+                addressService.resetDefaultAdress(entity);
+            }
             addressService.update(entity);
         }
         return toResponsSuccess(entity);

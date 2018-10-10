@@ -3,6 +3,7 @@ package com.platform.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -47,5 +48,21 @@ public class UserEntity extends BaseEntity implements Serializable {
     private String weixinOpenid;
     /**会员级别**/
     private String levelName;
+    /**
+     * 积分
+     **/
+    private Integer point;
+    /**
+     * 总佣金
+     **/
+    private BigDecimal totalBalance;
+    /**
+     * 可用佣金
+     **/
+    private BigDecimal avilableBalance;
+    /**
+     * 冻结佣金
+     **/
+    private BigDecimal lockBalance;
     
 }

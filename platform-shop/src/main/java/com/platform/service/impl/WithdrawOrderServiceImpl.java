@@ -4,6 +4,7 @@ import com.platform.annotation.MerchantFilter;
 import com.platform.dao.WithdrawOrderDao;
 import com.platform.entity.EnterpriceToCustomerEntity;
 import com.platform.entity.TransferReqBean;
+import com.platform.entity.UserEntity;
 import com.platform.entity.WithdrawOrderEntity;
 import com.platform.service.UserService;
 import com.platform.service.WithdrawOrderService;
@@ -34,13 +35,14 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
         WithdrawOrderEntity withdrawOrderEntity = this.getDao().queryObject(withdrawOrder.getId());
         withdrawOrderEntity.setStatus(withdrawOrder.getStatus());
         withdrawOrderEntity.setComment(withdrawOrder.getComment());
+        UserEntity userEntity = userService.queryObject(withdrawOrder.getUserId());
         if (withdrawOrder.getStatus() == 1) {
             this.getDao().update(withdrawOrderEntity);
             TransferReqBean transferReqBean = new TransferReqBean();
             transferReqBean.setWithdrawOrderId(withdrawOrder.getId());
             transferReqBean.setAmount(withdrawOrderEntity.getWithdrawAmount().intValue() * 100);
             transferReqBean.setDesc("佣金提现");
-            transferReqBean.setOpenId(userService.queryObject(withdrawOrder.getUserId()).getWeixinOpenid());
+            transferReqBean.setOpenId(userEntity.getWeixinOpenid());
             transferReqBean.setRealName(withdrawOrderEntity.getRealName());
             transferReqBean.setMerchantId(withdrawOrder.getMerchantId());
             EnterpriceToCustomerEntity etoc = transferService.payToCustom(transferReqBean);
@@ -48,6 +50,9 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
                 withdrawOrderEntity.setStatus(3);
                 withdrawOrderEntity.setOrderSn(etoc.getPayment_no());
                 withdrawOrder.setComment(withdrawOrder.getComment() + "\n" + etoc.getReturn_msg());
+                //减去锁定金额
+                userEntity.setLockBalance(userEntity.getLockBalance().subtract(withdrawOrderEntity.getWithdrawAmount()));
+                userService.update(userEntity);
             } else {
                 withdrawOrderEntity.setStatus(4);
                 withdrawOrderEntity.setComment(withdrawOrderEntity.getComment() + "\n" + etoc.getErr_code_des());

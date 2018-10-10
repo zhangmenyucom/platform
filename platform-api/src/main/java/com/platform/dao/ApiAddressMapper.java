@@ -9,4 +9,6 @@ import com.platform.entity.AddressVo;
  */
 public interface ApiAddressMapper extends BaseDao<AddressVo> {
 
+    int resetDefaultAddress(AddressVo addressVo);
+
 }

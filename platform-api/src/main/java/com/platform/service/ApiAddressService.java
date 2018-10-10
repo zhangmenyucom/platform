@@ -8,5 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ApiAddressService extends BaseServiceImpl<AddressVo,ApiAddressMapper> {
-    
+
+    public int resetDefaultAdress(AddressVo entity) {
+        return this.getDao().resetDefaultAddress(entity);
+    }
 }
