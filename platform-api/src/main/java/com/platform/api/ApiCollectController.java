@@ -67,6 +67,7 @@ public class ApiCollectController extends ApiBaseAction {
             collectEntity.setValue_id(valueId);
             collectEntity.setIs_attention(0);
             collectEntity.setUser_id(loginUser.getUserId());
+            collectEntity.setMerchantId(merchantId);
             //添加收藏
             collectRes = collectService.save(collectEntity);
         } else {
