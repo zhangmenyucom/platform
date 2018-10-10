@@ -35,6 +35,7 @@
         user_coupon.coupon_id,
         user_coupon.coupon_number,
         user_coupon.user_id,
+        user_coupon.conpon_status,
         user.nickname,
         user_coupon.used_time,
         user_coupon.add_time,

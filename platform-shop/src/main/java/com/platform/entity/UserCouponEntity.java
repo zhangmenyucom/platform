@@ -30,7 +30,9 @@ public class UserCouponEntity extends BaseEntity implements Serializable {
      **/
     private Long userId;
 
-    /**昵称**/
+    /**
+     * 昵称
+     **/
     private String nickname;
     /**
      * 使用时间
@@ -43,7 +45,7 @@ public class UserCouponEntity extends BaseEntity implements Serializable {
     /**
      * 订单号
      **/
-    private String  orderSn;
+    private String orderSn;
     /**
      * 会员名
      **/
@@ -52,4 +54,8 @@ public class UserCouponEntity extends BaseEntity implements Serializable {
      * 优惠劵名称
      **/
     private String couponName;
+    /**
+     * 优惠券状态
+     **/
+    private Integer couponStatus;
 }
