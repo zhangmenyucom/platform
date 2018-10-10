@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.WithdrawOrderVo" id="withdrawOrderMap">
         <result property="id" column="id"/>
+        <result property="orderSn" column="order_sn"/>
 		<result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="realName" column="real_name"/>
@@ -20,6 +21,7 @@
 	<select id="queryObject" resultType="com.platform.entity.WithdrawOrderVo">
 		select
 			`id`,
+			`order_sn`,
 			`merchant_id`,
 			`user_id`,
 			`real_name`,
@@ -37,6 +39,7 @@
 	<select id="queryList" resultType="com.platform.entity.WithdrawOrderVo">
 		select
     		`id`,
+        `order_sn`,
 		    `merchant_id`,
     		`user_id`,
     		`real_name`,
@@ -85,6 +88,7 @@
 	<insert id="save" parameterType="com.platform.entity.WithdrawOrderVo" useGeneratedKeys="true" keyProperty="id">
 		insert into withdraw_order(
 			`user_id`,
+			`order_sn`,
 			`real_name`,
 		    `merchant_id`,
 			`withdraw_amount`,
@@ -96,6 +100,7 @@
 			`update_time`)
 		values(
 			#{userId},
+			#{orderSn},
 			#{realName},
 			#{merchantId},
 			#{withdrawAmount},
@@ -111,6 +116,7 @@
 		update withdraw_order 
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
+            <if test="orderSn != null">`order_sn` = #{orderSn},</if>
 			<if test="realName != null">`real_name` = #{realName}, </if>
 			<if test="withdrawAmount != null">`withdraw_amount` = #{withdrawAmount}, </if>
 			<if test="withdrawAccount != null">`withdraw_account` = #{withdrawAccount}, </if>

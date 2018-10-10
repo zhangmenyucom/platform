@@ -71,6 +71,9 @@
 		<if test="merchantId!=null">
 			and c.merchant_id=#{merchantId}
 		</if>
+		<if test="orderSn != null and orderSn.trim() != ''">
+			AND c.order_sn LIKE concat('%',#{orderSn},'%')
+		</if>
 		and c.source_user_id=u.id
 		and c.order_sn=uo.order_sn
 		and uo.id =og.order_id
@@ -93,14 +96,14 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from commission_order
+		select count(*) from commission_order c
 		WHERE 1=1
 		<if test="merchantId!=null">
-			and merchant_id=#{merchantId}
+			and c.merchant_id=#{merchantId}
 		</if>
-        <if test="name != null and name.trim() != ''">
-            AND name LIKE concat('%',#{name},'%')
-        </if>
+		<if test="orderSn != null and orderSn.trim() != ''">
+			AND c.order_sn LIKE concat('%',#{orderSn},'%')
+		</if>
 	</select>
 	 
 	<insert id="save" parameterType="com.platform.entity.CommissionOrderEntity" useGeneratedKeys="true" keyProperty="id">

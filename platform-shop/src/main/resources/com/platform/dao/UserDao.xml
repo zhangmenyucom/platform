@@ -189,9 +189,9 @@
             <if test="mobile != null">`mobile` = #{mobile},</if>
             <if test="registerIp != null">`register_ip` = #{registerIp},</if>
             <if test="avatar != null">`avatar` = #{avatar},</if>
-            <if test="weixinOpenid != null">`weixin_openid` = #{weixinOpenid}</if>
-            <if test="totalBalance != null">`total_balance` = #{totalBalance}</if>
-            <if test="avilableBalance != null">`avilable_balance` = #{avilableBalance}</if>
+            <if test="weixinOpenid != null">`weixin_openid` = #{weixinOpenid},</if>
+            <if test="totalBalance != null">`total_balance` = #{totalBalance},</if>
+            <if test="avilableBalance != null">`avilable_balance` = #{avilableBalance},</if>
             <if test="lockBalance != null">`lock_balance` = #{lockBalance}</if>
         </set>
         where id = #{id}

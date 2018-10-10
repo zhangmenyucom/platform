@@ -5,6 +5,7 @@
 
     <resultMap type="com.platform.entity.WithdrawOrderEntity" id="withdrawOrderMap">
         <result property="id" column="id"/>
+        <result property="orderSn" column="order_sn"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="realName" column="real_name"/>
@@ -21,6 +22,7 @@
     <select id="queryObject" resultMap="withdrawOrderMap">
 		select
 			`id`,
+        `order_sn`,
 			`user_id`,
 			`real_name`,
 			`merchant_id`,
@@ -39,7 +41,8 @@
     <select id="queryList" resultType="com.platform.entity.WithdrawOrderEntity">
         select
         wo.`id`,
-        wo.merchant_id,
+        wo.`order_sn`,
+        wo.`merchant_id`,
         wo.`user_id`,
         wo.`real_name`,
         u.nickname,
@@ -57,7 +60,7 @@
             and wo.merchant_id=#{merchantId}
         </if>
         <if test="name != null and name.trim() != ''">
-            AND name LIKE concat('%',#{name},'%')
+            AND real_name LIKE concat('%',#{name},'%')
         </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -79,7 +82,7 @@
             and merchant_id=#{merchantId}
         </if>
         <if test="name != null and name.trim() != ''">
-            AND name LIKE concat('%',#{name},'%')
+            AND real_name LIKE concat('%',#{name},'%')
         </if>
     </select>
 
@@ -114,6 +117,7 @@
         update withdraw_order
         <set>
             <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="orderSn != null">`order_sn` = #{orderSn},</if>
             <if test="realName != null">`real_name` = #{realName},</if>
             <if test="withdrawAmount != null">`withdraw_amount` = #{withdrawAmount},</if>
             <if test="withdrawAccount != null">`withdraw_account` = #{withdrawAccount},</if>

@@ -108,14 +108,14 @@ var vm = new Vue({
             vm.showList = true;
             var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
-                postData: {'name': vm.q.name},
+                postData: {'orderSn': vm.q.name},
                 page: page
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
         reloadSearch: function () {
             vm.q = {
-                name: ''
+                orderSn: ''
             }
             vm.reload();
         },
