@@ -132,6 +132,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         orderInfo.setShipping_id(0);
         orderInfo.setShipping_fee(new BigDecimal(0));
         orderInfo.setIntegral(0);
+        orderInfo.setMerchantId(loginUser.getMerchantId());
         orderInfo.setIntegral_money(new BigDecimal(0));
         if ("cart".equals(type)) {
             orderInfo.setOrder_type(OrderTypeEnum.CART.getCode());
