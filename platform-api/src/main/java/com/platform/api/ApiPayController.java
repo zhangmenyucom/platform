@@ -118,6 +118,7 @@ public class ApiPayController extends ApiBaseAction {
                 parameters.put("body", body);
             }
             //支付金额
+
             parameters.put("total_fee", orderInfo.getActual_price().multiply(new BigDecimal(100)).intValue());
             // 回调地址
             parameters.put("notify_url", String.format(ResourceUtil.getConfigByName("wx.notifyUrl"), merchantId));

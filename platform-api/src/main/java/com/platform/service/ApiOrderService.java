@@ -101,7 +101,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         //订单的总价
         BigDecimal orderTotalPrice = goodsTotalPrice.add(new BigDecimal(freightPrice));
         //减去其它支付的金额后，要实际支付的金额
-        BigDecimal actualPrice = orderTotalPrice.subtract(couponPrice).compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : orderTotalPrice.subtract(couponPrice);
+        BigDecimal actualPrice = orderTotalPrice.subtract(couponPrice).compareTo(BigDecimal.ZERO) <= 0 ? BigDecimal.valueOf(0.01) : orderTotalPrice.subtract(couponPrice);
 
         OrderVo orderInfo = new OrderVo();
         orderInfo.setOrder_sn(CommonUtil.generateOrderNumber());
