@@ -1,7 +1,7 @@
-let app = getApp();
-let WxParse = require('../../lib/wxParse/wxParse.js');
-let util = require('../../utils/util.js');
-let api = require('../../config/api.js');
+var app = getApp();
+var WxParse = require('../../lib/wxParse/wxParse.js');
+var util = require('../../utils/util.js');
+var api = require('../../config/api.js');
 
 Page({
   data: {
@@ -13,7 +13,7 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-      let that = this;
+      var that = this;
     that.setData({
       id: parseInt(options.id)
     });
@@ -38,11 +38,10 @@ Page({
       }
     });
   },
-  getCommentList(){
-    let that = this;
+    getCommentList: function () {
+        var that = this;
     util.request(api.CommentList, { valueId: that.data.id, typeId: 1, size: 5 }).then(function (res) {
       if (res.errno === 0) {
-
         that.setData({
           commentList: res.data.data,
           commentCount: res.data.count

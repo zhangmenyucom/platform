@@ -3,7 +3,6 @@ package com.platform.api;/**
  */
 
 import com.platform.annotation.IgnoreAuth;
-import com.platform.entity.ActivityVo;
 import com.platform.entity.SysUserConfigEntity;
 import com.platform.entity.SysUserEntity;
 import com.platform.service.SysUserConfigService;
@@ -14,7 +13,6 @@ import com.platform.utils.JsonUtil;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import com.qiniu.util.Json;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
