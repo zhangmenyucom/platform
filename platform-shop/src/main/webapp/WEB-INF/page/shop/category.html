@@ -86,6 +86,7 @@
                         <Upload style="width: 300px;" action="../sys/oss/upload" :format="['jpg','jpeg','png']"
                                 max-size="2048"
                                 :on-success="handleSuccessBannerUrl" :on-format-error="handleFormatError"
+                                :on-progress="handleProgress"
                                 :show-upload-list="false"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
@@ -109,6 +110,7 @@
                         <Upload style="width: 300px;" action="../sys/oss/upload" :format="['jpg','jpeg','png']"
                                 max-size="2048"
                                 :on-success="handleSuccessIconUrl" :on-format-error="handleFormatError"
+                                :on-progress="handleProgress"
                                 :show-upload-list="false"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>

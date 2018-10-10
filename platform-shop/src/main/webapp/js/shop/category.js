@@ -171,6 +171,8 @@ var vm = new Vue({
             });
         },
         handleSuccessBannerUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.category.bannerUrl = file.response.url;
         },
         eyeImageBannerUrl: function () {
@@ -184,7 +186,15 @@ var vm = new Vue({
             var url = vm.category.iconUrl;
             eyeImage(url);
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessImgUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.category.imgUrl = file.response.url;
         },
         eyeImageImgUrl: function () {
