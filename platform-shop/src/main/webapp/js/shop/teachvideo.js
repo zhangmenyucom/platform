@@ -166,7 +166,14 @@ var vm = new Vue({
                 desc: '文件 ' + file.name + ' 太大，不能超过 2G。'
             });
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessVideoUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.teachVideo.videoUrl = file.response.url;
         },
@@ -177,7 +184,14 @@ var vm = new Vue({
         eyeVideo: function (e) {
             eyeVideo($(e.target).attr('src'));
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.teachVideo.wrapper = file.response.url;
         },

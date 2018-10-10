@@ -125,6 +125,7 @@
                                         max-size="2048"
                                         :on-success="handleSuccessPicUrl" :on-format-error="handleFormatError"
                                         :show-upload-list="false"
+                                        :on-progress="handleProgress"
                                         :on-exceeded-size="handleMaxSize">
                                     <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                                 </Upload>
@@ -148,6 +149,7 @@
                                         max-size="2048"
                                         :on-success="handleSuccessListPicUrl" :on-format-error="handleFormatError"
                                         :show-upload-list="false"
+                                        :on-progress="handleProgress"
                                         :on-exceeded-size="handleMaxSize">
                                     <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                                 </Upload>

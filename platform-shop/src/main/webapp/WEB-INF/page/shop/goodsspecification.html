@@ -60,6 +60,7 @@
                                 max-size="2048"
                                 :on-success="handleSuccess" :on-format-error="handleFormatError"
                                 :show-upload-list="false"
+                                :on-progress="handleProgress"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                         </Upload>

@@ -138,13 +138,20 @@ var vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
+
         handleSuccessAvatar: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.topic.avatar = file.response.url;
         },
         handleSuccessItemPicUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.topic.itemPicUrl = file.response.url;
         },
         handleSuccessScenePicUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.topic.scenePicUrl = file.response.url;
         },
         handleFormatError: function (file) {

@@ -42,11 +42,11 @@ var vm = new Vue({
         showList: true,
         title: null,
         article: {
-            title:"",
-            author:"",
-            bannerPic:"",
-            content:"",
-            sourceUrl:""
+            title: "",
+            author: "",
+            bannerPic: "",
+            content: "",
+            sourceUrl: ""
 
         },
         ruleValidate: {
@@ -66,12 +66,12 @@ var vm = new Vue({
             vm.showList = false;
             vm.title = "新增";
             vm.article = {
-                title:"",
-                author:"",
-                bannerPic:"",
-                content:"",
-                sourceUrl:"",
-                status:1
+                title: "",
+                author: "",
+                bannerPic: "",
+                content: "",
+                sourceUrl: "",
+                status: 1
             };
             $('#content').editable('setHTML', '');
         },
@@ -166,7 +166,14 @@ var vm = new Vue({
                 desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
             });
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.article.bannerPic = file.response.url;
         },

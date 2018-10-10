@@ -172,7 +172,14 @@ var vm = new Vue({
         handleReset: function (name) {
             handleResetForm(this, name);
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.gift.picUrl = file.response.url;
         },

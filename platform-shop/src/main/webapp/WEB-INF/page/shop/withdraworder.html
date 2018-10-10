@@ -46,6 +46,9 @@
             <Form-item label="提现账户" prop="withdrawAccount">
                 <i-input v-model="withdrawOrder.withdrawAccount" placeholder="提现账户" readonly/>
             </Form-item>
+            <Form-item label="提现人" prop="realName">
+                <i-input v-model="withdrawOrder.realName" placeholder="提现人" readonly/>
+            </Form-item>
             <Form-item label="账户类型" prop="accountType" readonly>
                 <Radio-group v-model="withdrawOrder.accountType">
                     <Radio label="0" disabled>

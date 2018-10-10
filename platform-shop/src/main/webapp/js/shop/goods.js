@@ -348,8 +348,15 @@ var vm = new Vue({
             const fileList = this.uploadList;
             this.uploadList.splice(fileList.indexOf(file), 1);
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccess: function (res, file) {
             // 因为上传过程为实例，这里模拟添加 url
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             file.imgUrl = res.url;
             file.name = res.url;
@@ -385,10 +392,12 @@ var vm = new Vue({
             handleResetForm(this, name);
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.goods.primaryPicUrl = file.response.url;
         },
         handleSuccessListPicUrl: function (res, file) {
+            this.$Message.destroy();
             this.$Message.success('上传成功');
             vm.goods.listPicUrl = file.response.url;
         },
