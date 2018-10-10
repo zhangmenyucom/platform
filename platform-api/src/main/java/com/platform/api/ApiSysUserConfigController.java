@@ -3,6 +3,7 @@ package com.platform.api;/**
  */
 
 import com.platform.annotation.IgnoreAuth;
+import com.platform.entity.ActivityVo;
 import com.platform.entity.SysUserConfigEntity;
 import com.platform.entity.SysUserEntity;
 import com.platform.service.SysUserConfigService;
@@ -10,14 +11,18 @@ import com.platform.service.SysUserRoleService;
 import com.platform.service.SysUserService;
 import com.platform.util.ApiBaseAction;
 import com.platform.utils.JsonUtil;
+import com.platform.utils.PageUtils;
+import com.platform.utils.Query;
 import com.platform.utils.R;
 import com.qiniu.util.Json;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhangxiaolu
@@ -62,5 +67,20 @@ public class ApiSysUserConfigController extends ApiBaseAction {
         sysUserConfigEntity.setMerchantId(sysUserEntity.getUserId());
         sysUserConfigService.save(sysUserConfigEntity);
         return R.ok("已提交,待审核");
+    }
+
+    /**
+     * 查看列表
+     */
+    @IgnoreAuth
+    @ApiOperation(value = "获取商家信息列表", response = Map.class)
+    @GetMapping("list")
+    public R list(@PathVariable("merchantId") Long merchantId, @RequestParam Map<String, Object> params) {
+        //查询列表数据
+        Query query = new Query(params, merchantId);
+        List<SysUserConfigEntity> sysUserConfigList = sysUserConfigService.queryAll(query);
+        int total = sysUserConfigService.queryTotalAll(query);
+        PageUtils pageUtil = new PageUtils(sysUserConfigList, total, query.getLimit(), query.getPage());
+        return R.ok().put("page", pageUtil);
     }
 }

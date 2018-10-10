@@ -86,7 +86,37 @@
             limit #{offset}, #{limit}
         </if>
     </select>
-
+    <select id="queryAll" resultType="com.platform.entity.SysUserConfigEntity">
+        select
+        `id`,
+        `merchant_id`,
+        `app_id`,
+        `secret`,
+        `mch_id`,
+        `pay_sign_key`,
+        `cert_address`,
+        `store_name`,
+        `store_address`,
+        `phone`,
+        `create_time`,
+        `update_time`
+        from sys_user_config
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
     <select id="queryTotal" resultType="int">
         select count(*) from sys_user_config
         WHERE 1=1
@@ -97,7 +127,13 @@
             AND name LIKE concat('%',#{name},'%')
         </if>
     </select>
-
+    <select id="queryTotalAll" resultType="int">
+        select count(*) from sys_user_config
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
     <insert id="save" parameterType="com.platform.entity.SysUserConfigEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into sys_user_config(
 			`merchant_id`,
