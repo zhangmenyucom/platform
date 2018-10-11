@@ -162,7 +162,7 @@ public class ApiOrderController extends ApiBaseAction {
     public Object pointExchange(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, @RequestBody PointExchangeDto pointExchangeDto) {
        try {
            orderService.exchangePoint(pointExchangeDto,loginUser);
-           return toResponsFail("兑换成功");
+           return toResponsSuccess("兑换成功");
        }catch (Exception e){
            e.printStackTrace();
            System.out.println(e.getMessage());
