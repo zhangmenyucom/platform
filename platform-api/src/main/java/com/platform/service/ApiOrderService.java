@@ -38,6 +38,8 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
     private ApiGiftExchangeRecordService apiGiftExchangeRecordService;
     @Autowired
     private ApiGoodsService apiGoodsService;
+    @Autowired
+    private ApiSeckillGoodsService apiSeckillGoodsService;
 
 
     @Transactional
@@ -47,6 +49,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         Long couponId = jsonParam.getLong("couponId");
         Long parentId = jsonParam.getLong("parentId");
         String type = jsonParam.getString("type");
+        Long seckillId = jsonParam.getLong("seckillId");
         String postscript = jsonParam.getString("postscript");
         AddressVo addressVo = apiAddressMapper.queryObject(jsonParam.getLong("addressId"));
 
@@ -103,6 +106,11 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         //减去其它支付的金额后，要实际支付的金额
         BigDecimal actualPrice = orderTotalPrice.subtract(couponPrice).compareTo(BigDecimal.ZERO) <= 0 ? BigDecimal.valueOf(0.01) : orderTotalPrice.subtract(couponPrice);
 
+        /**秒杀价**/
+        if ("seckill".equals(type)) {
+            SeckillGoodsVo seckillGoodsVo = apiSeckillGoodsService.queryObject(seckillId);
+            actualPrice = seckillGoodsVo.getCurPrice();
+        }
         OrderVo orderInfo = new OrderVo();
         orderInfo.setOrder_sn(CommonUtil.generateOrderNumber());
         orderInfo.setUser_id(loginUser.getUserId());
@@ -136,6 +144,8 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         orderInfo.setIntegral_money(new BigDecimal(0));
         if ("cart".equals(type)) {
             orderInfo.setOrder_type(OrderTypeEnum.CART.getCode());
+        } else if ("seckill".equals(type)) {
+            orderInfo.setOrder_type(OrderTypeEnum.SECKILL.getCode());
         } else {
             orderInfo.setOrder_type(OrderTypeEnum.DIRECT_BUY.getCode());
         }
