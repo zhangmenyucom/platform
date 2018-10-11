@@ -164,6 +164,7 @@ public class ApiOrderController extends ApiBaseAction {
            orderService.exchangePoint(pointExchangeDto,loginUser);
            return toResponsFail("兑换成功");
        }catch (Exception e){
+           e.printStackTrace();
            System.out.println(e.getMessage());
            return toResponsFail("兑换失败");
        }
