@@ -3,6 +3,8 @@ package com.platform.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.platform.entity.GoodsEntity;
+import com.platform.service.GoodsService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +31,8 @@ import com.platform.utils.R;
 public class SeckillGoodsController {
     @Autowired
     private SeckillGoodsService seckillGoodsService;
+    @Autowired
+    private GoodsService goodsService;
 
     /**
      * 查看列表
@@ -60,6 +64,9 @@ public class SeckillGoodsController {
     @RequestMapping("/save")
     @RequiresPermissions("seckillgoods:save")
     public R save(@RequestBody SeckillGoodsEntity seckillGoods) {
+        GoodsEntity goodsEntity = goodsService.queryObject(seckillGoods.getGoodsId());
+        goodsEntity.setIsOnSale(0);
+        goodsService.update(goodsEntity);
         seckillGoodsService.save(seckillGoods);
         return R.ok();
     }

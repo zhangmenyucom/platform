@@ -178,6 +178,16 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             orderGoodsVo.setMerchantId(loginUser.getMerchantId());
             orderGoodsData.add(orderGoodsVo);
             apiOrderGoodsMapper.save(orderGoodsVo);
+            /**减库存**/
+            GoodsVo goodsVo = apiGoodsService.queryObject(orderGoodsVo.getId());
+            goodsVo.setGoods_number(goodsVo.getGoods_number() - orderGoodsVo.getNumber());
+            apiGoodsService.update(goodsVo);
+            /**如果是秒杀减秒杀库存**/
+            if ("seckill".equals(type)) {
+                SeckillGoodsVo seckillGoodsVo = apiSeckillGoodsService.queryObject(seckillId);
+                seckillGoodsVo.setSold(seckillGoodsVo.getSold() + orderGoodsVo.getNumber());
+                apiSeckillGoodsService.update(seckillGoodsVo);
+            }
         }
 
         //清空已购买的商品
