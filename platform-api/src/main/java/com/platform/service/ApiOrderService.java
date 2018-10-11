@@ -240,7 +240,8 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
                     .setAddress(addressVo.getDetailInfo())
                     .setIntegral(0)
                     .setIntegral_money(BigDecimal.ZERO)
-                    .setGoodsCount(pointExchangeDto.getGiftNumber());
+                    .setGoodsCount(pointExchangeDto.getGiftNumber())
+                    .setMerchantId(loginUser.getMerchantId());
             apiOrderMapper.save(orderInfo);
 
             OrderGoodsVo orderGoodsVo = new OrderGoodsVo();
@@ -261,11 +262,11 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         }
         /**记录兑换记录**/
         GiftExchangeRecordEntityVo giftExchangeRecordEntityVo = new GiftExchangeRecordEntityVo();
-        giftExchangeRecordEntityVo
-                .setGiftId(giftEntityVo.getId())
+        giftExchangeRecordEntityVo.setGiftId(giftEntityVo.getId())
                 .setUsePoint(giftEntityVo.getPointValue())
                 .setUserId(userVo.getUserId())
-                .setOrderSn(orderSn).setCreateTime(new Date());
+                .setOrderSn(orderSn).setCreateTime(new Date())
+                .setMerchantId(loginUser.getMerchantId());
         apiGiftExchangeRecordService.save(giftExchangeRecordEntityVo);
         /**更新积分**/
         apiUserService.update(new UserVo().setPoint(userVo.getPoint() - giftEntityVo.getPointValue()).setUserId(userVo.getUserId()));

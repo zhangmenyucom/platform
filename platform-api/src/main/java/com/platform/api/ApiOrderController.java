@@ -159,7 +159,7 @@ public class ApiOrderController extends ApiBaseAction {
      */
     @ApiOperation(value = "积分兑换")
     @PostMapping("/pointExchange")
-    public Object pointExchange(@LoginUser UserVo loginUser, @RequestBody PointExchangeDto pointExchangeDto) {
+    public Object pointExchange(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, @RequestBody PointExchangeDto pointExchangeDto) {
        try {
            orderService.exchangePoint(pointExchangeDto,loginUser);
            return toResponsFail("兑换成功");
