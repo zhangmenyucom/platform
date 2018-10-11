@@ -226,6 +226,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode())
                     .setActual_price(BigDecimal.ZERO)
                     .setAdd_time(new Date())
+                    .setUser_id(userVo.getUserId())
                     .setOrder_sn(orderSn)
                     .setOrder_price(BigDecimal.ZERO)
                     .setOrder_type(OrderTypeEnum.POINT.getCode())
@@ -239,9 +240,10 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
                     .setDistrict(addressVo.getCountyName())
                     .setAddress(addressVo.getDetailInfo())
                     .setIntegral(0)
+                    .setGoods_price(BigDecimal.ZERO)
                     .setIntegral_money(BigDecimal.ZERO)
                     .setGoodsCount(pointExchangeDto.getGiftNumber())
-                    .setMerchantId(loginUser.getMerchantId());
+                    .setMerchantId(userVo.getMerchantId());
             apiOrderMapper.save(orderInfo);
 
             OrderGoodsVo orderGoodsVo = new OrderGoodsVo();
@@ -265,7 +267,8 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         giftExchangeRecordEntityVo.setGiftId(giftEntityVo.getId())
                 .setUsePoint(giftEntityVo.getPointValue())
                 .setUserId(userVo.getUserId())
-                .setOrderSn(orderSn).setCreateTime(new Date())
+                .setOrderSn(orderSn)
+                .setCreateTime(new Date())
                 .setMerchantId(loginUser.getMerchantId());
         apiGiftExchangeRecordService.save(giftExchangeRecordEntityVo);
         /**更新积分**/
