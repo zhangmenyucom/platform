@@ -40,7 +40,7 @@
                 <i-input v-model="userCoupon.userId" placeholder="会员Id"/>
             </Form-item>
             <Form-item label="使用时间" prop="usedTime">
-                <Date-picker v-model="userCoupon.usedTime" placeholder="使用时间"/>
+                <Date-picker type="datetime" v-model="userCoupon.usedTime" placeholder="使用时间"/>
             </Form-item>
             <Form-item label="订单号" prop="orderSn">
                 <i-input v-model="userCoupon.orderSn" placeholder="订单号"/>

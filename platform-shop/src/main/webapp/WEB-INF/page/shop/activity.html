@@ -68,10 +68,10 @@
                 </i-col>
             </Row>
             <Form-item label="开始时间" prop="startDate">
-                <Date-picker v-model="activity.startDate" placeholder="开时时间"/>
+                <Date-picker type="datetime" v-model="activity.startDate" placeholder="开时时间"/>
             </Form-item>
             <Form-item label="截至日期" prop="endDate">
-                <Date-picker v-model="activity.endDate" placeholder="截止日期"/>
+                <Date-picker type="datetime" v-model="activity.endDate" placeholder="截止日期"/>
             </Form-item>
             <Form-item label="活动地址" prop="position">
                 <i-input v-model="activity.position" placeholder="活动地址"/>

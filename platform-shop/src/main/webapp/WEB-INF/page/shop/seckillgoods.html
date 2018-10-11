@@ -46,10 +46,10 @@
                 <i-input v-model="seckillGoods.curPrice" placeholder="秒杀价"/>
             </Form-item>
             <Form-item label="开始日期" prop="startTime">
-                <Date-picker v-model="seckillGoods.startTime" placeholder="开始日期"/>
+                <Date-picker type="datetime" v-model="seckillGoods.startTime" placeholder="开始日期"/>
             </Form-item>
             <Form-item label="截止日期" prop="endTime">
-                <Date-picker v-model="seckillGoods.endTime" placeholder="截止日期"/>
+                <Date-picker type="datetime" v-model="seckillGoods.endTime" placeholder="截止日期"/>
             </Form-item>
             <Form-item label="描述" prop="description">
                 <i-input v-model="seckillGoods.description" placeholder="描述"/>
