@@ -30,6 +30,7 @@
     <resultMap type="com.platform.entity.UserDetailVo" id="userMapVo">
         <result property="userId" column="id"/>
         <result property="parentId" column="parent_id"/>
+        <result property="merchantId" column="merchant_id"/>
         <result property="username" column="username"/>
         <result property="gender" column="gender"/>
         <result property="birthday" column="birthday"/>
@@ -48,7 +49,7 @@
         <result property="lockBalance" column="lock_balance"/>
     </resultMap>
     <sql id="baseColumn">
-       u.id,u.parent_id,u.username,u.password,u.gender,u.birthday,u.register_time, u.last_login_time,u.last_login_ip,u.user_level_id,
+       u.id,u.merchant_id,u.parent_id,u.username,u.password,u.gender,u.birthday,u.register_time, u.last_login_time,u.last_login_ip,u.user_level_id,
        u.nickname,u.mobile,u.register_ip,u.avatar,u.weixin_openid,u.point,u.total_balance,u.avilable_balance,u.lock_balance
     </sql>
 
