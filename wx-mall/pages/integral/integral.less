@@ -12,6 +12,51 @@
         image{
             width:40rpx;height:40rpx;margin-left:50rpx;
         }
-        text{font-size: 28rpx;color: #333;margin-left: 40rpx;}
+        text,span{font-size: 28rpx;color: #333;margin-left: 40rpx;}
+    }
+}
+
+.list:nth-child(even){
+    margin-left: 4%;
+}
+
+.list-box{
+    width: 90%;
+    margin:  20rpx auto;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    // border: 1px solid;
+    position: relative;
+    .list{
+        width: 48%;
+        // height: 20rpx;
+        border: 1px solid #ececec;
+        border-radius: 20rpx;
+        text-align: center;
+        .info{
+            width: 100%;
+            image{
+                width: 220rpx;
+                height: 200rpx;
+            }
+            label{
+                display: block;
+                margin-top: 10rpx;
+                font-size: 28rpx;
+                margin-top: 10rpx;
+            }
+            span{
+                font-size: 28rpx;
+                display: inline-block;
+            }
+        }
+        .stock{
+            font-size: 28rpx;
+            float: right;
+            text-align: right;
+            margin-right: 5%;
+            margin-top: 10rpx;
+        }
     }
 }

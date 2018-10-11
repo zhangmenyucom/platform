@@ -10,7 +10,8 @@ Page({
   data: {
     limit:10,
     page:1,
-    integral:''
+    integral:'登录查看',
+    list:[]
   },
 
   /**
@@ -28,7 +29,9 @@ Page({
 
     var data = {limit:this.data.limit,page:this.data.page}
     util.request(api.Integral,data).then((res)=>{
-      console.log(res)
+      if(res.code == 0){
+        this.setData({list:res.page.list})
+      }
     })
   },
 

@@ -8,5 +8,6 @@
 </view>
 
 <view class='content-box' style='margin-top:30rpx;'>
-  <rich-text class='content'>{{news.content}}</rich-text>
+  <import src="../../lib/wxParse/wxParse.wxml"/> 
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>

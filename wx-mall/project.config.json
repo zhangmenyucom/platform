@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -104,9 +104,9 @@
 				},
 				{
 					"id": 12,
-					"name": "佣金",
-					"pathName": "pages/commission/commission",
-					"query": "page=1&limit=5&userId=28"
+					"name": "留言",
+					"pathName": "pages/topic/topic",
+					"query": ""
 				},
 				{
 					"id": -1,

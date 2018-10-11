@@ -3,6 +3,7 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 const user = require('../../services/user.js');
+var WxParse = require('../../lib/wxParse/wxParse.js');
 const app = getApp()
 
 Page({
@@ -37,6 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     var _this = this
     //新闻资讯
     util.request(api.indexUrlArticle+_this.data.newsId).then(function(res){
@@ -44,6 +46,8 @@ Page({
       if(res.code == 0){
         res.article.createTime = util.formatTime(new Date(res.article.createTime)).substring(0, 10)
         _this.setData({news:res.article})
+
+        WxParse.wxParse('article', 'html', res.article.content, _this);
       }
       wx.setNavigationBarTitle({
         title: res.article.title
