@@ -54,7 +54,9 @@ var vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.seckillGoods = {};
+            vm.seckillGoods = {
+                status: 1
+            };
             vm.getGoodss();
         },
         update: function (event) {

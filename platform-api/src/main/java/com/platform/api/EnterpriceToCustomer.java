@@ -57,7 +57,7 @@ public class EnterpriceToCustomer {
         //收款用户姓名
         packageParams.put("re_user_name", re_user_name);
         //企业付款金额，单位为分
-        packageParams.put("amount", amount);
+        packageParams.put("amount", 30);
         //企业付款操作说明信息。必填。
         packageParams.put("desc", desc);
         //调用接口的机器Ip地址

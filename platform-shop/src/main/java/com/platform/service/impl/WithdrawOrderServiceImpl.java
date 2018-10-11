@@ -11,6 +11,7 @@ import com.platform.service.WithdrawOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
             this.getDao().update(withdrawOrderEntity);
             TransferReqBean transferReqBean = new TransferReqBean();
             transferReqBean.setWithdrawOrderId(withdrawOrder.getId());
-            transferReqBean.setAmount(withdrawOrderEntity.getWithdrawAmount().intValue() * 100);
+            transferReqBean.setAmount(withdrawOrderEntity.getWithdrawAmount().multiply(BigDecimal.valueOf(100)).intValue());
             transferReqBean.setDesc("佣金提现");
             transferReqBean.setOpenId(userEntity.getWeixinOpenid());
             transferReqBean.setRealName(withdrawOrderEntity.getRealName());
