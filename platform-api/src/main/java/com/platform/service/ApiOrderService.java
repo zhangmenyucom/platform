@@ -269,6 +269,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
                 .setUserId(userVo.getUserId())
                 .setOrderSn(orderSn)
                 .setCreateTime(new Date())
+                .setUpdateTime(new Date())
                 .setMerchantId(loginUser.getMerchantId());
         apiGiftExchangeRecordService.save(giftExchangeRecordEntityVo);
         /**更新积分**/
