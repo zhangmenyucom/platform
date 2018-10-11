@@ -51,6 +51,16 @@
             <Form-item label="截止日期" prop="endTime">
                 <Date-picker type="datetime" v-model="seckillGoods.endTime" placeholder="截止日期"/>
             </Form-item>
+            <Form-item label="上下架" prop="status">
+                <Radio-group v-model="seckillGoods.status">
+                    <Radio label="0">
+                        <span>下架</span>
+                    </Radio>
+                    <Radio label="1">
+                        <span>上架</span>
+                    </Radio>
+                </Radio-group>
+            </Form-item>
             <Form-item label="描述" prop="description">
                 <i-input v-model="seckillGoods.description" placeholder="描述"/>
             </Form-item>

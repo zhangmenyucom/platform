@@ -15,7 +15,7 @@ import java.util.Date;
  * @date 2018-10-11 11:18:21
  */
 @Data
-public class SeckillGoodsEntity extends BaseEntity implements Serializable {
+public class SeckillGoodsVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * 商品id

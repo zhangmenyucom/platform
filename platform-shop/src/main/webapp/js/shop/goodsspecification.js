@@ -61,7 +61,9 @@ var vm = new Vue({
         add: function () {
             vm.showList = false;
             vm.title = "新增";
-            vm.goodsSpecification = {};
+            vm.goodsSpecification = {
+                status: 1
+            };
             vm.getSpecification();
             vm.getGoodss();
         },
@@ -143,7 +145,15 @@ var vm = new Vue({
                 desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
             });
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccess: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.goodsSpecification.picUrl = file.response.url;
         },
         eyeImage: function () {

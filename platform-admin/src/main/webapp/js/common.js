@@ -222,6 +222,20 @@ function transGender(gender) {
     }
     return '未知';
 };
+/**
+ * 翻译上下架
+ * @param onshelf
+ * @returns {*}
+ */
+function transOnshelf(gender) {
+    if (gender == 1) {
+        return '<span class="label label-success">上架</span>';
+    }
+    if (gender == 0) {
+        return '<span class="label label-danger">下架</span>';
+    }
+    return '-';
+};
 
 function transIsNot(value) {
     if (value == 1) {

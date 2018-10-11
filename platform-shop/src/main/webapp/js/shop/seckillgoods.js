@@ -9,6 +9,7 @@ $(function () {
                 return transImg(value);
             }
             },
+
             {label: '库存', name: 'stock', index: 'stock', width: 80},
             {label: '已售', name: 'sold', index: 'sold', width: 80},
             {label: '原价', name: 'marketPrice', index: 'market_price', width: 80},
@@ -21,6 +22,11 @@ $(function () {
             {
                 label: '截止日期', name: 'endTime', index: 'end_time', width: 80, formatter: function (value) {
                 return transDate(value);
+            }
+            },
+            {
+                label: '上下架', name: 'status', index: 'status', width: 80, formatter: function (value) {
+                return transOnshelf(value);
             }
             },
             {label: '描述', name: 'description', index: 'description', width: 80}]
@@ -58,7 +64,7 @@ var vm = new Vue({
             }
             vm.showList = false;
             vm.title = "修改";
-
+            vm.getGoodss();
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {

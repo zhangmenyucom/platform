@@ -24,14 +24,7 @@ $(function () {
             {label: '所需积分', name: 'pointValue', index: 'point_value', width: 40},
             {
                 label: '上下架', name: 'status', index: 'status', width: 40, formatter: function (value) {
-                if (value == 0) {
-                    return '下架';
-                } else if (value == 1) {
-                    return '上架';
-                } else {
-                    return '-';
-                }
-                return value;
+                return transOnshelf(value);
             }
             },
             {label: '说明', name: 'giftDesc', index: 'gift_desc', width: 120},
