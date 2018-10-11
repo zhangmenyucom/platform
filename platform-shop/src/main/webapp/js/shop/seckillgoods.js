@@ -4,7 +4,11 @@ $(function () {
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
             {label: '商品名称', name: 'goodsName', index: 'goods_name', width: 80},
-            {label: '商品图', name: 'goodsPic', index: 'goods_pic', width: 80},
+            {
+                label: '商品图', name: 'goodsPic', index: 'goods_pic', width: 80, formatter: function (value) {
+                return transImg(value);
+            }
+            },
             {label: '库存', name: 'stock', index: 'stock', width: 80},
             {label: '已售', name: 'sold', index: 'sold', width: 80},
             {label: '原价', name: 'marketPrice', index: 'market_price', width: 80},
