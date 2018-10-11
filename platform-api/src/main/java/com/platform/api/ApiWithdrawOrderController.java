@@ -64,7 +64,7 @@ public class ApiWithdrawOrderController {
     @PostMapping("/save")
     public R save(@PathVariable("merchantId") Long merchantId, @RequestBody WithdrawOrderVo withdrawOrder, @LoginUser UserVo loginUser) {
 
-        UserVo userVo = apiUserService.queryObject(withdrawOrder.getUserId());
+        UserVo userVo = apiUserService.queryObject(loginUser.getUserId());
         if (userVo.getAvilableBalance().compareTo(withdrawOrder.getWithdrawAmount()) < 0) {
             return R.ok("超出可提金额");
         }
