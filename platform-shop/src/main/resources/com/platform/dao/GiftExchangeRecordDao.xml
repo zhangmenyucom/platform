@@ -37,7 +37,7 @@
         r.`user_id`,
         u.nickname as nickName,
         g.name as giftName,
-        g.primary_pic_url as gift_pic,
+        g.pic_url as gift_pic,
         r.`gift_id`,
         r.`use_point`,
         r.`number`,
@@ -80,7 +80,7 @@
 
     <insert id="save" parameterType="com.platform.entity.GiftExchangeRecordEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into gift_exchange_record(
-			 `merchant_id`,
+			`merchant_id`,
 			`user_id`,
 			`gift_id`,
 			`use_point`,

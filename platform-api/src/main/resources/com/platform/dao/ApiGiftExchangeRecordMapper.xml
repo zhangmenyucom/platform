@@ -39,7 +39,7 @@
         r.`number`,
         u.nickname as nickName,
         g.name as giftName,
-        g.primary_pic_url as gift_pic,
+        g.pic_url as gift_pic,
         r.`gift_id`,
         r.`use_point`,
         r.`order_sn`,
