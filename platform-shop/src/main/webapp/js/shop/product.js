@@ -108,7 +108,6 @@ var vm = new Vue({
         saveOrUpdate: function (event) {
             var url = vm.product.id == null ? "../product/save" : "../product/update";
             vm.product.goodsSpecificationIds = vm.color + '_' + vm.guige + '_' + vm.weight;
-
             Ajax.request({
                 type: "POST",
                 url: url,
