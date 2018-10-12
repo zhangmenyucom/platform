@@ -1,5 +1,6 @@
 package com.platform.service.impl;
 
+import com.platform.annotation.MerchantFilter;
 import com.platform.dao.GoodsDao;
 import com.platform.dao.GoodsSpecificationDao;
 import com.platform.dao.ProductDao;
@@ -61,10 +62,9 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductEntity,ProductDao
 
     @Override
     @Transactional
+    @MerchantFilter
     public int save(ProductEntity product) {
-
         int result = 0;
-
         ProductEntity entity = new ProductEntity();
         BeanUtils.copyProperties(product, entity);
         if (!StringUtils.isNullOrEmpty(product.getGoodsSpecificationIds())) {

@@ -6,13 +6,13 @@ $(function () {
         }, {
             label: '品牌名称', name: 'name', index: 'name', width: 80
         }, {
-            label: '图片', name: 'listPicUrl', index: 'list_pic_url', width: 80, formatter: function (value) {
+            label: '列表图片', name: 'listPicUrl', index: 'list_pic_url', width: 80, formatter: function (value) {
                 return transImg(value);
             }
         }, {
             label: '描述', name: 'simpleDesc', index: 'simple_desc', width: 80
         }, {
-            label: '图片', name: 'picUrl', index: 'pic_url', width: 80, formatter: function (value) {
+            label: '主图', name: 'picUrl', index: 'pic_url', width: 80, formatter: function (value) {
                 return transImg(value);
             }
         }, {
@@ -129,16 +129,30 @@ var vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
+        handleProgress: function () {
+            this.$Message.loading({
+                content: '上传中....',
+                duration: 0
+            });
+        },
         handleSuccessListPicUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.brand.listPicUrl = file.response.url;
         },
         handleSuccessPicUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.brand.picUrl = file.response.url;
         },
         handleSuccessAppListPicUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.brand.appListPicUrl = file.response.url;
         },
         handleSuccessNewPicUrl: function (res, file) {
+            this.$Message.destroy();
+            this.$Message.success('上传成功');
             vm.brand.newPicUrl = file.response.url;
         },
         handleFormatError: function (file) {

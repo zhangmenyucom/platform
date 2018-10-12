@@ -100,8 +100,8 @@
 			`new_pic_url`,
 			`new_sort_order`)
 		values(
-		    #{merchantId},
 			#{name},
+        #{merchantId},
 			#{listPicUrl},
 			#{simpleDesc},
 			#{picUrl},

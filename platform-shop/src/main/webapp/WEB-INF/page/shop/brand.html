@@ -38,8 +38,8 @@
             </Form-item>
             <Row>
                 <i-col span="16">
-                    <Form-item label="图片" prop="imageUrl">
-                        <i-input v-model="brand.listPicUrl" placeholder="图片" readonly/>
+                    <Form-item label="列表图" prop="imageUrl">
+                        <i-input v-model="brand.listPicUrl" placeholder="列表图" readonly/>
                     </Form-item>
                 </i-col>
                 <i-col span="3">
@@ -48,6 +48,7 @@
                                 max-size="2048"
                                 :on-success="handleSuccessListPicUrl" :on-format-error="handleFormatError"
                                 :show-upload-list="false"
+                                :on-progress="handleProgress"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                         </Upload>
@@ -64,8 +65,8 @@
             </Form-item>
             <Row>
                 <i-col span="16">
-                    <Form-item label="图片" prop="picUrl">
-                        <i-input v-model="brand.picUrl" placeholder="图片" readonly/>
+                    <Form-item label="主图" prop="picUrl">
+                        <i-input v-model="brand.picUrl" placeholder="主图" readonly/>
                     </Form-item>
                 </i-col>
                 <i-col span="3">
@@ -74,6 +75,7 @@
                                 max-size="2048"
                                 :on-success="handleSuccessPicUrl" :on-format-error="handleFormatError"
                                 :show-upload-list="false"
+                                :on-progress="handleProgress"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                         </Upload>
@@ -113,6 +115,7 @@
                                 max-size="2048"
                                 :on-success="handleSuccessAppListPicUrl" :on-format-error="handleFormatError"
                                 :show-upload-list="false"
+                                :on-progress="handleProgress"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                         </Upload>
@@ -146,6 +149,7 @@
                                 max-size="2048"
                                 :on-success="handleSuccessNewPicUrl" :on-format-error="handleFormatError"
                                 :show-upload-list="false"
+                                :on-progress="handleProgress"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                         </Upload>

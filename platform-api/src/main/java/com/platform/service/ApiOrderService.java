@@ -249,11 +249,11 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             OrderGoodsVo orderGoodsVo = new OrderGoodsVo();
 
             GoodsVo goodsVo = apiGoodsService.queryObject(giftEntityVo.getGoodsId());
-            ProductVo productVo = productService.queryObject(goodsVo.getProduct_id());
+            //ProductVo productVo = productService.queryObject(goodsVo.getProduct_id());
             orderGoodsVo.setOrder_id(orderInfo.getId());
             orderGoodsVo.setGoods_id(giftEntityVo.getGoodsId());
-            orderGoodsVo.setGoods_sn(productVo.getGoods_sn());
-            orderGoodsVo.setProduct_id(productVo.getProduct_id());
+            orderGoodsVo.setGoods_sn(goodsVo.getGoods_sn());
+            orderGoodsVo.setProduct_id(goodsVo.getProduct_id());
             orderGoodsVo.setGoods_name(goodsVo.getName());
             orderGoodsVo.setList_pic_url(goodsVo.getList_pic_url());
             orderGoodsVo.setMarket_price(goodsVo.getMarket_price());
