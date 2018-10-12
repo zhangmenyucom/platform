@@ -1,49 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.platform.dao.NewGiftRecordDao">
+<mapper namespace="com.platform.dao.ApiNewGiftRecordMapper">
 
     <resultMap type="com.platform.entity.NewGiftRecordEntity" id="newGiftRecordMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="hongBao" column="hong_bao"/>
-        <result property="remark" column="remark"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.NewGiftRecordEntity">
+    <select id="queryObject" resultType="com.platform.entity.NewGiftRecordVo">
 		select
 			`id`,
 			`merchant_id`,
 			`user_id`,
 			`hong_bao`,
-        `remark`,
 			`create_time`,
-			`update_time`
+			`update_time`,
+			`remark`
 		from new_gift_record
 		where id = #{id}
 	</select>
+    <select id="queryByUserId" parameterType="java.lang.Long">
+		select
+			`id`,
+			`merchant_id`,
+			`user_id`,
+			`hong_bao`,
+			`create_time`,
+			`update_time`,
+			`remark`
+		from new_gift_record
+		where user_id = #{userId}
+	</select>
 
-    <select id="queryList" resultType="com.platform.entity.NewGiftRecordEntity">
+    <select id="queryList" resultType="com.platform.entity.NewGiftRecordVo">
         select
-        n.`id`,
-        n.`merchant_id`,
-        n.`user_id`,
-        n.`hong_bao`,
-        n.`remark`,
-        n.`create_time`,
-        n.`update_time`,
-        u.nickname as nick_name,
-        u.avatar
-        from new_gift_record n,user u
-        WHERE 1=1 and n.user_id=u.id
+        `id`,
+        `merchant_id`,
+        `user_id`,
+        `hong_bao`,
+        `create_time`,
+        `update_time`,
+        `remark`
+        from new_gift_record
+        WHERE 1=1
         <if test="merchantId!=null">
-            and n.merchant_id=#{merchantId}
+            and merchant_id=#{merchantId}
         </if>
         <if test="name != null and name.trim() != ''">
-            AND u.nickname LIKE concat('%',#{name},'%')
+            AND name LIKE concat('%',#{name},'%')
         </if>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -69,24 +79,24 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.NewGiftRecordEntity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.entity.NewGiftRecordVo" useGeneratedKeys="true" keyProperty="id">
 		insert into new_gift_record(
 			`merchant_id`,
 			`user_id`,
 			`hong_bao`,
-        `remark`,
+			`remark`,
 			`create_time`,
 			`update_time`)
 		values(
 			#{merchantId},
 			#{userId},
 			#{hongBao},
-        #{remark},
+			#{remark},
 			#{createTime},
 			#{updateTime})
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.NewGiftRecordEntity">
+    <update id="update" parameterType="com.platform.entity.NewGiftRecordVo">
         update new_gift_record
         <set>
             <if test="merchantId != null">`merchant_id` = #{merchantId},</if>

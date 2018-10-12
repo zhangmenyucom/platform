@@ -16,4 +16,5 @@ public class TransferReqBean {
     private String realName;
     private int amount;
     private String desc;
+    private boolean needCheckName;
 }

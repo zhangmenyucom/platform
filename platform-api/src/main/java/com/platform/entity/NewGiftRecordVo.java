@@ -15,21 +15,12 @@ import java.util.Date;
  * @date 2018-10-11 19:05:18
  */
 @Data
-public class NewGiftRecordEntity extends BaseEntity implements Serializable {
+public class NewGiftRecordVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
     /**
      * 用户id
      **/
     private Long userId;
-    /**
-     * 昵称
-     **/
-    private String nickName;
-    /**
-     * 头像
-     **/
-    private String avatar;
     /**
      * 红包
      **/

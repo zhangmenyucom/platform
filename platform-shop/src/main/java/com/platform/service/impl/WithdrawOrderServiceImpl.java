@@ -45,6 +45,7 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
             transferReqBean.setDesc("佣金提现");
             transferReqBean.setOpenId(userEntity.getWeixinOpenid());
             transferReqBean.setRealName(withdrawOrderEntity.getRealName());
+            transferReqBean.setNeedCheckName(true);
             transferReqBean.setMerchantId(withdrawOrder.getMerchantId());
             EnterpriceToCustomerEntity etoc = transferService.payToCustom(transferReqBean);
             if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {

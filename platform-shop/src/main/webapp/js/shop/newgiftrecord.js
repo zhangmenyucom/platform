@@ -18,6 +18,9 @@ $(function () {
                 label: '领取时间', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
                 return transDate(value);
             }
+            },
+            {
+                label: '备注', name: 'remark', index: 'remark', width: 80
             }]
     });
 });

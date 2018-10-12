@@ -42,7 +42,11 @@ public class TransferService {
         // 支付给用户openid
         packageParams.put("openid", transferReqBean.getOpenId());
         //是否验证真实姓名呢
-        packageParams.put("check_name", "FORCE_CHECK");
+        if (transferReqBean.isNeedCheckName()) {
+            packageParams.put("check_name", "FORCE_CHECK");
+        } else {
+            packageParams.put("check_name", "NO_CHECK");
+        }
         //收款用户姓名
         packageParams.put("re_user_name", transferReqBean.getRealName());
         //企业付款金额，单位为分

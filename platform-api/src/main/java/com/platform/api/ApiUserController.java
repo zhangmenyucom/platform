@@ -6,21 +6,19 @@ import com.platform.annotation.LoginUser;
 import com.platform.common.Constants;
 import com.platform.common.ResponseCodeEnum;
 import com.platform.common.vo.EncryptedDataBean;
-import com.platform.entity.SignRecordVo;
-import com.platform.entity.SmsLogVo;
-import com.platform.entity.UserDetailVo;
-import com.platform.entity.UserVo;
+import com.platform.entity.*;
+import com.platform.service.ApiNewGiftRecordService;
 import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
+import com.platform.service.impl.TransferService;
 import com.platform.util.ApiBaseAction;
-import com.platform.utils.CharUtil;
-import com.platform.utils.MSUtil;
-import com.platform.utils.WXAppletUserInfo;
+import com.platform.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,6 +36,12 @@ public class ApiUserController extends ApiBaseAction {
 
     @Autowired
     private ApiSignRecordService apiSignRecordService;
+
+    @Autowired
+    private ApiNewGiftRecordService apiNewGiftRecordService;
+
+    @Autowired
+    private TransferService transferService;
 
     /**
      * 发送短信
@@ -137,7 +141,7 @@ public class ApiUserController extends ApiBaseAction {
      */
     @ApiOperation(value = "签到")
     @GetMapping("/sign")
-    public Object sign(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
+    public Object sign(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser) {
         SignRecordVo signRecordVo = apiSignRecordService.queryLatestSign(loginUser.getUserId());
         if (signRecordVo != null) {
             SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
@@ -167,5 +171,54 @@ public class ApiUserController extends ApiBaseAction {
     public Object getUserDetailInfo(UserVo loginUser) {
         UserDetailVo userDetailVo = userService.queryUserDetailInfo(loginUser.getUserId());
         return toResponsSuccess(userDetailVo);
+    }
+
+
+    /**
+     * 新人有礼红包领取
+     */
+    @ApiOperation(value = "新人有礼红包领取")
+    @GetMapping("/new_gift")
+    public Object newGift(@LoginUser UserVo loginUser) {
+        NewGiftRecordVo recordVo = apiNewGiftRecordService.queryByUserId(loginUser.getUserId());
+        if (recordVo != null) {
+            return R.error("你已领过新人红包哦");
+        }
+        NewGiftRecordVo newGiftRecordVo = new NewGiftRecordVo();
+        newGiftRecordVo.setUserId(loginUser.getUserId());
+        newGiftRecordVo.setHongBao(BigDecimal.valueOf(0.3));
+        newGiftRecordVo.setCreateTime(new Date());
+        newGiftRecordVo.setMerchantId(loginUser.getMerchantId());
+        newGiftRecordVo.setUpdateTime(new Date());
+        newGiftRecordVo.setRemark("新人有礼红包");
+        apiNewGiftRecordService.save(newGiftRecordVo);
+
+        TransferReqBean transferReqBean = new TransferReqBean();
+        transferReqBean.setWithdrawOrderId(newGiftRecordVo.getId());
+        transferReqBean.setAmount(BigDecimal.valueOf(0.3).multiply(BigDecimal.valueOf(100)).intValue());
+        transferReqBean.setDesc("新人有礼红包");
+        transferReqBean.setOpenId(loginUser.getWeixin_openid());
+        transferReqBean.setRealName(loginUser.getNickname());
+        transferReqBean.setNeedCheckName(false);
+        transferReqBean.setMerchantId(loginUser.getMerchantId());
+        EnterpriceToCustomerEntity etoc = transferService.payToCustom(transferReqBean);
+        if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {
+            return toResponsSuccess(newGiftRecordVo);
+        } else {
+            return toResponsFail(etoc.getErr_code_des());
+        }
+    }
+
+    /**
+     * 新人有礼红包领取
+     */
+    @ApiOperation(value = "新人有礼红包领取")
+    @GetMapping("/has_take_new_gift")
+    public R hasTakeNewGift(@LoginUser UserVo loginUser) {
+        NewGiftRecordVo recordVo = apiNewGiftRecordService.queryByUserId(loginUser.getUserId());
+        if (recordVo != null) {
+            return R.ok("你已领过新人红包哦");
+        }
+        return R.error("未领取");
     }
 }
