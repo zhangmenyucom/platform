@@ -71,7 +71,6 @@ public class ApiWithdrawOrderController {
         /**可用金额减少,锁定金额增加**/
         userVo.setLockBalance(userVo.getLockBalance().add(withdrawOrder.getWithdrawAmount()));
         userVo.setAvilableBalance(userVo.getAvilableBalance().subtract(withdrawOrder.getWithdrawAmount()));
-        userVo.setTotalBalance(userVo.getTotalBalance().subtract(withdrawOrder.getWithdrawAmount()));
         apiUserService.update(userVo);
 
         withdrawOrder.setMerchantId(merchantId);

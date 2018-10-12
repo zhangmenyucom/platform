@@ -54,12 +54,12 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
                 withdrawOrderEntity.setComment(withdrawOrder.getComment() + "\n" + etoc.getReturn_msg());
                 //减去锁定金额
                 userEntity.setLockBalance(userEntity.getLockBalance().subtract(withdrawOrderEntity.getWithdrawAmount()));
+                userEntity.setTotalBalance(userEntity.getTotalBalance().subtract(withdrawOrderEntity.getWithdrawAmount()));
                 userService.update(userEntity);
             } else {
                 withdrawOrderEntity.setStatus(4);
                 //还原锁定金额
                 userEntity.setLockBalance(userEntity.getLockBalance().subtract(withdrawOrderEntity.getWithdrawAmount()));
-                userEntity.setTotalBalance(userEntity.getTotalBalance().add(withdrawOrderEntity.getWithdrawAmount()));
                 userEntity.setAvilableBalance(userEntity.getAvilableBalance().add(withdrawOrderEntity.getWithdrawAmount()));
                 userService.update(userEntity);
                 withdrawOrderEntity.setComment(withdrawOrderEntity.getComment() + "\n" + etoc.getErr_code_des());
