@@ -49,12 +49,24 @@
             limit #{offset}, #{limit}
         </if>
     </select>
+    <select id="queryProductByGoodsId" resultMap="productMap" parameterType="java.lang.Long">
+        select a.*,
+        b.name as goods_name,
+        b.list_pic_url as list_pic_url
+        from product a
+        left join goods b on a.goods_id = b.id
+        <where>
+            <if test="goodsId != null">
+                and a.goods_id = #{goodsId}
+            </if>
+        </where>
+    </select>
 
     <select id="queryTotal" resultType="int">
-		select count(*) from product
+        select count(*) from product
         WHERE 1=1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
-	</select>
+    </select>
 </mapper>

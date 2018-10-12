@@ -1,6 +1,9 @@
 package com.platform.dao;
 
 import com.platform.entity.ProductVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 
@@ -10,5 +13,6 @@ import com.platform.entity.ProductVo;
  * @date 2017-08-11 09:16:46
  */
 public interface ApiProductMapper extends BaseDao<ProductVo> {
-	
+
+    List<ProductVo> queryProductByGoodsId(@Param("goodsId") Long goodsId);
 }
