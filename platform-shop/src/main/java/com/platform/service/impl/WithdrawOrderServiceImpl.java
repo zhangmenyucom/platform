@@ -57,6 +57,11 @@ public class WithdrawOrderServiceImpl extends BaseServiceImpl<WithdrawOrderEntit
                 userService.update(userEntity);
             } else {
                 withdrawOrderEntity.setStatus(4);
+                //还原锁定金额
+                userEntity.setLockBalance(userEntity.getLockBalance().subtract(withdrawOrderEntity.getWithdrawAmount()));
+                userEntity.setTotalBalance(userEntity.getTotalBalance().add(withdrawOrderEntity.getWithdrawAmount()));
+                userEntity.setAvilableBalance(userEntity.getAvilableBalance().add(withdrawOrderEntity.getWithdrawAmount()));
+                userService.update(userEntity);
                 withdrawOrderEntity.setComment(withdrawOrderEntity.getComment() + "\n" + etoc.getErr_code_des());
             }
             this.getDao().update(withdrawOrderEntity);
