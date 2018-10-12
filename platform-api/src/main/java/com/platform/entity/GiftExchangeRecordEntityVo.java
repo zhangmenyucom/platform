@@ -35,10 +35,17 @@ public class GiftExchangeRecordEntityVo extends BaseEntity  implements Serializa
      * 礼品名称
      **/
     private String giftName;
+
+    /**礼品图片**/
+    private String giftPic;
     /**
      * 使用积分
      **/
     private Long usePoint;
+    /**
+     * 兑换数量
+     **/
+    private Integer  number;
     /**
      * 订单号
      **/

@@ -6,6 +6,12 @@ $(function () {
             {label: '用户id', name: 'userId', index: 'user_id', width: 80, hidden: true},
             {label: '用户', name: 'nickName', index: 'nickName', width: 80},
             {label: '礼品名称', name: 'giftName', index: 'giftName', width: 80},
+            {
+                label: '礼品图', name: 'giftPic', index: 'giftPic', width: 80, formatter: function (value) {
+                return transImg(value);
+            }
+            },
+            {label: '兑换数量', name: 'number', index: 'number', width: 80},
             {label: '使用积分', name: 'usePoint', index: 'use_point', width: 80},
             {label: '订单号', name: 'orderSn', index: 'orderSn', width: 80},
             {

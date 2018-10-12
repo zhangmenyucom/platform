@@ -22,10 +22,14 @@ public class GiftExchangeRecordEntity extends BaseEntity implements Serializable
     private String nickName;
     /**礼品名称**/
     private String giftName;
+    /**礼品图标**/
+    private String giftPic;
     /** 礼品id **/
     private Long giftId;
     /** 使用积分 **/
     private Long usePoint;
+    /** 兑换数量 **/
+    private Integer number;
     /** 订单号 **/
     private String orderSn;
 }
