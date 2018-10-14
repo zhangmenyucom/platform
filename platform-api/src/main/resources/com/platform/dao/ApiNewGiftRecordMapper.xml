@@ -25,7 +25,7 @@
 		from new_gift_record
 		where id = #{id}
 	</select>
-    <select id="queryByUserId" parameterType="java.lang.Long">
+    <select id="queryByUserId" parameterType="java.lang.Long" resultType="com.platform.entity.NewGiftRecordVo">
 		select
 			`id`,
 			`merchant_id`,
