@@ -203,9 +203,9 @@ public class ApiUserController extends ApiBaseAction {
         transferReqBean.setMerchantId(loginUser.getMerchantId());
         EnterpriceToCustomerEntity etoc = transferService.payToCustom(transferReqBean);
         if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {
-            return toResponsSuccess(newGiftRecordVo);
+            return R.ok().put("data", newGiftRecordVo);
         } else {
-            return toResponsFail(etoc.getErr_code_des());
+            return R.error(etoc.getErr_code_des());
         }
     }
 
