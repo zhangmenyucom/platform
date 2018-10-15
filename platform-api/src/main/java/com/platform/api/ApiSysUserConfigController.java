@@ -45,7 +45,7 @@ public class ApiSysUserConfigController extends ApiBaseAction {
      * 保存
      */
     @IgnoreAuth
-    @PostMapping("/save")
+    @PostMapping(value = "/save", consumes = {"application/json", "application/x-www-form-urlencoded"})
     public R save(@PathVariable("merchantId") Long merchantId, @RequestBody SysUserConfigEntity sysUserConfigEntity) {
         log.info("sysUserConfigEntity", JsonUtil.getJsonByObj(sysUserConfigEntity));
         /**创建用户**/

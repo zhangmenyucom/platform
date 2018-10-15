@@ -161,6 +161,10 @@ public class ApiOrderController extends ApiBaseAction {
     @PostMapping("/pointExchange")
     public Object pointExchange(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, @RequestBody PointExchangeDto pointExchangeDto) {
        try {
+
+           if (pointExchangeDto.getGiftNumber() <= 0) {
+               return toResponsFail("兑换数量有误");
+           }
            orderService.exchangePoint(pointExchangeDto,loginUser);
            return toResponsSuccess("兑换成功");
        }catch (Exception e){
