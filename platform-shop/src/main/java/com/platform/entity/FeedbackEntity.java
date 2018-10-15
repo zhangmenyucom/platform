@@ -27,6 +27,8 @@ public class FeedbackEntity extends BaseEntity implements Serializable {
     private Integer userId;
     //会员名称
     private String userName;
+    //会员名称
+    private String nickName;
 
     //移动电话
     private String mobile;

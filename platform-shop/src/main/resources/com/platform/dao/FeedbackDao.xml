@@ -8,6 +8,7 @@
 		<result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
+        <result property="nickName" column="nick_name"/>
         <result property="mobile" column="mobile"/>
         <result property="feedType" column="feed_Type"/>
         <result property="content" column="content"/>
@@ -32,17 +33,19 @@
 
 	<select id="queryList" resultType="com.platform.entity.FeedbackEntity">
 		select
-		`merchant_id`,
-		`msg_id`,
-		`user_id`,
-		`user_name`,
-		`mobile`,
-		`feed_Type`,
-		`content`,
-		`add_time`,
-		`status`
-		from feedback
-		where 1=1
+		f.`merchant_id`,
+		f.`msg_id`,
+		f.`user_id`,
+		f.`user_name`,
+		f.`nick_name`,
+		f.`mobile`,
+		f.`feed_Type`,
+		f.`content`,
+		f.`add_time`,
+		f.`status`,
+		u.nickname as nick_name
+		from feedback f LEFT JOIN user u  ON user_id = user.id
+		where 1=1 and
 		<if test="merchantId!=null">
 			and merchant_id=#{merchantId}
 		</if>
