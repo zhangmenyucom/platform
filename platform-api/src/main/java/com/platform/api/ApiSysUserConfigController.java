@@ -46,7 +46,7 @@ public class ApiSysUserConfigController extends ApiBaseAction {
      */
     @IgnoreAuth
     @PostMapping(value = "/save", consumes = {"application/json", "application/x-www-form-urlencoded"})
-    public R save(@PathVariable("merchantId") Long merchantId, @RequestBody SysUserConfigEntity sysUserConfigEntity) {
+    public R save(@PathVariable("merchantId") Long merchantId, SysUserConfigEntity sysUserConfigEntity) {
         log.info("sysUserConfigEntity", JsonUtil.getJsonByObj(sysUserConfigEntity));
         /**创建用户**/
         SysUserEntity sysUserEntity = new SysUserEntity();
