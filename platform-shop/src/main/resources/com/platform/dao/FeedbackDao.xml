@@ -45,7 +45,7 @@
 		f.`status`,
 		u.nickname as nick_name
 		from feedback f LEFT JOIN user u  ON user_id = user.id
-		where 1=1 and
+		where 1=1
 		<if test="merchantId!=null">
 			and merchant_id=#{merchantId}
 		</if>
