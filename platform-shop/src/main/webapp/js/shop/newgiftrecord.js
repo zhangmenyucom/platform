@@ -15,6 +15,16 @@ $(function () {
             }
             },
             {
+                label: '状态', name: 'status', index: 'status', width: 80, formatter: function (value) {
+                if (value == 1) {
+                    return '成功';
+                } else if (value == 0) {
+                    return '失败';
+                }
+                return '-';
+            }
+            },
+            {
                 label: '领取时间', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
                 return transDate(value);
             }

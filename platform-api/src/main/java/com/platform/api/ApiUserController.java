@@ -190,6 +190,7 @@ public class ApiUserController extends ApiBaseAction {
         newGiftRecordVo.setCreateTime(new Date());
         newGiftRecordVo.setMerchantId(loginUser.getMerchantId());
         newGiftRecordVo.setUpdateTime(new Date());
+        newGiftRecordVo.setStatus(1);
         newGiftRecordVo.setRemark("新人有礼红包");
         apiNewGiftRecordService.save(newGiftRecordVo);
 
@@ -205,6 +206,9 @@ public class ApiUserController extends ApiBaseAction {
         if ("SUCCESS".equalsIgnoreCase(etoc.getResult_code())) {
             return R.ok().put("data", newGiftRecordVo);
         } else {
+            newGiftRecordVo.setStatus(0);
+            newGiftRecordVo.setRemark(etoc.getErr_code_des());
+            apiNewGiftRecordService.update(newGiftRecordVo);
             return R.error(etoc.getErr_code_des());
         }
     }

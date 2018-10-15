@@ -8,6 +8,7 @@
         <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
         <result property="hongBao" column="hong_bao"/>
+        <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="remark" column="remark"/>
@@ -33,6 +34,7 @@
 			`hong_bao`,
 			`create_time`,
 			`update_time`,
+        `status`,
 			`remark`
 		from new_gift_record
 		where user_id = #{userId}
@@ -44,6 +46,7 @@
         `merchant_id`,
         `user_id`,
         `hong_bao`,
+        `status`,
         `create_time`,
         `update_time`,
         `remark`
@@ -84,6 +87,7 @@
 			`merchant_id`,
 			`user_id`,
 			`hong_bao`,
+        `status`,
 			`remark`,
 			`create_time`,
 			`update_time`)
@@ -91,6 +95,7 @@
 			#{merchantId},
 			#{userId},
 			#{hongBao},
+        #{status},
 			#{remark},
 			#{createTime},
 			#{updateTime})
@@ -102,6 +107,7 @@
             <if test="merchantId != null">`merchant_id` = #{merchantId},</if>
             <if test="userId != null">`user_id` = #{userId},</if>
             <if test="hongBao != null">`hong_bao` = #{hongBao},</if>
+            <if test="status != null">`status` = #{status},</if>
             <if test="remark != null">`remark` = #{remark},</if>
             <if test="createTime != null">`create_time` = #{createTime},</if>
             <if test="updateTime != null">`update_time` = #{updateTime}</if>

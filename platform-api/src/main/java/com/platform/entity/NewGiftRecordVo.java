@@ -26,6 +26,10 @@ public class NewGiftRecordVo extends BaseEntity implements Serializable {
      **/
     private BigDecimal hongBao;
     /**
+     * 状态
+     **/
+    private Integer status;
+    /**
      * 备注
      **/
     private String remark;
