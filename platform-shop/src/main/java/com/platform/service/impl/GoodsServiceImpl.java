@@ -146,6 +146,26 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         return getDao().update(goods);
     }
 
+    @Override
+    public int delete(Long id) {
+        SysUserEntity user = ShiroUtils.getUserEntity();
+        GoodsEntity goodsEntity = queryObject(id);
+        goodsEntity.setIsDelete(1);
+        goodsEntity.setIsOnSale(0);
+        goodsEntity.setUpdateUserId(user.getUserId());
+        goodsEntity.setUpdateTime(new Date());
+        return this.getDao().update(goodsEntity);
+    }
+
+    @Override
+    @Transactional
+    public int deleteBatch(Long[] ids) {
+        int result = 0;
+        for (Long id : ids) {
+            result += delete(id);
+        }
+        return result;
+    }
 
     @Override
     @Transactional

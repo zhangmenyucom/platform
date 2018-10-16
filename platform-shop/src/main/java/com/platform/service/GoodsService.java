@@ -1,6 +1,7 @@
 package com.platform.service;
 
 import com.platform.entity.GoodsEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service接口
@@ -18,6 +19,9 @@ public interface GoodsService extends BaseService<GoodsEntity> {
      * @return
      */
     int back(Long[] ids);
+
+    @Transactional
+    int deleteBatch(Long[] ids);
 
     /**
      * 上架
