@@ -297,6 +297,7 @@ public class ApiPayController extends ApiBaseAction {
                 UserVo userSource = userService.queryObject(orderInfo.getUser_id());
                 Map<String, Object> queryMap = new HashMap<>(1);
                 queryMap.put("order_id", orderInfo.getId());
+                queryMap.put("merchantId", merchantId);
                 List<Long> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
                 for (Long goodsId : orderGoodsIdsList) {
                     if (SPECIAL_GOODS_ENUM_MAP.get(goodsId) != null) {
