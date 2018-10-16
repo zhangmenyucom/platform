@@ -189,6 +189,7 @@ public class ApiCartController extends ApiBaseAction {
             cartInfo.setGoods_name(goodsInfo.getName());
             cartInfo.setList_pic_url(goodsInfo.getList_pic_url());
             cartInfo.setNumber(number);
+            cartInfo.setMerchantId(merchantId);
             cartInfo.setSession_id("1");
             cartInfo.setUser_id(loginUser.getUserId());
             cartInfo.setRetail_price(productInfo.getRetail_price());
