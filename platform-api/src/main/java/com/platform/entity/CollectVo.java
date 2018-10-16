@@ -3,6 +3,7 @@ package com.platform.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -19,7 +20,7 @@ public class CollectVo extends BaseEntity implements Serializable {
     //产品Id
     private Integer value_id;
     //添加时间
-    private Long add_time;
+    private Date add_time;
     //是否是关注
     private Integer is_attention;
     //

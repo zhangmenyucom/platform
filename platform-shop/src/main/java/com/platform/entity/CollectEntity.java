@@ -3,6 +3,7 @@ package com.platform.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -20,7 +21,7 @@ public class CollectEntity extends BaseEntity implements Serializable {
     private Integer valueId;
     private String valueName;
     //添加时间
-    private Long addTime;
+    private Date addTime;
     //是否提醒
     private Integer isAttention;
     //

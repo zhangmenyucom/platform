@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class ApiCollectController extends ApiBaseAction {
         String handleType = "add";
         if (null == collectEntities || collectEntities.size() < 1) {
             CollectVo collectEntity = new CollectVo();
-            collectEntity.setAdd_time(System.currentTimeMillis() / 1000);
+            collectEntity.setAdd_time(new Date());
             collectEntity.setType_id(typeId);
             collectEntity.setValue_id(valueId);
             collectEntity.setIs_attention(0);
