@@ -179,9 +179,11 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             orderGoodsData.add(orderGoodsVo);
             apiOrderGoodsMapper.save(orderGoodsVo);
             /**减库存**/
-            GoodsVo goodsVo = apiGoodsService.queryObject(orderGoodsVo.getId());
-            goodsVo.setGoods_number(goodsVo.getGoods_number() - orderGoodsVo.getNumber());
-            apiGoodsService.update(goodsVo);
+            GoodsVo goodsVo = apiGoodsService.queryObject(orderGoodsVo.getGoods_id());
+            if (goodsVo.getGoods_number() != null && orderGoodsVo.getNumber() != null) {
+                goodsVo.setGoods_number(goodsVo.getGoods_number() - orderGoodsVo.getNumber());
+                apiGoodsService.update(goodsVo);
+            }
             /**如果是秒杀减秒杀库存**/
             if ("seckill".equals(type)) {
                 SeckillGoodsVo seckillGoodsVo = apiSeckillGoodsService.queryObject(seckillId);
@@ -266,7 +268,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         /**记录兑换记录**/
         GiftExchangeRecordEntityVo giftExchangeRecordEntityVo = new GiftExchangeRecordEntityVo();
         giftExchangeRecordEntityVo.setGiftId(giftEntityVo.getId())
-                .setUsePoint(giftEntityVo.getPointValue()*pointExchangeDto.getGiftNumber())
+                .setUsePoint(giftEntityVo.getPointValue() * pointExchangeDto.getGiftNumber())
                 .setUserId(userVo.getUserId())
                 .setOrderSn(orderSn)
                 .setNumber(pointExchangeDto.getGiftNumber())
@@ -276,5 +278,9 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         apiGiftExchangeRecordService.save(giftExchangeRecordEntityVo);
         /**更新积分**/
         apiUserService.update(new UserVo().setPoint(userVo.getPoint() - giftEntityVo.getPointValue()).setUserId(userVo.getUserId()));
+    }
+
+    public OrderVo queryByOrderSn(String orderSn) {
+        return this.getDao().queryByOrderSn(orderSn);
     }
 }

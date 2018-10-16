@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.event.MailEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -253,7 +254,7 @@ public class ApiPayController extends ApiBaseAction {
     @ApiOperation(value = "微信订单回调接口")
     @RequestMapping(value = "/notify", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public synchronized void notify(HttpServletRequest request, HttpServletResponse response) {
+    public synchronized void notify(@PathVariable("merchantId") Long merchantId, HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
@@ -283,18 +284,20 @@ public class ApiPayController extends ApiBaseAction {
                 String out_trade_no = result.getOut_trade_no();
                 logger.error("订单" + out_trade_no + "支付成功");
                 // 业务处理
-                OrderVo orderInfo = orderService.queryObject(Long.valueOf(out_trade_no));
+                OrderVo orderInfo = orderService.queryByOrderSn(out_trade_no);
 
                 /**更改订单状态**/
                 orderInfo.setPay_status(PayStatusEnum.PAYED.getCode());
                 orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode());
                 orderInfo.setShipping_status(ShippingStatusEnum.NOT_SHIPPED.getCode());
                 orderInfo.setPay_time(new Date());
+                orderInfo.setMerchantId(merchantId);
 
                 /**推荐反佣金(3级)**/
                 UserVo userSource = userService.queryObject(orderInfo.getUser_id());
                 Map<String, Object> queryMap = new HashMap<>(1);
                 queryMap.put("order_id", orderInfo.getId());
+                queryMap.put("merchantId", merchantId);
                 List<Long> orderGoodsIdsList = orderGoodsService.queryList(queryMap).stream().map(OrderGoodsVo::getGoods_id).collect(Collectors.toList());
                 for (Long goodsId : orderGoodsIdsList) {
                     if (SPECIAL_GOODS_ENUM_MAP.get(goodsId) != null) {
@@ -306,6 +309,7 @@ public class ApiPayController extends ApiBaseAction {
                             userSource.setParentId(Long.valueOf(orderInfo.getParent_id()));
                         }
                         userVo.setUser_level_id(SPECIAL_GOODS_ENUM_MAP.get(goodsId).getRoleId());
+                        userVo.setMerchantId(merchantId);
                         userService.update(userVo);
 
                         UserVo userParent = null;

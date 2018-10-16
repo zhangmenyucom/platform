@@ -37,17 +37,16 @@
 		f.`msg_id`,
 		f.`user_id`,
 		f.`user_name`,
-		f.`nick_name`,
 		f.`mobile`,
 		f.`feed_Type`,
 		f.`content`,
 		f.`add_time`,
 		f.`status`,
 		u.nickname as nick_name
-		from feedback f LEFT JOIN user u  ON user_id = user.id
+		from feedback f LEFT JOIN user u ON f.user_id = u.id
 		where 1=1
 		<if test="merchantId!=null">
-			and merchant_id=#{merchantId}
+			and f.merchant_id=#{merchantId}
 		</if>
 		<if test="userName != null and userName.trim() != ''">
 			AND user_name LIKE concat('%',#{userName},'%')

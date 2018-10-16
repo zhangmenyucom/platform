@@ -54,6 +54,7 @@
         </if>
         from goods
         WHERE 1=1
+        and is_on_sale=1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
@@ -215,7 +216,13 @@
             limit #{offset}, #{limit}
         </if>
     </select>
-
+    <update id="update" parameterType="com.platform.entity.GoodsVo">
+        update goods
+        <set>
+            <if test="goods_number != null">`goods_number` = #{goods_number},</if>
+        </set>
+        where id = #{id}
+    </update>
     <select id="queryTotal" resultType="int">
 		select count(*) from goods
 		where 1 = 1
