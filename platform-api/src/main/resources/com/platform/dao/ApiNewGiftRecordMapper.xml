@@ -39,7 +39,7 @@
         `status`,
 			`remark`
 		from new_gift_record
-		where user_id = #{userId} ans status=1
+		where user_id = #{userId} and status=1
 	</select>
 
     <select id="queryList" resultType="com.platform.entity.NewGiftRecordVo">
