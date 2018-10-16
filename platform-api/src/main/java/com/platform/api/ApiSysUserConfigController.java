@@ -45,7 +45,7 @@ public class ApiSysUserConfigController extends ApiBaseAction {
      * 保存
      */
     @IgnoreAuth
-    @PostMapping(value = "/save", consumes = {"application/json", "application/x-www-form-urlencoded"})
+    @GetMapping("/save")
     public R save(@PathVariable("merchantId") Long merchantId,
                   @RequestParam("appId") String appId,
                   @RequestParam("secret") String secret,
