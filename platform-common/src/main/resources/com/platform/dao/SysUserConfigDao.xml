@@ -66,7 +66,7 @@
         s.`phone`,
         s.`create_time`,
         s.`update_time`
-        from sys_user_config s left join sys_user u on s.merchant_id=u.id
+        from sys_user_config s join sys_user u on s.merchant_id=u.user_id
         WHERE 1=1
         <if test="name != null and name.trim() != ''">
             AND name LIKE concat('%',#{name},'%')
