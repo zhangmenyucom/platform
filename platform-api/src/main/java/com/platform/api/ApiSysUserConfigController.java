@@ -15,6 +15,7 @@ import com.platform.utils.Query;
 import com.platform.utils.R;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +47,25 @@ public class ApiSysUserConfigController extends ApiBaseAction {
      */
     @IgnoreAuth
     @PostMapping(value = "/save", consumes = {"application/json", "application/x-www-form-urlencoded"})
-    public R save(@PathVariable("merchantId") Long merchantId, SysUserConfigEntity sysUserConfigEntity) {
+    public R save(@PathVariable("merchantId") Long merchantId,
+                  @RequestParam("appId") String appId,
+                  @RequestParam("secret") String secret,
+                  @RequestParam("mchId") String mchId,
+                  @RequestParam("paySignKey") String paySignKey,
+                  @RequestParam("certAddress") String certAddress,
+                  @RequestParam("storeName") String storeName,
+                  @RequestParam("storeAddress") String storeAddress,
+                  @RequestParam("phone") String phone) {
+        SysUserConfigEntity sysUserConfigEntity = new SysUserConfigEntity();
+        sysUserConfigEntity.setAppId(appId)
+                .setCertAddress(certAddress)
+                .setMchId(mchId)
+                .setPaySignKey(paySignKey)
+                .setSecret(secret)
+                .setStoreName(storeName)
+                .setStoreAddress(storeAddress)
+                .setPhone(phone)
+                .setMerchantId(merchantId);
         log.info("sysUserConfigEntity", JsonUtil.getJsonByObj(sysUserConfigEntity));
         /**创建用户**/
         SysUserEntity sysUserEntity = new SysUserEntity();

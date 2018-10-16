@@ -1,5 +1,7 @@
 package com.platform.entity;
 import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ import java.util.Date;
  * @date 2018-09-22 17:58:46
  */
 @Data
+@Accessors(chain = true)
 public class SysUserConfigEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
