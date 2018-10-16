@@ -49,6 +49,12 @@
 		left join shipping b on a.shipping_id = b.id
 		where a.id = #{value}
 	</select>
+    <select id="queryByOrderSn" resultMap="orderMap">
+		select a.*,b.code as  shipping_code
+		from user_order a
+		left join shipping b on a.shipping_id = b.id
+		where a.order_sn = #{orderSn}
+	</select>
 
     <select id="queryList" resultMap="orderMap">
         select * from user_order
@@ -60,14 +66,7 @@
                 and user_id = #{user_id}
             </if>
         </where>
-        <choose>
-            <when test="sidx != null and sidx.trim() != ''">
-                order by ${sidx} ${order}
-            </when>
-            <otherwise>
-                order by add_time desc,id desc
-            </otherwise>
-        </choose>
+        order by id desc
         <if test="offset != null and limit != null">
             limit #{offset}, #{limit}
         </if>

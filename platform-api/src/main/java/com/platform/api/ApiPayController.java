@@ -283,7 +283,7 @@ public class ApiPayController extends ApiBaseAction {
                 String out_trade_no = result.getOut_trade_no();
                 logger.error("订单" + out_trade_no + "支付成功");
                 // 业务处理
-                OrderVo orderInfo = orderService.queryObject(Long.valueOf(out_trade_no));
+                OrderVo orderInfo = orderService.queryByOrderSn(out_trade_no);
 
                 /**更改订单状态**/
                 orderInfo.setPay_status(PayStatusEnum.PAYED.getCode());

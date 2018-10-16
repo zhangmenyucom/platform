@@ -279,4 +279,8 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         /**更新积分**/
         apiUserService.update(new UserVo().setPoint(userVo.getPoint() - giftEntityVo.getPointValue()).setUserId(userVo.getUserId()));
     }
+
+    public OrderVo queryByOrderSn(String orderSn) {
+        return this.getDao().queryByOrderSn(orderSn);
+    }
 }
