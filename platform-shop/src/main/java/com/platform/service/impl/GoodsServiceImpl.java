@@ -128,6 +128,11 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         Map<String, Long> map = new HashMap<>(1);
         map.put("goodsId", goods.getId());
         goodsGalleryDao.deleteByGoodsId(map);
+        for (GoodsGalleryEntity goodsGalleryEntity : galleryEntityList) {
+            goodsGalleryEntity.setGoodsId(goods.getId());
+            goodsGalleryEntity.setMerchantId(goods.getMerchantId());
+            goodsGalleryDao.save(goodsGalleryEntity);
+        }
 
         /**保存产品信息**/
         ProductEntity productEntity = new ProductEntity();
@@ -138,13 +143,6 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         productEntity.setMarketPrice(goods.getMarketPrice());
         productEntity.setGoodsSpecificationIds("");
         productDao.update(productEntity);
-
-        if (null != galleryEntityList && galleryEntityList.size() > 0) {
-            for (GoodsGalleryEntity galleryEntity : galleryEntityList) {
-                galleryEntity.setGoodsId(goods.getId());
-                goodsGalleryDao.save(galleryEntity);
-            }
-        }
         return getDao().update(goods);
     }
 
