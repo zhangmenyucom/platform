@@ -180,7 +180,9 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             apiOrderGoodsMapper.save(orderGoodsVo);
             /**减库存**/
             GoodsVo goodsVo = apiGoodsService.queryObject(orderGoodsVo.getId());
-            goodsVo.setGoods_number(goodsVo.getGoods_number() - orderGoodsVo.getNumber());
+            if (goodsVo.getGoods_number() != null && orderGoodsVo.getNumber() != null) {
+                goodsVo.setGoods_number(goodsVo.getGoods_number() - orderGoodsVo.getNumber());
+            }
             apiGoodsService.update(goodsVo);
             /**如果是秒杀减秒杀库存**/
             if ("seckill".equals(type)) {
@@ -266,7 +268,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
         /**记录兑换记录**/
         GiftExchangeRecordEntityVo giftExchangeRecordEntityVo = new GiftExchangeRecordEntityVo();
         giftExchangeRecordEntityVo.setGiftId(giftEntityVo.getId())
-                .setUsePoint(giftEntityVo.getPointValue()*pointExchangeDto.getGiftNumber())
+                .setUsePoint(giftEntityVo.getPointValue() * pointExchangeDto.getGiftNumber())
                 .setUserId(userVo.getUserId())
                 .setOrderSn(orderSn)
                 .setNumber(pointExchangeDto.getGiftNumber())
