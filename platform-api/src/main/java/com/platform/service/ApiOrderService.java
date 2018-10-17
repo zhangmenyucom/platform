@@ -222,7 +222,7 @@ public class ApiOrderService extends BaseServiceImpl<OrderVo, ApiOrderMapper> {
             throw new Exception("积分不足");
         }
         String orderSn = CommonUtil.generateOrderNumber();
-        if (giftEntityVo.getGoodsId() != null && pointExchangeDto.getAddressId() != null) {
+        if (giftEntityVo.getGoodsId() != null && giftEntityVo.getGoodsId() != -1 && pointExchangeDto.getAddressId() != null) {
             AddressVo addressVo = apiAddressMapper.queryObject(pointExchangeDto.getAddressId());
             OrderVo orderInfo = new OrderVo();
             orderInfo.setOrder_status(OrderStatusEnum.WAITTING_SHIP.getCode())
