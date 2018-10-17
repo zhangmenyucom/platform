@@ -59,7 +59,7 @@
         g.market_price,
         g.primary_pic_url as goods_pic
         from seckill_goods sg,goods g
-        WHERE 1=1 and sg.goods_id=g.id
+        WHERE 1=1 and sg.goods_id=g.id and status=1
         <if test="merchantId!=null">
             and sg.merchant_id=#{merchantId}
         </if>
