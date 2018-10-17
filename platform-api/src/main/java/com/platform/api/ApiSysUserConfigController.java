@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,15 +56,15 @@ public class ApiSysUserConfigController extends ApiBaseAction {
                   @RequestParam("certAddress") String certAddress,
                   @RequestParam("storeName") String storeName,
                   @RequestParam("storeAddress") String storeAddress,
-                  @RequestParam("phone") String phone) {
+                  @RequestParam("phone") String phone) throws UnsupportedEncodingException {
         SysUserConfigEntity sysUserConfigEntity = new SysUserConfigEntity();
         sysUserConfigEntity.setAppId(appId)
                 .setCertAddress(certAddress)
                 .setMchId(mchId)
                 .setPaySignKey(paySignKey)
                 .setSecret(secret)
-                .setStoreName(storeName)
-                .setStoreAddress(storeAddress)
+                .setStoreName(URLDecoder.decode(storeName,"UTF-8"))
+                .setStoreAddress(URLDecoder.decode(storeAddress,"UTF-8"))
                 .setPhone(phone)
                 .setMerchantId(merchantId);
         log.info("sysUserConfigEntity", JsonUtil.getJsonByObj(sysUserConfigEntity));
