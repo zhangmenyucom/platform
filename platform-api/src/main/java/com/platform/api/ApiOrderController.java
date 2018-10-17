@@ -161,9 +161,9 @@ public class ApiOrderController extends ApiBaseAction {
     @GetMapping("/pointExchange")
     public Object pointExchange(@PathVariable("merchantId") Long merchantId,
                                 @LoginUser UserVo loginUser,
-                                @RequestParam("addressId") Long addressId,
+                                @RequestParam(value = "addressId", defaultValue = "-1") Long addressId,
                                 @RequestParam("giftId") Long giftId,
-                                @RequestParam("giftNumber") Integer giftNumber) {
+                                @RequestParam(value = "giftNumber", defaultValue = "1") Integer giftNumber) {
         try {
             PointExchangeDto pointExchangeDto = new PointExchangeDto();
             pointExchangeDto.setAddressId(addressId);
