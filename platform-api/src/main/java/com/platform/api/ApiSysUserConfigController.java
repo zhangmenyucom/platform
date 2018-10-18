@@ -63,8 +63,8 @@ public class ApiSysUserConfigController extends ApiBaseAction {
                 .setMchId(mchId)
                 .setPaySignKey(paySignKey)
                 .setSecret(secret)
-                .setStoreName(URLDecoder.decode(storeName,"UTF-8"))
-                .setStoreAddress(URLDecoder.decode(storeAddress,"UTF-8"))
+                .setStoreName(storeName)
+                .setStoreAddress(storeAddress)
                 .setPhone(phone)
                 .setMerchantId(merchantId);
         log.info("sysUserConfigEntity", JsonUtil.getJsonByObj(sysUserConfigEntity));
