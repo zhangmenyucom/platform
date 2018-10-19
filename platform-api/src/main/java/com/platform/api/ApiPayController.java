@@ -156,7 +156,7 @@ public class ApiPayController extends ApiBaseAction {
                     resultObj.put("package", "prepay_id=" + prepay_id);
                     resultObj.put("signType", "MD5");
                     String paySign = WechatUtil.arraySign(resultObj, sysUserConfigVo.getPaySignKey());
-                    resultObj.put("paySign",paySign);
+                    resultObj.put("paySign", paySign);
                     // 业务处理
                     orderInfo.setPay_id(prepay_id);
                     // 付款中
@@ -181,6 +181,7 @@ public class ApiPayController extends ApiBaseAction {
         if (orderId == null) {
             return toResponsFail("订单不存在");
         }
+        OrderVo orderVo = orderService.queryObject(orderId);
         SysUserConfigVo sysUserConfigVo = apiUserConfigService.queryByMerchantId(merchantId);
         Map<Object, Object> parame = new TreeMap<>();
         parame.put("appid", sysUserConfigVo.getAppId());
@@ -190,7 +191,7 @@ public class ApiPayController extends ApiBaseAction {
         // 随机字符串
         parame.put("nonce_str", randomStr);
         // 商户订单编号
-        parame.put("out_trade_no", orderId);
+        parame.put("out_trade_no", orderVo.getOrder_sn());
 
         String sign = WechatUtil.arraySign(parame, sysUserConfigVo.getPaySignKey());
         // 数字签证
@@ -227,10 +228,10 @@ public class ApiPayController extends ApiBaseAction {
                 Integer num = (Integer) J2CacheUtils.get(J2CacheUtils.SHOP_CACHE_NAME, "queryRepeatNum" + orderId + "");
                 if (num == null) {
                     J2CacheUtils.put(J2CacheUtils.SHOP_CACHE_NAME, "queryRepeatNum" + orderId + "", 1);
-                    this.orderQuery(merchantId,loginUser, orderId);
+                    this.orderQuery(merchantId, loginUser, orderId);
                 } else if (num <= 3) {
                     J2CacheUtils.remove(J2CacheUtils.SHOP_CACHE_NAME, "queryRepeatNum" + orderId);
-                    this.orderQuery(merchantId,loginUser, orderId);
+                    this.orderQuery(merchantId, loginUser, orderId);
                 } else {
                     return toResponsFail("查询失败,error=" + trade_state);
                 }
