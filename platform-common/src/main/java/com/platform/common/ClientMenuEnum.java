@@ -27,10 +27,10 @@ public enum ClientMenuEnum {
     private Integer code;
     private String name;
     private boolean isShow;
-    public static Map<String, Boolean> clientMenuEnumMap = new HashMap<>(ClientMenuEnum.values().length);
+    public static Map<ClientMenuEnum, Boolean> clientMenuEnumMap = new HashMap<>(ClientMenuEnum.values().length);
 
     static {
-        Arrays.stream(ClientMenuEnum.values()).forEach(item -> clientMenuEnumMap.put(item.name, item.isShow()));
+        Arrays.stream(ClientMenuEnum.values()).forEach(item -> clientMenuEnumMap.put(item, item.isShow()));
     }
 
     ClientMenuEnum(Integer code, String name, boolean isShow) {
