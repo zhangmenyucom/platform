@@ -67,6 +67,7 @@ public class SeckillGoodsController {
         GoodsEntity goodsEntity = goodsService.queryObject(seckillGoods.getGoodsId());
         goodsEntity.setIsOnSale(0);
         goodsService.update(goodsEntity);
+        seckillGoods.setSold(0L);
         seckillGoodsService.save(seckillGoods);
         return R.ok();
     }
