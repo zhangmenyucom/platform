@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
  * @date 2018-09-09 21:48:06
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SignRecordEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /** 用户id **/

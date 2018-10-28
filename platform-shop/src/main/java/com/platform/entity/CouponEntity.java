@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ import java.util.Date;
  * @date 2017-08-19 12:53:26
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CouponEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

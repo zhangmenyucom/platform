@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @date 2017-08-13 10:41:08
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class GoodsAttributeEntity extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//商品Id
