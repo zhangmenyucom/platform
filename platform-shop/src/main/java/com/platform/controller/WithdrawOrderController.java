@@ -1,10 +1,7 @@
 package com.platform.controller;
 
-import com.platform.entity.TransferReqBean;
 import com.platform.entity.WithdrawOrderEntity;
-import com.platform.service.UserService;
 import com.platform.service.WithdrawOrderService;
-import com.platform.service.impl.TransferService;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;

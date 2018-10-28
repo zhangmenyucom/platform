@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2018-06-05 13:58:47
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("com/platform/api")
 public class ApiSmsController {
     @Autowired
     private SysSmsLogService smsLogService;

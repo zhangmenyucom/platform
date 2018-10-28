@@ -1,0 +1,18 @@
+package com.platform.service;
+
+import com.platform.dao.ApiActivityMapper;
+import com.platform.service.impl.BaseServiceImpl;
+import com.platform.vo.ActivityVo;
+import org.springframework.stereotype.Service;
+
+/**
+ * Service接口
+ *
+ * @author taylor
+ * @email 516195940@qq.com
+ * @date 2018-08-22 00:14:02
+ */
+@Service
+public class ApiActivityService extends BaseServiceImpl<ActivityVo,ApiActivityMapper> {
+
+}

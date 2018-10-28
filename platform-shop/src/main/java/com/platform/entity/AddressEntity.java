@@ -57,4 +57,6 @@ public class AddressEntity extends BaseEntity implements Serializable {
      * 翻译会员名
      */
     private String shopUserName;
+
+    private Integer isDefault;
 }
