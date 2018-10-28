@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @date 2017-08-25 10:04:52
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SmsLogVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 

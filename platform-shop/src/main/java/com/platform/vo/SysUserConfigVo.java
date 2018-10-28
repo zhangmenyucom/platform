@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @date 2018-09-22 17:58:46
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SysUserConfigVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /** 小程序id **/

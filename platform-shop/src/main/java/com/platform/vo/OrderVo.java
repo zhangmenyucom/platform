@@ -3,6 +3,7 @@ package com.platform.vo;
 import com.platform.common.OrderStatusEnum;
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang.StringUtils;
 
@@ -22,6 +23,7 @@ import static com.platform.common.OrderStatusEnum.*;
  * @date 2017-08-15 08:03:40
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain=true)
 public class OrderVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;

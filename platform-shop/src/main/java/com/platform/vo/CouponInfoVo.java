@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 作者: @author Harmon <br>
@@ -9,6 +10,7 @@ import lombok.Data;
  * 描述: CouponInfoVo <br>
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CouponInfoVo extends BaseEntity {
     // 显示信息
     private String msg;

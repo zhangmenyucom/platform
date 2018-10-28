@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @date 2017-03-23 15:22:07
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class TokenEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @date 2017-08-15 08:03:39
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class KeywordsVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 

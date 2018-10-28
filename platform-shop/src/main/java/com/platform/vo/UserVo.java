@@ -3,6 +3,7 @@ package com.platform.vo;
 import com.platform.entity.BaseEntity;
 import com.platform.utils.JsonUtil;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.List;
  * @date 2017-08-15 08:03:41
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 public class UserVo extends BaseEntity implements Serializable {
 

@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @date 2017-08-15 08:03:40
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CommentVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

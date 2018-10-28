@@ -3,6 +3,7 @@ package com.platform.vo;
 import com.platform.entity.BaseEntity;
 import com.platform.entity.SysRegionEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author taylor
@@ -10,6 +11,7 @@ import lombok.Data;
  * @date 2017-08-15 08:03:41
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class RegionVo extends BaseEntity {
 
     /**父节点**/

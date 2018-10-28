@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @date 2017-08-15 08:03:41
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class UserCouponVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
     /**优惠券Id**/

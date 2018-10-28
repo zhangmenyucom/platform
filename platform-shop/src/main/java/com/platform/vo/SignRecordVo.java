@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @date 2018-09-09 21:48:06
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SignRecordVo extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 

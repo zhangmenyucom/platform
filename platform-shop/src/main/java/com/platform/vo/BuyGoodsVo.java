@@ -2,6 +2,7 @@ package com.platform.vo;
 
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @author Administrator
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class BuyGoodsVo extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /**

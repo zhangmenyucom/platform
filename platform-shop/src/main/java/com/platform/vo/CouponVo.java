@@ -3,6 +3,7 @@ package com.platform.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.platform.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @date 2017-08-15 08:03:41
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CouponVo extends BaseEntity  implements Serializable {
 
     private static final long serialVersionUID = 1L;
