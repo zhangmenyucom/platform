@@ -131,6 +131,7 @@ public class ApiIndexController extends ApiBaseAction {
             param.put("fields", "id as id, name as name, list_pic_url as list_pic_url, retail_price as retail_price");
             PageHelper.startPage(0, 7, false);
             List<GoodsVo> categoryGoods = goodsService.queryList(param,merchantId);
+
             Map<String, Object> newCategory = new HashMap<>(16);
             newCategory.put("id", categoryItem.getId());
             newCategory.put("name", categoryItem.getName());

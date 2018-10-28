@@ -94,14 +94,7 @@
                 #{item}
             </foreach>
         </if>
-        <choose>
-            <when test="sidx != null and sidx.trim() != ''">
-                order by ${sidx} ${order}
-            </when>
-            <otherwise>
-                order by id desc
-            </otherwise>
-        </choose>
+        order by id desc
     </select>
 
     <select id="queryHotGoodsList" resultMap="goodsMap">
@@ -224,8 +217,8 @@
         where id = #{id}
     </update>
     <select id="queryTotal" resultType="int">
-		select count(*) from goods
-		where 1 = 1
+        select count(*) from goods
+        where 1 = 1
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
@@ -235,5 +228,5 @@
         <if test="is_on_sale != null and is_on_sale != ''">
             and is_on_sale = #{is_on_sale}
         </if>
-	</select>
+    </select>
 </mapper>
