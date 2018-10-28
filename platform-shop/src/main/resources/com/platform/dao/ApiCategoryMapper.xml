@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiCategoryMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.CategoryVo" id="categoryMap">
+    <resultMap type="com.platform.vo.CategoryVo" id="categoryMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
@@ -73,7 +73,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.CategoryVo">
+    <insert id="save" parameterType="com.platform.vo.CategoryVo">
 		insert into category
 		(
 			`id`,
@@ -114,7 +114,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.CategoryVo">
+    <update id="update" parameterType="com.platform.vo.CategoryVo">
         update category
         <set>
             <if test="name != null">`name` = #{name},</if>

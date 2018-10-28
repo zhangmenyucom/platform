@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiUserMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.UserVo" id="userMap">
+    <resultMap type="com.platform.vo.UserVo" id="userMap">
         <result property="userId" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="parentId" column="parent_id"/>
@@ -27,7 +27,7 @@
         <result property="avilableBalance" column="avilable_balance"/>
         <result property="lockBalance" column="lock_balance"/>
     </resultMap>
-    <resultMap type="com.platform.entity.UserDetailVo" id="userMapVo">
+    <resultMap type="com.platform.vo.UserDetailVo" id="userMapVo">
         <result property="userId" column="id"/>
         <result property="parentId" column="parent_id"/>
         <result property="merchantId" column="merchant_id"/>
@@ -107,7 +107,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.UserVo" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="save" parameterType="com.platform.vo.UserVo" useGeneratedKeys="true" keyProperty="userId">
 		insert into user
 		(
 			`merchant_id`,
@@ -146,7 +146,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.UserVo">
+    <update id="update" parameterType="com.platform.vo.UserVo">
         update user
         <set>
             <if test="parentId!=null">`parent_id`=#{parentId},</if>
@@ -172,7 +172,7 @@
     </update>
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.SmsLogVo" id="smslogMap">
+    <resultMap type="com.platform.vo.SmsLogVo" id="smslogMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="user_id" column="user_id"/>
@@ -197,7 +197,7 @@
         where a.user_id = #{user_id} order by a.log_date desc limit 1
     </select>
 
-    <insert id="saveSmsCodeLog" parameterType="com.platform.entity.SmsLogVo">
+    <insert id="saveSmsCodeLog" parameterType="com.platform.vo.SmsLogVo">
         insert into sms_log(
         `id`,
         `merchant_id`,

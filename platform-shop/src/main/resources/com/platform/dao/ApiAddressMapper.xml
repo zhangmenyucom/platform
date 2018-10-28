@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiAddressMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.AddressVo" id="addressMap">
+    <resultMap type="com.platform.vo.AddressVo" id="addressMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
@@ -54,7 +54,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.AddressVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.AddressVo" useGeneratedKeys="true" keyProperty="id">
 		insert into address(
 			`user_id`,
 			`merchant_id`,
@@ -81,7 +81,7 @@
 			#{is_default})
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.AddressVo">
+    <update id="update" parameterType="com.platform.vo.AddressVo">
         update address
         <set>
             <if test="userId != null">`user_id` = #{userId}, </if>
@@ -97,7 +97,7 @@
         </set>
         where id = #{id}
     </update>
-    <update id="resetDefaultAddress" parameterType="com.platform.entity.AddressVo">
+    <update id="resetDefaultAddress" parameterType="com.platform.vo.AddressVo">
         update address
         set is_default=0
         where user_id = #{userId} and merchant_id=#{merchantId}

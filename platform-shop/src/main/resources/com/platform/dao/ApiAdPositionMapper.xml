@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiAdPositionMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.AdPositionVo" id="adPositionMap">
+    <resultMap type="com.platform.vo.AdPositionVo" id="adPositionMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
@@ -13,11 +13,11 @@
         <result property="desc" column="desc"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.AdPositionVo">
+    <select id="queryObject" resultType="com.platform.vo.AdPositionVo">
 		select * from ad_position where id = #{value}
 	</select>
 
-    <select id="queryList" resultType="com.platform.entity.AdPositionVo">
+    <select id="queryList" resultType="com.platform.vo.AdPositionVo">
         select * from ad_position
         WHERE 1=1
         <if test="merchantId!=null">
@@ -44,7 +44,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.AdPositionVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.AdPositionVo" useGeneratedKeys="true" keyProperty="id">
 		insert into ad_position
 		(
 			`merchant_id`,
@@ -63,7 +63,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.AdPositionVo">
+    <update id="update" parameterType="com.platform.vo.AdPositionVo">
         update ad_position
         <set>
             <if test="name != null">`name` = #{name},</if>

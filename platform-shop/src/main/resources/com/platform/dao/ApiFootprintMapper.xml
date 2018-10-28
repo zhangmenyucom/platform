@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiFootprintMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.FootprintVo" id="footprintMap">
+    <resultMap type="com.platform.vo.FootprintVo" id="footprintMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="user_id" column="user_id"/>
@@ -94,7 +94,7 @@
         </where>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.FootprintVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.FootprintVo" useGeneratedKeys="true" keyProperty="id">
 		insert into footprint
 		(
 			`merchant_id`,
@@ -113,7 +113,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.FootprintVo">
+    <update id="update" parameterType="com.platform.vo.FootprintVo">
         update footprint
         <set>
             <if test="user_id != null">`user_id` = #{user_id},</if>

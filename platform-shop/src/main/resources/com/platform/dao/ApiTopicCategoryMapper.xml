@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiTopicCategoryMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.TopicCategoryVo" id="topicCategoryMap">
+    <resultMap type="com.platform.vo.TopicCategoryVo" id="topicCategoryMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="title" column="title"/>
@@ -42,7 +42,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.TopicCategoryVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.TopicCategoryVo" useGeneratedKeys="true" keyProperty="id">
 		insert into topic_category
 		(
 			`merchant_id`,
@@ -57,7 +57,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.TopicCategoryVo">
+    <update id="update" parameterType="com.platform.vo.TopicCategoryVo">
         update topic_category
         <set>
             <if test="title != null">`title` = #{title},</if>

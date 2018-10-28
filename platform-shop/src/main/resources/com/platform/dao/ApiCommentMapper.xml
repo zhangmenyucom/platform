@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiCommentMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.CommentVo" id="commentMap">
+    <resultMap type="com.platform.vo.CommentVo" id="commentMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="type_id" column="type_id"/>
@@ -85,7 +85,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.CommentVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.CommentVo" useGeneratedKeys="true" keyProperty="id">
 		insert into comment
 		(
 			`merchant_id`,
@@ -107,7 +107,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.CommentVo">
+    <update id="update" parameterType="com.platform.vo.CommentVo">
         update comment
         <set>
             <if test="type_id != null">`type_id` = #{type_id},</if>

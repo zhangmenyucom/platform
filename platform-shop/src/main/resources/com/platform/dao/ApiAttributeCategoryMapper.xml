@@ -4,18 +4,18 @@
 <mapper namespace="com.platform.dao.ApiAttributeCategoryMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.AttributeCategoryVo" id="attributeCategoryMap">
+    <resultMap type="com.platform.vo.AttributeCategoryVo" id="attributeCategoryMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
         <result property="enabled" column="enabled"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.AttributeCategoryVo">
+    <select id="queryObject" resultType="com.platform.vo.AttributeCategoryVo">
 		select * from attribute_category where id = #{value}
 	</select>
 
-    <select id="queryList" resultType="com.platform.entity.AttributeCategoryVo">
+    <select id="queryList" resultType="com.platform.vo.AttributeCategoryVo">
         select * from attribute_category
         WHERE 1=1
         <if test="merchantId!=null">
@@ -42,7 +42,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.AttributeCategoryVo">
+    <insert id="save" parameterType="com.platform.vo.AttributeCategoryVo">
 		insert into attribute_category
 		(
 			`id`,
@@ -59,7 +59,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.AttributeCategoryVo">
+    <update id="update" parameterType="com.platform.vo.AttributeCategoryVo">
         update attribute_category
         <set>
             <if test="name != null">`name` = #{name},</if>

@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiSpecificationMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.SpecificationVo" id="specificationMap">
+    <resultMap type="com.platform.vo.SpecificationVo" id="specificationMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
@@ -42,7 +42,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.SpecificationVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.SpecificationVo" useGeneratedKeys="true" keyProperty="id">
 		insert into specification
 		(
 		    `merchant_id`,
@@ -57,7 +57,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.SpecificationVo">
+    <update id="update" parameterType="com.platform.vo.SpecificationVo">
         update specification
         <set>
             <if test="name != null">`name` = #{name},</if>

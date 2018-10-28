@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiCollectMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.CollectVo" id="collectMap">
+    <resultMap type="com.platform.vo.CollectVo" id="collectMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="user_id" column="user_id"/>
@@ -70,7 +70,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.CollectVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.CollectVo" useGeneratedKeys="true" keyProperty="id">
 		insert into collect
 		(
 			`merchant_id`,
@@ -91,7 +91,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.CollectVo">
+    <update id="update" parameterType="com.platform.vo.CollectVo">
         update collect
         <set>
             <if test="user_id != null">`user_id` = #{user_id},</if>

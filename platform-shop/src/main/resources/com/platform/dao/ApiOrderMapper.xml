@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiOrderMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.OrderVo" id="orderMap">
+    <resultMap type="com.platform.vo.OrderVo" id="orderMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="order_sn" column="order_sn"/>
@@ -80,7 +80,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.OrderVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.OrderVo" useGeneratedKeys="true" keyProperty="id">
 		insert into user_order
 		(
 		    `merchant_id`,
@@ -157,7 +157,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.OrderVo">
+    <update id="update" parameterType="com.platform.vo.OrderVo">
         update user_order
         <set>
             <if test="order_sn != null">`order_sn` = #{order_sn},</if>

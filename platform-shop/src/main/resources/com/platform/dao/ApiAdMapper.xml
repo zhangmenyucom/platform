@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiAdMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.AdVo" id="adMap">
+    <resultMap type="com.platform.vo.AdVo" id="adMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="ad_position_id" column="ad_position_id"/>
@@ -51,7 +51,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.AdVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.AdVo" useGeneratedKeys="true" keyProperty="id">
 		insert into ad
 		(
 			`ad_position_id`,
@@ -78,7 +78,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.AdVo">
+    <update id="update" parameterType="com.platform.vo.AdVo">
         update ad
         <set>
             <if test="ad_position_id != null">`ad_position_id` = #{adPositionId},</if>

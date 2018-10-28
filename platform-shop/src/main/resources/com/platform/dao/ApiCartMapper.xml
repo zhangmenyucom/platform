@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiCartMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.CartVo" id="cartMap">
+    <resultMap type="com.platform.vo.CartVo" id="cartMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="user_id" column="user_id"/>
@@ -83,7 +83,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.CartVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.CartVo" useGeneratedKeys="true" keyProperty="id">
 		insert into cart
 		(
 			`merchant_id`,
@@ -120,7 +120,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.CartVo">
+    <update id="update" parameterType="com.platform.vo.CartVo">
         update cart
         <set>
             <if test="user_id != null">`user_id` = #{user_id},</if>

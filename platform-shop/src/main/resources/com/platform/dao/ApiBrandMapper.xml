@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiBrandMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.BrandVo" id="brandMap">
+    <resultMap type="com.platform.vo.BrandVo" id="brandMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
@@ -58,7 +58,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.BrandVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.BrandVo" useGeneratedKeys="true" keyProperty="id">
 		insert into brand
 		(
 			`merchant_id`,
@@ -91,7 +91,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.BrandVo">
+    <update id="update" parameterType="com.platform.vo.BrandVo">
         update brand
         <set>
             <if test="name != null">`name` = #{name},</if>

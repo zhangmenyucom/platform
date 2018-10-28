@@ -3,7 +3,7 @@
 
 <mapper namespace="com.platform.dao.ApiSignRecordMapper">
 
-    <resultMap type="com.platform.entity.SignRecordVo" id="signRecordMap">
+    <resultMap type="com.platform.vo.SignRecordVo" id="signRecordMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="userId" column="user_id"/>
@@ -11,7 +11,7 @@
         <result property="signDate" column="sign_date"/>
     </resultMap>
 
-    <select id="queryObject" resultType="com.platform.entity.SignRecordVo">
+    <select id="queryObject" resultType="com.platform.vo.SignRecordVo">
 		select
 			`id`,
 			`merchant_id`,
@@ -21,7 +21,7 @@
 		from sign_record
 		where id = #{id}
 	</select>
-    <select id="queryLatestSign" resultType="com.platform.entity.SignRecordVo">
+    <select id="queryLatestSign" resultType="com.platform.vo.SignRecordVo">
 		select
 			`id`,
             `merchant_id`,
@@ -33,7 +33,7 @@
         and user_id = #{userId} order by sign_date desc limit 1
 	</select>
 
-    <select id="queryList" resultType="com.platform.entity.SignRecordVo">
+    <select id="queryList" resultType="com.platform.vo.SignRecordVo">
         select
         `id`,
         `merchant_id`,
@@ -72,7 +72,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.SignRecordVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.SignRecordVo" useGeneratedKeys="true" keyProperty="id">
 		insert into sign_record(
 		    `merchant_id`,
 			`user_id`,
@@ -85,7 +85,7 @@
 			#{signDate})
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.SignRecordVo">
+    <update id="update" parameterType="com.platform.vo.SignRecordVo">
         update sign_record
         <set>
             <if test="userId != null">`user_id` = #{userId},</if>

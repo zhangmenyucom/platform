@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiGoodsMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.GoodsVo" id="goodsMap">
+    <resultMap type="com.platform.vo.GoodsVo" id="goodsMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="category_id" column="category_id"/>

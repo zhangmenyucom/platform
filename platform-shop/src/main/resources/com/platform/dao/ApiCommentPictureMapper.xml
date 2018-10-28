@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiCommentPictureMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.CommentPictureVo" id="commentPictureMap">
+    <resultMap type="com.platform.vo.CommentPictureVo" id="commentPictureMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="comment_id" column="comment_id"/>
@@ -46,7 +46,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.CommentPictureVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.CommentPictureVo" useGeneratedKeys="true" keyProperty="id">
 		insert into comment_picture
 		(
 			`merchant_id`,
@@ -63,7 +63,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.CommentPictureVo">
+    <update id="update" parameterType="com.platform.vo.CommentPictureVo">
         update comment_picture
         <set>
             <if test="comment_id != null">`comment_id` = #{comment_id},</if>

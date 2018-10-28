@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiSearchHistoryMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.SearchHistoryVo" id="searchHistoryMap">
+    <resultMap type="com.platform.vo.SearchHistoryVo" id="searchHistoryMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="keyword" column="keyword"/>
@@ -55,7 +55,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.SearchHistoryVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.SearchHistoryVo" useGeneratedKeys="true" keyProperty="id">
 		insert into search_history
 		(
 			`merchant_id`,
@@ -74,7 +74,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.SearchHistoryVo">
+    <update id="update" parameterType="com.platform.vo.SearchHistoryVo">
         update search_history
         <set>
             <if test="keyword != null">`keyword` = #{keyword},</if>

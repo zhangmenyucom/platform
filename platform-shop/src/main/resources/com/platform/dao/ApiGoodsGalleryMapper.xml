@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiGoodsGalleryMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.GoodsGalleryVo" id="goodsGalleryMap">
+    <resultMap type="com.platform.vo.GoodsGalleryVo" id="goodsGalleryMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="goods_id" column="goods_id"/>
@@ -55,7 +55,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.GoodsGalleryVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.GoodsGalleryVo" useGeneratedKeys="true" keyProperty="id">
 		insert into goods_gallery
 		(
 		    `merchant_id`,
@@ -74,7 +74,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.GoodsGalleryVo">
+    <update id="update" parameterType="com.platform.vo.GoodsGalleryVo">
         update goods_gallery
         <set>
             <if test="goods_id != null">`goods_id` = #{goods_id},</if>

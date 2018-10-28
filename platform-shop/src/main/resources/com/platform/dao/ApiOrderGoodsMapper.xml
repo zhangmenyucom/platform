@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiOrderGoodsMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.OrderGoodsVo" id="orderGoodsMap">
+    <resultMap type="com.platform.vo.OrderGoodsVo" id="orderGoodsMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="order_id" column="order_id"/>
@@ -56,7 +56,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.OrderGoodsVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.OrderGoodsVo" useGeneratedKeys="true" keyProperty="id">
 		insert into order_goods
 		(
 			`merchant_id`,
@@ -91,7 +91,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.OrderGoodsVo">
+    <update id="update" parameterType="com.platform.vo.OrderGoodsVo">
         update order_goods
         <set>
             <if test="order_id != null">`order_id` = #{order_id},</if>

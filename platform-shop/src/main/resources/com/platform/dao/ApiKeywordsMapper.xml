@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiKeywordsMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.KeywordsVo" id="keywordsMap">
+    <resultMap type="com.platform.vo.KeywordsVo" id="keywordsMap">
         <result property="keyword" column="keyword"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="is_hot" column="is_hot"/>
@@ -58,7 +58,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.KeywordsVo">
+    <insert id="save" parameterType="com.platform.vo.KeywordsVo">
 		insert into keywords
 		(
 			`merchant_id`,
@@ -85,7 +85,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.KeywordsVo">
+    <update id="update" parameterType="com.platform.vo.KeywordsVo">
         update keywords
         <set>
             <if test="is_hot != null">`is_hot` = #{is_hot},</if>

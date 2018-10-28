@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiCouponMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.CouponVo" id="couponMap">
+    <resultMap type="com.platform.vo.CouponVo" id="couponMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
@@ -55,7 +55,7 @@
         </choose>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.CouponVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.CouponVo" useGeneratedKeys="true" keyProperty="id">
 		insert into coupon
 		(
 		    `merchant_id`,
@@ -86,7 +86,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.CouponVo">
+    <update id="update" parameterType="com.platform.vo.CouponVo">
         update coupon
         <set>
             <if test="name != null">`name` = #{name},</if>
@@ -104,7 +104,7 @@
         where id = #{id}
     </update>
 
-    <update id="updateUserCoupon" parameterType="com.platform.entity.CouponVo">
+    <update id="updateUserCoupon" parameterType="com.platform.vo.CouponVo">
         update user_coupon
         <set>
             <if test="useDate != null">`used_time` = #{useDate},</if>

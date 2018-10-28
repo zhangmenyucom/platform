@@ -4,17 +4,17 @@
 <mapper namespace="com.platform.dao.ApiUserLevelMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.UserLevelVo" id="userLevelMap">
+    <resultMap type="com.platform.vo.UserLevelVo" id="userLevelMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
     </resultMap>
 
-	<select id="queryObject" resultType="com.platform.entity.UserLevelVo">
+	<select id="queryObject" resultType="com.platform.vo.UserLevelVo">
 		select * from user_level where id = #{value}
 	</select>
 
-	<select id="queryList" resultType="com.platform.entity.UserLevelVo">
+	<select id="queryList" resultType="com.platform.vo.UserLevelVo">
 		select * from user_level
 		WHERE 1=1
         <choose>
@@ -35,7 +35,7 @@
 		WHERE 1=1
 	</select>
 	 
-	<insert id="save" parameterType="com.platform.entity.UserLevelVo" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.platform.vo.UserLevelVo" useGeneratedKeys="true" keyProperty="id">
 		insert into user_level
 		(
 			`name`,
@@ -48,7 +48,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.platform.entity.UserLevelVo">
+	<update id="update" parameterType="com.platform.vo.UserLevelVo">
 		update user_level
 		<set>
 			<if test="name != null">`name` = #{name}, </if>

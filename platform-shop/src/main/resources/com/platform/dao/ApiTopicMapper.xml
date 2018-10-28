@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiTopicMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.TopicVo" id="topicMap">
+    <resultMap type="com.platform.vo.TopicVo" id="topicMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="title" column="title"/>
@@ -58,7 +58,7 @@
         </if>
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.TopicVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.TopicVo" useGeneratedKeys="true" keyProperty="id">
 		insert into topic
 		(
 			`merchant_id`,
@@ -91,7 +91,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.TopicVo">
+    <update id="update" parameterType="com.platform.vo.TopicVo">
         update topic
         <set>
             <if test="title != null">`title` = #{title},</if>

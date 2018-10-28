@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiFeedbackMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.FeedbackVo" id="feedbackMap">
+    <resultMap type="com.platform.vo.FeedbackVo" id="feedbackMap">
 		<result property="msgId" column="msg_id"/>
 		<result property="merchantId" column="merchant_id"/>
 		<result property="userId" column="user_id"/>
@@ -47,7 +47,7 @@
 		</if>
 	</select>
 	 
-	<insert id="save" parameterType="com.platform.entity.FeedbackVo" useGeneratedKeys="true" keyProperty="msgId">
+	<insert id="save" parameterType="com.platform.vo.FeedbackVo" useGeneratedKeys="true" keyProperty="msgId">
 		insert into feedback(
             `merchant_id`,
 			`user_id`,
@@ -69,7 +69,7 @@
 			)
 	</insert>
 	 
-	<update id="update" parameterType="com.platform.entity.FeedbackVo">
+	<update id="update" parameterType="com.platform.vo.FeedbackVo">
 		update feedback
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>

@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiChannelMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.ChannelVo" id="channelMap">
+    <resultMap type="com.platform.vo.ChannelVo" id="channelMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="name" column="name"/>
@@ -47,7 +47,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.ChannelVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.ChannelVo" useGeneratedKeys="true" keyProperty="id">
 		insert into channel
 		(
 			`merchant_id`,
@@ -66,7 +66,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.ChannelVo">
+    <update id="update" parameterType="com.platform.vo.ChannelVo">
         update channel
         <set>
             <if test="name != null">`name` = #{name},</if>

@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiRelatedGoodsMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.RelatedGoodsVo" id="relatedGoodsMap">
+    <resultMap type="com.platform.vo.RelatedGoodsVo" id="relatedGoodsMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="goods_id" column="goods_id"/>
@@ -50,7 +50,7 @@
 
 	</select>
 
-    <insert id="save" parameterType="com.platform.entity.RelatedGoodsVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.RelatedGoodsVo" useGeneratedKeys="true" keyProperty="id">
 		insert into related_goods
 		(
 			`merchant_id`,
@@ -65,7 +65,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.RelatedGoodsVo">
+    <update id="update" parameterType="com.platform.vo.RelatedGoodsVo">
         update related_goods
         <set>
             <if test="goods_id != null">`goods_id` = #{goods_id},</if>

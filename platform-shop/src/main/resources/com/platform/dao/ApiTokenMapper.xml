@@ -3,7 +3,7 @@
 
 <mapper namespace="com.platform.dao.ApiTokenMapper">
 
-    <resultMap type="com.platform.entity.TokenEntity" id="tbTokenMap">
+    <resultMap type="com.platform.vo.TokenEntity" id="tbTokenMap">
         <result property="userId" column="user_id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="token" column="token"/>

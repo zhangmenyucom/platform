@@ -4,7 +4,7 @@
 <mapper namespace="com.platform.dao.ApiAttributeMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.platform.entity.AttributeVo" id="attributeMap">
+    <resultMap type="com.platform.vo.AttributeVo" id="attributeMap">
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="attribute_category_id" column="attribute_category_id"/>
@@ -57,7 +57,7 @@
         </if>
     </select>
 
-    <insert id="save" parameterType="com.platform.entity.AttributeVo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.platform.vo.AttributeVo" useGeneratedKeys="true" keyProperty="id">
 		insert into attribute
 		(
 			`merchant_id`,
@@ -78,7 +78,7 @@
 		)
 	</insert>
 
-    <update id="update" parameterType="com.platform.entity.AttributeVo">
+    <update id="update" parameterType="com.platform.vo.AttributeVo">
         update attribute
         <set>
             <if test="attribute_category_id != null">`attribute_category_id` = #{attribute_category_id},</if>
