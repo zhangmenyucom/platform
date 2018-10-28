@@ -216,7 +216,7 @@
             limit #{offset}, #{limit}
         </if>
     </select>
-    <update id="update" parameterType="com.platform.entity.GoodsVo">
+    <update id="update" parameterType="com.platform.vo.GoodsVo">
         update goods
         <set>
             <if test="goods_number != null">`goods_number` = #{goods_number},</if>

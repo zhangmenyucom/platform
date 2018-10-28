@@ -9,7 +9,7 @@ $(function () {
                 label: '会员名称', name: 'username', index: 'username', hidden: true
             },
             {
-                label: '微信名', name: 'nickname', index: 'nickname', width: 40
+                label: '微信名', name: 'nickname', index: 'nickname', width: 80
             },
             {
                 label: '会员密码', name: 'password', index: 'password', hidden: true
