@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author taylor
@@ -8,6 +9,7 @@ import lombok.Data;
  * @date 2017-11-04 11:19:31
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SysRegionEntity extends Tree<SysRegionEntity> {
 
     //主键

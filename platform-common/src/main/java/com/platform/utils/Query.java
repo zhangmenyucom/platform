@@ -2,6 +2,7 @@ package com.platform.utils;
 
 import com.platform.xss.SQLFilter;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Optional;
  * @date 2017-03-14 23:15
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Query extends LinkedHashMap<String, Object> {
 
     private static final long serialVersionUID = 1L;

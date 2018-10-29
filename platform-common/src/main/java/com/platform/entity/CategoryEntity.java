@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 实体
@@ -11,6 +12,7 @@ import lombok.Data;
  * @date 2017-08-21 15:32:31
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CategoryEntity extends Tree<CategoryEntity> {
 
     private Long merchantId;
