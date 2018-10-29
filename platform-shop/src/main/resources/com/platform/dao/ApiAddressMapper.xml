@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.ApiAddressMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.platform.vo.AddressVo" id="addressMap">
+        <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="telNumber" column="tel_number"/>
+        <result property="postalCode" column="postal_Code"/>
+        <result property="nationalCode" column="national_Code"/>
+        <result property="provinceName" column="province_Name"/>
+        <result property="cityName" column="city_Name"/>
+        <result property="countyName" column="county_Name"/>
+        <result property="detailInfo" column="detail_Info"/>
+        <result property="is_default" column="is_default"/>
+    </resultMap>
+
+    <select id="queryObject" resultMap="addressMap">
+		select * from address where id = #{value}
+	</select>
+
+    <select id="queryList" resultMap="addressMap">
+        select * from address
+        <where>
+            <if test="merchantId!=null">
+                and merchant_id=#{merchantId}
+            </if>
+            <if test="user_id != null">
+                and user_id = #{user_id}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by is_default desc,id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from address
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+	</select>
+
+    <insert id="save" parameterType="com.platform.vo.AddressVo" useGeneratedKeys="true" keyProperty="id">
+		insert into address(
+			`user_id`,
+			`merchant_id`,
+			`user_name`,
+			`tel_number`,
+			`postal_Code`,
+			`national_Code`,
+			`province_Name`,
+			`city_Name`,
+			`county_Name`,
+			`detail_Info`,
+			`is_default`)
+		values(
+			#{userId},
+			#{merchantId},
+			#{userName},
+			#{telNumber},
+			#{postalCode},
+			#{nationalCode},
+			#{provinceName},
+			#{cityName},
+			#{countyName},
+			#{detailInfo},
+			#{is_default})
+	</insert>
+
+    <update id="update" parameterType="com.platform.vo.AddressVo">
+        update address
+        <set>
+            <if test="userId != null">`user_id` = #{userId}, </if>
+            <if test="userName != null">`user_name` = #{userName}, </if>
+            <if test="telNumber != null">`tel_number` = #{telNumber}, </if>
+            <if test="postalCode != null">`postal_Code` = #{postalCode}, </if>
+            <if test="nationalCode != null">`national_Code` = #{nationalCode}, </if>
+            <if test="provinceName != null">`province_Name` = #{provinceName}, </if>
+            <if test="cityName != null">`city_Name` = #{cityName}, </if>
+            <if test="countyName != null">`county_Name` = #{countyName}, </if>
+            <if test="detailInfo != null">`detail_Info` = #{detailInfo},</if>
+            <if test="is_default != null">`is_default` = #{is_default}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="resetDefaultAddress" parameterType="com.platform.vo.AddressVo">
+        update address
+        set is_default=0
+        where user_id = #{userId} and merchant_id=#{merchantId}
+    </update>
+
+    <delete id="delete">
+		delete from address where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from address where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

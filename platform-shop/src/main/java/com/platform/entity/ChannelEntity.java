@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @date 2017-08-22 19:19:56
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class ChannelEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     //名称

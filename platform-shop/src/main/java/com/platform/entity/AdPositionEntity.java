@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @date 2017-08-19 12:02:42
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class AdPositionEntity extends BaseEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
     /**位置名称**/

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.ApiAdMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.platform.vo.AdVo" id="adMap">
+        <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
+        <result property="ad_position_id" column="ad_position_id"/>
+        <result property="media_type" column="media_type"/>
+        <result property="name" column="name"/>
+        <result property="link" column="link"/>
+        <result property="image_url" column="image_url"/>
+        <result property="content" column="content"/>
+        <result property="end_time" column="end_time"/>
+        <result property="enabled" column="enabled"/>
+    </resultMap>
+
+    <select id="queryObject" resultMap="adMap">
+		select * from ad where id = #{value}
+	</select>
+
+    <select id="queryList" resultMap="adMap">
+        select * from ad
+        where 1 = 1 and enabled = 1 and end_time > now()
+        <if test="ad_position_id != null and ad_position_id != null">
+            and ad_position_id = #{ad_position_id}
+        </if>
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by media_type asc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ad
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+	</select>
+
+    <insert id="save" parameterType="com.platform.vo.AdVo" useGeneratedKeys="true" keyProperty="id">
+		insert into ad
+		(
+			`ad_position_id`,
+			`merchant_id`,
+			`media_type`, 
+			`name`, 
+			`link`, 
+			`image_url`, 
+			`content`, 
+			`end_time`, 
+			`enabled`
+		)
+		values
+		(
+			#{ad_position_id},
+			#{merchantId},
+			#{media_type},
+			#{name}, 
+			#{link}, 
+			#{image_url},
+			#{content}, 
+			#{end_time},
+			#{enabled}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.platform.vo.AdVo">
+        update ad
+        <set>
+            <if test="ad_position_id != null">`ad_position_id` = #{adPositionId},</if>
+            <if test="media_type != null">`media_type` = #{mediaType},</if>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="link != null">`link` = #{link},</if>
+            <if test="image_url != null">`image_url` = #{imageUrl},</if>
+            <if test="content != null">`content` = #{content},</if>
+            <if test="end_time != null">`end_time` = #{endTime},</if>
+            <if test="enabled != null">`enabled` = #{enabled}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ad where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from ad where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

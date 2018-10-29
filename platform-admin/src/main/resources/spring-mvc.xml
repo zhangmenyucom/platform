@@ -13,7 +13,7 @@
      	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/mvc 
      	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
-
+    <import resource="platform-api.xml"/>
     <context:component-scan base-package="com.platform"/>
     <context:annotation-config/>
     <mvc:default-servlet-handler/>
@@ -27,8 +27,8 @@
     </mvc:annotation-driven>
 
     <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-        <constructor-arg value="UTF-8" index="0"></constructor-arg><!--
-            避免出现乱码 -->
+        <constructor-arg value="UTF-8" index="0"></constructor-arg>
+        <!-- 避免出现乱码 -->
         <property name="supportedMediaTypes">
             <list>
                 <value>text/plain;charset=UTF-8</value>

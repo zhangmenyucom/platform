@@ -1,6 +1,7 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
  * @date 2017-08-13 10:41:06
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CartEntity  extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

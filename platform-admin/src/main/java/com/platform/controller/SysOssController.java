@@ -67,12 +67,12 @@ public class SysOssController {
      *
      * @return R
      */
-    @RequestMapping("/config")
+    @RequestMapping("/com/platform/config")
     @RequiresPermissions("sys:oss:all")
     public R config() {
         CloudStorageConfig config = sysConfigService.getConfigObject(KEY, CloudStorageConfig.class);
 
-        return R.ok().put("config", config);
+        return R.ok().put("com/platform/config", config);
     }
 
 

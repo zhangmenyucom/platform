@@ -1,6 +1,8 @@
 package com.platform.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -14,6 +16,8 @@ import java.io.Serializable;
  * @date 2017-10-02 14:11:24
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 public class AddressEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
@@ -57,4 +61,6 @@ public class AddressEntity extends BaseEntity implements Serializable {
      * 翻译会员名
      */
     private String shopUserName;
+
+    private Integer isDefault;
 }

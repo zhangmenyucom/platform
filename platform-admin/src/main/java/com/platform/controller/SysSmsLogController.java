@@ -10,7 +10,6 @@ import com.platform.utils.Constant;
 import com.platform.utils.PageUtils;
 import com.platform.utils.Query;
 import com.platform.utils.R;
-import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -89,11 +88,11 @@ public class SysSmsLogController {
      *
      * @return R
      */
-    @RequestMapping("/config")
+    @RequestMapping("/com/platform/config")
     public R config() {
         SmsConfig config = sysConfigService.getConfigObject(KEY, SmsConfig.class);
 
-        return R.ok().put("config", config);
+        return R.ok().put("com/platform/config", config);
     }
 
     /**
@@ -115,7 +114,6 @@ public class SysSmsLogController {
      * @param smsLog 短信
      * @return R
      */
-    @ApiOperation(value = "保存短信记录")
     @RequestMapping("/sendSms")
     public R sendSms(@RequestBody SysSmsLogEntity smsLog) {
         SysSmsLogEntity sysSmsLogEntity = smsLogService.sendSms(smsLog);

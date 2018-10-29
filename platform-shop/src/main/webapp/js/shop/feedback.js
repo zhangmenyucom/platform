@@ -3,7 +3,7 @@ $(function () {
         url: '../feedback/list',
         colModel: [
             {label: 'msgId', name: 'msgId', index: 'msg_id', key: true, hidden: true},
-            {label: '会员名称', name: 'userName', index: 'user_name', width: 80},
+            {label: '会员名称', name: 'nickName', index: 'nickName', width: 80},
             {label: '手机', name: 'mobile', index: 'mobile', width: 80},
             {
                 label: '反馈类型', name: 'feedType', index: 'feed_Type', width: 80, formatter: function (value) {

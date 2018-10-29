@@ -64,7 +64,7 @@
 		    #{merchantId},
 			#{userId}, 
 			#{valueId}, 
-			#{addTime}, 
+			now(),
 			#{isAttention}, 
 			#{typeId}
 		)

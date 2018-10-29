@@ -128,6 +128,11 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         Map<String, Long> map = new HashMap<>(1);
         map.put("goodsId", goods.getId());
         goodsGalleryDao.deleteByGoodsId(map);
+        for (GoodsGalleryEntity goodsGalleryEntity : galleryEntityList) {
+            goodsGalleryEntity.setGoodsId(goods.getId());
+            goodsGalleryEntity.setMerchantId(goods.getMerchantId());
+            goodsGalleryDao.save(goodsGalleryEntity);
+        }
 
         /**保存产品信息**/
         ProductEntity productEntity = new ProductEntity();
@@ -138,16 +143,29 @@ public class GoodsServiceImpl  extends  BaseServiceImpl<GoodsEntity,GoodsDao> im
         productEntity.setMarketPrice(goods.getMarketPrice());
         productEntity.setGoodsSpecificationIds("");
         productDao.update(productEntity);
-
-        if (null != galleryEntityList && galleryEntityList.size() > 0) {
-            for (GoodsGalleryEntity galleryEntity : galleryEntityList) {
-                galleryEntity.setGoodsId(goods.getId());
-                goodsGalleryDao.save(galleryEntity);
-            }
-        }
         return getDao().update(goods);
     }
 
+    @Override
+    public int delete(Long id) {
+        SysUserEntity user = ShiroUtils.getUserEntity();
+        GoodsEntity goodsEntity = queryObject(id);
+        goodsEntity.setIsDelete(1);
+        goodsEntity.setIsOnSale(0);
+        goodsEntity.setUpdateUserId(user.getUserId());
+        goodsEntity.setUpdateTime(new Date());
+        return this.getDao().update(goodsEntity);
+    }
+
+    @Override
+    @Transactional
+    public int deleteBatch(Long[] ids) {
+        int result = 0;
+        for (Long id : ids) {
+            result += delete(id);
+        }
+        return result;
+    }
 
     @Override
     @Transactional
