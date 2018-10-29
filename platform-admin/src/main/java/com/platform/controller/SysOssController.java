@@ -33,7 +33,7 @@ import java.util.Map;
  * @date 2017-03-25 12:13:26
  */
 @RestController
-@RequestMapping("sys/oss")
+@RequestMapping("/sys/oss")
 public class SysOssController {
     @Autowired
     private SysOssService sysOssService;
