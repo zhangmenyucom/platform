@@ -1,4 +1,4 @@
-package com.platform.api;
+package com.platform.util;
 
 import com.platform.entity.EnterpriceToCustomerEntity;
 import com.platform.utils.wechat.*;

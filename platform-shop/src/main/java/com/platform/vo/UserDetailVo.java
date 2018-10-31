@@ -54,12 +54,7 @@ public class UserDetailVo extends BaseEntity  implements Serializable {
     private String weixin_openid;
     /**积分**/
     private Integer point;
-    /**总佣金**/
-    private BigDecimal totalBalance;
-    /**可用佣金**/
-    private BigDecimal avilableBalance;
-    /**冻结佣金**/
-    private BigDecimal lockBalance;
+
     /**下级,展示下两级**/
     private List<UserVo> subUserList;
 

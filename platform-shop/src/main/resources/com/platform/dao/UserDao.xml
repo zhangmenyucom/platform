@@ -19,9 +19,6 @@
         <result property="mobile" column="mobile"/>
         <result property="registerIp" column="register_ip"/>
         <result property="avatar" column="avatar"/>
-        <result property="totalBalance" column="total_balance"/>
-        <result property="avilableBalance" column="avilable_balance"/>
-        <result property="lockBalance" column="lock_balance"/>
         <result property="weixinOpenid" column="weixin_openid"/>
     </resultMap>
 
@@ -41,9 +38,6 @@
 			mobile,
 			register_ip,
 			avatar,
-        total_balance,
-        avilable_balance,
-        lock_balance,
 			weixin_openid
 		from user
 		where id = #{id}
@@ -189,10 +183,6 @@
             <if test="mobile != null">`mobile` = #{mobile},</if>
             <if test="registerIp != null">`register_ip` = #{registerIp},</if>
             <if test="avatar != null">`avatar` = #{avatar},</if>
-            <if test="weixinOpenid != null">`weixin_openid` = #{weixinOpenid},</if>
-            <if test="totalBalance != null">`total_balance` = #{totalBalance},</if>
-            <if test="avilableBalance != null">`avilable_balance` = #{avilableBalance},</if>
-            <if test="lockBalance != null">`lock_balance` = #{lockBalance}</if>
         </set>
         where id = #{id}
     </update>
