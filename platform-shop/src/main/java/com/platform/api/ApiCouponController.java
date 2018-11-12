@@ -244,4 +244,41 @@ public class ApiCouponController extends ApiBaseAction {
             return toResponsFail("领取失败");
         }
     }
+
+    /**
+     * 　　直接领取
+     */
+    @ApiOperation(value = "直接领取")
+    @GetMapping("/draw_coupon")
+    public Object drawCoupon(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser, @RequestParam("couponId") Long couponId) {
+        // 是否领取过了
+        Map params = new HashMap(0);
+        params.put("user_id", loginUser.getUserId());
+        params.put("merchantId", merchantId);
+        params.put("couponId", couponId);
+        List<CouponVo> couponVos = apiCouponService.queryUserCoupons(params);
+        if (null != couponVos && couponVos.size() > 0) {
+            return toResponsObject(2, "已经领取过", couponVos);
+        }
+        // 领取
+        Map couponParam = new HashMap(0);
+        CouponVo newCouponConfig = apiCouponService.queryMaxUserEnableCoupon(couponParam);
+        if (null != newCouponConfig) {
+            UserCouponVo userCouponVo = new UserCouponVo();
+            userCouponVo.setAdd_time(new Date());
+            userCouponVo.setCoupon_id(newCouponConfig.getId());
+            userCouponVo.setCoupon_number(CharUtil.getRandomString(12));
+            userCouponVo.setUser_id(loginUser.getUserId());
+            apiUserCouponService.save(userCouponVo);
+            List<UserCouponVo> userCouponVos = new ArrayList();
+            userCouponVos.add(userCouponVo);
+            params = new HashMap(0);
+            params.put("user_id", loginUser.getUserId());
+            params.put("merchantId", merchantId);
+            couponVos = apiCouponService.queryUserCoupons(params);
+            return toResponsSuccess(couponVos);
+        } else {
+            return toResponsFail("领取失败");
+        }
+    }
 }
