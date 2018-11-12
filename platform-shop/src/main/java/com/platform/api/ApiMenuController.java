@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-import static com.platform.common.ClientMenuEnum.clientMenuEnumMap;
+import static com.platform.enums.ClientMenuEnum.clientMenuEnumMap;
 
 /**
  * Controller

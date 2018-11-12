@@ -1,6 +1,6 @@
 package com.platform.vo;
 
-import com.platform.common.OrderStatusEnum;
+import com.platform.enums.OrderStatusEnum;
 import com.platform.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.platform.common.OrderStatusEnum.*;
+import static com.platform.enums.OrderStatusEnum.*;
 
 
 /**

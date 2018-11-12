@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONException;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
-import com.platform.common.SMSTypeEnum;
+import com.platform.enums.SMSTypeEnum;
 import com.platform.dao.SysSmsLogDao;
 import com.platform.entity.SmsConfig;
 import com.platform.entity.SysSmsLogEntity;

@@ -3,10 +3,9 @@ package com.platform.api;
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.cache.J2CacheUtils;
-import com.platform.common.OrderStatusEnum;
-import com.platform.common.PayStatusEnum;
-import com.platform.common.ShippingStatusEnum;
-import com.platform.enums.UserLevelEnum;
+import com.platform.enums.OrderStatusEnum;
+import com.platform.enums.PayStatusEnum;
+import com.platform.enums.ShippingStatusEnum;
 import com.platform.service.*;
 import com.platform.util.ApiBaseAction;
 import com.platform.utils.*;
@@ -26,10 +25,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.platform.enums.SpecialGoodsEnum.SPECIAL_GOODS_ENUM_MAP;
-import static com.platform.enums.UserLevelEnum.LEVEL_MAP;
 
 /**
  * 作者: @author Harmon <br>

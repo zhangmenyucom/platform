@@ -2,9 +2,9 @@ package com.platform.api;
 
 import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
-import com.platform.common.OrderStatusEnum;
-import com.platform.common.PayStatusEnum;
-import com.platform.common.ShippingStatusEnum;
+import com.platform.enums.OrderStatusEnum;
+import com.platform.enums.PayStatusEnum;
+import com.platform.enums.ShippingStatusEnum;
 import com.platform.service.ApiOrderGoodsService;
 import com.platform.service.ApiOrderService;
 import com.platform.util.ApiBaseAction;

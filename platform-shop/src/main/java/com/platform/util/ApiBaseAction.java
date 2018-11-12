@@ -1,7 +1,7 @@
 package com.platform.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.platform.common.ResponseCodeEnum;
+import com.platform.enums.ResponseCodeEnum;
 import com.platform.interceptor.AuthorizationInterceptor;
 import com.platform.service.TokenService;
 import com.platform.vo.TokenEntity;

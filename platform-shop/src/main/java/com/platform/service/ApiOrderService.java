@@ -2,9 +2,10 @@ package com.platform.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.platform.cache.J2CacheUtils;
-import com.platform.common.*;
 import com.platform.dao.*;
 
+import com.platform.enums.CouponStatusEnum;
+import com.platform.enums.OrderTypeEnum;
 import com.platform.service.impl.BaseServiceImpl;
 import com.platform.utils.CommonUtil;
 import com.platform.vo.*;

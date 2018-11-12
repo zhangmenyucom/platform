@@ -1,4 +1,4 @@
-package com.platform.common;/**
+package com.platform.enums;/**
  * ${author} on 2018/9/14.
  */
 

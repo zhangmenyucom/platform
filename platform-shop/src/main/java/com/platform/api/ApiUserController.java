@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.platform.annotation.LoginUser;
 import com.platform.common.Constants;
-import com.platform.common.ResponseCodeEnum;
+import com.platform.enums.ResponseCodeEnum;
 import com.platform.common.vo.EncryptedDataBean;
 import com.platform.service.ApiSignRecordService;
 import com.platform.service.ApiUserService;
