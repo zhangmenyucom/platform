@@ -48,4 +48,8 @@ public class ApiCouponService extends BaseServiceImpl<CouponVo, ApiCouponMapper>
     public List<CouponVo> queryUserCouponList(Map<String, Object> map) {
         return getDao().queryUserCouponList(map);
     }
+
+    public List<CouponVo> queryCouponByTypes(Map param) {
+        return getDao().queryList(param);
+    }
 }

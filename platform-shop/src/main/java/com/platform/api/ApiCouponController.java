@@ -1,6 +1,8 @@
 package com.platform.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
+import com.platform.annotation.IgnoreAuth;
 import com.platform.annotation.LoginUser;
 import com.platform.cache.J2CacheUtils;
 import com.platform.service.*;
@@ -41,13 +43,27 @@ public class ApiCouponController extends ApiBaseAction {
     /**
      * 获取优惠券列表
      */
-    @ApiOperation(value = "获取优惠券列表")
+    @ApiOperation(value = "获取用户优惠券列表")
     @GetMapping("/list")
-    public Object list(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
+    public Object userCouponList(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser) {
         Map param = new HashMap(0);
         param.put("user_id", loginUser.getUserId());
-        param.put("merchantId",merchantId);
+        param.put("merchantId", merchantId);
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(param);
+        return toResponsSuccess(couponVos);
+    }
+
+    /**
+     * 获取优惠券列表
+     */
+    @ApiOperation(value = "获取用户优惠券列表")
+    @GetMapping("/all_list")
+    @IgnoreAuth
+    public Object list(@PathVariable("merchantId") Long merchantId, @RequestParam("send_types") String sendTypes) {
+        Map param = new HashMap(0);
+        param.put("merchantId", merchantId);
+        param.put("send_types", Arrays.asList(sendTypes.split(",")));
+        List<CouponVo> couponVos = apiCouponService.queryCouponByTypes(param);
         return toResponsSuccess(couponVos);
     }
 
@@ -56,12 +72,12 @@ public class ApiCouponController extends ApiBaseAction {
      */
     @ApiOperation(value = "根据商品获取可用优惠券列表")
     @GetMapping("/listByGoods")
-    public Object listByGoods(@PathVariable("merchantId") Long merchantId,@RequestParam(defaultValue = "cart") String type, @LoginUser UserVo loginUser) {
+    public Object listByGoods(@PathVariable("merchantId") Long merchantId, @RequestParam(defaultValue = "cart") String type, @LoginUser UserVo loginUser) {
         BigDecimal goodsTotalPrice = new BigDecimal(0.00);
         if (type.equals("cart")) {
             Map param = new HashMap(0);
             param.put("user_id", loginUser.getUserId());
-            List<CartVo> cartList = apiCartService.queryList(param,merchantId);
+            List<CartVo> cartList = apiCartService.queryList(param, merchantId);
             //获取购物车统计信息
             for (CartVo cartItem : cartList) {
                 if (null != cartItem.getChecked() && 1 == cartItem.getChecked()) {
@@ -79,12 +95,13 @@ public class ApiCouponController extends ApiBaseAction {
         Map param = new HashMap(0);
         param.put("user_id", loginUser.getUserId());
         param.put("coupon_status", 1);
-        param.put("merchantId",merchantId);
+        param.put("merchantId", merchantId);
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(param);
         List<CouponVo> useCoupons = new ArrayList<>();
         List<CouponVo> notUseCoupons = new ArrayList<>();
         for (CouponVo couponVo : couponVos) {
-            if (goodsTotalPrice.compareTo(couponVo.getMin_goods_amount()) >= 0) { // 可用优惠券
+            // 可用优惠券
+            if (goodsTotalPrice.compareTo(couponVo.getMin_goods_amount()) >= 0) {
                 couponVo.setEnabled(1);
                 useCoupons.add(couponVo);
             } else {
@@ -101,7 +118,7 @@ public class ApiCouponController extends ApiBaseAction {
      */
     @ApiOperation(value = "领券优惠券")
     @PostMapping("exchange")
-    public Object exchange(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
+    public Object exchange(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser) {
         JSONObject jsonParam = getJsonRequest();
         String coupon_number = jsonParam.getString("coupon_number");
         if (StringUtils.isNullOrEmpty(coupon_number)) {
@@ -110,7 +127,7 @@ public class ApiCouponController extends ApiBaseAction {
         //
         Map param = new HashMap(0);
         param.put("coupon_number", coupon_number);
-        List<UserCouponVo> couponVos = apiUserCouponService.queryList(param,merchantId);
+        List<UserCouponVo> couponVos = apiUserCouponService.queryList(param, merchantId);
         UserCouponVo userCouponVo;
         if (null == couponVos || couponVos.size() == 0) {
             return toResponsFail("当前优惠码无效");
@@ -134,7 +151,7 @@ public class ApiCouponController extends ApiBaseAction {
      */
     @ApiOperation(value = "领券优惠券")
     @PostMapping("newuser")
-    public Object newuser(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser) {
+    public Object newuser(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser) {
         JSONObject jsonParam = getJsonRequest();
         //
         String phone = jsonParam.getString("phone");
@@ -159,7 +176,7 @@ public class ApiCouponController extends ApiBaseAction {
         Map params = new HashMap(0);
         params.put("user_id", loginUser.getUserId());
         params.put("send_type", 4);
-        params.put("merchantId",merchantId);
+        params.put("merchantId", merchantId);
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(params);
         if (null != couponVos && couponVos.size() > 0) {
             return toResponsFail("已经领取过，不能重复领取");
@@ -167,7 +184,7 @@ public class ApiCouponController extends ApiBaseAction {
         // 领取
         Map couponParam = new HashMap(0);
         couponParam.put("send_type", 4);
-        couponParam.put("merchantId",merchantId);
+        couponParam.put("merchantId", merchantId);
         CouponVo newCouponConfig = apiCouponService.queryMaxUserEnableCoupon(couponParam);
         if (null != newCouponConfig) {
             UserCouponVo userCouponVo = new UserCouponVo();
@@ -187,14 +204,14 @@ public class ApiCouponController extends ApiBaseAction {
      */
     @ApiOperation(value = "转发领取红包")
     @PostMapping("transActivit")
-    public Object transActivit(@PathVariable("merchantId") Long merchantId,@LoginUser UserVo loginUser, String sourceKey, Long referrer) {
+    public Object transActivit(@PathVariable("merchantId") Long merchantId, @LoginUser UserVo loginUser, String sourceKey, Long referrer) {
         JSONObject jsonParam = getJsonRequest();
         // 是否领取过了
         Map params = new HashMap(0);
         params.put("user_id", loginUser.getUserId());
         params.put("send_type", 2);
         params.put("source_key", sourceKey);
-        params.put("merchantId",merchantId);
+        params.put("merchantId", merchantId);
         List<CouponVo> couponVos = apiCouponService.queryUserCoupons(params);
         if (null != couponVos && couponVos.size() > 0) {
             return toResponsObject(2, "已经领取过", couponVos);
@@ -220,7 +237,7 @@ public class ApiCouponController extends ApiBaseAction {
             params.put("user_id", loginUser.getUserId());
             params.put("send_type", 2);
             params.put("source_key", sourceKey);
-            params.put("merchantId",merchantId);
+            params.put("merchantId", merchantId);
             couponVos = apiCouponService.queryUserCoupons(params);
             return toResponsSuccess(couponVos);
         } else {
