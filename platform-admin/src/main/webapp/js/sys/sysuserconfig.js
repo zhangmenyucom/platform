@@ -11,6 +11,10 @@ $(function () {
             {label: '证书地址', name: 'certAddress', index: 'cert_address', width: 80},
             {label: '门店名称', name: 'storeName', index: 'store_name', width: 80},
             {label: '门店地址', name: 'storeAddress', index: 'store_address', width: 120},
+            {label: '门店头图', name: 'storeBanner', index: 'store_banner', width: 120},
+            {label: '营业执照', name: 'businessLicence', index: 'business_licence', width: 120},
+            {label: '法人身份证', name: 'idCard', index: 'id_card', width: 120},
+            {label: '是否加入质保', name: 'isQualityGuarantee', index: 'is_quality_guarantee', width: 120},
             {label: '电话', name: 'phone', index: 'cert_address', width: 80},
             {
                 label: '', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
