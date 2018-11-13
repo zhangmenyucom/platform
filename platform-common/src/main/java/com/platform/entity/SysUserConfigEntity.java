@@ -34,6 +34,22 @@ public class SysUserConfigEntity extends BaseEntity implements Serializable {
     private String storeName;
     /**店铺地址**/
     private String storeAddress;
+    /**
+     * 店铺头图
+     **/
+    private String storeBanner;
+    /**
+     * 营业执照
+     **/
+    private String businessLicence;
+    /**
+     * 店铺地址
+     **/
+    private String idCard;
+    /**
+     * 是否加入质量保证
+     **/
+    private int isQualityGuarantee;
     /**联系电话**/
     private String phone;
 }

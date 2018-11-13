@@ -3,10 +3,12 @@ $(function () {
         url: '../sysusertag/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '商家id', name: 'merchantId', index: 'merchant_id', width: 80},
             {label: '标签名', name: 'tag', index: 'tag', width: 80},
-            {label: '创建时间', name: 'createTime', index: 'create_time', width: 80},
-            {label: '更新时间', name: 'updateTime', index: 'update_time', width: 80}]
+            {
+                label: '创建时间', name: 'createTime', index: 'create_time', width: 80, formatter: function (value) {
+                return transDate(value);
+            }
+            }]
     });
 });
 
@@ -17,12 +19,12 @@ var vm = new Vue({
         title: null,
         sysUserTag: {},
         ruleValidate: {
-            name: [
+            tag: [
                 {required: true, message: '名称不能为空', trigger: 'blur'}
             ]
         },
         q: {
-            name: ''
+            tag: ''
         }
     },
     methods: {

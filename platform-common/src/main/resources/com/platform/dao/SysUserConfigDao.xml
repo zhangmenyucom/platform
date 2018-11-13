@@ -14,6 +14,10 @@
         <result property="storeName" column="store_name"/>
         <result property="storeAddress" column="store_address"/>
         <result property="phone" column="phone"/>
+        <result property="storeBanner" column="store_banner"/>
+        <result property="idCard" column="id_card"/>
+        <result property="businessLicence" column="business_licence"/>
+        <result property="isQualityGuarantee" column="is_quality_guarantee"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
@@ -29,6 +33,10 @@
 			`cert_address`,
 			`store_name`,
 			`store_address`,
+        `store_banner`,
+        `id_card`,
+        `business_licence`,
+        `is_quality_guarantee`,
 			`phone`,
 			`create_time`,
 			`update_time`
@@ -46,6 +54,10 @@
 		`cert_address`,
 		`store_name`,
 		`store_address`,
+        `store_banner`,
+        `id_card`,
+        `business_licence`,
+        `is_quality_guarantee`,
 		`phone`,
 		`create_time`,
 		`update_time`
@@ -61,6 +73,10 @@
         s.`mch_id`,
         s.`pay_sign_key`,
         s.`cert_address`,
+        s.`store_banner`,
+        s.`id_card`,
+        s.`business_licence`,
+        s.`is_quality_guarantee`,
         s.`store_name`,
         s.`store_address`,
         s.`phone`,
@@ -94,6 +110,10 @@
         `cert_address`,
         `store_name`,
         `store_address`,
+        `store_banner`,
+        `id_card`,
+        `business_licence`,
+        `is_quality_guarantee`,
         `phone`,
         `create_time`,
         `update_time`
@@ -141,6 +161,10 @@
 			`cert_address`,
 			`store_name`,
 		    `store_address`,
+        `store_banner`,
+        `id_card`,
+        `business_licence`,
+        `is_quality_guarantee`,
 		    `phone`,
 			`create_time`,
 			`update_time`)
@@ -153,6 +177,10 @@
 			#{certAddress},
 			#{storeName},
 			#{storeAddress},
+        #{storeBanner},
+        #{idCard},
+        #{businessLicence},
+        #{isQualityGuarantee},
 			#{phone},
 			#{createTime},
 			#{updateTime})
@@ -169,6 +197,10 @@
             <if test="certAddress != null">`cert_address` = #{certAddress},</if>
             <if test="storeName != null">`store_name` = #{storeName},</if>
             <if test="storeAddress != null">`store_address` = #{storeAddress},</if>
+            <if test="storeBanner != null">`store_banner` = #{storeBanner},</if>
+            <if test="idCard != null">`id_card` = #{idCard},</if>
+            <if test="businessLicence != null">`business_licence` = #{businessLicence},</if>
+            <if test="isQualityGuarantee != null">`is_quality_guarantee` = #{isQualityGuarantee},</if>
             <if test="phone != null">`phone` = #{phone},</if>
             <if test="createTime != null">`create_time` = #{createTime},</if>
             <if test="updateTime != null">`update_time` = #{updateTime}</if>
