@@ -30,10 +30,6 @@ public class ApiCatalogController extends ApiBaseAction {
     /**
      * 获取分类栏目数据
      */
-    @ApiOperation(value = "获取分类栏目数据")
-    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "id", paramType = "query", required = false),
-            @ApiImplicitParam(name = "page", value = "page", paramType = "query", required = false),
-            @ApiImplicitParam(name = "size", value = "size", paramType = "query", required = false)})
     @IgnoreAuth
     @GetMapping(value = "index")
     public Object index(@PathVariable("merchantId") Long merchantId, Long id, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
