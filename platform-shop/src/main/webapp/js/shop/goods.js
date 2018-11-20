@@ -3,7 +3,7 @@ $(function () {
         url: '../goods/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '商品类型', name: 'categoryName', index: 'categoryName', width: 80},
+            {label: '类目', name: 'categoryName', index: 'categoryName', width: 80},
             {label: '名称', name: 'name', index: 'name', width: 160},
             {label: '品牌', name: 'brandName', index: 'brand_id', width: 120},
             {
@@ -18,7 +18,7 @@ $(function () {
             }
             },
             {label: '属性类别', name: 'attributeCategoryName', index: 'attribute_category', width: 80},
-            {label: '零售价格', name: 'retailPrice', index: 'retail_price', width: 80},
+            {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 80},
             {label: '商品库存', name: 'goodsNumber', index: 'goods_number', width: 80},
             {label: '销售量', name: 'sellVolume', index: 'sell_volume', width: 80},
             {label: '市场价', name: 'marketPrice', index: 'market_price', width: 80},

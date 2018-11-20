@@ -82,8 +82,8 @@
         <Tabs value="name1">
             <Tab-Pane label="通用信息" name="name1">
                 <i-form ref="formValidate" :model="goods" :rules="ruleValidate" :label-width="80">
-                    <Form-item label="商品类型" prop="categoryId">
-                        <i-input v-model="goods.categoryName" @on-click="categoryTree" icon="eye" readonly="readonly" placeholder="商品类型"/>
+                    <Form-item label="类目" prop="categoryId">
+                        <i-input v-model="goods.categoryName" @on-click="categoryTree" icon="eye" readonly="readonly" placeholder="类目"/>
                     </Form-item>
                     <Form-item label="商品序列号" prop="goodsSn">
                         <i-input v-model="goods.goodsSn" placeholder="商品序列号"/>
@@ -107,8 +107,8 @@
                     <Form-item label="商品库存" prop="goodsNumber">
                         <Input-number :min="0" :step="1" v-model="goods.goodsNumber" placeholder="商品库存" style="width: 188px;"/>
                     </Form-item>
-                    <Form-item label="零售价格" prop="retailPrice">
-                        <Input-number :min="0" :step="1" v-model="goods.retailPrice" placeholder="零售价格" style="width: 188px;"/>
+                    <Form-item label="拼团价" prop="retailPrice">
+                        <Input-number :min="0" :step="1" v-model="goods.retailPrice" placeholder="拼团价" style="width: 188px;"/>
                     </Form-item>
                     <Form-item label="市场价" prop="marketPrice">
                         <Input-number :min="0" :step="1" v-model="goods.marketPrice" placeholder="市场价" style="width: 188px;"/>
