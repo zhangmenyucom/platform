@@ -22,6 +22,10 @@ public class OrderEntity extends BaseEntity implements Serializable {
      **/
     private String orderSn;
     /**
+     * 团长序列号
+     **/
+    private Long parentOrder;
+    /**
      * 会员Id
      **/
     private Integer userId;

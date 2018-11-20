@@ -8,6 +8,7 @@
         <result property="id" column="id"/>
         <result property="merchantId" column="merchant_id"/>
         <result property="orderSn" column="order_sn"/>
+        <result property="parentOrder" column="parent_order"/>
         <result property="userId" column="user_id"/>
         <result property="orderStatus" column="order_status"/>
         <result property="shippingStatus" column="shipping_status"/>

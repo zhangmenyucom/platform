@@ -21,7 +21,8 @@ $(function () {
         datatype: "json",
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '订单号', name: 'orderSn', index: 'order_sn', width: 100},
+            {label: '订单号', name: 'orderSn', index: 'order_sn', width: 120},
+            {label: '团长单', name: 'parentOrder', index: 'parentOrder', width: 100},
             {label: '会员', name: 'nickName', index: 'nickName', width: 100},
             {
                 label: '订单类型', name: 'orderType', index: 'order_type', width: 80, formatter: function (value) {
