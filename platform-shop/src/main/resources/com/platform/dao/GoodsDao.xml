@@ -227,7 +227,7 @@
             <if test="brandId != null">`brand_id` = #{brandId},</if>
             <if test="goodsNumber != null">`goods_number` = #{goodsNumber},</if>
             <if test="leastPerson != null">`least_person` = #{leastPerson},</if>
-            <if test="endDate != null">`endDate` = #{end_date},</if>
+            <if test="endDate != null">`end_date` = #{endDate},</if>
             <if test="keywords != null">`keywords` = #{keywords},</if>
             <if test="goodsBrief != null">`goods_brief` = #{goodsBrief},</if>
             <if test="goodsDesc != null">`goods_desc` = #{goodsDesc},</if>
