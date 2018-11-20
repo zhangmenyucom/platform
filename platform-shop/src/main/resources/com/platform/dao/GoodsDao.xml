@@ -11,6 +11,7 @@
         <result property="name" column="name"/>
         <result property="brandId" column="brand_id"/>
         <result property="goodsNumber" column="goods_number"/>
+        <result property="leastPerson" column="least_person"/>
         <result property="keywords" column="keywords"/>
         <result property="goodsBrief" column="goods_brief"/>
         <result property="goodsDesc" column="goods_desc"/>
@@ -54,8 +55,8 @@
         goods.goods_sn,
         goods.name,
         goods.brand_id,
-        goods.goods_number,
         goods.keywords,
+        goods.least_person,
         goods.goods_brief,
         goods.goods_desc,
         goods.is_on_sale,
@@ -139,6 +140,7 @@
         `name`,
         `brand_id`,
         `goods_number`,
+        `least_person`,
         `keywords`,
         `goods_brief`,
         `goods_desc`,
@@ -178,6 +180,7 @@
         #{name},
         #{brandId},
         #{goodsNumber},
+        #{leastPerson},
         #{keywords},
         #{goodsBrief},
         #{goodsDesc},
@@ -218,6 +221,7 @@
             <if test="name != null">`name` = #{name},</if>
             <if test="brandId != null">`brand_id` = #{brandId},</if>
             <if test="goodsNumber != null">`goods_number` = #{goodsNumber},</if>
+            <if test="leastPerson != null">`least_person` = #{leastPerson},</if>
             <if test="keywords != null">`keywords` = #{keywords},</if>
             <if test="goodsBrief != null">`goods_brief` = #{goodsBrief},</if>
             <if test="goodsDesc != null">`goods_desc` = #{goodsDesc},</if>
