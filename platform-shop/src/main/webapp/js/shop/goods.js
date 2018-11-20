@@ -3,26 +3,26 @@ $(function () {
         url: '../goods/list',
         colModel: [
             {label: 'id', name: 'id', index: 'id', key: true, hidden: true},
-            {label: '类目', name: 'categoryName', index: 'categoryName', width: 80},
+            {label: '类目', name: 'categoryName', index: 'categoryName', width: 60},
             {label: '名称', name: 'name', index: 'name', width: 160},
-            {label: '品牌', name: 'brandName', index: 'brand_id', width: 120},
+            {label: '品牌', name: 'brandName', index: 'brand_id', width: 60},
             {
-                label: '上架', name: 'isOnSale', index: 'is_on_sale', width: 50,
+                label: '上架', name: 'isOnSale', index: 'is_on_sale', width: 40,
                 formatter: function (value) {
                     return transIsNot(value);
                 }
             },
-            {label: '属性类别', name: 'attributeCategoryName', index: 'attribute_category', width: 80},
-            {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 80},
-            {label: '商品库存', name: 'goodsNumber', index: 'goods_number', width: 80},
+            {label: '属性类别', name: 'attributeCategoryName', index: 'attribute_category', width: 60},
+            {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 60},
+            {label: '商品库存', name: 'goodsNumber', index: 'goods_number', width: 60},
             {label: '成团人限', name: 'leastPerson', index: 'leastPerson', width: 80},
             {
-                label: '截止时间', name: 'endDate', index: 'endDate', width: 80, formatter: function (value) {
-                return transDate(value, 'yyyy-MM-dd HH:mm:ss');
+                label: '截止时间', name: 'endDate', index: 'endDate', width: 120, formatter: function (value) {
+                return transDate(value, 'yyyy-MM-dd hh:mm:ss');
             }
             },
-            {label: '销售量', name: 'sellVolume', index: 'sell_volume', width: 80},
-            {label: '市场价', name: 'marketPrice', index: 'market_price', width: 80},
+            {label: '销售量', name: 'sellVolume', index: 'sell_volume', width: 60},
+            {label: '市场价', name: 'marketPrice', index: 'market_price', width: 60},
             {
                 label: '热销', name: 'isHot', index: 'is_hot', width: 80, formatter: function (value) {
                 return transIsNot(value);
