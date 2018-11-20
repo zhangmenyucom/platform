@@ -107,6 +107,16 @@
                     <Form-item label="商品库存" prop="goodsNumber">
                         <Input-number :min="0" :step="1" v-model="goods.goodsNumber" placeholder="商品库存" style="width: 188px;"/>
                     </Form-item>
+                    <Form-item label="拼团类别" prop="goodsType">
+                        <Radio-group v-model="goods.goodsType">
+                            <Radio label="0">
+                                <span>实物团</span>
+                            </Radio>
+                            <Radio label="1">
+                                <span>积分团</span>
+                            </Radio>
+                        </Radio-group>
+                    </Form-item>
                     <Form-item label="成团人限" prop="leastPerson">
                         <Input-number :min="0" :step="1" v-model="goods.leastPerson" placeholder="成团人限" style="width: 188px;"/>
                     </Form-item>
@@ -114,7 +124,7 @@
                         <Date-picker type="datetime" v-model="goods.endDate" placeholder="截止时间"></Date-picker>
                     </Form-item>
                     <Form-item label="拼团价" prop="retailPrice">
-                        <Input-number :min="0" :step="1" v-model="goods.retailPrice" placeholder="拼团价" style="width: 188px;"/>
+                        <Input-number :min="0" :step="1" v-model="goods.retailPrice" placeholder="拼团价或积分" style="width: 188px;"/>
                     </Form-item>
                     <Form-item label="市场价" prop="marketPrice">
                         <Input-number :min="0" :step="1" v-model="goods.marketPrice" placeholder="市场价" style="width: 188px;"/>

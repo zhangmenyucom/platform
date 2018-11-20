@@ -40,6 +40,10 @@ public class GoodsEntity extends BaseEntity implements Serializable {
      **/
     private Integer goodsNumber;
     /**
+     * 拼团类别
+     **/
+    private Integer goodsType;
+    /**
      * 最低成团人数
      **/
     private Integer leastPerson;

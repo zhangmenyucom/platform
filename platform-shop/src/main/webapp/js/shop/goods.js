@@ -15,6 +15,11 @@ $(function () {
             {label: '属性类别', name: 'attributeCategoryName', index: 'attribute_category', width: 60},
             {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 60},
             {label: '商品库存', name: 'goodsNumber', index: 'goods_number', width: 60},
+            {
+                label: '团别', name: 'goodsType', index: 'goodsType', width: 80, formatter: function (value) {
+                return value == 1 ? "积分团" : "实物团";
+            }
+            },
             {label: '成团人限', name: 'leastPerson', index: 'leastPerson', width: 80},
             {
                 label: '截止时间', name: 'endDate', index: 'endDate', width: 120, formatter: function (value) {
