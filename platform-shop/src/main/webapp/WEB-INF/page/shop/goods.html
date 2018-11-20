@@ -110,6 +110,9 @@
                     <Form-item label="成团人限" prop="leastPerson">
                         <Input-number :min="0" :step="1" v-model="goods.leastPerson" placeholder="成团人限" style="width: 188px;"/>
                     </Form-item>
+                    <Form-item label="截止时间" prop="endDate">
+                        <Date-picker v-model="goods.endDate" placeholder="截止时间"></Date-picker>
+                    </Form-item>
                     <Form-item label="拼团价" prop="retailPrice">
                         <Input-number :min="0" :step="1" v-model="goods.retailPrice" placeholder="拼团价" style="width: 188px;"/>
                     </Form-item>

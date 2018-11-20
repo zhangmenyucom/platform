@@ -44,6 +44,10 @@ public class GoodsEntity extends BaseEntity implements Serializable {
      **/
     private Integer leastPerson;
     /**
+     * 截止日期
+     **/
+    private Date endDate;
+    /**
      * 关键字
      **/
     private String keywords;

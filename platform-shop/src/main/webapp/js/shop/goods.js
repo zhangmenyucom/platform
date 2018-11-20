@@ -16,6 +16,11 @@ $(function () {
             {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 80},
             {label: '商品库存', name: 'goodsNumber', index: 'goods_number', width: 80},
             {label: '成团人限', name: 'leastPerson', index: 'leastPerson', width: 80},
+            {
+                label: '截止时间', name: 'endDate', index: 'endDate', width: 80, formatter: function (value) {
+                return transDate(value, 'yyyy-MM-dd HH:mm:ss');
+            }
+            },
             {label: '销售量', name: 'sellVolume', index: 'sell_volume', width: 80},
             {label: '市场价', name: 'marketPrice', index: 'market_price', width: 80},
             {
