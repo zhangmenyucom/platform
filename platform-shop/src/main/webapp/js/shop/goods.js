@@ -13,11 +13,19 @@ $(function () {
                 }
             },
             {label: '属性类别', name: 'attributeCategoryName', index: 'attribute_category', width: 60},
-            {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 60},
             {label: '商品库存', name: 'goodsNumber', index: 'goods_number', width: 60},
             {
-                label: '团别', name: 'goodsType', index: 'goodsType', width: 80, formatter: function (value) {
-                return value == 1 ? "积分团" : "实物团";
+                label: '团别', name: 'goodsType', index: 'goodsType', width: 100, formatter: function (value) {
+                if (value == 0) {
+                    return "实物团"
+                }
+                if (value == 1) {
+                    return "积分团"
+                }
+                if (value == 2) {
+                    return "无限消费券团"
+                }
+                return "-";
             }
             },
             {label: '成团人限', name: 'leastPerson', index: 'leastPerson', width: 80},
@@ -27,17 +35,18 @@ $(function () {
             }
             },
             {label: '销售量', name: 'sellVolume', index: 'sell_volume', width: 60},
+            {label: '拼团价', name: 'retailPrice', index: 'retail_price', width: 60},
             {label: '市场价', name: 'marketPrice', index: 'market_price', width: 60},
             {
                 label: '热销', name: 'isHot', index: 'is_hot', width: 80, formatter: function (value) {
                 return transIsNot(value);
             }
-            },
+            }/*,
             {
                 label: '录入日期', name: 'addTime', index: 'add_time', width: 80, formatter: function (value) {
                 return transDate(value, 'yyyy-MM-dd');
             }
-            }]
+             }*/]
     });
     $('#goodsDesc').editable({
         inlineMode: false,

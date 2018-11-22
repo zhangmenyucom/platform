@@ -58,10 +58,13 @@
         <if test="merchantId!=null">
             and merchant_id=#{merchantId}
         </if>
-        <if test="is_new != null and is_new != ''">
+        <if test="type!=null">
+            and goods_type=#{type}
+        </if>
+        <if test="is_new != null and is_new != -1">
             and is_new = #{is_new}
         </if>
-        <if test="is_hot != null and is_hot != ''">
+        <if test="is_hot != null and is_hot != -1">
             and is_hot = #{is_hot}
         </if>
         <if test="brand_id != null and brand_id != ''">
@@ -72,9 +75,6 @@
         </if>
         <if test="category_id != null and category_id != ''">
             and category_id = #{category_id}
-        </if>
-        <if test="keyword != null">
-            and keywords like concat('%',#{keyword},'%')
         </if>
         <if test="is_delete != null">
             and is_delete = #{is_delete}
