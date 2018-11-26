@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.ApiNewGiftRecordMapper">
+
+    <resultMap type="com.platform.entity.NewGiftRecordEntity" id="newGiftRecordMap">
+        <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="hongBao" column="hong_bao"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <select id="queryObject" resultType="com.platform.entity.NewGiftRecordVo">
+    select
+    `id`,
+    `merchant_id`,
+    `user_id`,
+    `hong_bao`,
+    `status`,
+    `create_time`,
+    `update_time`,
+    `remark`
+    from new_gift_record
+    where id = #{id}
+  </select>
+    <select id="queryByUserId" parameterType="java.lang.Long" resultType="com.platform.entity.NewGiftRecordVo">
+    select
+    `id`,
+    `merchant_id`,
+    `user_id`,
+    `hong_bao`,
+    `status`,
+    `create_time`,
+    `update_time`,
+    `status`,
+    `remark`
+    from new_gift_record
+    where user_id = #{userId} and status=1
+  </select>
+
+    <select id="queryList" resultType="com.platform.entity.NewGiftRecordVo">
+        select
+        `id`,
+        `merchant_id`,
+        `user_id`,
+        `hong_bao`,
+        `status`,
+        `create_time`,
+        `update_time`,
+        `remark`
+        from new_gift_record
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from new_gift_record
+        WHERE 1=1
+        <if test="merchantId!=null">
+            and merchant_id=#{merchantId}
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.platform.entity.NewGiftRecordVo" useGeneratedKeys="true" keyProperty="id">
+    insert into new_gift_record(
+    `merchant_id`,
+    `user_id`,
+    `hong_bao`,
+    `status`,
+    `remark`,
+    `create_time`,
+    `update_time`)
+    values(
+    #{merchantId},
+    #{userId},
+    #{hongBao},
+    #{status},
+    #{remark},
+    #{createTime},
+    #{updateTime})
+  </insert>
+
+    <update id="update" parameterType="com.platform.entity.NewGiftRecordVo">
+        update new_gift_record
+        <set>
+            <if test="merchantId != null">`merchant_id` = #{merchantId},</if>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="hongBao != null">`hong_bao` = #{hongBao},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="remark != null">`remark` = #{remark},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+    delete from new_gift_record where id = #{value}
+  </delete>
+
+    <delete id="deleteBatch">
+        delete from new_gift_record where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
