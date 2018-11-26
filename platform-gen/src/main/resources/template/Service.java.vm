@@ -1,7 +1,8 @@
 package ${package}.service;
 
 import ${package}.entity.${className}Entity;
-
+        import org.springframework.stereotype.Service;
+        import ${package}.dao.${className}Dao;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @email ${email}
  * @date ${datetime}
  */
-public interface ${className}Service extends BaseService<${className}Entity> {
+@Service
+public class ${className}Service extends BaseServiceImpl<${className}Entity, ${className}Dao> {
 
 }
