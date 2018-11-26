@@ -2,7 +2,7 @@ package ${package}.service;
 
 import ${package}.entity.${className}Entity;
         import org.springframework.stereotype.Service;
-        import ${package}.dao.${className}Dao;
+        import ${package}.dao.${className}Entity;
 import java.util.List;
 import java.util.Map;
 
