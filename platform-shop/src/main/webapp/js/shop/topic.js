@@ -7,13 +7,13 @@ $(function () {
             {label: '活动内容', name: 'content', index: 'content', width: 80, hidden: true},
             {
                 label: '图像', name: 'avatar', index: 'avatar', width: 80, formatter: function (value) {
-                    return transImg(value);
-                }
+                return transImg(value);
+            }
             },
             {
                 label: '活动条例图片', name: 'itemPicUrl', index: 'item_pic_url', width: 80, formatter: function (value) {
-                    return transImg(value);
-                }
+                return transImg(value);
+            }
             },
             {label: '子标题', name: 'subtitle', index: 'subtitle', width: 80},
             {label: '活动类别', name: 'topicCategoryId', index: 'topic_category_id', width: 80},
@@ -21,8 +21,8 @@ $(function () {
             {label: 'readCount', name: 'readCount', index: 'read_count', width: 80},
             {
                 label: '场景图片', name: 'scenePicUrl', index: 'scene_pic_url', width: 80, formatter: function (value) {
-                    return transImg(value);
-                }
+                return transImg(value);
+            }
             },
             {label: '活动模板Id', name: 'topicTemplateId', index: 'topic_template_id', width: 80},
             {label: '活动标签Id', name: 'topicTagId', index: 'topic_tag_id', width: 80}]
@@ -51,6 +51,7 @@ var vm = new Vue({
         showList: true,
         title: null,
         topic: {avatar: '', itemPicUrl: '', scenePicUrl: ''},
+        topicCategorys: [],
         ruleValidate: {
             title: [
                 {required: true, message: '活动主题不能为空', trigger: 'blur'}
@@ -68,6 +69,7 @@ var vm = new Vue({
             vm.showList = false;
             vm.title = "新增";
             vm.topic = {avatar: '', itemPicUrl: '', scenePicUrl: ''};
+            vm.getTopicCategory();
             $('#content').editable('setHTML', '');
         },
         update: function (event) {
@@ -77,12 +79,11 @@ var vm = new Vue({
             }
             vm.showList = false;
             vm.title = "修改";
-
+            vm.getTopicCategory();
             vm.getInfo(id)
         },
         saveOrUpdate: function (event) {
             var url = vm.topic.id == null ? "../topic/save" : "../topic/update";
-
             //编辑器内容
             vm.topic.content = $('#content').editable('getHTML');
             Ajax.request({
@@ -129,6 +130,18 @@ var vm = new Vue({
                 }
             });
         },
+        /**
+         * 获取品牌
+         */
+        getTopicCategory: function () {
+            Ajax.request({
+                url: "../topiccategory/queryAll",
+                async: true,
+                successCallback: function (r) {
+                    vm.topicCategorys = r.list;
+                }
+            });
+        },
         reload: function (event) {
             vm.showList = true;
             var page = $("#jqGrid").jqGrid('getGridParam', 'page');
@@ -138,20 +151,13 @@ var vm = new Vue({
             }).trigger("reloadGrid");
             vm.handleReset('formValidate');
         },
-
         handleSuccessAvatar: function (res, file) {
-            this.$Message.destroy();
-            this.$Message.success('上传成功');
             vm.topic.avatar = file.response.url;
         },
         handleSuccessItemPicUrl: function (res, file) {
-            this.$Message.destroy();
-            this.$Message.success('上传成功');
             vm.topic.itemPicUrl = file.response.url;
         },
         handleSuccessScenePicUrl: function (res, file) {
-            this.$Message.destroy();
-            this.$Message.success('上传成功');
             vm.topic.scenePicUrl = file.response.url;
         },
         handleFormatError: function (file) {

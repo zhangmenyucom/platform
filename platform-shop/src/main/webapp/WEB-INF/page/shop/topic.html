@@ -38,7 +38,7 @@
                 <i-input v-model="topic.title" placeholder="活动主题"/>
             </Form-item>
             <Form-item label="活动内容" prop="content">
-                <div id="content" placeholder="活动内容"/>
+                <div id="content" placeholder="活动内容"></div>
             </Form-item>
             <Row>
                 <i-col span="16">
@@ -52,7 +52,6 @@
                                 max-size="2048"
                                 :on-success="handleSuccessAvatar" :on-format-error="handleFormatError"
                                 :show-upload-list="false"
-                                :on-progress="handleProgress"
                                 :on-exceeded-size="handleMaxSize">
                             <i-button icon="ios-cloud-upload-outline">上传图片</i-button>
                         </Upload>
@@ -90,8 +89,11 @@
             <Form-item label="子标题" prop="subtitle">
                 <i-input v-model="topic.subtitle" placeholder="子标题"/>
             </Form-item>
-            <Form-item label="活动类别" prop="topicCategoryId">
-                <i-input v-model="topic.topicCategoryId" placeholder="活动类别"/>
+            <Form-item label="活动类别" prop="topicCategoryId" style="width: 268px;">
+                <i-select v-model="topic.topicCategoryId" filterable>
+                    <i-option v-for="category in topicCategorys" :value="category.id" :key="category.id">{{category.title}}
+                    </i-option>
+                </i-select>
             </Form-item>
             <Form-item label="活动价格" prop="priceInfo">
                 <i-input v-model="topic.priceInfo" placeholder="活动价格"/>
